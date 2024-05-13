@@ -21,7 +21,7 @@
         <div class="card shadow card-custom">
           <div class="card-body">
             <div class="text-center mb-4">
-              <img src="/img/aF0HKEKj_400x400.jpg" alt="Logo" style="width: 100px;">
+              <img src="./img/aF0HKEKj_400x400.jpg" alt="Logo" style="width: 100px;">
               <h4 class="mt-3">Inicia Sesión</h4>
             </div>
             <form id="loginForm">
@@ -47,7 +47,7 @@
     document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault(); // Previene el comportamiento por defecto del formulario
       // Aquí puedes agregar validaciones o consultas a una API para la autenticación
-      window.location.href = 'list_employees.html'; // Redirecciona a la página de empleados
+      window.location.href = 'list_employees.php'; // Redirecciona a la página de empleados
     });
   </script>
 

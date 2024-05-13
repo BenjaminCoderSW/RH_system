@@ -37,7 +37,7 @@
 <body>
     <div class="sidebar d-flex flex-column">
         <a href="#" class="navbar-brand text-center py-3">
-            <img src="/img/image.png" alt="Logo" style="width: 100px;">
+            <img src="./img/image.png" alt="Logo" style="width: 100px;">
         </a>
         <nav class="nav flex-column">
             <a class="nav-link" href="list_employees.html"><i class="fas fa-home"></i> Empleados</a>

@@ -37,34 +37,46 @@
 <body>
     <div class="sidebar d-flex flex-column">
         <a href="#" class="navbar-brand text-center py-3">
-            <img src="/img/image.png" alt="Logo" style="width: 100px;">
+            <img src="./img/image.png" alt="Logo" style="width: 100px;">
         </a>
         <nav class="nav flex-column">
-            <a class="nav-link" href="list_employees.html"><i class="fas fa-home"></i> Empleados</a>
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-users"></i> Empleados
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="_agregarEmpleado.php">Contratar Empleado</a></li>
+                    <li><a class="dropdown-item" href="list_employees.php">Lista de Empleados</a></li>
+                </ul>
+            </div>
             <div class="dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-file-contract"></i> Contratos
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="_nuevoContrato.html">Agregar Contrato</a></li>
-                    <li><a class="dropdown-item" href="_listaContratos.html">Lista de Contratos</a></li>
+                    <li><a class="dropdown-item" href="_nuevoContrato.php">Agregar Contrato</a></li>
+                    <li><a class="dropdown-item" href="_listaContratos.php">Lista de Contratos</a></li>
                 </ul>
             </div>
-            <a class="nav-link" href="_vacaciones.html"><i class="fas fa-umbrella-beach"></i> Vacaciones</a>
+            <a class="nav-link" href="_vacaciones.php"><i class="fas fa-umbrella-beach"></i> Vacaciones</a>
             <div class="dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-users"></i> Usuarios
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="_agregarUsuario.html">Agregar Usuario</a></li>
-                    <li><a class="dropdown-item" href="_verUsuarios.html">Ver Usuarios</a></li>
+                    <li><a class="dropdown-item" href="_agregarUsuario.php">Agregar Usuario</a></li>
+                    <li><a class="dropdown-item" href="_verUsuarios.php">Ver Usuarios</a></li>
                 </ul>
             </div>
-            <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            <a class="nav-link" href="index.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
         </nav>
     </div>
+
+
+
     <div class="content">
         <div class="container-fluid">
             <h2>Vacaciones</h2>

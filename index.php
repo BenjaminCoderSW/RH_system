@@ -1,57 +1,52 @@
+<?php
+    require "./inc/session_start.php";
+?>
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .card-custom {
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-  </style>
+    <?php
+    include "./inc/head.php";
+    ?>
 </head>
-
 <body>
-  <div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-md-4">
-        <div class="card shadow card-custom">
-          <div class="card-body">
-            <div class="text-center mb-4">
-              <img src="./img/aF0HKEKj_400x400.jpg" alt="Logo" style="width: 100px;">
-              <h4 class="mt-3">Inicia Sesión</h4>
-            </div>
-            <form id="loginForm">
-              <div class="mb-4">
-                <label for="username" class="form-label">Usuario:</label>
-                <input type="text" class="form-control" id="username" required>
-              </div>
-              <div class="mb-4">
-                <label for="password" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="password" required>
-              </div>
-              <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-danger">Entrar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <?php
 
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault(); // Previene el comportamiento por defecto del formulario
-      // Aquí puedes agregar validaciones o consultas a una API para la autenticación
-      window.location.href = 'list_employees.php'; // Redirecciona a la página de empleados
-    });
-  </script>
+    // Si mi variable tipo GET llamada vista no viene definida o esta vacia
+    if(!isset($_GET['vista']) || $_GET['vista'] == ""){
+        // entonces le ponemos el valor el nombre de mi archivo login en las vistas
+        $_GET['vista']="login";
+    }
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    /*   Si en la carpeta vistas existe el archivo que viene almacenado en mi variable vista por ejemplo home
+     y es diferente a login 
+     y es diferente a 404    */
+    if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista'] != "login" && $_GET['vista'] != "404"){
+
+        # Cerrar la sesion #
+        /* Aqui comprobamos si el usuario ingreso datos en el login al entrar al home o solo intento ingresar mediante la URL brincandose el login*/
+
+        // Si la variable de sesion llamada id NO esta definida o NO tiene valor
+        // O
+        // Si la variable de sesion llamada nombre NO esta definida o NO tiene valor entonces:
+
+
+        // Aqui falta codigo que quite temporalmente
+
+
+
+        // Entonces se va a cargar mi navbar
+        include "./inc/navbar.php";
+        // La vista que contenga la variable vista desde mi carpeta vistas: por ejemplo la variable vista puede traer home
+        include "./vistas/".$_GET['vista'].".php";
+    }else{
+        // SINO que abra el login o la pagina 404
+        if($_GET['vista'] == "login"){
+            include "./vistas/login.php";
+        }else{
+            include "./vistas/404.php";
+        }
+    }
+    include "./inc/end.php";
+    ?>
 </body>
-
 </html>

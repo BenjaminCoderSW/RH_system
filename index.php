@@ -28,11 +28,12 @@
         // Si la variable de sesion llamada id NO esta definida o NO tiene valor
         // O
         // Si la variable de sesion llamada nombre NO esta definida o NO tiene valor entonces:
-
-
-        // Aqui falta codigo que quite temporalmente
-
-
+        if((!isset($_SESSION['id']) || $_SESSION['id'] == "") || (!isset($_SESSION['nombre']) || $_SESSION['nombre'] == "")){
+            // Cerramos la sesion destruyendola y reedireccionamos al usuario al login incluyendo el script del archivo logout.php de la carpeta vistas
+            include "./vistas/logout.php";
+            //Detenemos el script
+            exit();
+        }
 
         // Entonces se va a cargar mi navbar
         include "./inc/navbar.php";

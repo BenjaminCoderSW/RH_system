@@ -1,1 +1,1 @@
-nuevo empleado
+Vista para agregar nuevo empleado

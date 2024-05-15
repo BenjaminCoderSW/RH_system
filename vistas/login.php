@@ -13,11 +13,11 @@
             <form class="box login" action="" method="POST" autocomplete="off">
               <div class="mb-4">
                 <label for="username" class="form-label">Usuario:</label>
-                <input type="text" name="login_usuario" class="form-control" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" required>
+                <input type="text" name="login_usuario" class="form-control" pattern="[a-zA-Z0-9]{4,50}" maxlength="50" required>
               </div>
               <div class="mb-4">
                 <label for="password" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" name="login_clave" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required>
+                <input type="password" class="form-control" name="login_clave" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255" required>
               </div>
               <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-danger">Entrar</button>

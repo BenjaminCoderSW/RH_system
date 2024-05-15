@@ -27,7 +27,7 @@
 
     // Para eso utilizando la funcion verificar_datos() de mi archivo main.php con cada uno de los input mandando los 2 parametros que pide esta funcion
     // Le doy el filtro de cada input y la cadena que quiero que filtre
-    if(verificar_datos("[a-zA-Z0-9]{4,20}",$usuario)){
+    if(verificar_datos("[a-zA-Z0-9]{4,50}",$usuario)){
         //Mostramos una notificacion de alerta en codigo HTML sacada de bulma y detenemos la ejecucion del codigo con exit()
         echo '
             <div class="notification is-danger is-light">
@@ -38,7 +38,7 @@
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z0-9$@.-]{7,100}",$clave)){
+    if(verificar_datos("[a-zA-Z0-9$@.-]{7,255}",$clave)){
         //Mostramos una notificacion de alerta en codigo HTML sacada de bulma y detenemos la ejecucion del codigo con exit()
         echo '
             <div class="notification is-danger is-light">
@@ -67,18 +67,18 @@
             # YA SE INICIO SESION EN ESTE PUNTO DEL CODIGO #
             // Creamos las variables de sesion, de la sesion que iniciamos en el index.php (Esa sesion tambien se incluye en este archivo)
             $_SESSION['id'] = $check_user['usuario_id'];
-            $_SESSION['nombre'] = $check_user['usuario_nombre'];
-            $_SESSION['apellido'] = $check_user['usuario_apellido'];
-            $_SESSION['usuario'] = $check_user['usuario_usuario'];
+            $_SESSION['nombre'] = $check_user['usuario_nombre_completo'];
             $_SESSION['correo'] = $check_user['usuario_email'];
+            $_SESSION['usuario'] = $check_user['usuario_usuario'];
+            $_SESSION['rol'] = $check_user['usuario_rol'];
 
             // Si se han enviado encabezados HTTP al cliente entonces:
             if(headers_sent()){
                 // Redirecciona al usuario a la vista home usando JS ya que no se puede ocupar php puro, porque nos mandaria un error
-                echo "<script> window.location.href='index.php?vista=home'; </script>";
+                echo "<script> window.location.href='index.php?vista=employee_list'; </script>";
             }else{
                 // Redirecciona al usuario a la vista home utilizando php
-                header("Location: index.php?vista=home");
+                header("Location: index.php?vista=employee_list");
             }
 
         }else{
@@ -100,5 +100,3 @@
         ';
     }
     $check_user=null;
-
-?>

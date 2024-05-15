@@ -6,9 +6,12 @@
                     <h4>Añadir Nuevo Usuario</h4>
                 </div>
                 <div class="card-body">
+
                     <div class="form-rest mb-6 mt-6"></div>
+
                     <form action="./php/usuario_guardar.php" method="POST" class="FormularioAjax" autocomplete="off"
                         id="formUsuario">
+                        
                         <div class="form-group">
                             <label for="Usuario_nombre_completo">Nombre Completo</label>
                             <input type="text" class="form-control" id="Usuario_nombre_completo" name="usuario_nombre"

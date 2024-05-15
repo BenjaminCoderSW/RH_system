@@ -30,19 +30,19 @@
                             <!-- Nombre de Usuario -->
                             <div class="form-group">
                                 <label for="Usuario_usuario">Nombre de Usuario</label>
-                                <input type="text" class="form-control" id="Usuario_usuario" name="usuario_usuario" placeholder="Nombre de Usuario" pattern="[a-zA-Z0-9]{4,50}" maxlength="50"  >
+                                <input type="text" class="form-control" id="Usuario_usuario" name="usuario_usuario" placeholder="Nombre de Usuario" pattern="[a-zA-Z0-9]{4,50}" maxlength="50" required>
                             </div>
 
                             <!-- Clave del Usuario -->
                             <div class="form-group">
                                 <label for="Usuario_clave">Contraseña</label>
-                                <input type="password" class="form-control" id="Usuario_clave" name="usuario_clave_1" placeholder="Contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255"  >
+                                <input type="password" class="form-control" id="Usuario_clave" name="usuario_clave_1" placeholder="Contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255" required>
                             </div>
 
                             <!-- Repetir Clave del Usuario para confirmar -->
                             <div class="form-group">
                                 <label for="Usuario_clave_2">Confirmar contraseña</label>
-                                <input type="password" class="form-control" id="Usuario_clave_2" name="usuario_clave_2" placeholder="Repite tu contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255"  >
+                                <input type="password" class="form-control" id="Usuario_clave_2" name="usuario_clave_2" placeholder="Repite tu contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255" required>
                             </div>
 
                             <!-- Rol del Usuario -->

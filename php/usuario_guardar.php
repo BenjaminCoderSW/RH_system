@@ -21,12 +21,13 @@
     //Si alguno de estos campos obligatorios viene vacio entonces
     if($nombre=="" || $usuario=="" || $clave_1=="" || $clave_2==""){
         // Mostramos una notificacion de alerta en codigo HTML sacada de bulma y detenemos la ejecucion del codigo con exit()
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                No has llenado todos los campos 
-            </div>
-        ';
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Ocurrió un error inesperado!',
+                    text: 'No has llenado todos los campos.'
+                });
+            </script>";
         exit();
     }
 

@@ -13,12 +13,13 @@
     //Si alguno de estos campos obligatorios viene vacio entonces
     if($usuario=="" || $clave==""){
         //Mostramos una notificacion de alerta en codigo HTML sacada de bulma y detenemos la ejecucion del codigo con exit()
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                No has llenado todos los campos que son obligatorios
-            </div>
-        ';
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Ocurrió un error inesperado!',
+                    text: 'No has llenado todos los campos que son obligatorios.'
+                });
+            </script>";
         exit();
     }
 
@@ -29,23 +30,25 @@
     // Le doy el filtro de cada input y la cadena que quiero que filtre
     if(verificar_datos("[a-zA-Z0-9]{4,50}",$usuario)){
         //Mostramos una notificacion de alerta en codigo HTML sacada de bulma y detenemos la ejecucion del codigo con exit()
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                El USUARIO no coincide con el formato solicitado
-            </div>
-        ';
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Ocurrió un error inesperado!',
+                    text: 'El USUARIO no coincide con el formato solicitado.'
+                });
+            </script>";
         exit();
     }
 
     if(verificar_datos("[a-zA-Z0-9$@.-]{7,255}",$clave)){
         //Mostramos una notificacion de alerta en codigo HTML sacada de bulma y detenemos la ejecucion del codigo con exit()
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                La CLAVE no coincide con el formato solicitado
-            </div>
-        ';
+        echo "<script>
+                 Swal.fire({
+                     icon: 'error',
+                     title: '¡Ocurrió un error inesperado!',
+                     text: 'La CLAVE no coincide con el formato solicitado.'
+                 });
+             </script>";
         exit();
     }
 
@@ -83,20 +86,22 @@
 
         }else{
         //Mostramos una notificacion de alerta en codigo HTML sacada de bulma 
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                Usuario o clave incorrectos
-            </div>
-        ';
+        echo "<script>
+                 Swal.fire({
+                     icon: 'error',
+                     title: '¡Ocurrió un error inesperado!',
+                     text: 'USUARIO o CLAVE incorrectos'
+                 });
+             </script>";
         }
     }else{
         //Mostramos una notificacion de alerta en codigo HTML sacada de bulma 
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                Usuario o clave incorrectos
-            </div>
-        ';
+        echo "<script>
+                 Swal.fire({
+                     icon: 'error',
+                     title: '¡Ocurrió un error inesperado!',
+                     text: 'USUARIO o CLAVE incorrectos'
+                 });
+             </script>";
     }
     $check_user=null;

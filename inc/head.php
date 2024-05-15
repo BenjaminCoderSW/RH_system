@@ -7,4 +7,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="./css/estilos2.css">
+  <link rel="stylesheet" href="./css/sweetalert2.min.css">
+  <script src="./js/sweetalert2.all.min.js"></script>
 </head>

@@ -6,7 +6,7 @@
 function conexion()
 {
     #  Creamos una variable de instancia a la clase PDO y la conexion a la BD inventario dentro de esa variable
-    $pdo = new PDO('mysql:host=localhost;dbname=hr_basededatos', 'root', '');
+    $pdo = new PDO('mysql:host=srv867.hstgr.io;dbname=u954703204_hr_basededatos', 'u954703204_brian', 'p:0CSIT>l=Y4');
     return $pdo;
 }
 

@@ -76,72 +76,50 @@ function renombrar_fotos($nombre)
 # Funcion paginador de tablas 
 function paginador_tablas($pagina, $Npaginas, $url, $botones)
 {
-    $tabla = '<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">';
+    $tabla = '<nav aria-label="Page navigation"><ul class="pagination">';
 
     # PARTE DEL BOTON ANTERIOR #
-    //Si estamos colocados en la pagina 1 entonces
     if ($pagina <= 1) {
-        //Agregaremos el boton de Anterior (deshabilitado) y el inicio de la etiqueta <ul>
-        $tabla .= '
-        <a class="pagination-previous is-disabled" disabled >Anterior</a>
-        <ul class="pagination-list">';
+        // Botón 'Anterior' deshabilitado
+        $tabla .= '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>';
     } else {
-        //Agregaremos el boton de Anterior (habilitado) y configurado para ir a la pagina anterior por medio de la url
-        //Y ponemos el boton para ir a la pagina 1 por url ya que NO estamos ubicados en la 1 
-        //Y ponemos el ultimo <li> que es los 3 puntitos osea el (separador) de botones que se ve
-        $tabla .= '
-        <a class="pagination-previous" href="' . $url . ($pagina - 1) . '" >Anterior</a>
-        <ul class="pagination-list"> 
-            <li><a class="pagination-link" href="' . $url . '1">1</a></li>
-            <li><span class="pagination-ellipsis">&hellip;</span></li>
-        ';
+        // Botón 'Anterior' habilitado
+        $tabla .= '<li class="page-item"><a class="page-link" href="' . $url . ($pagina - 1) . '">Anterior</a></li>';
+        if ($pagina > 2) { // Si no estamos en la página 2, mostramos la página 1 y puntos suspensivos
+            $tabla .= '<li class="page-item"><a class="page-link" href="' . $url . '1">1</a></li>';
+            $tabla .= '<li class="page-item disabled"><a class="page-link" href="#">...</a></li>';
+        }
     }
 
     # PARTE DONDE SE VAN A MOSTRAR LOS BOTONES DEL PAGINADOR #
-    //Ocupare un contador llamado ci (contador de iteraciones)
     $ci = 0;
     for ($i = $pagina; $i <= $Npaginas; $i++) {
-
-        //Si el contador es mayor o igual al numero de botones
         if ($ci >= $botones) {
-            // Detenemos el ciclo for
             break;
         }
 
-        // CREACION DINAMICA DE LOS BOTONES:
-        //Si la pagina actual es igual al valor de i de mi ciclo entonces:
         if ($pagina == $i) {
-            // Se agrega un boton con un color distinto (azul)
-            $tabla .= '<li><a class="pagination-link is-current" href="' . $url . $i . '">' . $i . '</a></li>';
+            // Botón de la página actual con color distinto
+            $tabla .= '<li class="page-item active"><a class="page-link" href="' . $url . $i . '">' . $i . '</a></li>';
         } else {
-            // Se agrega un boton que va a mostrar el numero de paginador que corresponda
-            $tabla .= '<li><a class="pagination-link" href="' . $url . $i . '">' . $i . '</a></li>';
+            // Botón de otras páginas
+            $tabla .= '<li class="page-item"><a class="page-link" href="' . $url . $i . '">' . $i . '</a></li>';
         }
         $ci++;
     }
 
     # PARTE DEL BOTON SIGUIENTE #
-    //Si estamos colocados en la ultima pagina
     if ($pagina == $Npaginas) {
-        //Cerramos la etiqueta <ul> y agregaremos el boton de Siguiente (deshabilitado) 
-        $tabla .= '
-        </ul>
-        <a class="pagination-next is-disabled" disabled >Siguiente</a>
-        ';
+        // Botón 'Siguiente' deshabilitado
+        $tabla .= '<li class="page-item disabled"><a class="page-link" href="#">Siguiente</a></li>';
     } else {
-        //Agregamos el (separador de botones)
-        //Cerramos etiqueta <ul>
-        //Agregamos el boton de siguiente (habilitado) y configurado para su funcionamiento mediante url
-        $tabla .= '
-            <li><span class="pagination-ellipsis">&hellip;</span></li>
-            <li><a class="pagination-link" href="' . $url . $Npaginas . '">' . $Npaginas . '</a></li>
-        </ul>
-        <a class="pagination-next" href="' . $url . ($pagina + 1) . '" >Siguiente</a>
-        ';
+        if ($pagina < $Npaginas - 1) { // Si no estamos en la penúltima página, mostramos puntos suspensivos y la última página
+            $tabla .= '<li class="page-item"><a class="page-link" href="' . $url . $Npaginas . '">' . $Npaginas . '</a></li>';
+        }
+        // Botón 'Siguiente' habilitado
+        $tabla .= '<li class="page-item"><a class="page-link" href="' . $url . ($pagina + 1) . '">Siguiente</a></li>';
     }
 
-    $tabla .= '</nav>';
+    $tabla .= '</ul></nav>';
     return $tabla;
 }
-
-?>

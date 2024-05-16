@@ -1,0 +1,1 @@
+Logica para insertar un empleado en la base de datos como se hizo con los usuarios

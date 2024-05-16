@@ -16,7 +16,8 @@
           <i class="fas fa-users fa-xs"></i> Usuarios
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownUsuarios">
-          <a class="dropdown-item" href="index.php?vista=user_new"><i class="fas fa-user-plus fa-xs"></i> Añadir usuarios</a>
+          <a class="dropdown-item" href="index.php?vista=user_new"><i class="fas fa-user-plus fa-xs"></i> Añadir usuario</a>
+          <a class="dropdown-item" href="index.php?vista=user_search"><i class="fas fa-search"></i> Buscar usuario</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="index.php?vista=user_list"><i class="fas fa-eye fa-xs"></i> Ver Todos</a>
         </div>
@@ -28,6 +29,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownEmpleados">
           <a class="dropdown-item" href="index.php?vista=employee_new"><i class="fas fa-user-plus fa-xs"></i> Contratar empleado</a>
+          <a class="dropdown-item" href="index.php?vista=employee_search"><i class="fas fa-search"></i> Buscar empleado</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="index.php?vista=employee_list"><i class="fas fa-eye fa-xs"></i> Ver Todos</a>
         </div>
@@ -39,6 +41,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownContratos">
           <a class="dropdown-item" href="index.php?vista=contract_new"><i class="fas fa-plus fa-xs"></i> Añadir contrato</a>
+          <a class="dropdown-item" href="index.php?vista=contract_search"><i class="fas fa-search"></i> Buscar contrato</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="index.php?vista=contract_list"><i class="fas fa-eye fa-xs"></i> Ver Todos</a>
         </div>

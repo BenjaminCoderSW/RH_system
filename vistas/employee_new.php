@@ -30,30 +30,29 @@
 
           <div class="form-group">
             <label for="Empleado_fechaNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" class="form-control" id="Empleado_fechaNacimiento" name="empleado_fecha_de_nacimiento " required>
+            <input type="date" class="form-control" id="Empleado_fechaNacimiento" name="empleado_fecha_de_nacimiento" required>
           </div>
 
           <div class="form-group">
-            <label for="lugarNacimiento">Lugar de Nacimiento:</label>
-            <input type="text" class="form-control" id="lugarNacimiento" name="lugar_de_nacimiento">
+            <label for="Empleado_lugar_de_nacimiento">Lugar de Nacimiento:</label>
+            <input type="text" class="form-control" id="Empleado_lugar_de_nacimiento" name="empleado_lugar_de_nacimiento"
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
-            <label for="estadoCivil">Estado Civil:</label>
-            <select class="form-control" id="estadoCivil" name="estado_civil">
-              <option>Casado</option>
-              <option>Soltero</option>
-              <option>Viudo</option>
-              <option>Casada</option>
-              <option>Soltera</option>
-              <option>Viuda</option>
-              <option>Unión Libre</option>
+            <label for="Empleado_estado_civil">Estado Civil:</label>
+            <select class="form-control" id="Empleado_estado_civil" name="empleado_estado_civil">
+              <option value="Soltero">Soltero</option>
+              <option value="Casado">Casado</option>
+              <option value="Viudo">Viudo</option>
+              <option value="Union libre">Unión Libre</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="domicilio">Domicilio:</label>
-            <input type="text" class="form-control" id="domicilio" name="domicilio" required>
+            <label for="Empleado_domicilio">Domicilio:</label>
+            <input type="text" class="form-control" id="Empleado_domicilio" name="empleado_domicilio" 
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
         </div>
@@ -64,23 +63,27 @@
           <h4>Contacto y Emergencia</h4>
 
           <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" required>
+            <label for="Empleado_Telefono">Teléfono:</label>
+            <input type="text" class="form-control" id="Empleado_Telefono" name="empleado_telefono" 
+            pattern="[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}" maxlength="15" required>
           </div>
 
           <div class="form-group">
-            <label for="nombreContactoEmergencia">Contacto de Emergencia:</label>
-            <input type="text" class="form-control" id="nombreContactoEmergencia" name="nombre_de_contacto_para_emergencia" required>
+            <label for="Empleado_Nombre_de_Contacto_para_emergencia">Contacto de Emergencia:</label>
+            <input type="text" class="form-control" id="Empleado_Nombre_de_Contacto_para_emergencia"
+            name="empleado_nombre_de_contacto_para_emergencia" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
-            <label for="parentezcoContactoEmergencia">Parentezco:</label>
-            <input type="text" class="form-control" id="parentezcoContactoEmergencia" name="parentezco_con_el_contacto_de_emergencia" required>
+            <label for="Empleado_Parentezco_con_el_Contacto_de_emergencia">Parentezco:</label>
+            <input type="text" class="form-control" id="Empleado_Parentezco_con_el_Contacto_de_emergencia" 
+            name="empleado_parentezco_con_el_contacto_de_emergencia" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required>
           </div>
 
           <div class="form-group">
-            <label for="telefonoEmergencia">Teléfono de Emergencia:</label>
-            <input type="text" class="form-control" id="telefonoEmergencia" name="telefono_de_contacto_para_emergencia" required>
+            <label for="Empleado_Telefono_de_Contacto_para_Emergencia">Teléfono de Emergencia:</label>
+            <input type="text" class="form-control" id="Empleado_Telefono_de_Contacto_para_Emergencia" 
+            name="empleado_telefono_de_contacto_para_emergencia" pattern="[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}" maxlength="15" required>
           </div>
 
         </div>
@@ -93,53 +96,51 @@
           <h4>Datos Laborales</h4>
 
           <div class="form-group">
-            <label for="puestoTrabajo">Puesto de Trabajo:</label>
-            <input type="text" class="form-control" id="puestoTrabajo" name="puesto_de_trabajo" required>
+            <label for="Empleado_Puesto_de_Trabajo">Puesto de Trabajo:</label>
+            <input type="text" class="form-control" id="Empleado_Puesto_de_Trabajo" name="empleado_puesto_de_trabajo" 
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,100}" maxlength="100" required>
           </div>
 
           <div class="form-group">
-            <label for="fechaIngreso">Fecha de Ingreso:</label>
-            <input type="date" class="form-control" id="fechaIngreso" name="fecha_de_ingreso" required>
+            <label for="Empleado_Fecha_de_Ingreso">Fecha de Ingreso:</label>
+            <input type="date" class="form-control" id="Empleado_Fecha_de_Ingreso" name="empleado_fecha_de_ingreso" required>
           </div>
 
           <div class="form-group">
-            <label for="fechaTerminoContrato">Fecha de Término de Contrato:</label>
-            <input type="date" class="form-control" id="fechaTerminoContrato" name="fecha_de_termino_de_contrato">
+            <label for="Empleado_Fecha_de_Termino_de_Contrato">Fecha de Término de Contrato:</label>
+            <input type="date" class="form-control" id="Empleado_Fecha_de_Termino_de_Contrato" name="empleado_fecha_de_termino_de_contrato" required>
           </div>
 
           <div class="form-group">
-            <label for="lugarServicio">Lugar de Servicio:</label>
-            <input type="text" class="form-control" id="lugarServicio" name="lugar_de_servicio">
+            <label for="Empleado_Lugar_de_Servicio_o_de_Proyecto">Lugar de Servicio o Proyecto:</label>
+            <input type="text" class="form-control" id="Empleado_Lugar_de_Servicio_o_de_Proyecto" 
+            name="empleado_lugar_de_servicio_o_de_proyecto" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
-            <label for="lugarProyecto">Lugar de Servicio o Proyecto:</label>
-            <input type="text" class="form-control" id="lugarProyecto" name="lugar_de_servicio_o_de_proyecto">
+            <label for="Empleado_Numero_de_Contrato">Número de Contrato:</label>
+            <input type="text" class="form-control" id="Empleado_Numero_de_Contrato" name="empleado_numero_de_contrato"
+            pattern="[0-9]+" maxlength="50" required>
           </div>
 
           <div class="form-group">
-            <label for="numeroContrato">Número de Contrato:</label>
-            <input type="text" class="form-control" id="numeroContrato" name="numero_de_contrato">
+            <label for="Empleado_Inicio_de_Contrato_Pemex">Inicio de Contrato Pemex:</label>
+            <input type="date" class="form-control" id="Empleado_Inicio_de_Contrato_Pemex" name="empleado_inicio_de_contrato_pemex" required>
           </div>
 
           <div class="form-group">
-            <label for="inicioContratoPemex">Inicio de Contrato Pemex:</label>
-            <input type="date" class="form-control" id="inicioContratoPemex" name="inicio_de_contrato_pemex">
+            <label for="Empleado_Fin_de_Contrato_Pemex">Fin de Contrato Pemex:</label>
+            <input type="date" class="form-control" id="Empleado_Fin_de_Contrato_Pemex" name="empleado_fin_de_contrato_pemex" required>
           </div>
 
           <div class="form-group">
-            <label for="finContratoPemex">Fin de Contrato Pemex:</label>
-            <input type="date" class="form-control" id="finContratoPemex" name="fin_de_contrato_pemex">
+            <label for="Empleado_Salario_Diario_Integrado">Salario Diario Integrado:</label>
+            <input type="number" step="1" class="form-control" id="Empleado_Salario_Diario_Integrado" name="empleado_salario_diario_integrado" required>
           </div>
 
           <div class="form-group">
-            <label for="salarioDiarioIntegrado">Salario Diario Integrado:</label>
-            <input type="number" step="0.01" class="form-control" id="salarioDiarioIntegrado" name="salario_diario_integrado" required>
-          </div>
-
-          <div class="form-group">
-            <label for="creditoInfonavit">Crédito Infonavit:</label>
-            <input type="checkbox" id="creditoInfonavit" name="credito_infonavit">
+            <label for="Empleado_Credito_Infonavit">Crédito Infonavit:</label>
+            <input type="checkbox" id="Empleado_Credito_Infonavit" name="empleado_credito_infonavit" required>
           </div>
 
         </div>
@@ -149,50 +150,58 @@
           <h4>Identificación y Salud</h4>
 
           <div class="form-group">
-            <label for="curp">CURP:</label>
-            <input type="text" class="form-control" id="curp" name="curp" required>
+            <label for="Empleado_Curp">CURP:</label>
+            <input type="text" class="form-control" id="Empleado_Curp" name="empleado_curp"
+            pattern="^([A-Z]{4}[0-9]{6}[HM]{1}[A-Z]{5}[0-9A-Z]{2})$" maxlength="18" required>
           </div>
 
           <div class="form-group">
-            <label for="rfc">RFC:</label>
-            <input type="text" class="form-control" id="rfc" name="rfc" required>
+            <label for="Empleado_Rfc">RFC:</label>
+            <input type="text" class="form-control" id="Empleado_Rfc" name="empleado_rfc"
+            pattern="^([A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3})$" maxlength="13" required>
           </div>
 
           <div class="form-group">
-            <label for="nss">Número de Seguro Social:</label>
-            <input type="text" class="form-control" id="nss" name="numero_de_seguro_social" required>
+            <label for="Empleado_Nss">Número de Seguro Social:</label>
+            <input type="text" class="form-control" id="Empleado_Nss" name="empleado_nss" 
+            pattern="^\d{11}$" maxlength="20" required>
           </div>
 
           <div class="form-group">
-            <label for="tipoSangre">Tipo de Sangre:</label>
-            <input type="text" class="form-control" id="tipoSangre" name="tipo_de_sangre">
+            <label for="Empleado_Tipo_de_sangre">Tipo de Sangre:</label>
+            <input type="text" class="form-control" id="Empleado_Tipo_de_sangre" name="empleado_tipo_de_sangre"
+            pattern="^(A|B|AB|O)[+-]?$" maxlength="3" required>
           </div>
 
           <div class="form-group">
-            <label for="alergias">Alergias:</label>
-            <input type="text" class="form-control" id="alergias" name="alergias">
+            <label for="Empleado_Alergias">Alergias:</label>
+            <input type="text" class="form-control" id="Empleado_Alergias" name="empleado_alergias" 
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
-            <label for="enfermedades">Enfermedades:</label>
-            <input type="text" class="form-control" id="enfermedades" name="enfermedades">
+            <label for="Empleado_Enfermedades">Enfermedades:</label>
+            <input type="text" class="form-control" id="Empleado_Enfermedades" name="empleado_enfermedades"
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
-            <label for="nombreMadre">Nombre Completo de la Madre:</label>
-            <input type="text" class="form-control" id="nombreMadre" name="nombre_completo_de_la_madre">
+            <label for="Empleado_Nombre_Completo_de_la_Madre">Nombre Completo de la Madre:</label>
+            <input type="text" class="form-control" id="Empleado_Nombre_Completo_de_la_Madre" name="empleado_nombre_completo_de_la_madre"
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
-            <label for="nombrePadre">Nombre Completo del Padre:</label>
-            <input type="text" class="form-control" id="nombrePadre" name="nombre_completo_del_padre">
+            <label for="Empleado_Nombre_Completo_del_Padre">Nombre Completo del Padre:</label>
+            <input type="text" class="form-control" id="Empleado_Nombre_Completo_del_Padre" name="empleado_nombre_completo_del_padre"
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
           
           <div class="form-group">
-            <label for="estado">Estado:</label>
-            <select class="form-control" id="estado" name="estado">
-              <option>Activo</option>
-              <option>Inactivo</option>
+            <label for="Empleado_Estado">Estado:</label>
+            <select class="form-control" id="Empleado_Estado" name="empleado_estado">
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
             </select>
           </div>
 

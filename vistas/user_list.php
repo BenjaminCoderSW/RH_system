@@ -2,42 +2,51 @@
     <h2 class="title">Usuarios</h2>
 </div>
 
-<div class="container pb-6 pt-6">  
+<div class="container pb-6 pt-6">
     <?php
-        # Incluimos el archivo con nuestras funciones principales #
-        require_once "./php/main.php";
+    # Incluimos el archivo con nuestras funciones principales #
+    require_once "./php/main.php";
 
-        # Eliminar usuario #
-        // Si la variable de tipo get llamada user_id_del viene definida entonces:
-        if(isset($_GET['user_id_del'])){
-            // Incluimos el archivo para eliminar un usuario 
-            require_once "./php/usuario_eliminar.php";
+    # Comprobación de parámetros para mostrar SweetAlert2 #
+    if (isset($_GET['success'])) {
+        echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "¡Operación exitosa!",
+                    text: "El usuario ha sido eliminado correctamente."
+                });
+              </script>';
+    } elseif (isset($_GET['error'])) {
+        echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "¡Ocurrió un error!",
+                    text: "No se pudo completar la operación. Intente de nuevo."
+                });
+              </script>';
+    }
+
+    # Eliminar usuario #
+    if (isset($_GET['user_id_del'])) {
+        require_once "./php/usuario_eliminar.php";
+    }
+
+    if (!isset($_GET['page'])) {
+        $pagina = 1;
+    } else {
+        $pagina = (int) $_GET['page'];
+        if ($pagina <= 1) {
+            $pagina = 1;
         }
+    }
 
-        // Si la variable de tipo GET llamada page NO viene definida entonces:
-        if(!isset($_GET['page'])){
-            // Entonces creamos la variable pagina con valor 1 (para indicar que estamos ubicados en la pagina 1)
-            $pagina=1;
-        }else{
-            // Si viene definida creamos la variable pagina y le asignamos el valor de la variable GET llamada page convertido a entero
-            $pagina=(int) $_GET['page'];
-            // Si el valor de la variable pagina es menor o igual a 1 entonces 
-            if($pagina<=1){
-                // A la variable pagina le asignamos el valor 1, esto para despues CARGAR AL USUARIO LA PAGINA 1 DEL PAGINADO y no una que NO existe como la 0
-                $pagina=1;
-            }
-        }
+    $pagina = limpiar_cadena($pagina);
+    $url = "index.php?vista=user_list&page=";
+    $registros = 20;
+    $busqueda = "";
 
-        // Por seguridad limpiamos el valor de la variable pagina de inyeccion SQL o HTML
-        $pagina=limpiar_cadena($pagina);
-        // Creamos la variable url con la direccion a la pagina del paginador SIN valor todavia
-        $url="index.php?vista=user_list&page=";
-        // Creamos la variable registros y el valor que tiene es el numero de registros que se van a mostrar en cada pagina del paginado como MAXIMO
-        $registros=20;
-        // Esta variable nos va a permitir la busqueda de usuarios 
-        $busqueda="";
-
-        # Incluimos el archivo del Paginador usuario #
-        require_once "./php/usuario_lista.php";
+    require_once "./php/usuario_lista.php";
     ?>
 </div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

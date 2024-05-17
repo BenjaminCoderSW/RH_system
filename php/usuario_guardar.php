@@ -8,8 +8,28 @@ $clave_1 = limpiar_cadena($_POST['usuario_clave_1']);
 $clave_2 = limpiar_cadena($_POST['usuario_clave_2']);
 $rol = limpiar_cadena($_POST['usuario_rol']);
 
-if ($nombre == "" || $usuario == "" || $clave_1 == "" || $clave_2 == "") {
-    echo json_encode(['status' => false, 'message' => 'No has llenado todos los campos obligatorios.']);
+if ($nombre == "") {
+    echo json_encode(['status' => false, 'message' => 'Debes de ingresar el nombre.']);
+    exit();
+}
+
+if ($usuario == "") {
+    echo json_encode(['status' => false, 'message' => 'Debes ingresar el usuario.']);
+    exit();
+}
+
+if ($clave_1 == "") {
+    echo json_encode(['status' => false, 'message' => 'Debes ingresar una contraseña.']);
+    exit();
+}
+
+if ($clave_2 == "") {
+    echo json_encode(['status' => false, 'message' => 'Debes ingresar la confirmacion de la contraseña.']);
+    exit();
+}
+
+if ($email == "") {
+    echo json_encode(['status' => false, 'message' => 'Debes ingresar un correo electronico.']);
     exit();
 }
 
@@ -18,20 +38,20 @@ if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,200}", $nombre)) {
     exit();
 }
 
-if ($email != "") {
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $check_email = conexion();
-        $check_email = $check_email->query("SELECT usuario_email FROM usuario WHERE usuario_email='$email'");
-        if ($check_email->rowCount() > 0) {
-            echo json_encode(['status' => false, 'message' => 'El correo ingresado ya se encuentra registrado, elija otro.']);
-            exit();
-        }
-        $check_email = null;
-    } else {
-        echo json_encode(['status' => false, 'message' => 'El CORREO ELECTRÓNICO ingresado no es válido.']);
+
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $check_email = conexion();
+    $check_email = $check_email->query("SELECT usuario_email FROM usuario WHERE usuario_email='$email'");
+    if ($check_email->rowCount() > 0) {
+        echo json_encode(['status' => false, 'message' => 'El correo ingresado ya se encuentra registrado, elija otro.']);
         exit();
     }
+    $check_email = null;
+} else {
+    echo json_encode(['status' => false, 'message' => 'El CORREO ELECTRÓNICO ingresado no es válido.']);
+    exit();
 }
+
 
 if (verificar_datos("[a-zA-Z0-9]{4,20}", $usuario)) {
     echo json_encode(['status' => false, 'message' => 'El USUARIO no coincide con el formato solicitado.']);

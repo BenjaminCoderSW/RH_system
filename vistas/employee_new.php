@@ -1,10 +1,10 @@
 <div class="container mt-5">
     <h3 class="mb-4">Añadir Nuevo Empleado</h3>
 
-    <!-- En este div vamos a mostrar la respuesta que nos devuelva el archivo que va a procesar los datos a treves de AJAX
-    osea el archivo ajax.js a treves de la clase form-rest -->
+  <!-- En este div vamos a mostrar la respuesta que nos devuelva el archivo que va a procesar los datos a treves de AJAX
+  osea el archivo ajax.js a treves de la clase form-rest -->
 	<div class="form-rest mb-6 mt-6"></div>
-
+  
     <!-- En el action del formulario colocamos la ruta a la que queremos que se vayan estos datos al enviarlos, y en la clase 
     colocamos FormularioAjax ya que es la clase que tengo en ajax.js -->
     <form action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off">
@@ -36,7 +36,7 @@
           <div class="form-group">
             <label for="Empleado_lugar_de_nacimiento">Lugar de Nacimiento:</label>
             <input type="text" class="form-control" id="Empleado_lugar_de_nacimiento" name="empleado_lugar_de_nacimiento"
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
@@ -52,7 +52,7 @@
           <div class="form-group">
             <label for="Empleado_domicilio">Domicilio:</label>
             <input type="text" class="form-control" id="Empleado_domicilio" name="empleado_domicilio" 
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required>
           </div>
 
         </div>
@@ -69,7 +69,7 @@
           </div>
 
           <div class="form-group">
-            <label for="Empleado_Nombre_de_Contacto_para_emergencia">Contacto de Emergencia:</label>
+            <label for="Empleado_Nombre_de_Contacto_para_emergencia">Nombre del Contacto de Emergencia:</label>
             <input type="text" class="form-control" id="Empleado_Nombre_de_Contacto_para_emergencia"
             name="empleado_nombre_de_contacto_para_emergencia" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
@@ -114,7 +114,7 @@
           <div class="form-group">
             <label for="Empleado_Lugar_de_Servicio_o_de_Proyecto">Lugar de Servicio o Proyecto:</label>
             <input type="text" class="form-control" id="Empleado_Lugar_de_Servicio_o_de_Proyecto" 
-            name="empleado_lugar_de_servicio_o_de_proyecto" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
+            name="empleado_lugar_de_servicio_o_de_proyecto" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">
@@ -135,12 +135,15 @@
 
           <div class="form-group">
             <label for="Empleado_Salario_Diario_Integrado">Salario Diario Integrado:</label>
-            <input type="number" step="1" class="form-control" id="Empleado_Salario_Diario_Integrado" name="empleado_salario_diario_integrado" required>
+            <input type="number" step=".5" class="form-control" id="Empleado_Salario_Diario_Integrado" name="empleado_salario_diario_integrado" required>
           </div>
 
           <div class="form-group">
             <label for="Empleado_Credito_Infonavit">Crédito Infonavit:</label>
-            <input type="checkbox" id="Empleado_Credito_Infonavit" name="empleado_credito_infonavit" required>
+            <select class="form-control" id="Empleado_Credito_Infonavit" name="empleado_credito_infonavit">
+              <option value="No">No</option>
+              <option value="Si">Si</option>
+            </select>
           </div>
 
         </div>
@@ -164,13 +167,13 @@
           <div class="form-group">
             <label for="Empleado_Nss">Número de Seguro Social:</label>
             <input type="text" class="form-control" id="Empleado_Nss" name="empleado_nss" 
-            pattern="^\d{11}$" maxlength="20" required>
+            pattern="^(\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{1}|\d{11})$" maxlength="20" required>
           </div>
 
           <div class="form-group">
             <label for="Empleado_Tipo_de_sangre">Tipo de Sangre:</label>
             <input type="text" class="form-control" id="Empleado_Tipo_de_sangre" name="empleado_tipo_de_sangre"
-            pattern="^(A|B|AB|O)[+-]?$" maxlength="3" required>
+            pattern="[a-zA-Z+\-]+" maxlength="3" required>
           </div>
 
           <div class="form-group">

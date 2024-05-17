@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label for="Usuario_email">Email</label>
                             <input type="email" class="form-control" id="Usuario_email" name="usuario_email"
-                                placeholder="Email del Usuario" maxlength="80">
+                                placeholder="Email del Usuario" maxlength="80" required>
                         </div>
 
                         <div class="form-group">

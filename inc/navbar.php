@@ -53,10 +53,7 @@
           <i class="fas fa-umbrella-beach fa-xs"></i> Vacaciones
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownVacaciones">
-          <a class="dropdown-item" href="#"><i class="fas fa-calendar-alt fa-xs"></i> Solicitudes de vacaciones</a>
-          <a class="dropdown-item" href="#"><i class="fas fa-calendar-plus fa-xs"></i> Registrar vacaciones</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"><i class="fas fa-calendar fa-xs"></i> Calendario de vacaciones</a>
+          <a class="dropdown-item" href="index.php?vista=holiday_search"><i class="fas fa-search"></i> Ver vacaciones de empleados</a>
         </div>
       </li>
 

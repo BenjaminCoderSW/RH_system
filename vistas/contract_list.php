@@ -31,7 +31,7 @@
                     echo "<td>" . htmlspecialchars($row['contrato_descripcion']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['fecha_de_creacion']) . "</td>";
                     echo "<td>";
-                    echo '<button class="btn btn-primary btn-sm" onclick="editarContrato(' . $row['contrato_id'] . ')">Editar</button> ';
+                    // Botón para editar se puede añadir aquí si se necesita.
                     echo '<button class="btn btn-danger btn-sm" onclick="eliminarContrato(' . $row['contrato_id'] . ')">Eliminar</button>';
                     echo "</td>";
                     echo "</tr>";
@@ -68,7 +68,7 @@ function eliminarContrato(idContrato) {
                     } else {
                         Swal.fire(
                             'Error',
-                            'No se pudo eliminar el contrato.',
+                            'No se pudo eliminar el contrato: ' + data.message,
                             'error'
                         );
                     }
@@ -78,7 +78,6 @@ function eliminarContrato(idContrato) {
     });
 }
 </script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -86,7 +86,7 @@ if ($total > 0 && $pagina <= $Npaginas) {
 echo $tabla;
 
 if ($total >= 1 && $pagina <= $Npaginas) {
-    echo paginador_tablas($pagina, $Npaginas, $url, 7);
+    echo paginador_tablas($pagina, $Npaginas, $url, 10);
 }
 
 $conexion = null;

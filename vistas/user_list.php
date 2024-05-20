@@ -47,6 +47,5 @@
 
     require_once "./php/usuario_lista.php";
     ?>
+    <br>
 </div>
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

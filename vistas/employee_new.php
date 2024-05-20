@@ -7,7 +7,7 @@
   
     <!-- En el action del formulario colocamos la ruta a la que queremos que se vayan estos datos al enviarlos, y en la clase 
     colocamos FormularioAjax ya que es la clase que tengo en ajax.js -->
-    <form action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off">
+    <form id="formEmpleado" action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off">
       <div class="row">
 
         <!-- Datos Personales -->
@@ -211,7 +211,26 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-md mb-4">Guardar Empleado</button>
+      <button type="button" id="btnGuardarEmpleado" class="btn btn-primary btn-md mb-4">Guardar Empleado</button>
     </form>
-
   </div>
+
+  <script>
+  document.getElementById('btnGuardarEmpleado').addEventListener('click', function() {
+      Swal.fire({
+          title: '¿Estás seguro?',
+          text: "Estás a punto de registrar un nuevo empleado.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, registrar!',
+          cancelButtonText: 'Cancelar'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Enviamos el formulario
+              document.getElementById('formEmpleado').submit();
+          }
+      });
+  });
+  </script>

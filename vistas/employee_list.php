@@ -1,8 +1,5 @@
-<div class="container is-fluid mb-6">
-    <h2 class="title">Empleados</h2>
-</div>
-
-<div class="container pb-6 pt-6">
+<div class="container-fluid">
+    <h2 class="title pl-5 mt-2 mb-2">Empleados</h2>
     <?php
     # Incluimos el archivo con nuestras funciones principales #
     require_once "./php/main.php";

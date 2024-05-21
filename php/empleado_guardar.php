@@ -31,7 +31,7 @@ $enfermedades = limpiar_cadena($_POST['empleado_enfermedades']);
 $nombreMadre = limpiar_cadena($_POST['empleado_nombre_completo_de_la_madre']);
 $nombrePadre = limpiar_cadena($_POST['empleado_nombre_completo_del_padre']);
 $estado = limpiar_cadena($_POST['empleado_estado']);
-$quienLoContrato = limpiar_cadena($_SESSION['usuario']);
+$quienLoContrato = limpiar_cadena($_SESSION['usuario_nombre_completo']);
 
 header('Content-Type: application/json');
 

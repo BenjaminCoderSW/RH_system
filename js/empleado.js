@@ -32,6 +32,13 @@ function mostrarDetallesEmpleado(empleadoId) {
           <Strong><p>Fin de Contrato PEMEX:</Strong> ${data.empleado_fin_de_contrato_pemex}</p>
           <Strong><p>Contratado por:</Strong> ${data.empleado_quien_lo_contrato}</p>
         `;
+        // Agregamos los botones al final
+        detalles += `
+          <div class="mt-4">
+            <a href="index.php?vista=employee_update&employee_id_up=' . $rows['usuario_id'] . '" class="btn btn-primary">Editar</a>
+            <button type="button" class="btn btn-success" onclick="generarContrato(${empleadoId})">Generar Contrato</button>
+          </div>
+        `;
         // Actualizamos el contenido del modal
         document.getElementById('detallesEmpleado').innerHTML = detalles;
         // Actualizamos el título del modal con el nombre del empleado

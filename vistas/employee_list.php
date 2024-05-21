@@ -39,10 +39,33 @@
 
     $pagina = limpiar_cadena($pagina);
     $url = "index.php?vista=employee_list&page=";
-    $registros = 20;
+    $registros = 2;
     $busqueda = "";
 
     require_once "./php/empleado_lista.php";
     ?>
     <br>
 </div>
+
+<div class="modal fade" id="modalDetallesEmpleado" tabindex="-1" role="dialog" aria-labelledby="modalDetallesEmpleadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDetallesEmpleadoLabel">Detalles del Empleado: <span id="nombreEmpleadoModal"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Aquí se cargarán los detalles del empleado -->
+        <div id="detallesEmpleado"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="./js/empleado.js"></script>

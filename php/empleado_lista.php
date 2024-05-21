@@ -77,7 +77,7 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 <td>' . $rows['empleado_fecha_de_ingreso'] . '</td>
                 <td>' . $rows['empleado_quien_lo_contrato'] . '</td>
                 <td>
-                    <a href="index.php?vista=employee_update&employee_id_up=' . $rows['empleado_id'] . '" class="btn btn-primary btn-sm">Ver Detalles</a>
+                <button class="btn btn-primary btn-sm" onclick="mostrarDetallesEmpleado(\'' . $rows['empleado_id'] . '\')">Ver Detalles</button>
                 </td>
                 <td>
                     <button class="btn btn-danger btn-sm" onclick="confirmarEliminacion(\'' . $rows['empleado_id'] . '\', \'' . $url . $pagina . '\')">Eliminar</button>

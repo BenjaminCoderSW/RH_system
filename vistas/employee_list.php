@@ -48,10 +48,10 @@
 </div>
 
 <div class="modal fade" id="modalDetallesEmpleado" tabindex="-1" role="dialog" aria-labelledby="modalDetallesEmpleadoLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-personalizado" role="document"> <!-- Cambio aquí -->
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalDetallesEmpleadoLabel">Detalles del Empleado: <span id="nombreEmpleadoModal"></span></h5>
+        <h3 class="modal-title" id="modalDetallesEmpleadoLabel"><span id="nombreEmpleadoModal"></span></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

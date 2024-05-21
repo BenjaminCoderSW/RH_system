@@ -35,7 +35,7 @@ function mostrarDetallesEmpleado(empleadoId) {
         // Agregamos los botones al final
         detalles += `
           <div class="mt-4">
-            <a href="index.php?vista=employee_update&employee_id_up=' . $rows['usuario_id'] . '" class="btn btn-primary">Editar</a>
+            <a href="index.php?vista=employee_update&employee_id_up=${empleadoId}" class="btn btn-primary">Editar</a>
             <button type="button" class="btn btn-success" onclick="generarContrato(${empleadoId})">Generar Contrato</button>
           </div>
         `;

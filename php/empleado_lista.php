@@ -52,12 +52,10 @@ foreach ($empleados as $rows) {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="employeeModalLabel">Detalles de ' . $rows['empleado_nombre_completo'] . '</h5>
+                        <h5 class="modal-title" id="employeeModalLabel">' . $rows['empleado_nombre_completo'] . '</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>ID:</strong> ' . $rows['empleado_id'] . '</p>
-                        <p><strong>Nombre Completo:</strong> ' . $rows['empleado_nombre_completo'] . '</p>
                         <p><strong>Sexo:</strong> ' . $rows['empleado_sexo'] . '</p>
                         <p><strong>Fecha de Nacimiento:</strong> ' . $rows['empleado_fecha_de_nacimiento'] . '</p>
                         <p><strong>Lugar de Nacimiento:</strong> ' . $rows['empleado_lugar_de_nacimiento'] . '</p>
@@ -83,7 +81,17 @@ foreach ($empleados as $rows) {
                         <p><strong>Parentezco con el Contacto de Emergencia:</strong> ' . $rows['empleado_parentezco_con_el_contacto_de_emergencia'] . '</p>
                         <p><strong>Teléfono de Contacto para Emergencia:</strong> ' . $rows['empleado_telefono_de_contacto_para_emergencia'] . '</p>
                         <p><strong>Contratado por:</strong> ' . $rows['empleado_quien_lo_contrato'] . '</p>
+                        <a href="index.php?vista=employee_update" class="btn btn-primary">Editar</a>
+                        <button type="button" class="btn btn-success" onclick="showContractGenerationModal()">Generar
+                            Contrato</button>
                     </div>
+                    <div class="modal-footer">
+                    <label for="contractImage" class="form-label">Subir expediente:</label>
+                    <input type="file" class="form-control" id="contractImage">
+                    <button type="button" class="btn btn-primary" onclick="uploadFile()">Subir</button>
+                    <button type="button" class="btn btn-success" onclick="downloadFile()">Descargar</button>
+
+                </div>
                 </div>
             </div>
         </div>';
@@ -91,6 +99,6 @@ foreach ($empleados as $rows) {
 
 $tablaHTML .= '</tbody></table>';
 
-// Empaqueta la tabla y los modales en un único objeto JSON
+// Empaqueta la tabla y los modales en un único objeto JSONa
 echo json_encode(['tabla' => $tablaHTML, 'modales' => $modalesHTML]);
 ?>

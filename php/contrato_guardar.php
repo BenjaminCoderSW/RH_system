@@ -31,8 +31,12 @@ try {
             exit();
         }
 
-        // Comprueba si el archivo ya existe en el directorio
-        if (file_exists("../img/contratos/" . $nombreGuardado)) {
+        $directorio='../img/contratos';
+        if(!file_exists($directorio)){
+            mkdir($directorio,0777, true);
+        }
+        // Comprueba si el archivo ya existe en la carpeta
+        if (file_exists($directorio . $nombreGuardado)) {
             $response['message'] = 'Un archivo con este nombre ya existe en el servidor.';
             echo json_encode($response);
             exit();
@@ -41,7 +45,7 @@ try {
         if ($tipoArchivo == "doc" || $tipoArchivo == "docx" || $tipoArchivo == "pdf") {
             $consulta = $conexion->prepare("INSERT INTO contrato (contrato_tipo_contrato, contrato_descripcion, contrato_nombre_de_imagen, fecha_de_creacion) VALUES (?, ?, ?, NOW())");
             if ($consulta->execute([$tipoContrato, $descripcion, $nombreGuardado])) {
-                $rutaGuardado = "../img/contratos/" . $nombreGuardado;
+                $rutaGuardado = $directorio . $nombreGuardado;
                 if (move_uploaded_file($archivo['tmp_name'], $rutaGuardado)) {
                     $response['success'] = true;
                     $response['message'] = 'El contrato ha sido guardado correctamente.';

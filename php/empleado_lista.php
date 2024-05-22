@@ -1,9 +1,23 @@
 <?php
-require_once "../inc/session_start.php";
-require_once "main.php";
+// Esta variable va a servir para saber desde donde vamos a empezar a contar los registros que vamos a mostrar en las tablas de usuarios, contendra el indice 
+// Si la pagina viene definida osea es mayor a 0 entonces hace el calculo para saber desde donde contar
+// Sino se le agrega el valor 0 a la variable inicio (empezaremos a contar desde el indice 0)
+$inicio = ($pagina > 0) ? (($pagina * $registros) - $registros) : 0;
 
-header('Content-Type: application/json');
+// Esta variable llamada tabla va a ir generando toda la tabla con el listado de los usuarios
+$tabla = "";
 
+// Aqui veremos si generaremos el listado con busqueda o el listado normal sin nungun filtro de busqueda
+// Si la variable busqueda viene definida y tiene algo almacenado entonces
+if (isset($busqueda) && $busqueda != "") {
+    $consulta_datos = "SELECT * FROM empleado WHERE ((empleado_nombre_completo LIKE '%$busqueda%' OR empleado_sexo LIKE '%$busqueda%' OR empleado_domicilio LIKE '%$busqueda%' OR empleado_estado_civil LIKE '%$busqueda%' OR empleado_curp LIKE '%$busqueda%' OR empleado_rfc LIKE '%$busqueda%' OR empleado_nss LIKE '%$busqueda%' OR empleado_lugar_de_nacimiento LIKE '%$busqueda%' OR empleado_telefono LIKE '%$busqueda%' OR empleado_tipo_de_sangre LIKE '%$busqueda%' OR empleado_alergias LIKE '%$busqueda%' OR empleado_enfermedades LIKE '%$busqueda%' OR empleado_nombre_de_contacto_para_emergencia LIKE '%$busqueda%' OR empleado_estado LIKE '%$busqueda%' OR empleado_credito_infonavit LIKE '%$busqueda%' OR empleado_salario_diario_integrado LIKE '%$busqueda%' OR empleado_puesto_de_trabajo LIKE '%$busqueda%' OR empleado_lugar_de_servicio_o_de_proyecto LIKE '%$busqueda%' OR empleado_numero_de_contrato LIKE '%$busqueda%' OR empleado_quien_lo_contrato LIKE '%$busqueda%')) ORDER BY empleado_nombre_completo ASC LIMIT $inicio,$registros";
+    $consulta_total = "SELECT COUNT(empleado_id) FROM empleado WHERE ((empleado_nombre_completo LIKE '%$busqueda%' OR empleado_sexo LIKE '%$busqueda%' OR empleado_domicilio LIKE '%$busqueda%' OR empleado_estado_civil LIKE '%$busqueda%' OR empleado_curp LIKE '%$busqueda%' OR empleado_rfc LIKE '%$busqueda%' OR empleado_nss LIKE '%$busqueda%' OR empleado_lugar_de_nacimiento LIKE '%$busqueda%' OR empleado_telefono LIKE '%$busqueda%' OR empleado_tipo_de_sangre LIKE '%$busqueda%' OR empleado_alergias LIKE '%$busqueda%' OR empleado_enfermedades LIKE '%$busqueda%' OR empleado_nombre_de_contacto_para_emergencia LIKE '%$busqueda%' OR empleado_estado LIKE '%$busqueda%' OR empleado_credito_infonavit LIKE '%$busqueda%' OR empleado_salario_diario_integrado LIKE '%$busqueda%' OR empleado_puesto_de_trabajo LIKE '%$busqueda%' OR empleado_lugar_de_servicio_o_de_proyecto LIKE '%$busqueda%' OR empleado_numero_de_contrato LIKE '%$busqueda%' OR empleado_quien_lo_contrato LIKE '%$busqueda%'))";
+} else {
+    $consulta_datos = "SELECT * FROM empleado ORDER BY empleado_nombre_completo ASC LIMIT $inicio,$registros";
+    $consulta_total = "SELECT COUNT(empleado_id) FROM empleado";
+}
+
+// Creamos la conexion a la BD en la variable conexion usando la funcion conexion() del archivo main.php
 $conexion = conexion();
 // Hacemos la consulta almacenada en la variable $consulta_datos
 $datos = $conexion->query($consulta_datos);

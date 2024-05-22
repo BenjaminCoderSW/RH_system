@@ -1,8 +1,8 @@
 function mostrarDetallesEmpleado(empleadoId) {
-    fetch(`./php/obtener_empleado_por_id.php?empleado_id=${empleadoId}`)
-      .then(response => response.json())
-      .then(data => {
-        let detalles = `
+  fetch(`./php/obtener_empleado_por_id.php?empleado_id=${empleadoId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      let detalles = `
           <Strong><p>Sexo:</Strong> ${data.empleado_sexo}</p>
           <Strong><p>Domicilio:</Strong> ${data.empleado_domicilio}</p>
           <Strong><p>Estado Civil:</Strong> ${data.empleado_estado_civil}</p>
@@ -32,22 +32,80 @@ function mostrarDetallesEmpleado(empleadoId) {
           <Strong><p>Fin de Contrato PEMEX:</Strong> ${data.empleado_fin_de_contrato_pemex}</p>
           <Strong><p>Contratado por:</Strong> ${data.empleado_quien_lo_contrato}</p>
         `;
-        // Agregamos los botones al final
-        detalles += `
-          <div class="mt-4">
-            <a href="index.php?vista=employee_update&employee_id_up=${empleadoId}" class="btn btn-primary">Editar</a>
-            <button type="button" class="btn btn-success" onclick="generarContrato(${empleadoId})">Generar Contrato</button>
-          </div>
-        `;
-        // Actualizamos el contenido del modal
-        document.getElementById('detallesEmpleado').innerHTML = detalles;
-        // Actualizamos el título del modal con el nombre del empleado
-        document.getElementById('nombreEmpleadoModal').textContent = data.empleado_nombre_completo;
-        $('#modalDetallesEmpleado').modal('show');
-      })
-      .catch(error => {
-        console.error('Error al obtener los detalles del empleado:', error);
-      });
+      // Agregamos los botones al final
+      // Parte de mostrarDetallesEmpleado
+      detalles += `
+    <div class="mt-4">
+    <a href="index.php?vista=employee_update&employee_id_up=${empleadoId}" class="btn btn-primary">
+  <i class="fas fa-edit"></i> Editar
+</a>
+
+    <button type="button" class="btn btn-success" onclick="modalContratos()">
+  <i class="fas fa-file-contract"></i> Generar Contrato
+</button>
+
+    </div>
+    `;
+
+      // Actualizamos el contenido del modal
+      document.getElementById("detallesEmpleado").innerHTML = detalles;
+      // Actualizamos el título del modal con el nombre del empleado
+      document.getElementById("nombreEmpleadoModal").textContent =
+        data.empleado_nombre_completo;
+      $("#modalDetallesEmpleado").modal("show");
+    })
+    .catch((error) => {
+      console.error("Error al obtener los detalles del empleado:", error);
+    });
+}
+
+//funcion para mostrar el modal de generar contrato
+function modalContratos() {
+  new bootstrap.Modal(document.getElementById("modalContratos")).show();
+}
+
+function subirExpediente() {
+  const archivo = document.getElementById('expedienteArchivo').files[0];
+  if (!archivo) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Debes seleccionar un archivo para subir.'
+    });
+    return;
   }
-  
-  
+
+  const formData = new FormData();
+  formData.append('expedienteArchivo', archivo);
+
+  fetch('../php/subir_expediente.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Exito!',
+        text: data.message
+      });
+      // Puedes cerrar el modal aquí si lo prefieres
+      $('#modalDetallesEmpleado').modal('hide');
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: data.message
+      });
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al subir el archivo.'
+    });
+  });
+}

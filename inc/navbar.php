@@ -41,7 +41,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownContratos">
           <a class="dropdown-item" href="index.php?vista=contract_new"><i class="fas fa-plus fa-xs"></i> Añadir contrato</a>
-          <a class="dropdown-item" href="index.php?vista=contract_search"><i class="fas fa-search"></i> Buscar contrato</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="index.php?vista=contract_list"><i class="fas fa-eye fa-xs"></i> Ver Todos</a>
         </div>

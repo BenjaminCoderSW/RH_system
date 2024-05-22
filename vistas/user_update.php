@@ -17,14 +17,23 @@ $id = limpiar_cadena($id);
                 </div>
                 <div class="card-body">
                     <?php
+
+                    /*== Verificando usuario ==*/
+                    // Hacemos la conexion a la base de datos almacenada en $check_usuario
                     $check_usuario = conexion();
+                    // Hacemos una consulta select de todo en la tabla usuario donde usuario_id coincida con el id que tenemos almacenado en $id
                     $check_usuario = $check_usuario->query("SELECT * FROM usuario WHERE usuario_id='$id'");
 
+                    // Si el select anterior selecciono algun registro, eso quiere decir que el id almacenado en $id si existe entonces
                     if ($check_usuario->rowCount() > 0) {
+                        // convertimos los datos que se seleccionaron en un array con fetch y almacenamos ese array en $datos, 
+                        // solo son datos de UN SOLO REGISTRO, por eso ocupamos fetch y no fetchAll
                         $datos = $check_usuario->fetch();
                         ?>
                         <form action="./php/usuario_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off"
                             id="formUsuarioActualizar">
+
+                            <!-- A traves de este input vamos a mandar el id al archivo llamado usuario_actulizar.php -->
                             <input type="hidden" name="usuario_id" value="<?php echo $datos['usuario_id']; ?>" required>
 
                             <div class="form-group">

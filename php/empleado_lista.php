@@ -5,100 +5,127 @@ require_once "main.php";
 header('Content-Type: application/json');
 
 $conexion = conexion();
-$query = "SELECT * FROM empleado ORDER BY empleado_id ASC";
-$statement = $conexion->prepare($query);
-$statement->execute();
-$empleados = $statement->fetchAll(PDO::FETCH_ASSOC);
+// Hacemos la consulta almacenada en la variable $consulta_datos
+$datos = $conexion->query($consulta_datos);
+// Y hacemos un array asociativo de todos los registros seleccionados de la consulta, con la funcion fetchAll() en la variable datos
+$datos = $datos->fetchAll();
+// Hacemos la consulta almacenada en la variable $consulta_total
+$total = $conexion->query($consulta_total);
+// Y almacenamos el valor de la columna, que nos devolvio la consulta, ya convertido a int en mi variable llamada $total
+$total = (int) $total->fetchColumn();
 
-// Genera la tabla HTML
-$tablaHTML = '<table class="table table-hover" id="employeesTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>CURP</th>
-                        <th>RFC</th>
-                        <th>Número de Seguro Social</th>
-                        <th>Cargo</th>
-                        <th>Fecha de Ingreso</th>
-                        <th>Quién lo Contrató</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>';
+// En la variable Npaginas que estamos creando vamos a almacenar el numero de paginas que se tienen que crear en el paginador
+// para eso divido la cantidad de datos ($total) entre el numero maximo de registros permitidos en cada pagina ($registros) osea 15
+// Y el resultado lo redondeo con la funcion ceil() a su numero proximo, por ejemplo 2.1 se redondea a 3
+$Npaginas = ceil($total / $registros);
 
-$modalesHTML = '';
+$tabla .= '
+<div class="table-container">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+            <tr class="has-text-centered">
+                <th>#</th>
+                <th>Nombre</th>
+                <th>CURP</th>
+                <th>RFC</th>
+                <th>Numero de Seguro Social</th>
+                <th>Cargo</th>
+                <th>Fecha de Ingreso</th>
+                <th>Quien lo contrato</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+';
 
-foreach ($empleados as $rows) {
-    $tablaHTML .= '
-        <tr>
-            <td>' . $rows['empleado_id'] . '</td>
-            <td>' . $rows['empleado_nombre_completo'] . '</td>
-            <td>' . $rows['empleado_curp'] . '</td>
-            <td>' . $rows['empleado_rfc'] . '</td>
-            <td>' . $rows['empleado_nss'] . '</td>
-            <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>
-            <td>' . $rows['empleado_fecha_de_ingreso'] . '</td>
-            <td>' . $rows['empleado_quien_lo_contrato'] . '</td>
-            <td>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#employeeModal-' . $rows['empleado_id'] . '">Ver Detalles</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-            </td>
-        </tr>';
-    
-    // Genera el modal para cada empleado
-    $modalesHTML .= '
-        <div class="modal fade" id="employeeModal-' . $rows['empleado_id'] . '" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="employeeModalLabel">' . $rows['empleado_nombre_completo'] . '</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Sexo:</strong> ' . $rows['empleado_sexo'] . '</p>
-                        <p><strong>Fecha de Nacimiento:</strong> ' . $rows['empleado_fecha_de_nacimiento'] . '</p>
-                        <p><strong>Lugar de Nacimiento:</strong> ' . $rows['empleado_lugar_de_nacimiento'] . '</p>
-                        <p><strong>Estado Civil:</strong> ' . $rows['empleado_estado_civil'] . '</p>
-                        <p><strong>Domicilio:</strong> ' . $rows['empleado_domicilio'] . '</p>
-                        <p><strong>CURP:</strong> ' . $rows['empleado_curp'] . '</p>
-                        <p><strong>RFC:</strong> ' . $rows['empleado_rfc'] . '</p>
-                        <p><strong>Número de Seguro Social:</strong> ' . $rows['empleado_nss'] . '</p>
-                        <p><strong>Tipo de Sangre:</strong> ' . $rows['empleado_tipo_de_sangre'] . '</p>
-                        <p><strong>Alergias:</strong> ' . $rows['empleado_alergias'] . '</p>
-                        <p><strong>Enfermedades:</strong> ' . $rows['empleado_enfermedades'] . '</p>
-                        <p><strong>Puesto de Trabajo:</strong> ' . $rows['empleado_puesto_de_trabajo'] . '</p>
-                        <p><strong>Fecha de Ingreso:</strong> ' . $rows['empleado_fecha_de_ingreso'] . '</p>
-                        <p><strong>Fecha de Término de Contrato:</strong> ' . $rows['empleado_fecha_de_termino_de_contrato'] . '</p>
-                        <p><strong>Lugar de Servicio:</strong> ' . $rows['empleado_lugar_de_servicio_o_de_proyecto'] . '</p>
-                        <p><strong>Número de Contrato:</strong> ' . $rows['empleado_numero_de_contrato'] . '</p>
-                        <p><strong>Inicio de Contrato Pemex:</strong> ' . $rows['empleado_inicio_de_contrato_pemex'] . '</p>
-                        <p><strong>Fin de Contrato Pemex:</strong> ' . $rows['empleado_fin_de_contrato_pemex'] . '</p>
-                        <p><strong>Salario Diario Integrado:</strong> ' . $rows['empleado_salario_diario_integrado'] . '</p>
-                        <p><strong>Estado:</strong> ' . $rows['empleado_estado'] . '</p>
-                        <p><strong>Crédito Infonavit:</strong> ' . ($rows['empleado_credito_infonavit'] ? "Sí" : "No") . '</p>
-                        <p><strong>Nombre de Contacto para Emergencia:</strong> ' . $rows['empleado_nombre_de_contacto_para_emergencia'] . '</p>
-                        <p><strong>Parentezco con el Contacto de Emergencia:</strong> ' . $rows['empleado_parentezco_con_el_contacto_de_emergencia'] . '</p>
-                        <p><strong>Teléfono de Contacto para Emergencia:</strong> ' . $rows['empleado_telefono_de_contacto_para_emergencia'] . '</p>
-                        <p><strong>Contratado por:</strong> ' . $rows['empleado_quien_lo_contrato'] . '</p>
-                        <a href="index.php?vista=employee_update" class="btn btn-primary">Editar</a>
-                        <button type="button" class="btn btn-success" onclick="showContractGenerationModal()">Generar
-                            Contrato</button>
-                    </div>
-                    <div class="modal-footer">
-                    <label for="contractImage" class="form-label">Subir expediente:</label>
-                    <input type="file" class="form-control" id="contractImage">
-                    <button type="button" class="btn btn-primary" onclick="uploadFile()">Subir</button>
-                    <button type="button" class="btn btn-success" onclick="downloadFile()">Descargar</button>
-
-                </div>
-                </div>
-            </div>
-        </div>';
+// Lo que hace este if es ver si hay registros y si estamos ubicados en una pagina existente es decir en una pagina valida.
+// Si la cantidad de datos ($total) es mayor o igual a 1 AND la pagina en la que estamos ubicados ($pagina) es menor o igual al 
+// numero de paginas que se tienen que crear en el paginador ($Npaginas) entonces:
+if ($total >= 1 && $pagina <= $Npaginas) {
+    // Sumamos al indice ($inicio) un 1, para que empiece a contar en 1 el primer registro y no en 0 en la tabla y se lo agregamos a la variable ($contador)
+    $contador = $inicio + 1;
+    // En esta variable se almacenara el numero del primer registro en esa pagina del paginador.
+	// Esto para mostrar un mensaje como por ej. Mostrando usuarios del (1) al 5 de un total de 17 registros.
+	// Esta variable tendria el numero 1 en ese ejemplo, ese mensaje se mostrara debajo de la tabla de los registros en el sistema.
+    $pag_inicio = $inicio + 1;
+    // Recorremos todos los datos almacenados en el array ($datos) con una variable apenas creada llamada ($rows)
+    foreach ($datos as $rows) {
+        // Y vamos construyendo las filas($rows) de la tabla de datos, por medio de el nombre de su campo en la base de datos o su clave
+		// añadiendo tambien sus botones para actualizar y eliminar en CADA fila de la tabla que se vaya generando dinamicamente.
+        $tabla .= '
+            <tr class="has-text-centered">
+                <td>' . $contador . '</td>
+                <td>' . $rows['empleado_nombre_completo'] . '</td>
+                <td>' . $rows['empleado_curp'] . '</td>
+                <td>' . $rows['empleado_rfc'] . '</td>
+                <td>' . $rows['empleado_nss'] . '</td>
+                <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>
+                <td>' . $rows['empleado_fecha_de_ingreso'] . '</td>
+                <td>' . $rows['empleado_quien_lo_contrato'] . '</td>
+                <td>
+                <button class="btn btn-primary btn-sm" onclick="mostrarDetallesEmpleado(\'' . $rows['empleado_id'] . '\')">Detalles</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="confirmarEliminacion(\'' . $rows['empleado_id'] . '\', \'' . $url . $pagina . '\')">Eliminar</button>
+                </td>
+            </tr>
+        ';
+        $contador++;
+    }
+    $pag_final = $contador - 1;
+} else {
+    if ($total >= 1) {
+        $tabla .= '
+            <tr class="has-text-centered">
+                <td colspan="7">
+                    <a href="' . $url . '1" class="button is-link is-rounded is-small mt-4 mb-4">
+                        Haga clic acá para recargar el listado
+                    </a>
+                </td>
+            </tr>
+        ';
+    } else {
+        $tabla .= '
+            <tr class="has-text-centered">
+                <td colspan="7">
+                    No hay registros en el sistema
+                </td>
+            </tr>
+        ';
+    }
 }
 
-$tablaHTML .= '</tbody></table>';
+$tabla .= '</tbody></table></div>';
 
-// Empaqueta la tabla y los modales en un único objeto JSONa
-echo json_encode(['tabla' => $tablaHTML, 'modales' => $modalesHTML]);
-?>
+if ($total > 0 && $pagina <= $Npaginas) {
+    $tabla .= '<p class="has-text-right">Mostrando empleados <strong>' . $pag_inicio . '</strong> al <strong>' . $pag_final . '</strong> de un <strong>total de ' . $total . '</strong></p>';
+}
+
+echo $tabla;
+
+if ($total >= 1 && $pagina <= $Npaginas) {
+    echo paginador_tablas($pagina, $Npaginas, $url, 10);
+}
+
+$conexion = null;
+
+// Script JS para SweetAlert2
+echo '
+<script>
+function confirmarEliminacion(employeeId, redirectUrl) {
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = redirectUrl + "&employee_id_del=" + employeeId;
+        }
+    });
+}
+</script>
+';

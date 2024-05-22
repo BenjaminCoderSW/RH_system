@@ -1,9 +1,13 @@
 <?php
+// incluimos solo para poder utilizar una vez el archivo que crea la sesion llamada IV
 require_once "../inc/session_start.php";
+
+// Incluimos el archivo con las funciones importantes
 require_once "main.php";
 
 $response = ['status' => 0, 'message' => 'Un error ocurrió'];
 
+// Almacenamos el id mandado desde el formulario del archivo user_update.php en el input con name usuario_id
 $id = limpiar_cadena($_POST['usuario_id']);
 $check_usuario = conexion();
 $check_usuario = $check_usuario->query("SELECT * FROM usuario WHERE usuario_id='$id'");

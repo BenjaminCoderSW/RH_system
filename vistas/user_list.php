@@ -42,7 +42,7 @@
 
     $pagina = limpiar_cadena($pagina);
     $url = "index.php?vista=user_list&page=";
-    $registros = 20;
+    $registros = 30;
     $busqueda = "";
 
     require_once "./php/usuario_lista.php";

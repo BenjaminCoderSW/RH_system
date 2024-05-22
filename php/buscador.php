@@ -42,26 +42,14 @@
 		            </div>
 		        ';
 			}else{
-                // Verificamos que el valor de $txt cumpla con el formato solicitado
-				if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}",$txt)){
-                    // Si NO coincide con el filtro entonces:
-			        echo '
-			            <div class="notification is-danger is-light">
-			                <strong>¡Ocurrio un error inesperado!</strong><br>
-			                El termino de busqueda no coincide con el formato solicitado
-			            </div>
-			        ';
-			    }else{
-                    // Creamos la variable de sesion llamada $modulo_buscador y le asignamos el valor de la busqueda que se hizo en el input
-			    	$_SESSION[$modulo_buscador]=$txt;
-                    // Redireccionamos al usuario con un encabezado url, dependiendo la vista que corresponda por ejemplo:
-                    // index.php?vista=user_search 
-                    echo "<script> window.location.href='index.php?vista=$modulos_url'; </script>";
- 					exit();  
-			    }
+                // Creamos la variable de sesion llamada $modulo_buscador y le asignamos el valor de la busqueda que se hizo en el input
+			    $_SESSION[$modulo_buscador]=$txt;
+                // Redireccionamos al usuario con un encabezado url, dependiendo la vista que corresponda por ejemplo:
+                // index.php?vista=user_search 
+                echo "<script> window.location.href='index.php?vista=$modulos_url'; </script>";
+ 				exit();  
 			}
 		}
-
 
 		# Eliminar busqueda #
         // Si la variable de tipo post eliminar_buscador el cual es el name del input de user_search, si viene definida entonces:

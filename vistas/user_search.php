@@ -22,7 +22,7 @@
             <form action="" method="POST" autocomplete="off" >
                 <input type="hidden" name="modulo_buscador" value="usuario">   
                 <div class="form-group d-flex">
-                    <input class="form-control me-2" type="text" name="txt_buscador" placeholder="Ingresa cualquier cosa relacionada con el usuario que buscas" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" >
+                    <input class="form-control me-2" type="text" name="txt_buscador" placeholder="Ingresa cualquier cosa relacionada con el usuario que buscas" maxlength="100" >
                     <button class="btn btn-info" type="submit" >Buscar</button>
                 </div>
             </form>

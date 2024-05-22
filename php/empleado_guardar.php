@@ -1,8 +1,9 @@
 <?php
+// Añadimos el archivo de inicio de sesion para ver quien contrato al empleado con la variable de sesion
 require_once "../inc/session_start.php";
+
 require_once "main.php";
 
-// Obtención de datos del formulario y limpieza de los mismos
 $nombre = limpiar_cadena($_POST['empleado_nombre_completo']);
 $sexo = limpiar_cadena($_POST['empleado_sexo']);
 $fechaDeNacimiento = limpiar_cadena($_POST['empleado_fecha_de_nacimiento']);
@@ -31,77 +32,262 @@ $enfermedades = limpiar_cadena($_POST['empleado_enfermedades']);
 $nombreMadre = limpiar_cadena($_POST['empleado_nombre_completo_de_la_madre']);
 $nombrePadre = limpiar_cadena($_POST['empleado_nombre_completo_del_padre']);
 $estado = limpiar_cadena($_POST['empleado_estado']);
-$quienLoContrato = limpiar_cadena($_SESSION['usuario_nombre_completo']);
+$quienLoContrato = limpiar_cadena($_SESSION['nombre']);
 
-header('Content-Type: application/json');
-
-// Iniciamos la conexión a la base de datos
-$conexion = conexion();
-
-// Validación de campos requeridos
 if ($nombre == "" || $sexo == "" || $fechaDeNacimiento == "" || $lugarDeNacimiento == "" || $estadoCivil == "" 
-    || $domicilio == "" || $telefono == "" || $nombreContactoEmergencia == "" || $parentezco == "" 
-    || $telefonoEmergencia == "" || $puestoDeTrabajo == "" || $fechaDeIngreso == "" || $fechaDeTerminoDeContrato == "" 
-    || $lugarDeServicio == "" || $numeroDeContrato == "" || $inicioContratoPemex == "" || $finContratoPemex == "" 
-    || $salarioDiarioIntegrado == "" || $creditoInfonavit == "" || $curp == "" || $rfc == "" 
-    || $nss == "" || $tipoSangre == "" || $alergias == "" || $enfermedades == ""
-    || $nombreMadre == "" || $nombrePadre == "" || $estado == "" || $quienLoContrato == "") {
-    echo json_encode(['type' => 'error', 'message' => 'No has llenado todos los campos']);
+|| $domicilio == "" || $telefono == "" || $nombreContactoEmergencia == "" || $parentezco == "" 
+|| $telefonoEmergencia == "" || $puestoDeTrabajo == "" || $fechaDeIngreso == "" || $fechaDeTerminoDeContrato == "" 
+|| $lugarDeServicio == "" || $numeroDeContrato == "" || $inicioContratoPemex == "" || $finContratoPemex == "" 
+|| $salarioDiarioIntegrado == "" || $creditoInfonavit == "" || $curp == "" || $rfc == "" 
+|| $nss == "" || $tipoSangre == "" || $alergias == "" || $enfermedades == ""
+|| $nombreMadre == "" || $nombrePadre == "" || $estado == "" || $quienLoContrato == "") {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                No has llenado todos los campos
+            </div>
+        ';
     exit();
 }
 
-// Verificación de existencia del empleado
-$query = $conexion->prepare("SELECT empleado_curp FROM empleado WHERE empleado_curp = :curp");
-$query->execute([':curp' => $curp]);
-if ($query->fetch()) {
-    echo json_encode(['type' => 'error', 'message' => 'El EMPLEADO ingresado ya se encuentra registrado, por favor elija otro']);
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $nombre)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El NOMBRE no coincide con el formato solicitado.
+            </div>
+        ';
     exit();
 }
 
-// Preparación e inserción de datos
-try {
-    $insertQuery = $conexion->prepare("INSERT INTO empleado (empleado_nombre_completo, empleado_sexo, empleado_fecha_de_nacimiento, empleado_lugar_de_nacimiento, empleado_estado_civil, empleado_domicilio, empleado_telefono, empleado_nombre_de_contacto_para_emergencia, empleado_parentezco_con_el_contacto_de_emergencia, empleado_telefono_de_contacto_para_emergencia, empleado_puesto_de_trabajo, empleado_fecha_de_ingreso, empleado_fecha_de_termino_de_contrato, empleado_lugar_de_servicio_o_de_proyecto, empleado_numero_de_contrato, empleado_inicio_de_contrato_pemex, empleado_fin_de_contrato_pemex, empleado_salario_diario_integrado, empleado_credito_infonavit, empleado_curp, empleado_rfc, empleado_nss, empleado_tipo_de_sangre, empleado_alergias, empleado_enfermedades, empleado_nombre_completo_de_la_madre, empleado_nombre_completo_del_padre, empleado_estado, empleado_quien_lo_contrato)
-    VALUES (:nombre, :sexo, :fechaDeNacimiento, :lugarDeNacimiento, :estadoCivil, :domicilio, :telefono, :nombreContactoEmergencia, :parentezco, :telefonoEmergencia, :puestoDeTrabajo, :fechaDeIngreso, :fechaDeTerminoDeContrato, :lugarDeServicio, :numeroDeContrato, :inicioContratoPemex, :finContratoPemex, :salarioDiarioIntegrado, :creditoInfonavit, :curp, :rfc, :nss, :tipoSangre, :alergias, :enfermedades, :nombreMadre, :nombrePadre, :estado, :quienLoContrato)");
-
-    // Vinculación de parámetros
-    $insertQuery->execute([
-        ':nombre' => $nombre,
-        ':sexo' => $sexo,
-        ':fechaDeNacimiento' => $fechaDeNacimiento,
-        ':lugarDeNacimiento' => $lugarDeNacimiento,
-        ':estadoCivil' => $estadoCivil,
-        ':domicilio' => $domicilio,
-        ':telefono' => $telefono,
-        ':nombreContactoEmergencia' => $nombreContactoEmergencia,
-        ':parentezco' => $parentezco,
-        ':telefonoEmergencia' => $telefonoEmergencia,
-        ':puestoDeTrabajo' => $puestoDeTrabajo,
-        ':fechaDeIngreso' => $fechaDeIngreso,
-        ':fechaDeTerminoDeContrato' => $fechaDeTerminoDeContrato,
-        ':lugarDeServicio' => $lugarDeServicio,
-        ':numeroDeContrato' => $numeroDeContrato,
-        ':inicioContratoPemex' => $inicioContratoPemex,
-        ':finContratoPemex' => $finContratoPemex,
-        ':salarioDiarioIntegrado' => $salarioDiarioIntegrado,
-        ':creditoInfonavit' => $creditoInfonavit,
-        ':curp' => $curp,
-        ':rfc' => $rfc,
-        ':nss' => $nss,
-        ':tipoSangre' => $tipoSangre,
-        ':alergias' => $alergias,
-        ':enfermedades' => $enfermedades,
-        ':nombreMadre' => $nombreMadre,
-        ':nombrePadre' => $nombrePadre,
-        ':estado' => $estado,
-        ':quienLoContrato' => $quienLoContrato
-    ]);
-
-    if ($insertQuery->rowCount() > 0) {
-        echo json_encode(['type' => 'success', 'message' => 'El empleado se registró con éxito', 'redirect' => 'index.php?vista=employee_list']);
-    } else {
-        echo json_encode(['type' => 'error', 'message' => 'No se pudo registrar el empleado, por favor intente nuevamente']);
-    }
-} catch (PDOException $e) {
-    echo json_encode(['type' => 'error', 'message' => '¡Ocurrió un error inesperado! ' . $e->getMessage()]);
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}", $lugarDeNacimiento)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El LUGAR DE NACIMIENTO no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
 }
-?>
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}", $domicilio)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El DOMICILIO no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}", $telefono)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El TELEFONO del empleado no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $nombreContactoEmergencia)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El NOMBRE DEL CONTACTO DE EMERGENCIA no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}", $parentezco)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El PARENTEZCO no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}", $telefonoEmergencia)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El TELEFONO DE EMERGENCIA no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,100}", $puestoDeTrabajo)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El PUESTO DE TRABAJO no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}", $lugarDeServicio)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El LUGAR DE SERVICIO no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[0-9]+", $numeroDeContrato)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El NUMERO DE CONTRATO no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("^([A-Z]{4}[0-9]{6}[HM]{1}[A-Z]{5}[0-9A-Z]{2})$", $curp)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El CURP no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("^([A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3})$", $rfc)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El RFC no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("^(\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{1}|\d{11})$", $nss)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El NSS no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $alergias)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El campo de ALERGIAS no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $enfermedades)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El campo de ENFERMEDADES no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $nombreMadre)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El NOMBRE DE LA MADRE no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $nombrePadre)) {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El NOMBRE DEL PADRE no coincide con el formato solicitado.
+            </div>
+        ';
+    exit();
+}
+
+// ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+$check_empleado = conexion();
+$check_empleado = $check_empleado->query("SELECT empleado_curp FROM empleado WHERE empleado_curp = '$curp'");
+if ($check_empleado->rowCount() > 0) {
+    echo '
+        <div class="notification is-danger is-light">
+            <strong>¡Ocurrio un error inesperado!</strong><br>
+            El EMPLEADO ingresado ya se encuentra registrado, por
+            favor elija otro
+        </div>
+    ';
+    exit();
+}
+$check_empleado = null;
+
+$guardar_empleado = conexion();
+$guardar_empleado = $guardar_empleado->prepare("INSERT into empleado (empleado_nombre_completo, empleado_sexo, empleado_domicilio, empleado_estado_civil, empleado_curp, empleado_rfc, empleado_nss, empleado_fecha_de_nacimiento, empleado_lugar_de_nacimiento, empleado_telefono, empleado_tipo_de_sangre, empleado_alergias, empleado_enfermedades, empleado_nombre_completo_de_la_madre, empleado_nombre_completo_del_padre, empleado_nombre_de_contacto_para_emergencia, empleado_parentezco_con_el_contacto_de_emergencia, empleado_telefono_de_contacto_para_emergencia, empleado_estado, empleado_credito_infonavit, empleado_salario_diario_integrado, empleado_fecha_de_ingreso, empleado_fecha_de_termino_de_contrato, empleado_puesto_de_trabajo, empleado_lugar_de_servicio_o_de_proyecto, empleado_numero_de_contrato, empleado_inicio_de_contrato_pemex, empleado_fin_de_contrato_pemex, empleado_quien_lo_contrato) 
+VALUES(:nombre,:sexo,:domicilio,:estadoCivil,:curp,:rfc,:nss,:fechaDeNacimiento,:lugarDeNacimiento,:telefono,:tipoSangre,:alergias,:enfermedades,:nombreMadre,:nombrePadre,:nombreContactoEmergencia,:parentezco,:telefonoEmergencia,:estado,:creditoInfonavit,:salarioDiarioIntegrado,:fechaDeIngreso,:fechaDeTerminoDeContrato,:puestoDeTrabajo,:lugarDeServicio,:numeroDeContrato,:inicioContratoPemex,:finContratoPemex,:quienLoContrato)");
+
+$marcadores = [
+    ":nombre" => $nombre,
+    ":sexo" => $sexo,
+    ":fechaDeNacimiento" => $fechaDeNacimiento,
+    ":lugarDeNacimiento" => $lugarDeNacimiento,
+    ":estadoCivil" => $estadoCivil,
+    ":domicilio" => $domicilio,
+    ":telefono" => $telefono,
+    ":nombreContactoEmergencia" => $nombreContactoEmergencia,
+    ":parentezco" => $parentezco,
+    ":telefonoEmergencia" => $telefonoEmergencia,
+    ":puestoDeTrabajo" => $puestoDeTrabajo,
+    ":fechaDeIngreso" => $fechaDeIngreso,
+    ":fechaDeTerminoDeContrato" => $fechaDeTerminoDeContrato,
+    ":lugarDeServicio" => $lugarDeServicio,
+    ":numeroDeContrato" => $numeroDeContrato,
+    ":inicioContratoPemex" => $inicioContratoPemex,
+    ":finContratoPemex" => $finContratoPemex,
+    ":salarioDiarioIntegrado" => $salarioDiarioIntegrado,
+    ":creditoInfonavit" => $creditoInfonavit,
+    ":curp" => $curp,
+    ":rfc" => $rfc,
+    ":nss" => $nss,
+    ":tipoSangre" => $tipoSangre,
+    ":alergias" => $alergias,
+    ":enfermedades" => $enfermedades,
+    ":nombreMadre" => $nombreMadre,
+    ":nombrePadre" => $nombrePadre,
+    ":estado" => $estado,
+    ":quienLoContrato" => $quienLoContrato
+];
+
+$guardar_empleado->execute($marcadores);
+
+if ($guardar_empleado->rowCount() == 1) {
+    echo '
+            <div class="notification is-info is-light">
+                <strong>¡EMPLEADO REGISTRADO!</strong><br>
+                El empleado se registro con exito
+            </div>
+        ';
+} else {
+    echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                No se pudo registrar el empleado, por favor intente nuevamente
+            </div>
+        ';
+}
+
+$guardar_empleado = null;

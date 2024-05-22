@@ -39,7 +39,7 @@
 
     $pagina = limpiar_cadena($pagina);
     $url = "index.php?vista=employee_list&page=";
-    $registros = 2;
+    $registros = 30;
     $busqueda = "";
 
     require_once "./php/empleado_lista.php";

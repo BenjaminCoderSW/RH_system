@@ -7,7 +7,7 @@
   
     <!-- En el action del formulario colocamos la ruta a la que queremos que se vayan estos datos al enviarlos, y en la clase 
     colocamos FormularioAjax ya que es la clase que tengo en ajax.js -->
-    <form id="formEmpleado" action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off">
+    <form action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off">
       <div class="row">
 
         <!-- Datos Personales -->
@@ -27,6 +27,7 @@
               <option value="Femenino">Femenino</option>
             </select>
           </div>
+
           <div class="form-group">
             <label for="Empleado_fechaNacimiento">Fecha de Nacimiento:</label>
             <input type="date" class="form-control" id="Empleado_fechaNacimiento" name="empleado_fecha_de_nacimiento" required>
@@ -97,7 +98,7 @@
           <div class="form-group">
             <label for="Empleado_Puesto_de_Trabajo">Puesto de Trabajo:</label>
             <input type="text" class="form-control" id="Empleado_Puesto_de_Trabajo" name="empleado_puesto_de_trabajo" 
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,100}" maxlength="100" required>
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,100}" maxlength="100">
           </div>
 
           <div class="form-group">
@@ -210,49 +211,7 @@
         </div>
       </div>
 
-      <button type="button" id="btnGuardarEmpleado" class="btn btn-primary btn-md mb-4">Guardar Empleado</button>
+      <button type="submit" class="btn btn-primary btn-md mb-4">Guardar Empleado</button>
     </form>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-document.getElementById('btnGuardarEmpleado').addEventListener('click', function(e) {
-    e.preventDefault(); // Previene el envío estándar del formulario
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Estás a punto de registrar un nuevo empleado.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, registrar!',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Si se confirma, enviamos el formulario con AJAX
-            let formData = new FormData(document.getElementById('formEmpleado'));
-            fetch('./php/empleado_guardar.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                Swal.fire({
-                    icon: data.type,
-                    title: data.type === 'error' ? 'Error!' : '¡Éxito!',
-                    text: data.message,
-                    confirmButtonText: 'Aceptar'
-                }).then(() => {
-                    if (data.redirect) {
-                        // Redirigimos si se proporcionó una URL de redirección
-                        window.location.href = data.redirect;
-                    }
-                });
-            })
-            .catch(error => {
-                Swal.fire('Error', 'Ocurrió un error al procesar la solicitud', 'error');
-            });
-        }
-    });
-});
-</script>
+  </div>

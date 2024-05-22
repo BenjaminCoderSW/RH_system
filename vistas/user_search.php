@@ -63,7 +63,7 @@
 
             $pagina=limpiar_cadena($pagina);
             $url="index.php?vista=user_search&page="; /* <== */
-            $registros=10;
+            $registros=20;
             $busqueda=$_SESSION['busqueda_usuario']; /* <== */
 
             # Paginador usuario #

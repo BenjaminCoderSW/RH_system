@@ -36,14 +36,8 @@ function mostrarDetallesEmpleado(empleadoId) {
       // Parte de mostrarDetallesEmpleado
       detalles += `
     <div class="mt-4">
-    <a href="index.php?vista=employee_update&employee_id_up=${empleadoId}" class="btn btn-primary">
-  <i class="fas fa-edit"></i> Editar
-</a>
-
-    <button type="button" class="btn btn-success" onclick="modalContratos()">
-  <i class="fas fa-file-contract"></i> Generar Contrato
-</button>
-
+    <a href="index.php?vista=employee_update&employee_id_up=${empleadoId}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar </a>
+    <button type="button" class="btn btn-success" onclick="modalContratos()"><i class="fas fa-file-contract"></i> Generar Contrato</button>
     </div>
     `;
 

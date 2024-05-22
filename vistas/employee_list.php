@@ -76,7 +76,6 @@
   </div>
 </div>
 
-
 <!-- Modal para generar contrato -->
 <div class="modal fade" id="modalContratos" tabindex="-1" aria-labelledby="modalContratosLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -102,7 +101,5 @@
     </div>
   </div>
 </div>
-
-
 
 <script src="./js/empleado.js"></script>

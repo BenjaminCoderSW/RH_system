@@ -76,30 +76,4 @@
   </div>
 </div>
 
-<!-- Modal para generar contrato -->
-<div class="modal fade" id="modalContratos" tabindex="-1" aria-labelledby="modalContratosLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalContratoslLabel">Generar Contrato</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-        <div class="mb-3">
-          <label for="contractList" class="form-label">Seleccionar Contrato:</label>
-          <select class="form-control" id="contractList">
-
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-danger" onclick="downloadFile()">
-          <i class="fas fa-download"></i> Descargar
-        </button>
-    </div>
-    </div>
-  </div>
-</div>
-
-<script src="./js/empleado.js"></script>
+<script src="./js/empleadoo.js"></script>

@@ -1,0 +1,1 @@
+Plantilla HTML para el documento CONTRATO_TIEMPO_DETERMINADO

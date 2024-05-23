@@ -87,11 +87,19 @@
         <div id="detallesEmpleado"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      <label for="expedienteArchivo" class="form-label">Subir expediente:</label>
+        <input type="file" class="form-control" id="expedienteArchivo" accept=".zip,.rar">
+        <button type="button" class="btn btn-primary" onclick="subirExpediente()">
+          <i class="fas fa-upload"></i> Subir
+        </button>
+
+        <button type="button" class="btn btn-danger" onclick="downloadFile()">
+          <i class="fas fa-download"></i> Descargar
+        </button>
+
       </div>
     </div>
   </div>
 </div>
 
-
-<script src="./js/empleado.js"></script>
+<script src="./js/empleadoo.js"></script>

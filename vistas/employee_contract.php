@@ -38,10 +38,10 @@ $dato_nombre = $nombre->fetch();
                                         <div class="form-group">
                                             <label for="Empleado_estado_civil">Seleccionar contrato</label>
                                             <select class="form-control" id="Empleado_estado_civil_Update" name="empleado_tipo_de_contrato">
-                                                <option value="13_Convenio_de_Confidencialidad_Anexo_8" >13_Convenio_de_Confidencialidad_Anexo_8</option>
-                                                <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF</option>
-                                                <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF</option>
-                                                <option value="CONTRATO_TIEMPO_DETERMINADO" >CONTRATO_TIEMPO_DETERMINADO</option>
+                                                <option value="13_Convenio_de_Confidencialidad_Anexo_8.php" >13_Convenio_de_Confidencialidad_Anexo_8</option>
+                                                <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF</option>
+                                                <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF</option>
+                                                <option value="CONTRATO_TIEMPO_DETERMINADO.php" >CONTRATO_TIEMPO_DETERMINADO</option>
                                             </select>
                                         </div>
                                     </div>

@@ -23,7 +23,8 @@ function mostrarDetallesEmpleado(empleadoId) {
             <Strong><p>Estado:</Strong> ${data.empleado_estado}</p>
             <Strong><p>Credito Infonavit:</Strong> ${data.empleado_credito_infonavit}</p>
             <Strong><p>Salario Diario Integrado:</Strong> ${data.empleado_salario_diario_integrado}</p>
-            <Strong><p>Fecha de ingreso:</Strong> ${data.empleado_fecha_de_ingreso}</p>
+            <Strong><p>Salario Diario Escrito:</Strong> ${data.empleado_salario_diario_integrado_escrito}</p>
+            <Strong><p>Fecha de ingreso:</Strong> ${data.empleado_dia_de_ingreso} de ${data.empleado_mes_de_ingreso} del ${data.empleado_año_de_ingreso}</p>
             <Strong><p>Fecha de termino de contrato:</Strong> ${data.empleado_fecha_de_termino_de_contrato}</p>
             <Strong><p>Puesto de Trabajo:</Strong> ${data.empleado_puesto_de_trabajo}</p>
             <Strong><p>Lugar de Servicio o de Proyecto:</Strong> ${data.empleado_lugar_de_servicio_o_de_proyecto}</p>
@@ -31,6 +32,7 @@ function mostrarDetallesEmpleado(empleadoId) {
             <Strong><p>Inicio de Contrato PEMEX:</Strong> ${data.empleado_inicio_de_contrato_pemex}</p>
             <Strong><p>Fin de Contrato PEMEX:</Strong> ${data.empleado_fin_de_contrato_pemex}</p>
             <Strong><p>Contratado por:</Strong> ${data.empleado_quien_lo_contrato}</p>
+            <Strong><p>Historial de Lugares de Servicio:</Strong> ${data.empleado_historial_lugares_de_servicio}</p>
           `;
         // Agregamos los botones al final
         detalles += `
@@ -44,7 +46,7 @@ function mostrarDetallesEmpleado(empleadoId) {
         document.getElementById("detallesEmpleado").innerHTML = detalles;
         // Actualizamos el título del modal con el nombre del empleado
         document.getElementById("nombreEmpleadoModal").textContent =
-          data.empleado_nombre_completo;
+          data.empleado_nombres + " " + data.empleado_apellido_paterno + " " + data.empleado_apellido_materno;
         $("#modalDetallesEmpleado").modal("show");
       })
       .catch((error) => {

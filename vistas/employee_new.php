@@ -15,9 +15,21 @@
 
           <h4>Datos Personales</h4>
           <div class="form-group">
-            <label for="Empleado_nombre_completo">Nombre Completo:</label>
-            <input type="text" class="form-control" id="Empleado_nombre_completo" name="empleado_nombre_completo" 
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
+            <label for="Empleado_nombres">Nombres:</label>
+            <input type="text" class="form-control" id="Empleado_nombres" name="empleado_nombres" 
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,100}" maxlength="100" required>
+          </div>
+
+          <div class="form-group">
+            <label for="Empleado_apellido_paterno">Apellido Paterno:</label>
+            <input type="text" class="form-control" id="Empleado_apellido_paterno" name="empleado_apellido_paterno" 
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,50}" maxlength="50" required>
+          </div>
+
+          <div class="form-group">
+            <label for="Empleado_apellido_materno">Apellido Materno:</label>
+            <input type="text" class="form-control" id="Empleado_apellido_materno" name="empleado_apellido_materno" 
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,50}" maxlength="50" required>
           </div>
 
           <div class="form-group">
@@ -102,8 +114,33 @@
           </div>
 
           <div class="form-group">
-            <label for="Empleado_Fecha_de_Ingreso">Fecha de Ingreso:</label>
-            <input type="date" class="form-control" id="Empleado_Fecha_de_Ingreso" name="empleado_fecha_de_ingreso" required>
+            <label for="Empleado_dia_de_ingreso">Dia de Ingreso:</label>
+            <input type="text" class="form-control" id="Empleado_dia_de_ingreso" name="empleado_dia_de_ingreso"
+            pattern="^(0[1-9]|[12][0-9]|3[01])$" maxlength="2" required>
+          </div>
+
+          <div class="form-group">
+            <label for="Empleado_mes_de_ingreso">Mes de Ingreso:</label>
+            <select class="form-control" id="Empleado_mes_de_ingreso" name="empleado_mes_de_ingreso">
+              <option value="Enero">Enero</option>
+              <option value="Febrero">Febrero</option>
+              <option value="Marzo">Marzo</option>
+              <option value="Abril">Abril</option>
+              <option value="Mayo">Mayo</option>
+              <option value="Junio">Junio</option>
+              <option value="Julio">Julio</option>
+              <option value="Agosto">Agosto</option>
+              <option value="Septiembre">Septiembre</option>
+              <option value="Octubre">Octubre</option>
+              <option value="Noviembre">Noviembre</option>
+              <option value="Diciembre">Diciembre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Empleado_año_de_ingreso">Año de Ingreso:</label>
+            <input type="text" class="form-control" id="Empleado_año_de_ingreso" name="empleado_anio_de_ingreso" 
+            pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" required>
           </div>
 
           <div class="form-group">
@@ -113,7 +150,7 @@
 
           <div class="form-group">
             <label for="Empleado_Lugar_de_Servicio_o_de_Proyecto">Lugar de Servicio o Proyecto:</label>
-            <input type="text" class="form-control" id="Empleado_Lugar_de_Servicio_o_de_Proyecto" 
+            <input type="text" class="form-control" id="Empleado_Lugar_de_Servicio_o_de_Proyecto"
             name="empleado_lugar_de_servicio_o_de_proyecto" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required>
           </div>
 
@@ -135,7 +172,14 @@
 
           <div class="form-group">
             <label for="Empleado_Salario_Diario_Integrado">Salario Diario Integrado:</label>
-            <input type="number" step=".5" class="form-control" id="Empleado_Salario_Diario_Integrado" name="empleado_salario_diario_integrado" required>
+            <input type="text" class="form-control" id="Empleado_Salario_Diario_Integrado" name="empleado_salario_diario_integrado"
+            pattern="^-?\d{1,8}(\.\d{2})?$" maxlength="11" required>
+          </div>
+
+          <div class="form-group">
+            <label for="Empleado_Salario_Diario_integrado_escrito">Salario Diario Integrado en letra:</label>
+            <input type="text" class="form-control" id="Empleado_Salario_Diario_integrado_escrito" name="empleado_salario_diario_integrado_escrito"
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" required>
           </div>
 
           <div class="form-group">

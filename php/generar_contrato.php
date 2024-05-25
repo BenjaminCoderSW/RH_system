@@ -50,4 +50,4 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 // Envía el PDF al navegador
-$dompdf->stream("contrato_{$datosEmpleado['empleado_nombre_completo']}.pdf", ["Attachment" => false]);
+$dompdf->stream("contrato_{$datosEmpleado['empleado_nombres']}.pdf", ["Attachment" => false]);

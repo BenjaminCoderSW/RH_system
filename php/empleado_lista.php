@@ -10,10 +10,10 @@ $tabla = "";
 // Aqui veremos si generaremos el listado con busqueda o el listado normal sin nungun filtro de busqueda
 // Si la variable busqueda viene definida y tiene algo almacenado entonces
 if (isset($busqueda) && $busqueda != "") {
-    $consulta_datos = "SELECT * FROM empleado WHERE ((empleado_nombre_completo LIKE '%$busqueda%' OR empleado_sexo LIKE '%$busqueda%' OR empleado_domicilio LIKE '%$busqueda%' OR empleado_estado_civil LIKE '%$busqueda%' OR empleado_curp LIKE '%$busqueda%' OR empleado_rfc LIKE '%$busqueda%' OR empleado_nss LIKE '%$busqueda%' OR empleado_lugar_de_nacimiento LIKE '%$busqueda%' OR empleado_telefono LIKE '%$busqueda%' OR empleado_tipo_de_sangre LIKE '%$busqueda%' OR empleado_alergias LIKE '%$busqueda%' OR empleado_enfermedades LIKE '%$busqueda%' OR empleado_nombre_de_contacto_para_emergencia LIKE '%$busqueda%' OR empleado_estado LIKE '%$busqueda%' OR empleado_credito_infonavit LIKE '%$busqueda%' OR empleado_salario_diario_integrado LIKE '%$busqueda%' OR empleado_puesto_de_trabajo LIKE '%$busqueda%' OR empleado_lugar_de_servicio_o_de_proyecto LIKE '%$busqueda%' OR empleado_numero_de_contrato LIKE '%$busqueda%' OR empleado_quien_lo_contrato LIKE '%$busqueda%')) ORDER BY empleado_nombre_completo ASC LIMIT $inicio,$registros";
-    $consulta_total = "SELECT COUNT(empleado_id) FROM empleado WHERE ((empleado_nombre_completo LIKE '%$busqueda%' OR empleado_sexo LIKE '%$busqueda%' OR empleado_domicilio LIKE '%$busqueda%' OR empleado_estado_civil LIKE '%$busqueda%' OR empleado_curp LIKE '%$busqueda%' OR empleado_rfc LIKE '%$busqueda%' OR empleado_nss LIKE '%$busqueda%' OR empleado_lugar_de_nacimiento LIKE '%$busqueda%' OR empleado_telefono LIKE '%$busqueda%' OR empleado_tipo_de_sangre LIKE '%$busqueda%' OR empleado_alergias LIKE '%$busqueda%' OR empleado_enfermedades LIKE '%$busqueda%' OR empleado_nombre_de_contacto_para_emergencia LIKE '%$busqueda%' OR empleado_estado LIKE '%$busqueda%' OR empleado_credito_infonavit LIKE '%$busqueda%' OR empleado_salario_diario_integrado LIKE '%$busqueda%' OR empleado_puesto_de_trabajo LIKE '%$busqueda%' OR empleado_lugar_de_servicio_o_de_proyecto LIKE '%$busqueda%' OR empleado_numero_de_contrato LIKE '%$busqueda%' OR empleado_quien_lo_contrato LIKE '%$busqueda%'))";
+    $consulta_datos = "SELECT * FROM empleado WHERE ((empleado_nombres LIKE '%$busqueda%' OR empleado_apellido_paterno LIKE '%$busqueda%' OR empleado_apellido_materno LIKE '%$busqueda%' OR empleado_historial_lugares_de_servicio LIKE '%$busqueda%' OR empleado_sexo LIKE '%$busqueda%' OR empleado_domicilio LIKE '%$busqueda%' OR empleado_estado_civil LIKE '%$busqueda%' OR empleado_curp LIKE '%$busqueda%' OR empleado_rfc LIKE '%$busqueda%' OR empleado_nss LIKE '%$busqueda%' OR empleado_lugar_de_nacimiento LIKE '%$busqueda%' OR empleado_telefono LIKE '%$busqueda%' OR empleado_tipo_de_sangre LIKE '%$busqueda%' OR empleado_alergias LIKE '%$busqueda%' OR empleado_enfermedades LIKE '%$busqueda%' OR empleado_nombre_de_contacto_para_emergencia LIKE '%$busqueda%' OR empleado_estado LIKE '%$busqueda%' OR empleado_credito_infonavit LIKE '%$busqueda%' OR empleado_salario_diario_integrado LIKE '%$busqueda%' OR empleado_puesto_de_trabajo LIKE '%$busqueda%' OR empleado_lugar_de_servicio_o_de_proyecto LIKE '%$busqueda%' OR empleado_numero_de_contrato LIKE '%$busqueda%' OR empleado_quien_lo_contrato LIKE '%$busqueda%')) ORDER BY empleado_nombres ASC LIMIT $inicio,$registros";
+    $consulta_total = "SELECT COUNT(empleado_id) FROM empleado WHERE ((empleado_nombres LIKE '%$busqueda%' OR empleado_apellido_paterno LIKE '%$busqueda%' OR empleado_apellido_materno LIKE '%$busqueda%' OR empleado_historial_lugares_de_servicio LIKE '%$busqueda%' OR empleado_sexo LIKE '%$busqueda%' OR empleado_domicilio LIKE '%$busqueda%' OR empleado_estado_civil LIKE '%$busqueda%' OR empleado_curp LIKE '%$busqueda%' OR empleado_rfc LIKE '%$busqueda%' OR empleado_nss LIKE '%$busqueda%' OR empleado_lugar_de_nacimiento LIKE '%$busqueda%' OR empleado_telefono LIKE '%$busqueda%' OR empleado_tipo_de_sangre LIKE '%$busqueda%' OR empleado_alergias LIKE '%$busqueda%' OR empleado_enfermedades LIKE '%$busqueda%' OR empleado_nombre_de_contacto_para_emergencia LIKE '%$busqueda%' OR empleado_estado LIKE '%$busqueda%' OR empleado_credito_infonavit LIKE '%$busqueda%' OR empleado_salario_diario_integrado LIKE '%$busqueda%' OR empleado_puesto_de_trabajo LIKE '%$busqueda%' OR empleado_lugar_de_servicio_o_de_proyecto LIKE '%$busqueda%' OR empleado_numero_de_contrato LIKE '%$busqueda%' OR empleado_quien_lo_contrato LIKE '%$busqueda%'))";
 } else {
-    $consulta_datos = "SELECT * FROM empleado ORDER BY empleado_nombre_completo ASC LIMIT $inicio,$registros";
+    $consulta_datos = "SELECT * FROM empleado ORDER BY empleado_nombres ASC LIMIT $inicio,$registros";
     $consulta_total = "SELECT COUNT(empleado_id) FROM empleado";
 }
 
@@ -39,7 +39,7 @@ $tabla .= '
         <thead>
             <tr class="has-text-centered">
                 <th>#</th>
-                <th>Nombre</th>
+                <th>Nombres</th>
                 <th>CURP</th>
                 <th>RFC</th>
                 <th>Numero de Seguro Social</th>
@@ -69,12 +69,12 @@ if ($total >= 1 && $pagina <= $Npaginas) {
         $tabla .= '
             <tr class="has-text-centered">
                 <td>' . $contador . '</td>
-                <td>' . $rows['empleado_nombre_completo'] . '</td>
+                <td>' . $rows['empleado_nombres'] . '</td>
                 <td>' . $rows['empleado_curp'] . '</td>
                 <td>' . $rows['empleado_rfc'] . '</td>
                 <td>' . $rows['empleado_nss'] . '</td>
                 <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>
-                <td>' . $rows['empleado_fecha_de_ingreso'] . '</td>
+                <td>' . $rows['empleado_dia_de_ingreso'] . " de " . $rows['empleado_mes_de_ingreso'] . " del " .$rows['empleado_año_de_ingreso'] . '</td>
                 <td>' . $rows['empleado_quien_lo_contrato'] . '</td>
                 <td>
                 <button class="btn btn-primary btn-sm" onclick="mostrarDetallesEmpleado(\'' . $rows['empleado_id'] . '\')">Detalles</button>

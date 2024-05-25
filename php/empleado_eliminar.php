@@ -11,7 +11,7 @@
     $check_empleado=$check_empleado->query("SELECT empleado_id FROM empleado WHERE empleado_id='$employee_id_del'");
     
     // Este if es para saber si existe el empleado que se quizo seleccionar anteriormente en la base de datos
-    // Si los datos seleccionados en la consulta es igual a 1 entonces significa que si existe, entonces:
+    // Si los datos seleccionados en la consulta es igual a 1 entonces significa que si existe, entonces
     if($check_empleado->rowCount()==1){
 
         // Abrimos conexion a la base de datos

@@ -102,4 +102,4 @@
   </div>
 </div>
 
-<script src="./js/empleadoo.js"></script>
+<script src="./js/empleado2.js"></script>

@@ -6,9 +6,10 @@ if (!isset($datosEmpleado)) {
 }
 
 // Extrae los datos necesarios para llenar la plantilla
-$nombreCompleto = $datosEmpleado['empleado_nombre_completo'];
+$nombreCompleto = $datosEmpleado['empleado_nombres'];
 $domicilio = $datosEmpleado['empleado_domicilio']; 
-$fechaIngreso = $datosEmpleado['empleado_fecha_de_ingreso'];
+$fechaIngreso = $datosEmpleado['empleado_año_de_ingreso'];
+$estadoCivil = $datosEmpleado['empleado_estado_civil'];
 
 // Aquí empieza el contenido de la plantilla
 ?>

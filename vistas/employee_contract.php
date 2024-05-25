@@ -4,7 +4,7 @@ require_once "./php/main.php";
 $id = isset($_GET['employee_id_generate']) ? limpiar_cadena($_GET['employee_id_generate']) : 0;
 
 $nombre = conexion();
-$nombre = $nombre->query("SELECT empleado_nombre_completo FROM empleado WHERE empleado_id='$id'");
+$nombre = $nombre->query("SELECT empleado_nombres FROM empleado WHERE empleado_id='$id'");
 $dato_nombre = $nombre->fetch();
 ?>
 
@@ -13,7 +13,7 @@ $dato_nombre = $nombre->fetch();
         <div class="col-md-8 offset-md-2">
             <div class="card mb-5">
                 <div class="card-header">
-                    <h3 class="mb-4">Generar Contrato a <?php echo $dato_nombre['empleado_nombre_completo']; ?></h3>
+                    <h3 class="mb-4">Generar Contrato a <?php echo $dato_nombre['empleado_nombres']; ?></h3>
                     <?php
                     // Cierro la conexion anterior que ocupe para el nombre
                     $nombre = null;

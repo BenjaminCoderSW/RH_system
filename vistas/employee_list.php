@@ -4,7 +4,7 @@
   # Incluimos el archivo con nuestras funciones principales #
   require_once "./php/main.php";
 
-  # Comprobación de parámetros para mostrar SweetAlert2 #
+  # Comprobacion de parametros para mostrar SweetAlert2 #
   if (isset($_GET['success'])) {
     echo '<script>
                 Swal.fire({
@@ -76,4 +76,4 @@
   </div>
 </div>
 
-<script src="./js/empleadoo.js"></script>
+<script src="./js/empleado2.js"></script>

@@ -75,7 +75,7 @@
           <h4>Contacto y Emergencia</h4>
 
           <div class="form-group">
-            <label for="Empleado_Telefono">Teléfono:</label>
+            <label for="Empleado_Telefono">Teléfono del Empleado:</label>
             <input type="text" class="form-control" id="Empleado_Telefono" name="empleado_telefono" 
             pattern="[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}" maxlength="15" required>
           </div>

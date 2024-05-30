@@ -48,7 +48,7 @@
           <div class="form-group">
             <label for="Empleado_lugar_de_nacimiento">Lugar de Nacimiento:</label>
             <input type="text" class="form-control" id="Empleado_lugar_de_nacimiento" name="empleado_lugar_de_nacimiento"
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required>
+            maxlength="255" required>
           </div>
 
           <div class="form-group">
@@ -64,7 +64,7 @@
           <div class="form-group">
             <label for="Empleado_domicilio">Domicilio:</label>
             <input type="text" class="form-control" id="Empleado_domicilio" name="empleado_domicilio" 
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required>
+            maxlength="255" required>
           </div>
 
         </div>
@@ -151,7 +151,7 @@
           <div class="form-group">
             <label for="Empleado_Lugar_de_Servicio_o_de_Proyecto">Lugar de Servicio o Proyecto:</label>
             <input type="text" class="form-control" id="Empleado_Lugar_de_Servicio_o_de_Proyecto"
-            name="empleado_lugar_de_servicio_o_de_proyecto" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required>
+            name="empleado_lugar_de_servicio_o_de_proyecto" maxlength="255" required>
           </div>
 
           <div class="form-group">

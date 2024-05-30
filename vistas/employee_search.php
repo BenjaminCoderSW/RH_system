@@ -24,6 +24,12 @@
                         <input type="hidden" name="modulo_buscador" value="empleado">   
                         <div class="form-group d-flex">
                             <input class="form-control me-2" type="text" name="txt_buscador" placeholder="Ingresa cualquier cosa relacionada con el empleado que buscas" >
+                            <select name="estado" class="custom-select" id="estado-select">
+                                <option value="selecciona">Selecciona un filtro</option>
+                                <option value="todos">Ver Todos</option>
+                                <option value="Activo">Ver Activos</option>
+                                <option value="Inactivo">Ver Inactivos</option>
+                            </select>
                             <button class="btn btn-info" type="submit" >Buscar</button>
                         </div>
                     </form>
@@ -42,6 +48,12 @@
                 <p>Tu busqueda fue: <strong>“<?php echo $_SESSION['busqueda_empleado']; ?>”</strong></p>
                 <br>
                 <button type="submit" class="btn btn-warning rounded-pill">Cancelar búsqueda</button>
+            </form>
+            <!-- Botón para exportar a Excel -->
+            <form action="./php/exportar_empleados.php" method="GET" class="text-center mt-3 mb-3">
+                <input type="hidden" name="busqueda" value="<?php echo $_SESSION['busqueda_empleado']; ?>">
+                <input type="hidden" name="estado" value="<?php echo $_SESSION['busqueda_empleado_estado']; ?>">
+                <button type="submit" class="btn btn-success rounded-pill">Exportar a Excel</button>
             </form>
         </div>
     </div>
@@ -64,9 +76,15 @@
 
             $pagina=limpiar_cadena($pagina);
             $url="index.php?vista=employee_search&page="; /* <== */
-            $registros=20;
+            $registros=1;
             $busqueda=$_SESSION['busqueda_empleado']; /* <== */
 
+            if (!isset($_SESSION['busqueda_empleado_estado'])) {
+                $estado = 'todos'; // El estado por defecto si no hay búsqueda
+            } else {
+                $estado = $_SESSION['busqueda_empleado_estado']; // El estado guardado en la sesión
+            }
+              
             # Paginador usuario #
             require_once "./php/empleado_lista.php";
         } 

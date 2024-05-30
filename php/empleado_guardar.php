@@ -86,36 +86,6 @@ if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,50}", $apellidoMaterno))
     exit();
 }
 
-if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}", $lugarDeNacimiento)) {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                El LUGAR DE NACIMIENTO no coincide con el formato solicitado.
-            </div>
-        ';
-    exit();
-}
-
-if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}", $domicilio)) {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                El DOMICILIO no coincide con el formato solicitado.
-            </div>
-        ';
-    exit();
-}
-
-if (verificar_datos("[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}", $telefono)) {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                El TELEFONO del empleado no coincide con el formato solicitado.
-            </div>
-        ';
-    exit();
-}
-
 if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $nombreContactoEmergencia)) {
     echo '
             <div class="notification is-danger is-light">
@@ -131,16 +101,6 @@ if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}", $parentezco)) {
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
                 El PARENTEZCO no coincide con el formato solicitado.
-            </div>
-        ';
-    exit();
-}
-
-if (verificar_datos("[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}", $telefonoEmergencia)) {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                El TELEFONO DE EMERGENCIA no coincide con el formato solicitado.
             </div>
         ';
     exit();
@@ -171,16 +131,6 @@ if (verificar_datos("^(20[2-9]\d|21[0-9]\d)$", $anioDeIngreso)) {
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
                 El AÑO DE INGRESO no coincide con el formato solicitado.
-            </div>
-        ';
-    exit();
-}
-
-if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}", $lugarDeServicio)) {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                El LUGAR DE SERVICIO no coincide con el formato solicitado.
             </div>
         ';
     exit();

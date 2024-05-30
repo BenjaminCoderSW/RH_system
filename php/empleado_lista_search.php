@@ -16,11 +16,8 @@ if ($estado != "todos") {
     $filtro_estado = " AND empleado_estado = :estado";
 }
 
-// Aquí veremos si generaremos el listado con búsqueda o el listado normal sin ningún filtro de búsqueda
-// Si la variable búsqueda viene definida y tiene algo almacenado entonces
-$consulta_datos = "SELECT * FROM empleado WHERE ((empleado_nombres LIKE :busqueda OR empleado_apellido_paterno LIKE :busqueda OR empleado_apellido_materno LIKE :busqueda OR empleado_historial_lugares_de_servicio LIKE :busqueda OR empleado_sexo LIKE :busqueda OR empleado_domicilio LIKE :busqueda OR empleado_estado_civil LIKE :busqueda OR empleado_curp LIKE :busqueda OR empleado_rfc LIKE :busqueda OR empleado_nss LIKE :busqueda OR empleado_lugar_de_nacimiento LIKE :busqueda OR empleado_telefono LIKE :busqueda OR empleado_tipo_de_sangre LIKE :busqueda OR empleado_alergias LIKE :busqueda OR empleado_enfermedades LIKE :busqueda OR empleado_nombre_de_contacto_para_emergencia LIKE :busqueda OR empleado_estado LIKE :busqueda OR empleado_credito_infonavit LIKE :busqueda OR empleado_salario_diario_integrado LIKE :busqueda OR empleado_puesto_de_trabajo LIKE :busqueda OR empleado_lugar_de_servicio_o_de_proyecto LIKE :busqueda OR empleado_numero_de_contrato LIKE :busqueda OR empleado_quien_lo_contrato LIKE :busqueda))" . $filtro_estado . " ORDER BY empleado_nombres ASC LIMIT $inicio,$registros";
-$consulta_total = "SELECT COUNT(empleado_id) FROM empleado WHERE ((empleado_nombres LIKE :busqueda OR empleado_apellido_paterno LIKE :busqueda OR empleado_apellido_materno LIKE :busqueda OR empleado_historial_lugares_de_servicio LIKE :busqueda OR empleado_sexo LIKE :busqueda OR empleado_domicilio LIKE :busqueda OR empleado_estado_civil LIKE :busqueda OR empleado_curp LIKE :busqueda OR empleado_rfc LIKE :busqueda OR empleado_nss LIKE :busqueda OR empleado_lugar_de_nacimiento LIKE :busqueda OR empleado_telefono LIKE :busqueda OR empleado_tipo_de_sangre LIKE :busqueda OR empleado_alergias LIKE :busqueda OR empleado_enfermedades LIKE :busqueda OR empleado_nombre_de_contacto_para_emergencia LIKE :busqueda OR empleado_estado LIKE :busqueda OR empleado_credito_infonavit LIKE :busqueda OR empleado_salario_diario_integrado LIKE :busqueda OR empleado_puesto_de_trabajo LIKE :busqueda OR empleado_lugar_de_servicio_o_de_proyecto LIKE :busqueda OR empleado_numero_de_contrato LIKE :busqueda OR empleado_quien_lo_contrato LIKE :busqueda))" . $filtro_estado;
-
+$consulta_datos = "SELECT * FROM empleado WHERE 1=1 " . $filtro_estado . " ORDER BY empleado_nombres ASC LIMIT $inicio,$registros";
+$consulta_total = "SELECT COUNT(empleado_id) FROM empleado WHERE 1=1 " . $filtro_estado;
 
 // Conexión a la base de datos
 $conexion = conexion();

@@ -86,7 +86,7 @@
             }
               
             # Paginador usuario #
-            require_once "./php/empleado_lista.php";
+            require_once "./php/empleado_lista_search.php";
         } 
     ?>
 </div>

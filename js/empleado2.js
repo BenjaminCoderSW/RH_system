@@ -34,7 +34,7 @@ function mostrarDetallesEmpleado(empleadoId) {
             <Strong><p>Contratado por:</Strong> ${data.empleado_quien_lo_contrato}</p>
             <Strong><p>Historial de Lugares de Servicio:</Strong> ${data.empleado_historial_lugares_de_servicio}</p>
           `;
-        // Agregamos los botones al final
+        // Agregamos los botones al final de los datos en el modal
         detalles += `
         <div class="mt-4">
           <a href="index.php?vista=employee_update&employee_id_up=${empleadoId}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar </a>

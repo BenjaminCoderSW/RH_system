@@ -98,6 +98,9 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 <td>
                     <button class="btn btn-danger btn-sm" onclick="confirmarEliminacion(\'' . $rows['empleado_id'] . '\', \'' . $url . $pagina . '\')">Eliminar</button>
                 </td>
+                <td>
+                    <a href="index.php?vista=employee_file&employee_id_exp='.$rows['empleado_id'].'" class="btn btn-sm"><i class="fas fa-upload"></i> Expediente </a>
+                </td>
             </tr>
         ';
         $contador++;

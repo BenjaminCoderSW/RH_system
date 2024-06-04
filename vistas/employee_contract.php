@@ -47,7 +47,7 @@ $dato_nombre = $nombre->fetch();
                                     </div>
                                 </div>
                                 <?php include "./inc/btn_back.php"; ?>
-                                <button type="submit" id="btnGenerarContrato_a_empleado" class="btn btn-primary btn-md m-3">Descargar</button>
+                                <button type="submit" id="btnGenerarContrato_a_empleado" class="btn btn-primary btn-md m-3">Generar</button>
                             </form>
                         </div>
                     <?php

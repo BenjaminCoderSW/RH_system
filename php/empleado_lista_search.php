@@ -50,6 +50,7 @@ $tabla .= '
                 <th>Detalles</th>
                 <th>Eliminar</th>
                 <th>Expediente</th>
+                <th>Vacaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -76,6 +77,9 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 </td>
                 <td>
                     <a href="index.php?vista=employee_file&employee_id_exp=' . $rows['empleado_id'] . '" class="btn btn-sm"><i class="fas fa-upload"></i> Expediente </a>
+                </td>
+                <td>
+                <a href="index.php?vista=holiday_new&employee_id_vac=' . $rows['empleado_id'] . '" class="btn btn-sm"><i class="fas fa-umbrella-beach"></i> Vacaciones </a>
                 </td>
             </tr>
         ';

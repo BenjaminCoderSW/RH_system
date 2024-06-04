@@ -39,7 +39,7 @@ $tabla .= '
                 <th>Cargo</th>
                 <th>Fecha de Ingreso</th>
                 <th>Quien lo contrato</th>
-                <th colspan="2">Acciones</th>
+                <th colspan="4">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -77,6 +77,9 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 </td>
                 <td>
                     <a href="index.php?vista=employee_file&employee_id_exp='.$rows['empleado_id'].'" class="btn btn-sm"><i class="fas fa-upload"></i> Expediente </a>
+                </td>
+                <td>
+                    <a href="index.php?vista=holiday_new&employee_id_vac=' . $rows['empleado_id'] . '" class="btn btn-sm"><i class="fas fa-umbrella-beach"></i> Vacaciones </a>
                 </td>
             </tr>
         ';

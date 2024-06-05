@@ -11,10 +11,13 @@ $mes_solicitud = limpiar_cadena($_POST['vacaciones_mes_solicitud']);
 $anio_solicitud = limpiar_cadena($_POST['vacaciones_anio_solicitud']);
 $periodo_inicio = limpiar_cadena($_POST['vacaciones_periodo_inicio']);
 $periodo_fin = limpiar_cadena($_POST['vacaciones_periodo_fin']);
+$empleado_nombres = limpiar_cadena($_POST['empleado_nombres']);
+$empleado_curp = limpiar_cadena($_POST['empleado_curp']);
 $quienLasRegistro = limpiar_cadena($_SESSION['nombre']);
 
 if ($empleado_id == "" || $dias_solicitados == "" || $dia_solicitud == "" ||$mes_solicitud == "" || 
-$anio_solicitud == "" || $periodo_inicio == "" || $periodo_fin == "" || $quienLasRegistro == "") {
+$anio_solicitud == "" || $periodo_inicio == "" || $periodo_fin == "" || $empleado_nombres == "" || $empleado_curp == "" || 
+$quienLasRegistro == "") {
     echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -92,8 +95,8 @@ if ($check_empleado->rowCount() <= 0) {
 }else{
 
     $guardar_vacaciones = conexion();
-    $guardar_vacaciones = $guardar_vacaciones->prepare("INSERT into vacaciones (empleado_id, vacaciones_dias_solicitados, vacaciones_dia_solicitud, vacaciones_mes_solicitud, vacaciones_anio_solicitud, vacaciones_periodo_inicio, vacaciones_periodo_fin, vacaciones_quien_las_registro)
-    VALUES(:id_empleado,:dias_solicitados,:dia_solicitud,:mes_solicitud,:anio_solicitud,:periodo_inicio,:periodo_fin,:quienLasRegistro)");
+    $guardar_vacaciones = $guardar_vacaciones->prepare("INSERT into vacaciones (empleado_id, vacaciones_dias_solicitados, vacaciones_dia_solicitud, vacaciones_mes_solicitud, vacaciones_anio_solicitud, vacaciones_periodo_inicio, vacaciones_periodo_fin, vacaciones_quien_las_registro, empleado_nombres, empleado_curp)
+    VALUES(:id_empleado,:dias_solicitados,:dia_solicitud,:mes_solicitud,:anio_solicitud,:periodo_inicio,:periodo_fin,:quienLasRegistro,:empleado_nombres,:empleado_curp)");
 
     $marcadores = [
         ":id_empleado" => $empleado_id,
@@ -103,8 +106,11 @@ if ($check_empleado->rowCount() <= 0) {
         ":anio_solicitud" => $anio_solicitud,
         ":periodo_inicio" => $periodo_inicio,
         ":periodo_fin" => $periodo_fin,
-        ":quienLasRegistro" => $quienLasRegistro
+        ":quienLasRegistro" => $quienLasRegistro,
+        ":empleado_nombres" => $empleado_nombres,
+        ":empleado_curp" => $empleado_curp
     ];
+
 
     $guardar_vacaciones->execute($marcadores);
 

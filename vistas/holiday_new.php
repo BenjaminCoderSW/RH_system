@@ -30,6 +30,8 @@ osea el archivo ajax.js a treves de la clase form-rest -->
 
                             <!-- Campo de texto invisible que ya me trae el id del empleado -->
                             <input type="hidden" name="empleado_vacaciones_id" value="<?php echo $id; ?>" required>
+                            <input type="hidden" name="empleado_nombres" value="<?php echo $datos['empleado_nombres']; ?>" required>
+                            <input type="hidden" name="empleado_curp" value="<?php echo $datos['empleado_curp']; ?>" required>
 
                             <div class="form-group">
                                 <label for="Vacaciones_Dias_Solicitados">Días solicitados:</label>

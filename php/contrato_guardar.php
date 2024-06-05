@@ -1,69 +1,111 @@
 <?php
-require_once "main.php"; 
+require_once "main.php";
 
-$response = ['success' => false, 'message' => 'Algo salió mal.'];
+$contractType = limpiar_cadena($_POST['contractType']);
+$description = limpiar_cadena($_POST['description']);
 
-try {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['contractImage'])) {
-        if ($_FILES['contractImage']['size'] > 33554432) { 
-            $response['message'] = 'El archivo supera el peso máximo de 32 MB.';
-            echo json_encode($response);
-            exit();
-        }
+$conexion = conexion();
 
-        $tipoContrato = limpiar_cadena($_POST['contractType']);
-        $descripcion = limpiar_cadena($_POST['description']);
-        $archivo = $_FILES['contractImage'];
-
-        $nombreArchivo = $archivo['name'];
-        $tipoArchivo = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
-
-        // Normaliza el nombre del archivo
-        $nombreGuardado = str_replace(" ", "_", $nombreArchivo);
-
-        // Comprueba si el archivo ya existe en la base de datos
-        $conexion = conexion();
-        $consulta_existencia = $conexion->prepare("SELECT COUNT(*) FROM contrato WHERE contrato_nombre_de_imagen = ?");
-        $consulta_existencia->execute([$nombreGuardado]);
-        if ($consulta_existencia->fetchColumn() > 0) {
-            $response['message'] = 'Un archivo con este nombre ya existe';
-            echo json_encode($response);
-            exit();
-        }
-
-        $directorio='../img/contratos';
-        if(!file_exists($directorio)){
-            mkdir($directorio,0777, true);
-        }
-        // Comprueba si el archivo ya existe en la carpeta
-        if (file_exists($directorio . $nombreGuardado)) {
-            $response['message'] = 'Un archivo con este nombre ya existe en el servidor.';
-            echo json_encode($response);
-            exit();
-        }
-
-        if ($tipoArchivo == "doc" || $tipoArchivo == "docx" || $tipoArchivo == "pdf") {
-            $consulta = $conexion->prepare("INSERT INTO contrato (contrato_tipo_contrato, contrato_descripcion, contrato_nombre_de_imagen, fecha_de_creacion) VALUES (?, ?, ?, NOW())");
-            if ($consulta->execute([$tipoContrato, $descripcion, $nombreGuardado])) {
-                $rutaGuardado = $directorio . $nombreGuardado;
-                if (move_uploaded_file($archivo['tmp_name'], $rutaGuardado)) {
-                    $response['success'] = true;
-                    $response['message'] = 'El contrato ha sido guardado correctamente.';
-                } else {
-                    $response['message'] = 'Error al guardar el archivo en el servidor.';
-                }
-            } else {
-                $response['message'] = 'No se pudo guardar la información en la base de datos: ' . implode(",", $consulta->errorInfo());
-            }
-        } else {
-            $response['message'] = 'Solo se permiten archivos de tipo Word (.doc, .docx) o PDF.';
-        }
-    } else {
-        $response['message'] = 'No se recibieron datos o el archivo necesario.';
-    }
-} catch (Exception $e) {
-    $response['message'] = 'Error del servidor: ' . $e->getMessage();
+// Verificar si ya existe un contrato con el mismo nombre
+$stmt = $conexion->prepare("SELECT COUNT(*) FROM contrato WHERE contrato_tipo_contrato = :contractType");
+$stmt->bindParam(':contractType', $contractType);
+$stmt->execute();
+if ($stmt->fetchColumn() > 0) {
+    echo '<div class="notification is-warning is-light">
+        <strong>¡Atención!</strong><br>
+        Ya existe un contrato con este nombre. Por favor, use un nombre diferente.
+    </div>';
+    exit();
 }
 
-echo json_encode($response);
+// Directorio donde se almacenarán los contratos
+$contrato_dir = '../img/contratos/';
+
+if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] > 0) {
+    if (!file_exists($contrato_dir) && !mkdir($contrato_dir, 0777, true)) {
+        echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            Error al crear el directorio de contratos
+        </div>';
+        exit();
+    }
+
+    $fileType = mime_content_type($_FILES['contractImage']['tmp_name']);
+    $allowedTypes = [
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => '.docx',
+        'application/msword' => '.doc',
+        'application/pdf' => '.pdf'
+    ];
+
+    if (!array_key_exists($fileType, $allowedTypes)) {
+        echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            El archivo que ha seleccionado es de un formato que no está permitido (' . $fileType . ')
+        </div>';
+        exit();
+    }
+
+    if ($_FILES['contractImage']['size'] > 2097152) { // 2MB
+        echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            El archivo que ha seleccionado supera el límite de peso permitido de 2 MB.
+        </div>';
+        exit();
+    }
+
+    // Verificar si ya existe un archivo con el mismo nombre
+    $contract_ext = $allowedTypes[$fileType];
+    $contract_nombre = pathinfo($_FILES['contractImage']['name'], PATHINFO_FILENAME);
+    $documento = $contract_nombre . $contract_ext;
+
+    if (file_exists($contrato_dir . $documento)) {
+        echo '<div class="notification is-warning is-light">
+            <strong>¡Atención!</strong><br>
+            Ya existe un archivo con este nombre. Por favor, use un nombre diferente.
+        </div>';
+        exit();
+    }
+
+    if (!move_uploaded_file($_FILES['contractImage']['tmp_name'], $contrato_dir . $documento)) {
+        echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            No podemos subir el archivo al sistema en este momento, por favor intente nuevamente
+        </div>';
+        exit();
+    }
+} else {
+    echo '<div class="notification is-danger is-light">
+        <strong>¡Ocurrió un error inesperado!</strong><br>
+        No se ha seleccionado ningún archivo.
+    </div>';
+    exit();
+}
+
+$stmt = $conexion->prepare("INSERT INTO contrato (contrato_tipo_contrato, contrato_descripcion, contrato_nombre_de_imagen, fecha_de_creacion) VALUES (:contractType, :description, :documento, NOW())");
+$stmt->bindParam(':contractType', $contractType);
+$stmt->bindParam(':description', $description);
+$stmt->bindParam(':documento', $documento);
+$stmt->execute();
+
+if ($stmt->rowCount() == 1) {
+    echo '<div class="notification is-info is-light">
+        <strong>¡CONTRATO AGREGADO!</strong><br>
+        El contrato se subió con éxito
+    </div>';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=contract_list";
+        }, 3000);
+    </script>';
+} else {
+    if (is_file($contrato_dir . $documento)) {
+        unlink($contrato_dir . $documento);
+    }
+    echo '<div class="notification is-danger is-light">
+        <strong>¡Ocurrió un error inesperado!</strong><br>
+        No se pudo subir el contrato, por favor intente nuevamente
+    </div>';
+}
+
+$conexion = null;
 ?>

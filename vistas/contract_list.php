@@ -1,20 +1,39 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Contratos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body>
-<div class="content container">
-    <div class="container-fluid mt-4">
-        <h2>Lista de Contratos</h2>
-        <table class="table table-hover">
+<div class="container">
+    <h2 class="title">Lista de Contratos</h2>
+    <?php
+    require_once "./php/main.php";
+
+    // Paginación
+    if (!isset($_GET['page'])) {
+        $pagina = 1;
+    } else {
+        $pagina = (int) $_GET['page'];
+        if ($pagina <= 1) {
+            $pagina = 1;
+        }
+    }
+
+    $pagina = limpiar_cadena($pagina);
+    $url = "index.php?vista=contract_list&page=";
+    $registros = 10;
+    $inicio = ($pagina > 0) ? (($pagina * $registros) - $registros) : 0;
+
+    $conexion = conexion();
+
+    // Consulta de datos y total de registros
+    $consulta_datos = "SELECT * FROM contrato ORDER BY fecha_de_creacion DESC LIMIT $inicio, $registros";
+    $consulta_total = "SELECT COUNT(contrato_id) FROM contrato";
+
+    $datos = $conexion->query($consulta_datos)->fetchAll(PDO::FETCH_ASSOC);
+    $total = (int) $conexion->query($consulta_total)->fetchColumn();
+    $Npaginas = ceil($total / $registros);
+    ?>
+    <div class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
-                <tr>
-                    <th>Nombre de Contrato</th>
+                <tr class="has-text-centered">
+                    <th>#</th>
+                    <th>Nombre del Contrato</th>
                     <th>Descripción</th>
                     <th>Fecha de Creación</th>
                     <th>Acciones</th>
@@ -22,63 +41,61 @@
             </thead>
             <tbody>
                 <?php
-                require_once "./php/main.php";
-                $conexion = conexion();
-                $consulta = $conexion->query("SELECT contrato_id, contrato_tipo_contrato, contrato_descripcion, fecha_de_creacion FROM contrato");
-                while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['contrato_tipo_contrato']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['contrato_descripcion']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['fecha_de_creacion']) . "</td>";
-                    echo "<td>";
-                    // Botón para editar se puede añadir aquí si se necesita.
-                    echo '<button class="btn btn-danger btn-sm" onclick="eliminarContrato(' . $row['contrato_id'] . ')">Eliminar</button>';
-                    echo "</td>";
-                    echo "</tr>";
+                if ($total >= 1 && $pagina <= $Npaginas) {
+                    $contador = $inicio + 1;
+                    $pag_inicio = $inicio + 1;
+                    foreach ($datos as $rows) {
+                        echo '
+                        <tr class="has-text-centered">
+                            <td>' . $contador . '</td>
+                            <td>' . htmlspecialchars($rows['contrato_tipo_contrato']) . '</td>
+                            <td>' . htmlspecialchars($rows['contrato_descripcion']) . '</td>
+                            <td>' . htmlspecialchars($rows['fecha_de_creacion']) . '</td>
+                            <td>
+                                <a href="./php/contrato_descargar.php?file=' . urlencode($rows['contrato_nombre_de_imagen']) . '" class="btn btn-success btn-sm">Descargar</a>
+                                <button onclick="confirmarEliminacion(\'' . $rows['contrato_id'] . '\', \'' . urlencode($rows['contrato_nombre_de_imagen']) . '\')" class="btn btn-danger btn-sm">Eliminar</button>
+                            </td>
+                        </tr>
+                        ';
+                        $contador++;
+                    }
+                    $pag_final = $contador - 1;
+                } else {
+                    echo '
+                    <tr class="has-text-centered">
+                        <td colspan="5">
+                            No hay registros en el sistema
+                        </td>
+                    </tr>
+                    ';
                 }
                 ?>
             </tbody>
         </table>
     </div>
+    <?php
+    if ($total > 0 && $pagina <= $Npaginas) {
+        echo '<p class="has-text-right">Mostrando contratos <strong>' . $pag_inicio . '</strong> al <strong>' . $pag_final . '</strong> de un <strong>total de ' . $total . '</strong></p>';
+    }
+
+    echo paginador_tablas($pagina, $Npaginas, $url, 7);
+    ?>
 </div>
 
 <script>
-function eliminarContrato(idContrato) {
+function confirmarEliminacion(contratoId, fileName) {
     Swal.fire({
-        title: '¿Estás seguro?',
-        text: "No podrás revertir esto.",
-        icon: 'warning',
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer y eliminará el contrato permanentemente.",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminar'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminar"
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`./php/contrato_eliminar.php?id=${idContrato}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire(
-                            'Eliminado!',
-                            'El contrato ha sido eliminado.',
-                            'success'
-                        ).then(() => {
-                            location.reload();  // Recargar la página para actualizar la lista
-                        });
-                    } else {
-                        Swal.fire(
-                            'Error',
-                            'No se pudo eliminar el contrato: ' + data.message,
-                            'error'
-                        );
-                    }
-                })
-                .catch(error => Swal.fire('Error', 'Hubo un problema con la petición: ' + error.message, 'error'));
+            window.location.href = "./php/contrato_eliminar.php?contract_id=" + contratoId + "&file=" + encodeURIComponent(fileName);
         }
     });
 }
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

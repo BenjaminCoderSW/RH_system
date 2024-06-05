@@ -1,43 +1,43 @@
 <?php
-require_once "main.php";  // Asegúrate de que este archivo contiene la función para conectarte a la base de datos.
+require_once "main.php";
 
-$response = ['success' => false, 'message' => 'No se pudo procesar la solicitud.'];
+$id = isset($_GET['contract_id']) ? limpiar_cadena($_GET['contract_id']) : 0;
+$fileName = isset($_GET['file']) ? limpiar_cadena($_GET['file']) : '';
+
+$conexion = conexion();
+$conexion->beginTransaction();
 
 try {
-    if (isset($_GET['id'])) {
-        $idContrato = $_GET['id'];
+    $stmt = $conexion->prepare("DELETE FROM contrato WHERE contrato_id = :id AND contrato_nombre_de_imagen = :fileName");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':fileName', $fileName);
+    $stmt->execute();
 
-        $conexion = conexion();
-
-        // Obtén el nombre del archivo antes de eliminar el registro.
-        $consulta = $conexion->prepare("SELECT contrato_nombre_de_imagen FROM contrato WHERE contrato_id = ?");
-        $consulta->execute([$idContrato]);
-        $nombreArchivo = $consulta->fetchColumn();
-
-        if ($nombreArchivo) {
-            // Elimina el registro de la base de datos.
-            $consulta = $conexion->prepare("DELETE FROM contrato WHERE contrato_id = ?");
-            if ($consulta->execute([$idContrato])) {
-                // Verifica y elimina el archivo del servidor.
-                $rutaArchivo = "../img/contratos/" . $nombreArchivo;
-                if (file_exists($rutaArchivo) && unlink($rutaArchivo)) {
-                    $response['success'] = true;
-                    $response['message'] = 'El contrato y el archivo han sido eliminados correctamente.';
-                } else {
-                    $response['message'] = 'El contrato fue eliminado de la base de datos, pero el archivo no pudo ser eliminado o ya fue eliminado.';
-                }
-            } else {
-                $response['message'] = 'No se pudo eliminar el contrato de la base de datos.';
+    if ($stmt->rowCount() > 0) {
+        $filePath = '../img/contratos/' . $fileName;
+        if (file_exists($filePath)) {
+            if (!unlink($filePath)) {
+                throw new Exception("Error al eliminar el archivo.");
             }
-        } else {
-            $response['message'] = 'No se encontró el archivo del contrato especificado.';
         }
+        $conexion->commit();
+        echo '<div class="notification is-success is-light">
+            <strong>¡Contrato eliminado con éxito!</strong>
+        </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_list";
+            }, 3000);
+        </script>';
     } else {
-        $response['message'] = 'No se recibió el identificador del contrato.';
+        throw new Exception("No se encontró el registro del contrato.");
     }
-} catch (PDOException $e) {
-    $response['message'] = 'Error en la base de datos: ' . $e->getMessage();
+} catch (Exception $e) {
+    $conexion->rollBack();
+    echo '<div class="notification is-danger is-light">
+        <strong>¡Error!</strong><br>' . htmlspecialchars($e->getMessage()) . '
+    </div>';
 }
 
-echo json_encode($response);
+$conexion = null;
 ?>

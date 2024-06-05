@@ -1,31 +1,48 @@
 <?php
 require_once "main.php";
-// Esta variable va a servir para saber desde donde vamos a empezar a contar los registros que vamos a mostrar en las tablas de usuarios, contendra el indice 
-// Si la pagina viene definida osea es mayor a 0 entonces hace el calculo para saber desde donde contar
-// Sino se le agrega el valor 0 a la variable inicio (empezaremos a contar desde el indice 0)
+
 $inicio = ($pagina > 0) ? (($pagina * $registros) - $registros) : 0;
 
-// Esta variable llamada tabla va a ir generando toda la tabla con el listado de los usuarios
 $tabla = "";
 
 $consulta_datos = "SELECT * FROM empleado ORDER BY empleado_nombres ASC LIMIT $inicio,$registros";
 $consulta_total = "SELECT COUNT(empleado_id) FROM empleado";
 
-// Creamos la conexion a la BD en la variable conexion usando la funcion conexion() del archivo main.php
 $conexion = conexion();
-// Hacemos la consulta almacenada en la variable $consulta_datos
 $datos = $conexion->query($consulta_datos);
-// Y hacemos un array asociativo de todos los registros seleccionados de la consulta, con la funcion fetchAll() en la variable datos
 $datos = $datos->fetchAll();
-// Hacemos la consulta almacenada en la variable $consulta_total
 $total = $conexion->query($consulta_total);
-// Y almacenamos el valor de la columna, que nos devolvio la consulta, ya convertido a int en mi variable llamada $total
 $total = (int) $total->fetchColumn();
-
-// En la variable Npaginas que estamos creando vamos a almacenar el numero de paginas que se tienen que crear en el paginador
-// para eso divido la cantidad de datos ($total) entre el numero maximo de registros permitidos en cada pagina ($registros) osea 15
-// Y el resultado lo redondeo con la funcion ceil() a su numero proximo, por ejemplo 2.1 se redondea a 3
 $Npaginas = ceil($total / $registros);
+
+function calcular_dias_vacaciones($dia_ingreso, $mes_ingreso, $anio_ingreso) {
+    $fecha_ingreso_str = $anio_ingreso . '-' . $mes_ingreso . '-' . $dia_ingreso;
+    $fecha_ingreso = date_create($fecha_ingreso_str);
+    $fecha_actual = date_create(date("Y-m-d"));
+    $diferencia = date_diff($fecha_ingreso, $fecha_actual);
+    $anios_antiguedad = $diferencia->y;
+
+    $dias_vacaciones = 0;
+    if ($anios_antiguedad >= 16) {
+        $dias_vacaciones = 26;
+    } elseif ($anios_antiguedad >= 11) {
+        $dias_vacaciones = 24;
+    } elseif ($anios_antiguedad >= 6) {
+        $dias_vacaciones = 22;
+    } elseif ($anios_antiguedad >= 5) {
+        $dias_vacaciones = 20;
+    } elseif ($anios_antiguedad >= 4) {
+        $dias_vacaciones = 18;
+    } elseif ($anios_antiguedad >= 3) {
+        $dias_vacaciones = 16;
+    } elseif ($anios_antiguedad >= 2) {
+        $dias_vacaciones = 14;
+    } elseif ($anios_antiguedad >= 1) {
+        $dias_vacaciones = 12;
+    }
+
+    return $dias_vacaciones * $anios_antiguedad;
+}
 
 $tabla .= '
 <div class="table-container">
@@ -44,20 +61,27 @@ $tabla .= '
         <tbody>
 ';
 
-// Lo que hace este if es ver si hay registros y si estamos ubicados en una pagina existente es decir en una pagina valida.
-// Si la cantidad de datos ($total) es mayor o igual a 1 AND la pagina en la que estamos ubicados ($pagina) es menor o igual al 
-// numero de paginas que se tienen que crear en el paginador ($Npaginas) entonces:
 if ($total >= 1 && $pagina <= $Npaginas) {
-    // Sumamos al indice ($inicio) un 1, para que empiece a contar en 1 el primer registro y no en 0 en la tabla y se lo agregamos a la variable ($contador)
     $contador = $inicio + 1;
-    // En esta variable se almacenara el numero del primer registro en esa pagina del paginador.
-	// Esto para mostrar un mensaje como por ej. Mostrando usuarios del (1) al 5 de un total de 17 registros.
-	// Esta variable tendria el numero 1 en ese ejemplo, ese mensaje se mostrara debajo de la tabla de los registros en el sistema.
     $pag_inicio = $inicio + 1;
-    // Recorremos todos los datos almacenados en el array ($datos) con una variable apenas creada llamada ($rows)
     foreach ($datos as $rows) {
-        // Y vamos construyendo las filas($rows) de la tabla de datos, por medio de el nombre de su campo en la base de datos o su clave
-		// añadiendo tambien sus botones para actualizar y eliminar en CADA fila de la tabla que se vaya generando dinamicamente.
+        $meses = [
+            'Enero' => '01', 'Febrero' => '02', 'Marzo' => '03', 'Abril' => '04',
+            'Mayo' => '05', 'Junio' => '06', 'Julio' => '07', 'Agosto' => '08',
+            'Septiembre' => '09', 'Octubre' => '10', 'Noviembre' => '11', 'Diciembre' => '12'
+        ];
+        $mes_ingreso_num = $meses[$rows['empleado_mes_de_ingreso']];
+
+        $dias_vacaciones = calcular_dias_vacaciones($rows['empleado_dia_de_ingreso'], $mes_ingreso_num, $rows['empleado_año_de_ingreso']);
+
+        $consulta_vacaciones = $conexion->prepare("SELECT SUM(vacaciones_dias_solicitados) as dias_usados FROM vacaciones WHERE empleado_id = :empleado_id");
+        $consulta_vacaciones->bindParam(':empleado_id', $rows['empleado_id'], PDO::PARAM_INT);
+        $consulta_vacaciones->execute();
+        $resultado_vacaciones = $consulta_vacaciones->fetch(PDO::FETCH_ASSOC);
+        $dias_usados = $resultado_vacaciones['dias_usados'] ? (int)$resultado_vacaciones['dias_usados'] : 0;
+
+        $dias_disponibles = $dias_vacaciones - $dias_usados;
+
         $tabla .= '
             <tr class="has-text-centered">
                 <td>' . $contador . '</td>
@@ -65,9 +89,9 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 <td>' . $rows['empleado_curp'] . '</td>
                 <td>' . $rows['empleado_rfc'] . '</td>
                 <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>
-                <td>' . "Aqui iran los dias" . '</td>
+                <td>' . $dias_disponibles . '</td>
                 <td>
-                <a href="index.php?vista=holiday_register&employee_id_vac=' . $rows['empleado_id'] . '" class="btn btn-sm btn-primary"><i class="fas fa-umbrella-beach"></i> Vacaciones </a>
+                    <button class="btn btn-sm btn-primary" onclick="mostrarDetallesEmpleado(' . $rows['empleado_id'] . ', \'' . $rows['empleado_nombres'] . '\')"><i class="fas fa-umbrella-beach"></i> Vacaciones</button>
                 </td>
             </tr>
         ';
@@ -109,3 +133,4 @@ if ($total >= 1 && $pagina <= $Npaginas) {
 }
 
 $conexion = null;
+?>

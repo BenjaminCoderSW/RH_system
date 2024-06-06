@@ -29,26 +29,27 @@ $dato_nombre = $nombre->fetch();
                         <div class="card-body">
                             <div class="form-rest mb-6 mt-6"></div>
                             
-                            <form id="formEmpleadoGenerarContrato" action="./php/generar_contrato.php" method="POST" class="FormularioAjax" autocomplete="off">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="hidden" name="empleado_id" value="<?php echo $datos['empleado_id']; ?>" required>
-                                        <input type="hidden" name="empleado_curp" value="<?php echo $datos['empleado_curp']; ?>" required>
-                                        
-                                        <div class="form-group">
-                                            <label for="Empleado_estado_civil">Seleccionar contrato</label>
-                                            <select class="form-control" id="Empleado_estado_civil_Update" name="empleado_tipo_de_contrato">
-                                                <option value="13_Convenio_de_Confidencialidad_Anexo_8.php" >13_Convenio_de_Confidencialidad_Anexo_8</option>
-                                                <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF</option>
-                                                <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF</option>
-                                                <option value="CONTRATO_TIEMPO_DETERMINADO.php" >CONTRATO_TIEMPO_DETERMINADO</option>
-                                            </select>
-                                        </div>
+                            <form id="formEmpleadoGenerarContrato" action="./php/generar_contrato.php" method="POST" class="FormularioAjax" target="_blank" autocomplete="off">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="hidden" name="empleado_id" value="<?php echo $datos['empleado_id']; ?>" required>
+                                    <input type="hidden" name="empleado_curp" value="<?php echo $datos['empleado_curp']; ?>" required>
+                                    
+                                    <div class="form-group">
+                                        <label for="Empleado_estado_civil">Seleccionar contrato</label>
+                                        <select class="form-control" id="Empleado_estado_civil_Update" name="empleado_tipo_de_contrato">
+                                            <option value="13_Convenio_de_Confidencialidad_Anexo_8.php" >13_Convenio_de_Confidencialidad_Anexo_8</option>
+                                            <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF</option>
+                                            <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF</option>
+                                            <option value="CONTRATO_TIEMPO_DETERMINADO.php" >CONTRATO_TIEMPO_DETERMINADO</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <?php include "./inc/btn_back.php"; ?>
-                                <button type="submit" id="btnGenerarContrato_a_empleado" class="btn btn-primary btn-md m-3">Generar</button>
-                            </form>
+                            </div>
+                            <?php include "./inc/btn_back.php"; ?>
+                            <button type="submit" id="btnGenerarContrato_a_empleado" class="btn btn-primary btn-md m-3">Generar</button>
+                        </form>
+
                         </div>
                     <?php
                     } else {

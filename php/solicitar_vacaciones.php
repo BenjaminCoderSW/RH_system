@@ -24,6 +24,11 @@ $quienLasRegistro == "") {
                 No has llenado todos los campos
             </div>
         ';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=employee_list";
+        }, 3000);
+    </script>';
     exit();
 }
 
@@ -34,6 +39,11 @@ if (verificar_datos("^\d+$", $dias_solicitados)) {
                 Los DIAS SOLICITADOS no coinciden con el formato solicitado.
             </div>
         ';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=employee_list";
+        }, 3000);
+    </script>';
     exit();
 }
 
@@ -44,6 +54,11 @@ if (verificar_datos("^(0[1-9]|[12][0-9]|3[01])$", $dia_solicitud)) {
                 El DIA DE SOLICITUD no coincide con el formato solicitado.
             </div>
         ';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=employee_list";
+        }, 3000);
+    </script>';
     exit();
 }
 
@@ -54,6 +69,11 @@ if (verificar_datos("^(20[2-9]\d|21[0-9]\d)$", $anio_solicitud)) {
                 El AÑO DE SOLICITUD no coincide con el formato solicitado.
             </div>
         ';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=employee_list";
+        }, 3000);
+    </script>';
     exit();
 }
 
@@ -64,6 +84,11 @@ if (verificar_datos("^(20[2-9]\d|21[0-9]\d)$", $periodo_inicio)) {
                 El INICIO DEL PERIODO no coincide con el formato solicitado.
             </div>
         ';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=employee_list";
+        }, 3000);
+    </script>';
     exit();
 }
 
@@ -74,6 +99,11 @@ if (verificar_datos("^(20[2-9]\d|21[0-9]\d)$", $periodo_fin)) {
                 El FIN DEL PERIODO no coincide con el formato solicitado.
             </div>
         ';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=employee_list";
+        }, 3000);
+    </script>';
     exit();
 }
 
@@ -91,6 +121,11 @@ if ($check_empleado->rowCount() <= 0) {
             favor elija otro
         </div>
     ';
+    echo '<script>
+        setTimeout(function() {
+            window.location.href = "../index.php?vista=employee_list";
+        }, 3000);
+    </script>';
     exit();
 }else{
 
@@ -121,6 +156,11 @@ if ($check_empleado->rowCount() <= 0) {
                     Las vacaciones se registraron con exito
                 </div>
             ';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=holiday_list";
+            }, 3000);
+        </script>';
     } else {
         echo '
                 <div class="notification is-danger is-light">
@@ -128,6 +168,11 @@ if ($check_empleado->rowCount() <= 0) {
                     No se pudieron registrar las vacaciones al empleado, por favor intente nuevamente
                 </div>
             ';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
     }
     $guardar_vacaciones = null;
 }

@@ -18,8 +18,8 @@ $total = (int) $total->fetchColumn();
 $Npaginas = ceil($total / $registros);
 
 $tabla .= '
-<div class="table-container">
-    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+<div class="table-responsive">
+    <table class="table table-hover">
         <thead>
             <tr class="has-text-centered">
                 <th>#</th>

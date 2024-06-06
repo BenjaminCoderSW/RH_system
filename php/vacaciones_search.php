@@ -25,7 +25,8 @@ $total = (int) $total->fetchColumn();
 $Npaginas = ceil($total / $registros);
 
 if (count($datos) > 0) {
-    echo '<table class="table mt-4">';
+    echo '<div class="table-responsive">';
+    echo '<table class="table table-hover">';
     echo '<thead><tr><th>Nombre</th><th>CURP</th><th>RFC</th><th>Días Solicitados</th><th>Fecha de Solicitud</th><th>Acciones</th></tr></thead>';
     echo '<tbody>';
     foreach ($datos as $row) {
@@ -42,6 +43,7 @@ if (count($datos) > 0) {
     }
     echo '</tbody>';
     echo '</table>';
+    echo '</div>';
 
     // Paginador
     if ($total > 0 && $pagina <= $Npaginas) {
@@ -65,7 +67,7 @@ function eliminarVacacion(id) {
         confirmButtonText: 'Sí, eliminarlo!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(./php/eliminar_vacacion.php?vacaciones_id=${id}, {
+            fetch(`./php/eliminar_vacacion.php?vacaciones_id=${id}`, {
                 method: 'GET',
             })
             .then(response => response.json())

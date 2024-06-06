@@ -15,6 +15,11 @@ if ($stmt->fetchColumn() > 0) {
         <strong>¡Atención!</strong><br>
         Ya existe un contrato con este nombre. Por favor, use un nombre diferente.
     </div>';
+    echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_new";
+            }, 3000);
+        </script>';
     exit();
 }
 
@@ -27,6 +32,11 @@ if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] >
             <strong>¡Ocurrió un error inesperado!</strong><br>
             Error al crear el directorio de contratos
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_new";
+            }, 3000);
+        </script>';
         exit();
     }
 
@@ -42,6 +52,11 @@ if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] >
             <strong>¡Ocurrió un error inesperado!</strong><br>
             El archivo que ha seleccionado es de un formato que no está permitido (' . $fileType . ')
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_new";
+            }, 3000);
+        </script>';
         exit();
     }
 
@@ -50,6 +65,11 @@ if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] >
             <strong>¡Ocurrió un error inesperado!</strong><br>
             El archivo que ha seleccionado supera el límite de peso permitido de 2 MB.
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_new";
+            }, 3000);
+        </script>';
         exit();
     }
 
@@ -63,6 +83,11 @@ if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] >
             <strong>¡Atención!</strong><br>
             Ya existe un archivo con este nombre. Por favor, use un nombre diferente.
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_new";
+            }, 3000);
+        </script>';
         exit();
     }
 
@@ -71,6 +96,11 @@ if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] >
             <strong>¡Ocurrió un error inesperado!</strong><br>
             No podemos subir el archivo al sistema en este momento, por favor intente nuevamente
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_new";
+            }, 3000);
+        </script>';
         exit();
     }
 } else {
@@ -78,6 +108,11 @@ if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] >
         <strong>¡Ocurrió un error inesperado!</strong><br>
         No se ha seleccionado ningún archivo.
     </div>';
+    echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=contract_new";
+            }, 3000);
+        </script>';
     exit();
 }
 

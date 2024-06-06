@@ -44,9 +44,12 @@ function calcular_dias_vacaciones($dia_ingreso, $mes_ingreso, $anio_ingreso) {
     return $dias_vacaciones * $anios_antiguedad;
 }
 
+// Incluir el enlace al archivo CSS para hacer la tabla responsiva
+$tabla .= '<link rel="stylesheet" href="../css/estilos2.css">';
+
 $tabla .= '
-<div class="table-container">
-    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+<div class="table-responsive">
+    <table class="table is-hover">
         <thead>
             <tr class="has-text-centered">
                 <th>#</th>

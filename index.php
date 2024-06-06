@@ -10,6 +10,17 @@
 </head>
 <body>
     <?php
+    // Verificar si la sesión ha expirado por tiempo limite y mostrar la alerta
+    if (isset($_GET['expirado']) && $_GET['expirado'] == 1) {
+        echo "<script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sesión Expirada',
+                    text: 'Tu tiempo de sesión ha expirado. Por favor, inicia sesión nuevamente.',
+                    confirmButtonText: 'Aceptar'
+                });
+              </script>";
+    }
 
     // Si mi variable tipo GET llamada vista no viene definida o esta vacia
     if(!isset($_GET['vista']) || $_GET['vista'] == ""){

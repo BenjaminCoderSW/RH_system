@@ -58,7 +58,7 @@
 
             $pagina=limpiar_cadena($pagina);
             $url="index.php?vista=contract_search&page=";
-            $registros=1;
+            $registros=30;
             $busqueda=$_SESSION['busqueda_contrato'];
 
             // Paginador contratos

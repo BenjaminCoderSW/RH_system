@@ -35,13 +35,12 @@ $total = (int) $stmt->fetchColumn();
 $Npaginas = ceil($total / $registros);
 
 $tabla .= '
-<div class="table-container">
-    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+<div class="table-responsive">
+    <table class="table table-hover">
         <thead>
             <tr class="has-text-centered">
                 <th>#</th>
                 <th>Nombres</th>
-                <th>CURP</th>
                 <th>RFC</th>
                 <th>Numero de Seguro Social</th>
                 <th>Cargo</th>
@@ -63,7 +62,6 @@ if ($total >= 1 && $pagina <= $Npaginas) {
             <tr class="has-text-centered">
                 <td>' . $contador++ . '</td>
                 <td>' . $rows['empleado_nombres'] . '</td>
-                <td>' . $rows['empleado_curp'] . '</td>
                 <td>' . $rows['empleado_rfc'] . '</td>
                 <td>' . $rows['empleado_nss'] . '</td>
                 <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>

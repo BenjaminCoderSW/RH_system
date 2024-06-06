@@ -28,15 +28,16 @@
     $total = (int) $conexion->query($consulta_total)->fetchColumn();
     $Npaginas = ceil($total / $registros);
     ?>
-    <div class="table-container">
-        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <div class="table-responsive">
+        <table class="table table-hover">
             <thead>
                 <tr class="has-text-centered">
                     <th>#</th>
                     <th>Nombre del Contrato</th>
                     <th>Descripción</th>
                     <th>Fecha de Creación</th>
-                    <th>Acciones</th>
+                    <th>Descargar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +54,8 @@
                             <td>' . htmlspecialchars($rows['fecha_de_creacion']) . '</td>
                             <td>
                                 <a href="./php/contrato_descargar.php?file=' . urlencode($rows['contrato_nombre_de_imagen']) . '" class="btn btn-success btn-sm">Descargar</a>
+                            </td>
+                            <td>
                                 <button onclick="confirmarEliminacion(\'' . $rows['contrato_id'] . '\', \'' . urlencode($rows['contrato_nombre_de_imagen']) . '\')" class="btn btn-danger btn-sm">Eliminar</button>
                             </td>
                         </tr>

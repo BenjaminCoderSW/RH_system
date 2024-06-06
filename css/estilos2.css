@@ -8,3 +8,22 @@ body,html{
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+/* Este css ayuda a que las tablas de los listados sea responsivo en dispositivos moviles */
+.table-responsive {
+    overflow-x: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .table-responsive {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .table-responsive > .table {
+      width: 100%;
+      white-space: nowrap;
+    }
+  }

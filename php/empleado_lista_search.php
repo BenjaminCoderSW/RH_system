@@ -41,7 +41,6 @@ $tabla .= '
             <tr class="has-text-centered">
                 <th>#</th>
                 <th>Nombres</th>
-                <th>CURP</th>
                 <th>RFC</th>
                 <th>Numero de Seguro Social</th>
                 <th>Cargo</th>
@@ -63,7 +62,6 @@ if ($total >= 1 && $pagina <= $Npaginas) {
             <tr class="has-text-centered">
                 <td>' . $contador++ . '</td>
                 <td>' . $rows['empleado_nombres'] . '</td>
-                <td>' . $rows['empleado_curp'] . '</td>
                 <td>' . $rows['empleado_rfc'] . '</td>
                 <td>' . $rows['empleado_nss'] . '</td>
                 <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>

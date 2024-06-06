@@ -22,12 +22,14 @@
               </script>";
     }
 
+    // Determinación de la Vista:
     // Si mi variable tipo GET llamada vista no viene definida o esta vacia
     if(!isset($_GET['vista']) || $_GET['vista'] == ""){
         // entonces le ponemos el valor el nombre de mi archivo login en las vistas
         $_GET['vista']="login";
     }
 
+    // Carga de Vistas:
     /*   Si en la carpeta vistas existe el archivo que viene almacenado en mi variable vista por ejemplo home
      y es diferente a login 
      y es diferente a 404    */

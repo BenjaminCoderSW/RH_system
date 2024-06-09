@@ -22,7 +22,6 @@
   <br>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="modalDetallesEmpleado" tabindex="-1" role="dialog" aria-labelledby="modalDetallesEmpleadoLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -41,6 +40,8 @@
     </div>
   </div>
 </div>
+
+
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./js/empleadoVacaciones.js"></script>

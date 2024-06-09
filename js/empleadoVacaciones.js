@@ -1,4 +1,4 @@
-function mostrarDetallesEmpleado(empleadoId) {
+function mostrarDetallesEmpleado(empleadoId, empleadoNombre) {
     fetch(`./php/obtener_empleado_id_vacaciones.php?empleado_id=${empleadoId}`)
         .then((response) => response.json())
         .then((data) => {
@@ -7,6 +7,26 @@ function mostrarDetallesEmpleado(empleadoId) {
                 detalles = data.map(vacacion => `
                     <p><strong>Fecha de Solicitud:</strong> ${vacacion.vacaciones_dia_solicitud}-${vacacion.vacaciones_mes_solicitud}-${vacacion.vacaciones_anio_solicitud}</p>
                     <p><strong>Días Solicitados:</strong> ${vacacion.vacaciones_dias_solicitados}</p>
+                    <form id="formSubirPDF_${vacacion.vacaciones_id}" class="formSubirPDF" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="archivo_pdf" accept=".pdf" ${vacacion.archivo_pdf ? 'style="display:none;"' : ''}>
+                                <label class="custom-file-label" for="archivo_pdf">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-upload"></i></button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="vacaciones_id" value="${vacacion.vacaciones_id}">
+                    </form>
+                    ${vacacion.archivo_pdf ? `
+                        <button class="btn btn-outline-success" onclick="descargarPDF('${vacacion.archivo_pdf}')">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" onclick="eliminarPDF(${vacacion.vacaciones_id})">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    ` : ''}
                     <button class="btn btn-danger" onclick="eliminarVacaciones(${vacacion.vacaciones_id}, ${vacacion.vacaciones_dias_solicitados})">Eliminar</button>
                     <hr>
                 `).join('');
@@ -15,12 +35,98 @@ function mostrarDetallesEmpleado(empleadoId) {
             }
   
             document.getElementById("detallesEmpleado").innerHTML = detalles;
-            document.getElementById("nombreEmpleadoModal").textContent = "Historial de Vacaciones";
+            document.getElementById("nombreEmpleadoModal").textContent = "Historial de Vacaciones - " + empleadoNombre;
             $("#modalDetallesEmpleado").modal("show");
+  
+            // Añadir el evento de subida de archivo
+            document.querySelectorAll('.formSubirPDF').forEach(form => {
+                form.addEventListener('submit', subirPDF);
+            });
         })
         .catch((error) => {
             console.error("Error al obtener los detalles del empleado:", error);
         });
+  }
+  
+  function subirPDF(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    fetch('./php/subir_pdf.php', {
+        method: 'POST',
+        body: formData,
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: data.message
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.message
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un error al subir el archivo.'
+            });
+        });
+  }
+  
+  function descargarPDF(pdfFileName) {
+    window.location.href = `./php/descargar_pdf.php?file=${pdfFileName}`;
+  }
+  
+  function eliminarPDF(vacacionId) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`./php/eliminar_pdf.php?vacacion_id=${vacacionId}`, {
+                method: 'GET',
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Eliminado!',
+                            text: data.message,
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message
+                        });
+                    }
+                })
+                .catch((error) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error al eliminar el archivo.'
+                    });
+                });
+        }
+    });
   }
   
   function eliminarVacaciones(vacacionesId, diasSolicitados) {
@@ -51,7 +157,7 @@ function mostrarDetallesEmpleado(empleadoId) {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: data.message
+                            text: data.message,
                         });
                     }
                 })
@@ -59,7 +165,7 @@ function mostrarDetallesEmpleado(empleadoId) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Ocurrió un error al eliminar la solicitud.'
+                        text: 'Ocurrió un error al eliminar la solicitud.',
                     });
                 });
         }

@@ -23,25 +23,27 @@ function calcular_dias_vacaciones($dia_ingreso, $mes_ingreso, $anio_ingreso) {
     $anios_antiguedad = $diferencia->y;
 
     $dias_vacaciones = 0;
-    if ($anios_antiguedad >= 16) {
-        $dias_vacaciones = 26;
-    } elseif ($anios_antiguedad >= 11) {
-        $dias_vacaciones = 24;
-    } elseif ($anios_antiguedad >= 6) {
-        $dias_vacaciones = 22;
-    } elseif ($anios_antiguedad >= 5) {
-        $dias_vacaciones = 20;
-    } elseif ($anios_antiguedad >= 4) {
-        $dias_vacaciones = 18;
-    } elseif ($anios_antiguedad >= 3) {
-        $dias_vacaciones = 16;
-    } elseif ($anios_antiguedad >= 2) {
-        $dias_vacaciones = 14;
-    } elseif ($anios_antiguedad >= 1) {
-        $dias_vacaciones = 12;
+    for ($i = 1; $i <= $anios_antiguedad; $i++) {
+        if ($i == 1) {
+            $dias_vacaciones += 12;
+        } elseif ($i == 2) {
+            $dias_vacaciones += 14;
+        } elseif ($i == 3) {
+            $dias_vacaciones += 16;
+        } elseif ($i == 4) {
+            $dias_vacaciones += 18;
+        } elseif ($i == 5) {
+            $dias_vacaciones += 20;
+        } elseif ($i >= 6 && $i <= 10) {
+            $dias_vacaciones += 22;
+        } elseif ($i >= 11 && $i <= 15) {
+            $dias_vacaciones += 24;
+        } elseif ($i >= 16) {
+            $dias_vacaciones += 26;
+        }
     }
 
-    return $dias_vacaciones * $anios_antiguedad;
+    return $dias_vacaciones;
 }
 
 // Incluir el enlace al archivo CSS para hacer la tabla responsiva

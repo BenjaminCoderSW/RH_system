@@ -318,7 +318,7 @@ if ($guardar_empleado->rowCount() == 1) {
             </div>
         ';
     echo "<script>
-            window.location.href='index.php?vista=employee_list';
+            window.location.href='../index.php?vista=employee_list';
         </script>";
 } else {
     echo '
@@ -328,7 +328,7 @@ if ($guardar_empleado->rowCount() == 1) {
             </div>
         ';
     echo "<script>
-            window.location.href='index.php?vista=employee_list';
+            window.location.href='../index.php?vista=employee_list';
         </script>";
 }
 ?>

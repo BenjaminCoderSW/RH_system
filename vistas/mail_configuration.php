@@ -12,7 +12,7 @@ $config = null;
 ?>
 
 <div class="container mt-5">
-    <h3 class="mb-4">Configuración de Correo de Notificaciones</h3>
+    <h3 class="mb-4">Configuración de Correo para Notificaciones</h3>
 
     <form action="./php/mail_configurar.php" method="POST" class="FormularioAjax" autocomplete="off">
         <div class="form-group">

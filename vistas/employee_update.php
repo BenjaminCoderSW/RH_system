@@ -58,7 +58,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_lugar_de_nacimiento_Update">Lugar de Nacimiento:</label>
-                        <input type="text" class="form-control" id="Empleado_lugar_de_nacimiento_Update" name="empleado_lugar_de_nacimiento" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required value="<?php echo $datos['empleado_lugar_de_nacimiento']; ?>">
+                        <input type="text" class="form-control" id="Empleado_lugar_de_nacimiento_Update" name="empleado_lugar_de_nacimiento" maxlength="255" required value="<?php echo $datos['empleado_lugar_de_nacimiento']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -73,7 +73,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_domicilio_Update">Domicilio:</label>
-                        <input type="text" class="form-control" id="Empleado_domicilio_Update" name="empleado_domicilio" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required value="<?php echo $datos['empleado_domicilio']; ?>">
+                        <input type="text" class="form-control" id="Empleado_domicilio_Update" name="empleado_domicilio" maxlength="255" required value="<?php echo $datos['empleado_domicilio']; ?>">
                     </div>
 
                 </div>
@@ -150,7 +150,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_Lugar_de_Servicio_o_de_Proyecto">Lugar de Servicio o Proyecto:</label>
-                        <input type="text" class="form-control" id="Empleado_Lugar_de_Servicio_o_de_Proyecto_Update" name="empleado_lugar_de_servicio_o_de_proyecto" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9#. ,]{3,255}" maxlength="255" required value="<?php echo $datos['empleado_lugar_de_servicio_o_de_proyecto']; ?>">
+                        <input type="text" class="form-control" id="Empleado_Lugar_de_Servicio_o_de_Proyecto_Update" name="empleado_lugar_de_servicio_o_de_proyecto" maxlength="255" required value="<?php echo $datos['empleado_lugar_de_servicio_o_de_proyecto']; ?>">
                     </div>
 
                     <div class="form-group">

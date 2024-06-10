@@ -3,6 +3,7 @@
 require_once "../inc/session_start.php";
 
 require_once "main.php";
+require_once "mailer.php"; // Incluir el archivo mailer.php
 
 $nombres = limpiar_cadena($_POST['empleado_nombres']);
 $apellidoPaterno = limpiar_cadena($_POST['empleado_apellido_paterno']);
@@ -299,19 +300,35 @@ $marcadores = [
 $guardar_empleado->execute($marcadores);
 
 if ($guardar_empleado->rowCount() == 1) {
+    // Obtener el correo de notificaciones
+    $config = conexion();
+    $resultado = $config->query("SELECT correo FROM configuracion LIMIT 1");
+    if ($resultado->rowCount() > 0) {
+        $correo_destino = $resultado->fetchColumn();
+        $asunto = "Nuevo empleado agregado";
+        $cuerpo = "Se ha registrado un nuevo empleado: {$nombres} {$apellidoPaterno} {$apellidoMaterno} por {$_SESSION['nombre']}";
+        enviar_correo($asunto, $cuerpo, $correo_destino);
+    }
+    $config = null;
+
     echo '
             <div class="notification is-info is-light">
                 <strong>¡EMPLEADO REGISTRADO!</strong><br>
-                El empleado se registro con exito
+                El empleado se registró con éxito
             </div>
         ';
+    echo "<script>
+            window.location.href='index.php?vista=employee_list';
+        </script>";
 } else {
     echo '
             <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
+                <strong>¡Ocurrió un error inesperado!</strong><br>
                 No se pudo registrar el empleado, por favor intente nuevamente
             </div>
         ';
+    echo "<script>
+            window.location.href='index.php?vista=employee_list';
+        </script>";
 }
-
-$guardar_empleado = null;
+?>

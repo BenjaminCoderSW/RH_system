@@ -1,6 +1,7 @@
 <?php
 require_once "../inc/session_start.php";
 require_once "main.php";
+require_once "mailer.php"; // Incluir el archivo mailer.php
 
 $id = limpiar_cadena($_POST['empleado_id']);
 
@@ -154,10 +155,19 @@ $marcadores = [
 ];
 
 if ($actualizar_empleado->execute($marcadores)) {
+    // Obtener el correo de notificaciones
+    $config = conexion();
+    $resultado = $config->query("SELECT correo FROM configuracion LIMIT 1");
+    if ($resultado->rowCount() > 0) {
+        $correo_destino = $resultado->fetchColumn();
+        $asunto = "Empleado actualizado";
+        $cuerpo = "Se ha actualizado al empleado: {$nombres} {$apellidoPaterno} {$apellidoMaterno} por {$_SESSION['nombre']}";
+        enviar_correo($asunto, $cuerpo, $correo_destino);
+    }
+    $config = null;
+
     echo json_encode(["status" => "success", "message" => "Empleado actualizado correctamente"]);
 } else {
     echo json_encode(["status" => "error", "message" => "No se pudo actualizar el empleado, por favor intente nuevamente"]);
 }
-
-$actualizar_empleado = null;
 ?>

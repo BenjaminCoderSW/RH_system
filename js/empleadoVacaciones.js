@@ -1,3 +1,25 @@
+function validarArchivo(input) {
+    const file = input.files[0];
+    if (file) {
+        const fileType = file.type;
+        const fileSize = file.size;
+        const allowedTypes = ['application/pdf'];
+
+        if (!allowedTypes.includes(fileType)) {
+            alert("Solo se permiten archivos PDF.");
+            input.value = ''; // Limpiar el campo de entrada
+            return false;
+        }
+
+        if (fileSize > 1048576) { // 1MB en bytes
+            alert("El archivo debe ser menor a 1MB.");
+            input.value = ''; // Limpiar el campo de entrada
+            return false;
+        }
+    }
+    return true;
+}
+
 function mostrarDetallesEmpleado(empleadoId, empleadoNombre) {
     fetch(`./php/obtener_empleado_id_vacaciones.php?empleado_id=${empleadoId}`)
         .then((response) => response.json())
@@ -46,11 +68,16 @@ function mostrarDetallesEmpleado(empleadoId, empleadoNombre) {
         .catch((error) => {
             console.error("Error al obtener los detalles del empleado:", error);
         });
-  }
-  
-  function subirPDF(event) {
+}
+
+function subirPDF(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const form = event.target;
+    const fileInput = form.querySelector('input[type="file"]');
+    if (!validarArchivo(fileInput)) {
+        return;
+    }
+    const formData = new FormData(form);
     fetch('./php/subir_pdf.php', {
         method: 'POST',
         body: formData,
@@ -80,13 +107,13 @@ function mostrarDetallesEmpleado(empleadoId, empleadoNombre) {
                 text: 'Ocurrió un error al subir el archivo.'
             });
         });
-  }
-  
-  function descargarPDF(pdfFileName) {
+}
+
+function descargarPDF(pdfFileName) {
     window.location.href = `./php/descargar_pdf.php?file=${pdfFileName}`;
-  }
-  
-  function eliminarPDF(vacacionId) {
+}
+
+function eliminarPDF(vacacionId) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "¡No podrás revertir esto!",
@@ -127,9 +154,9 @@ function mostrarDetallesEmpleado(empleadoId, empleadoNombre) {
                 });
         }
     });
-  }
-  
-  function eliminarVacaciones(vacacionesId, diasSolicitados) {
+}
+
+function eliminarVacaciones(vacacionesId, diasSolicitados) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "¡No podrás revertir esto!",
@@ -170,4 +197,4 @@ function mostrarDetallesEmpleado(empleadoId, empleadoNombre) {
                 });
         }
     });
-  }
+}

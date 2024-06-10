@@ -7,6 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $vacaciones_id = limpiar_cadena($_POST['vacaciones_id']);
 
         if ($archivo_pdf['error'] === UPLOAD_ERR_OK) {
+            // Validar el tamaño del archivo
+            if ($archivo_pdf['size'] > 1048576) { // 1MB en bytes
+                echo json_encode(['status' => false, 'message' => 'El archivo debe ser menor a 1MB.']);
+                exit();
+            }
+
             $nombre_archivo = basename($archivo_pdf['name']);
             $ruta_destino = "../img/pdfs/" . $nombre_archivo;
 

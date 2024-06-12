@@ -21,16 +21,30 @@ $mes = $datosEmpleado['empleado_mes_de_ingreso'];
 $anioActual = date('Y');
 $fotoEmpleado = $datosEmpleado['empleado_foto'];
 
-// Ruta absoluta desde la perspectiva del servidor
+// Ruta absoluta desde la perspectiva del servidor para localhost
 $rutaFotoEmpleado = "C:/laragon/www/HR_System/img/fotos_empleados/" . $fotoEmpleado;
+$rutaLogo = "C:/laragon/www/HR_System/img/logo_fondo_blanco.jpg";
 
-// Verifica si el archivo existe
+// Ruta absoluta desde la perspectiva del servidor para el hosting
+// $rutaFotoEmpleado = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;
+// $rutaLogo = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/logo_fondo_blanco.jpg";
+
+// Verifica si el archivo de la foto del empleado existe
 if (file_exists($rutaFotoEmpleado)) {
-    $tipoMime = mime_content_type($rutaFotoEmpleado);
-    $data = base64_encode(file_get_contents($rutaFotoEmpleado));
-    $rutaFotoEmpleadoBase64 = 'data:' . $tipoMime . ';base64,' . $data;
+    $tipoMimeFoto = mime_content_type($rutaFotoEmpleado);
+    $dataFoto = base64_encode(file_get_contents($rutaFotoEmpleado));
+    $rutaFotoEmpleadoBase64 = 'data:' . $tipoMimeFoto . ';base64,' . $dataFoto;
 } else {
     $rutaFotoEmpleadoBase64 = ''; // Aquí puedes poner una imagen de respaldo en caso de que la imagen del empleado no exista
+}
+
+// Verifica si el archivo del logo existe
+if (file_exists($rutaLogo)) {
+    $tipoMimeLogo = mime_content_type($rutaLogo);
+    $dataLogo = base64_encode(file_get_contents($rutaLogo));
+    $rutaLogoBase64 = 'data:' . $tipoMimeLogo . ';base64,' . $dataLogo;
+} else {
+    $rutaLogoBase64 = ''; // Aquí puedes poner una imagen de respaldo en caso de que el logo no exista
 }
 ?>
 
@@ -52,12 +66,16 @@ if (file_exists($rutaFotoEmpleado)) {
             box-sizing: border-box;
         }
         .header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 5px;
         }
         .header img {
-            width: 2cm;
+            width: 1.5cm; /* Ajusta el tamaño del logo */
             height: auto;
+            margin-right: 5px;
+            margin-top: 3px;
         }
         .foto-area {
             width: 2.5cm;  /* Ancho de una foto tamaño infantil */
@@ -100,7 +118,9 @@ if (file_exists($rutaFotoEmpleado)) {
     <!-- Parte Frontal de la Credencial -->
     <div class="credencial">
         <div class="header">
-            <p>Atzco, S.A. de C.V.</p>
+            <?php if ($rutaLogoBase64): ?>
+                <img src="<?php echo $rutaLogoBase64; ?>" alt="Logo de la empresa">Atzco, S.A. de C.V.
+            <?php endif; ?>
         </div>
         <div class="foto-area">
             <?php if ($rutaFotoEmpleadoBase64): ?>

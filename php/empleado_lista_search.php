@@ -6,7 +6,8 @@ $inicio = ($pagina > 0) ? (($pagina * $registros) - $registros) : 0;
 $tabla = "";
 
 // Filtro entre activos e inactivos
-$estado = isset($_GET['estado']) ? $_GET['estado'] : (isset($_SESSION['busqueda_empleado_estado']) ? $_SESSION['busqueda_empleado_estado'] : 'todos');
+$estado = isset($_SESSION['busqueda_empleado_estado']) ? $_SESSION['busqueda_empleado_estado'] : 'todos';
+$busqueda = isset($_SESSION['busqueda_empleado']) ? $_SESSION['busqueda_empleado'] : "";
 
 // Lógica para el filtro de estado
 $filtro_estado = "";
@@ -16,25 +17,46 @@ if ($estado != "todos") {
     $parametros[':estado'] = $estado;
 }
 
-$consulta_datos = "SELECT * FROM empleado WHERE 1=1" . $filtro_estado . " ORDER BY empleado_nombres ASC LIMIT $inicio, $registros";
-$consulta_total = "SELECT COUNT(empleado_id) FROM empleado WHERE 1=1" . $filtro_estado;
+// Lógica para el filtro de búsqueda
+$filtro_busqueda = "";
+if ($busqueda != "") {
+    $busqueda = "%$busqueda%";
+    $filtro_busqueda = " AND (empleado_nombres LIKE :busqueda OR empleado_apellido_paterno LIKE :busqueda OR empleado_apellido_materno LIKE :busqueda OR empleado_rfc LIKE :busqueda)";
+    $parametros[':busqueda'] = $busqueda;
+}
+
+$consulta_datos = "SELECT * FROM empleado WHERE 1=1" . $filtro_estado . $filtro_busqueda . " ORDER BY empleado_nombres ASC LIMIT $inicio, $registros";
+$consulta_total = "SELECT COUNT(empleado_id) FROM empleado WHERE 1=1" . $filtro_estado . $filtro_busqueda;
 
 // Conexión a la base de datos
 $conexion = conexion();
 
 // Preparar y ejecutar consulta de datos
 $stmt = $conexion->prepare($consulta_datos);
-$stmt->execute($parametros);
+
+// Asignar parámetros a la consulta
+foreach ($parametros as $clave => $valor) {
+    $stmt->bindValue($clave, $valor);
+}
+
+$stmt->execute();
 $datos = $stmt->fetchAll();
 
 // Preparar y ejecutar consulta total
 $stmt = $conexion->prepare($consulta_total);
-$stmt->execute($parametros);
+
+// Asignar parámetros a la consulta
+foreach ($parametros as $clave => $valor) {
+    $stmt->bindValue($clave, $valor);
+}
+
+$stmt->execute();
 $total = (int) $stmt->fetchColumn();
 
 $Npaginas = ceil($total / $registros);
 
-$tabla .= '
+// Generar la tabla de resultados
+$tabla = '
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>

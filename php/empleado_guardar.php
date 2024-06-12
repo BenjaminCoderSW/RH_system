@@ -63,6 +63,9 @@ if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == 0) {
                 <strong>¡Ocurrió un error inesperado!</strong><br>
                 Solo se permiten archivos JPEG, PNG y JPG.
               </div>';
+        echo "<script>
+            window.location.href='../index.php?vista=employee_list';
+        </script>";
         exit();
     }
 
@@ -71,6 +74,9 @@ if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == 0) {
                 <strong>¡Ocurrió un error inesperado!</strong><br>
                 El tamaño del archivo debe ser menor a 2MB.
               </div>';
+        echo "<script>
+            window.location.href='../index.php?vista=employee_list';
+        </script>";
         exit();
     }
 
@@ -88,6 +94,9 @@ if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == 0) {
                 <strong>¡Ocurrió un error inesperado!</strong><br>
                 No se pudo subir la foto del empleado.
               </div>';
+        echo "<script>
+            window.location.href='../index.php?vista=employee_list';
+        </script>";
         exit();
     }
 } else {
@@ -95,6 +104,9 @@ if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == 0) {
             <strong>¡Ocurrió un error inesperado!</strong><br>
             Error en la carga de la foto.
           </div>';
+    echo "<script>
+        window.location.href='../index.php?vista=employee_list';
+    </script>";
     exit();
 }
 
@@ -110,6 +122,9 @@ if ($nombres == "" || $apellidoPaterno == "" || $apellidoMaterno == "" || $sexo 
             <strong>¡Ocurrió un error inesperado!</strong><br>
             No has llenado todos los campos.
           </div>';
+    echo "<script>
+    window.location.href='../index.php?vista=employee_list';
+    </script>";
     exit();
 }
 

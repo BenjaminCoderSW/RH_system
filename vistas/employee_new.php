@@ -115,7 +115,7 @@
           <div class="form-group">
             <label for="Empleado_Puesto_de_Trabajo">Puesto de Trabajo:</label>
             <input type="text" class="form-control" id="Empleado_Puesto_de_Trabajo" name="empleado_puesto_de_trabajo" 
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,100}" maxlength="100">
+            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,100}" maxlength="100" required>
           </div>
 
           <div class="form-group">

@@ -18,52 +18,76 @@ if ($check_empleado->rowCount() == 1) {
     $empleado = $check_empleado->fetch();
     $fotoRuta = "./img/fotos_empleados/" . $empleado['empleado_foto'];
 
-    // Abrimos conexion a la base de datos
-    $eliminar_empleado = conexion();
-    // Preparamos una consulta delete a la base de datos para eliminar todo ese registro de ese empleado mediante su id
-    $eliminar_empleado = $eliminar_empleado->prepare("DELETE FROM empleado WHERE empleado_id=:id");
-    // Ejecuto la consulta enviandole el valor real al marcador que hice del id
-    $eliminar_empleado->execute([":id" => $employee_id_del]);
+    try {
+        // Abrimos conexion a la base de datos
+        $eliminar_empleado = conexion();
+        // Preparamos una consulta delete a la base de datos para eliminar todo ese registro de ese empleado mediante su id
+        $eliminar_empleado = $eliminar_empleado->prepare("DELETE FROM empleado WHERE empleado_id=:id");
+        // Ejecuto la consulta enviandole el valor real al marcador que hice del id
+        $eliminar_empleado->execute([":id" => $employee_id_del]);
 
-    // Si se eliminó un dato (un empleado) entonces:
-    if ($eliminar_empleado->rowCount() == 1) {
-        // Eliminar la foto del empleado del sistema de archivos
-        if (file_exists($fotoRuta)) {
-            unlink($fotoRuta);
+        // Si se eliminó un dato (un empleado) entonces:
+        if ($eliminar_empleado->rowCount() == 1) {
+            // Eliminar la foto del empleado del sistema de archivos
+            if (file_exists($fotoRuta)) {
+                unlink($fotoRuta);
+            }
+
+            // Obtener el correo de notificaciones
+            $config = conexion();
+            $resultado = $config->query("SELECT correo FROM configuracion LIMIT 1");
+            if ($resultado->rowCount() > 0) {
+                $correo_destino = $resultado->fetchColumn();
+                $asunto = "Empleado eliminado";
+                $cuerpo = "Se ha eliminado al empleado: {$empleado['empleado_nombres']} {$empleado['empleado_apellido_paterno']} {$empleado['empleado_apellido_materno']} por {$_SESSION['nombre']}";
+                enviar_correo($asunto, $cuerpo, $correo_destino);
+            }
+            $config = null;
+
+            echo '<div class="notification is-success is-light">
+                    <strong>¡Empleado Eliminado!</strong><br>
+                    El empleado ha sido eliminado correctamente.
+                  </div>';
+            echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "index.php?vista=employee_list";
+                    }, 3000);
+                  </script>';
+        } else {
+            echo '<div class="notification is-danger is-light">
+                    <strong>¡Ocurrió un error inesperado!</strong><br>
+                    No se pudo eliminar el empleado, por favor intente nuevamente.
+                  </div>';
+            echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "index.php?vista=employee_list";
+                    }, 3000);
+                  </script>';
         }
-
-        // Obtener el correo de notificaciones
-        $config = conexion();
-        $resultado = $config->query("SELECT correo FROM configuracion LIMIT 1");
-        if ($resultado->rowCount() > 0) {
-            $correo_destino = $resultado->fetchColumn();
-            $asunto = "Empleado eliminado";
-            $cuerpo = "Se ha eliminado al empleado: {$empleado['empleado_nombres']} {$empleado['empleado_apellido_paterno']} {$empleado['empleado_apellido_materno']} por {$_SESSION['nombre']}";
-            enviar_correo($asunto, $cuerpo, $correo_destino);
+        $eliminar_empleado = null;
+    } catch (PDOException $e) {
+        if ($e->getCode() == '23000') { // Código de error SQL para restricción de clave foránea
+            echo '<div class="notification is-danger is-light">
+                    <strong>¡No se puede eliminar!</strong><br>
+                    El empleado tiene un expediente cargado y no puede ser eliminado.
+                  </div>';
+            echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "index.php?vista=employee_list";
+                    }, 3000);
+                  </script>';
+        } else {
+            echo '<div class="notification is-danger is-light">
+                    <strong>¡Ocurrió un error inesperado!</strong><br>
+                    No se pudo eliminar el empleado, por favor intente nuevamente.
+                  </div>';
+            echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "index.php?vista=employee_list";
+                    }, 3000);
+                  </script>';
         }
-        $config = null;
-
-        echo '<div class="notification is-success is-light">
-                <strong>¡Empleado Eliminado!</strong><br>
-                El empleado ha sido eliminado correctamente.
-              </div>';
-        echo '<script>
-                setTimeout(function() {
-                    window.location.href = "index.php?vista=employee_list";
-                }, 3000);
-              </script>';
-    } else {
-        echo '<div class="notification is-danger is-light">
-                <strong>¡Ocurrió un error inesperado!</strong><br>
-                No se pudo eliminar el empleado, por favor intente nuevamente.
-              </div>';
-        echo '<script>
-                setTimeout(function() {
-                    window.location.href = "index.php?vista=employee_list";
-                }, 3000);
-              </script>';
     }
-    $eliminar_empleado = null;
 } else {
     echo '<div class="notification is-danger is-light">
             <strong>¡Ocurrió un error inesperado!</strong><br>

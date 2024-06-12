@@ -17,7 +17,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
         <div class="form-rest mb-6 mt-6"></div>
         
-        <form id="formEmpleado" action="./php/empleado_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off">
+        <form id="formEmpleado" action="./php/empleado_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6">
 
@@ -101,6 +101,10 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                         <input type="text" class="form-control" id="Empleado_Telefono_de_Contacto_para_Emergencia_Update" name="empleado_telefono_de_contacto_para_emergencia" pattern="[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}" maxlength="15" required value="<?php echo $datos['empleado_telefono_de_contacto_para_emergencia']; ?>">
                     </div>
 
+                    <div class="form-group">
+                        <label for="Empleado_foto_Update">Foto del Empleado:</label>
+                        <input type="file" class="form-control" id="Empleado_foto_Update" name="empleado_foto" accept=".jpeg, .jpg, .png">
+                    </div>
                 </div>
             </div>
 

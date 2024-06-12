@@ -54,17 +54,7 @@ $nombrePadre = limpiar_cadena($_POST['empleado_nombre_completo_del_padre']);
 $estado = limpiar_cadena($_POST['empleado_estado']);
 $quienLoContrato = limpiar_cadena($_POST['empleado_quien_lo_contrato']);
 
-/*== Verificando campos obligatorios del empleado para actualizarlo ==*/
-if ($nombres == "" || $apellidoPaterno == "" || $apellidoMaterno == "" || $sexo == "" || $fechaDeNacimiento == "" || $lugarDeNacimiento == "" || $estadoCivil == "" 
-|| $domicilio == "" || $telefono == "" || $nombreContactoEmergencia == "" || $parentezco == "" 
-|| $telefonoEmergencia == "" || $puestoDeTrabajo == "" || $diaDeIngreso == "" || $mesDeIngreso == "" || $anioDeIngreso == "" || $fechaDeTerminoDeContrato == "" 
-|| $lugarDeServicio == "" || $numeroDeContrato == "" || $inicioContratoPemex == "" || $finContratoPemex == "" 
-|| $salarioDiarioIntegrado == "" || $salarioDiarioIntegradoEscrito == "" || $creditoInfonavit == "" || $curp == "" || $rfc == "" 
-|| $nss == "" || $tipoSangre == "" || $alergias == "" || $enfermedades == ""
-|| $nombreMadre == "" || $nombrePadre == "" || $estado == "" || $quienLoContrato == "") {
-    echo json_encode(["status" => "error", "message" => "No has llenado todos los campos que son obligatorios"]);
-    exit();
-}
+
 
 /*== Verificando empleado ==*/
 if ($curp != $datos['empleado_curp']) {
@@ -75,6 +65,52 @@ if ($curp != $datos['empleado_curp']) {
         exit();
     }
     $check_empleado = null;
+}
+
+/*== Validar y actualizar la foto si se subió una nueva ==*/
+if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == UPLOAD_ERR_OK) {
+    $foto = $_FILES['empleado_foto'];
+    $fotoNombre = $foto['name'];
+    $fotoTmp = $foto['tmp_name'];
+    $fotoTipo = $foto['type'];
+    $fotoSize = $foto['size'];
+
+    $extensionesPermitidas = ['image/jpeg', 'image/png', 'image/jpg'];
+    $maxSize = 2 * 1024 * 1024; // 2MB
+
+    if (!in_array($fotoTipo, $extensionesPermitidas)) {
+        echo json_encode(["status" => "error", "message" => "Solo se permiten archivos JPEG, PNG y JPG."]);
+        exit();
+    }
+
+    if ($fotoSize > $maxSize) {
+        echo json_encode(["status" => "error", "message" => "El tamaño del archivo debe ser menor a 2MB."]);
+        exit();
+    }
+
+    // Crear la carpeta si no existe
+    $carpetaFotos = "../img/fotos_empleados/";
+    if (!file_exists($carpetaFotos)) {
+        mkdir($carpetaFotos, 0777, true);
+    }
+
+    // Eliminar la foto antigua
+    $fotoAntiguaRuta = $carpetaFotos . $datos['empleado_foto'];
+    if (file_exists($fotoAntiguaRuta)) {
+        unlink($fotoAntiguaRuta);
+    }
+
+    // Generar un nombre único para la foto nueva
+    $fotoNombreNuevo = uniqid() . "_" . $fotoNombre;
+    $fotoRuta = $carpetaFotos . $fotoNombreNuevo;
+
+    // Mover la foto nueva a la carpeta
+    if (!move_uploaded_file($fotoTmp, $fotoRuta)) {
+        echo json_encode(["status" => "error", "message" => "No se pudo subir la foto del empleado."]);
+        exit();
+    }
+} else {
+    $fotoNombreNuevo = $datos['empleado_foto']; // Mantener la foto antigua si no se subió una nueva
 }
 
 /*== Actualizar datos ==*/
@@ -113,7 +149,8 @@ empleado_dia_de_ingreso=:diaDeIngreso,
 empleado_mes_de_ingreso=:mesDeIngreso,
 empleado_año_de_ingreso=:anioDeIngreso,
 empleado_salario_diario_integrado_escrito=:salarioDiarioIntegradoEscrito,
-empleado_historial_lugares_de_servicio=:lugaresDeServicioHistorial WHERE empleado_id=:id");
+empleado_historial_lugares_de_servicio=:lugaresDeServicioHistorial,
+empleado_foto=:foto WHERE empleado_id=:id");
 
 $marcadores = [
     ":nombre" => $nombres,
@@ -151,6 +188,7 @@ $marcadores = [
     ":nombrePadre" => $nombrePadre,
     ":estado" => $estado,
     ":quienLoContrato" => $quienLoContrato,
+    ':foto' => $fotoNombreNuevo,
     ':id' => $id
 ];
 

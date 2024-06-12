@@ -16,6 +16,7 @@ $check_empleado = $check_empleado->query("SELECT * FROM empleado WHERE empleado_
 // Si los datos seleccionados en la consulta es igual a 1 entonces significa que si existe, entonces
 if ($check_empleado->rowCount() == 1) {
     $empleado = $check_empleado->fetch();
+    $fotoRuta = "./img/fotos_empleados/" . $empleado['empleado_foto'];
 
     // Abrimos conexion a la base de datos
     $eliminar_empleado = conexion();
@@ -26,6 +27,11 @@ if ($check_empleado->rowCount() == 1) {
 
     // Si se eliminó un dato (un empleado) entonces:
     if ($eliminar_empleado->rowCount() == 1) {
+        // Eliminar la foto del empleado del sistema de archivos
+        if (file_exists($fotoRuta)) {
+            unlink($fotoRuta);
+        }
+
         // Obtener el correo de notificaciones
         $config = conexion();
         $resultado = $config->query("SELECT correo FROM configuracion LIMIT 1");

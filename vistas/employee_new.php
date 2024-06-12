@@ -7,7 +7,7 @@
   
     <!-- En el action del formulario colocamos la ruta a la que queremos que se vayan estos datos al enviarlos, y en la clase 
     colocamos FormularioAjax ya que es la clase que tengo en ajax.js -->
-    <form action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off">
+    <form action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data">
       <div class="row">
 
         <!-- Datos Personales -->
@@ -96,6 +96,11 @@
             <label for="Empleado_Telefono_de_Contacto_para_Emergencia">Teléfono de Emergencia:</label>
             <input type="text" class="form-control" id="Empleado_Telefono_de_Contacto_para_Emergencia" 
             name="empleado_telefono_de_contacto_para_emergencia" pattern="[\+]?[0-9]{1,4}[-\s]?([0-9]{3,4}[-\s]?)*[0-9]{3,4}" maxlength="15" required>
+          </div>
+
+          <div class="form-group">
+              <label for="Empleado_foto">Foto del Empleado:</label>
+              <input type="file" class="form-control" id="Empleado_foto" name="empleado_foto" accept="image/jpeg, image/png, image/jpg" required>
           </div>
 
         </div>

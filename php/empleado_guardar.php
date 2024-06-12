@@ -1,10 +1,16 @@
 <?php
-// Añadimos el archivo de inicio de sesion para ver quien contrato al empleado con la variable de sesion
 require_once "../inc/session_start.php";
-
 require_once "main.php";
 require_once "mailer.php"; // Incluir el archivo mailer.php
 
+// Función para crear la carpeta si no existe
+function crear_carpeta($ruta) {
+    if (!file_exists($ruta)) {
+        mkdir($ruta, 0777, true);
+    }
+}
+
+// Limpiar y obtener los datos del formulario
 $nombres = limpiar_cadena($_POST['empleado_nombres']);
 $apellidoPaterno = limpiar_cadena($_POST['empleado_apellido_paterno']);
 $apellidoMaterno = limpiar_cadena($_POST['empleado_apellido_materno']);
@@ -41,19 +47,69 @@ $nombrePadre = limpiar_cadena($_POST['empleado_nombre_completo_del_padre']);
 $estado = limpiar_cadena($_POST['empleado_estado']);
 $quienLoContrato = limpiar_cadena($_SESSION['nombre']);
 
+// Validar el archivo de la foto
+if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == 0) {
+    $foto = $_FILES['empleado_foto'];
+    $fotoNombre = $foto['name'];
+    $fotoTmp = $foto['tmp_name'];
+    $fotoTipo = $foto['type'];
+    $fotoSize = $foto['size'];
+
+    $extensionesPermitidas = ['image/jpeg', 'image/png', 'image/jpg'];
+    $maxSize = 2 * 1024 * 1024; // 2MB
+
+    if (!in_array($fotoTipo, $extensionesPermitidas)) {
+        echo '<div class="notification is-danger is-light">
+                <strong>¡Ocurrió un error inesperado!</strong><br>
+                Solo se permiten archivos JPEG, PNG y JPG.
+              </div>';
+        exit();
+    }
+
+    if ($fotoSize > $maxSize) {
+        echo '<div class="notification is-danger is-light">
+                <strong>¡Ocurrió un error inesperado!</strong><br>
+                El tamaño del archivo debe ser menor a 2MB.
+              </div>';
+        exit();
+    }
+
+    // Crear la carpeta si no existe
+    $carpetaFotos = "../img/fotos_empleados/";
+    crear_carpeta($carpetaFotos);
+
+    // Generar un nombre único para la foto
+    $fotoNombreNuevo = uniqid() . "_" . $fotoNombre;
+    $fotoRuta = $carpetaFotos . $fotoNombreNuevo;
+
+    // Mover la foto a la carpeta
+    if (!move_uploaded_file($fotoTmp, $fotoRuta)) {
+        echo '<div class="notification is-danger is-light">
+                <strong>¡Ocurrió un error inesperado!</strong><br>
+                No se pudo subir la foto del empleado.
+              </div>';
+        exit();
+    }
+} else {
+    echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            Error en la carga de la foto.
+          </div>';
+    exit();
+}
+
+// Verificar que todos los campos obligatorios estén llenos
 if ($nombres == "" || $apellidoPaterno == "" || $apellidoMaterno == "" || $sexo == "" || $fechaDeNacimiento == "" || $lugarDeNacimiento == "" || $estadoCivil == "" 
-|| $domicilio == "" || $telefono == "" || $nombreContactoEmergencia == "" || $parentezco == "" 
-|| $telefonoEmergencia == "" || $puestoDeTrabajo == "" || $diaDeIngreso == "" || $mesDeIngreso == "" || $anioDeIngreso == "" || $fechaDeTerminoDeContrato == "" 
-|| $lugarDeServicio == "" || $numeroDeContrato == "" || $inicioContratoPemex == "" || $finContratoPemex == "" 
-|| $salarioDiarioIntegrado == "" || $salarioDiarioIntegradoEscrito == "" || $creditoInfonavit == "" || $curp == "" || $rfc == "" 
-|| $nss == "" || $tipoSangre == "" || $alergias == "" || $enfermedades == ""
-|| $nombreMadre == "" || $nombrePadre == "" || $estado == "" || $quienLoContrato == "") {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                No has llenado todos los campos
-            </div>
-        ';
+    || $domicilio == "" || $telefono == "" || $nombreContactoEmergencia == "" || $parentezco == "" 
+    || $telefonoEmergencia == "" || $puestoDeTrabajo == "" || $diaDeIngreso == "" || $mesDeIngreso == "" || $anioDeIngreso == "" || $fechaDeTerminoDeContrato == "" 
+    || $lugarDeServicio == "" || $numeroDeContrato == "" || $inicioContratoPemex == "" || $finContratoPemex == "" 
+    || $salarioDiarioIntegrado == "" || $salarioDiarioIntegradoEscrito == "" || $creditoInfonavit == "" || $curp == "" || $rfc == "" 
+    || $nss == "" || $tipoSangre == "" || $alergias == "" || $enfermedades == ""
+    || $nombreMadre == "" || $nombrePadre == "" || $estado == "" || $quienLoContrato == "") {
+    echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            No has llenado todos los campos.
+          </div>';
     exit();
 }
 
@@ -238,29 +294,25 @@ if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $nombrePadre)) {
     exit();
 }
 
-// ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+// ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 $check_empleado = conexion();
 $check_empleado = $check_empleado->query("SELECT empleado_curp FROM empleado WHERE empleado_curp = '$curp'");
-// Revisamos si el empleado ya esta registrado en nuestra base de datos
 if ($check_empleado->rowCount() > 0) {
-    echo '
-        <div class="notification is-danger is-light">
-            <strong>¡Ocurrio un error inesperado!</strong><br>
-            El EMPLEADO ingresado ya se encuentra registrado, por
-            favor elija otro
-        </div>
-    ';
+    echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            El EMPLEADO ingresado ya se encuentra registrado, por favor elija otro.
+          </div>';
     exit();
 }
 $check_empleado = null;
 
 $guardar_empleado = conexion();
-$guardar_empleado = $guardar_empleado->prepare("INSERT into empleado (empleado_sexo, empleado_domicilio, empleado_estado_civil, empleado_curp, empleado_rfc, empleado_nss, empleado_fecha_de_nacimiento, empleado_lugar_de_nacimiento, empleado_telefono, empleado_tipo_de_sangre, empleado_alergias, empleado_enfermedades, empleado_nombre_completo_de_la_madre, empleado_nombre_completo_del_padre, empleado_nombre_de_contacto_para_emergencia, empleado_parentezco_con_el_contacto_de_emergencia, empleado_telefono_de_contacto_para_emergencia, empleado_estado, empleado_credito_infonavit, empleado_salario_diario_integrado, empleado_fecha_de_termino_de_contrato, empleado_puesto_de_trabajo, empleado_lugar_de_servicio_o_de_proyecto, empleado_numero_de_contrato, empleado_inicio_de_contrato_pemex, empleado_fin_de_contrato_pemex, empleado_quien_lo_contrato, empleado_nombres, empleado_apellido_paterno, empleado_apellido_materno, empleado_dia_de_ingreso, empleado_mes_de_ingreso, empleado_año_de_ingreso, empleado_salario_diario_integrado_escrito, empleado_historial_lugares_de_servicio)
-VALUES(:sexo,:domicilio,:estadoCivil,:curp,:rfc,:nss,:fechaDeNacimiento,:lugarDeNacimiento,:telefono,:tipoSangre,:alergias,:enfermedades,:nombreMadre,:nombrePadre,:nombreContactoEmergencia,:parentezco,:telefonoEmergencia,:estado,:creditoInfonavit,:salarioDiarioIntegrado,:fechaDeTerminoDeContrato,:puestoDeTrabajo,:lugarDeServicio,:numeroDeContrato,:inicioContratoPemex,:finContratoPemex,:quienLoContrato,:nombre,:apellidoPaterno,:apellidoMaterno,:diaDeIngreso,:mesDeIngreso,:anioDeIngreso,:salarioDiarioIntegradoEscrito,:lugaresDeServicioHistorial)");
+$guardar_empleado = $guardar_empleado->prepare("INSERT INTO empleado (empleado_sexo, empleado_domicilio, empleado_estado_civil, empleado_curp, empleado_rfc, empleado_nss, empleado_fecha_de_nacimiento, empleado_lugar_de_nacimiento, empleado_telefono, empleado_tipo_de_sangre, empleado_alergias, empleado_enfermedades, empleado_nombre_completo_de_la_madre, empleado_nombre_completo_del_padre, empleado_nombre_de_contacto_para_emergencia, empleado_parentezco_con_el_contacto_de_emergencia, empleado_telefono_de_contacto_para_emergencia, empleado_estado, empleado_credito_infonavit, empleado_salario_diario_integrado, empleado_fecha_de_termino_de_contrato, empleado_puesto_de_trabajo, empleado_lugar_de_servicio_o_de_proyecto, empleado_numero_de_contrato, empleado_inicio_de_contrato_pemex, empleado_fin_de_contrato_pemex, empleado_quien_lo_contrato, empleado_nombres, empleado_apellido_paterno, empleado_apellido_materno, empleado_dia_de_ingreso, empleado_mes_de_ingreso, empleado_año_de_ingreso, empleado_salario_diario_integrado_escrito, empleado_historial_lugares_de_servicio, empleado_foto)
+VALUES(:sexo, :domicilio, :estadoCivil, :curp, :rfc, :nss, :fechaDeNacimiento, :lugarDeNacimiento, :telefono, :tipoSangre, :alergias, :enfermedades, :nombreMadre, :nombrePadre, :nombreContactoEmergencia, :parentezco, :telefonoEmergencia, :estado, :creditoInfonavit, :salarioDiarioIntegrado, :fechaDeTerminoDeContrato, :puestoDeTrabajo, :lugarDeServicio, :numeroDeContrato, :inicioContratoPemex, :finContratoPemex, :quienLoContrato, :nombres, :apellidoPaterno, :apellidoMaterno, :diaDeIngreso, :mesDeIngreso, :anioDeIngreso, :salarioDiarioIntegradoEscrito, :lugaresDeServicioHistorial, :foto)");
 
 $marcadores = [
-    ":nombre" => $nombres,
+    ":nombres" => $nombres,
     ":apellidoPaterno" => $apellidoPaterno,
     ":apellidoMaterno" => $apellidoMaterno,
     ":sexo" => $sexo,
@@ -278,7 +330,7 @@ $marcadores = [
     ":anioDeIngreso" => $anioDeIngreso,
     ":fechaDeTerminoDeContrato" => $fechaDeTerminoDeContrato,
     ":lugarDeServicio" => $lugarDeServicio,
-    "lugaresDeServicioHistorial" => $lugaresDeServicioHistorial,
+    ":lugaresDeServicioHistorial" => $lugaresDeServicioHistorial,
     ":numeroDeContrato" => $numeroDeContrato,
     ":inicioContratoPemex" => $inicioContratoPemex,
     ":finContratoPemex" => $finContratoPemex,
@@ -294,7 +346,8 @@ $marcadores = [
     ":nombreMadre" => $nombreMadre,
     ":nombrePadre" => $nombrePadre,
     ":estado" => $estado,
-    ":quienLoContrato" => $quienLoContrato
+    ":quienLoContrato" => $quienLoContrato,
+    ":foto" => $fotoNombreNuevo
 ];
 
 $guardar_empleado->execute($marcadores);
@@ -311,24 +364,20 @@ if ($guardar_empleado->rowCount() == 1) {
     }
     $config = null;
 
-    echo '
-            <div class="notification is-info is-light">
-                <strong>¡EMPLEADO REGISTRADO!</strong><br>
-                El empleado se registró con éxito
-            </div>
-        ';
+    echo '<div class="notification is-info is-light">
+            <strong>¡EMPLEADO REGISTRADO!</strong><br>
+            El empleado se registró con éxito.
+          </div>';
     echo "<script>
             window.location.href='../index.php?vista=employee_list';
-        </script>";
+          </script>";
 } else {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrió un error inesperado!</strong><br>
-                No se pudo registrar el empleado, por favor intente nuevamente
-            </div>
-        ';
+    echo '<div class="notification is-danger is-light">
+            <strong>¡Ocurrió un error inesperado!</strong><br>
+            No se pudo registrar el empleado, por favor intente nuevamente.
+          </div>';
     echo "<script>
             window.location.href='../index.php?vista=employee_list';
-        </script>";
+          </script>";
 }
 ?>

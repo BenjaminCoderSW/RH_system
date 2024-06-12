@@ -3,6 +3,7 @@ function mostrarDetallesEmpleado(empleadoId) {
       .then((response) => response.json())
       .then((data) => {
         let detalles = `
+            ${data.foto_ruta ? `<div class="text-center"><img src="${data.foto_ruta}" alt="Foto del empleado" class="img-thumbnail mb-3" style="max-width: 150px; height: auto;"></div>` : ''}
             <Strong><p>Sexo:</Strong> ${data.empleado_sexo}</p>
             <Strong><p>Domicilio:</Strong> ${data.empleado_domicilio}</p>
             <Strong><p>Estado Civil:</Strong> ${data.empleado_estado_civil}</p>
@@ -52,4 +53,4 @@ function mostrarDetallesEmpleado(empleadoId) {
       .catch((error) => {
         console.error("Error al obtener los detalles del empleado:", error);
       });
-  }
+}

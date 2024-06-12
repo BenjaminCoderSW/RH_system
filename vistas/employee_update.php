@@ -116,7 +116,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_dia_de_ingreso_Update">Dia de Ingreso:</label>
                         <input type="text" class="form-control" id="Empleado_dia_de_ingreso_Update" name="empleado_dia_de_ingreso"
-                        pattern="^(0[1-9]|[12][0-9]|3[01])$" maxlength="2" required value="<?php echo $datos['empleado_dia_de_ingreso']; ?>">
+                        pattern="^\d+$" maxlength="2" required value="<?php echo $datos['empleado_dia_de_ingreso']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -205,7 +205,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_Nss">Número de Seguro Social:</label>
-                        <input type="text" class="form-control" id="Empleado_Nss_Update" name="empleado_nss" pattern="^(\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{1}|\d{11})$" maxlength="20" required value="<?php echo $datos['empleado_nss']; ?>">
+                        <input type="text" class="form-control" id="Empleado_Nss_Update" name="empleado_nss" pattern="\d{2} \d{2} \d{2} \d{2} \d{2} \d{1}" maxlength="16" required value="<?php echo $datos['empleado_nss']; ?>">
                     </div>
 
                     <div class="form-group">

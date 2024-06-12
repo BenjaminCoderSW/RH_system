@@ -188,7 +188,7 @@ if (verificar_datos("^([A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3})$", $rfc)) {
     exit();
 }
 
-if (verificar_datos("^(\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{1}|\d{11})$", $nss)) {
+if (verificar_datos("\d{2} \d{2} \d{2} \d{2} \d{2} \d{1}", $nss)) {
     echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>

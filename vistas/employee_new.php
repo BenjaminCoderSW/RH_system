@@ -211,7 +211,7 @@
           <div class="form-group">
             <label for="Empleado_Nss">Número de Seguro Social:</label>
             <input type="text" class="form-control" id="Empleado_Nss" name="empleado_nss" 
-            pattern="^(\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{2}[-_ ]?\d{1}|\d{11})$" maxlength="20" required>
+            pattern="\d{2} \d{2} \d{2} \d{2} \d{2} \d{1}" maxlength="16" required>
           </div>
 
           <div class="form-group">

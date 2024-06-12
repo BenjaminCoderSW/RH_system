@@ -18,9 +18,20 @@ $enfermedades = $datosEmpleado['empleado_enfermedades'];
 $numeroEmergencia = $datosEmpleado['empleado_telefono_de_contacto_para_emergencia'];
 $dia = $datosEmpleado['empleado_dia_de_ingreso'];
 $mes = $datosEmpleado['empleado_mes_de_ingreso'];
-
-// Obtén el año actual
 $anioActual = date('Y');
+$fotoEmpleado = $datosEmpleado['empleado_foto'];
+
+// Ruta absoluta desde la perspectiva del servidor
+$rutaFotoEmpleado = "C:/laragon/www/HR_System/img/fotos_empleados/" . $fotoEmpleado;
+
+// Verifica si el archivo existe
+if (file_exists($rutaFotoEmpleado)) {
+    $tipoMime = mime_content_type($rutaFotoEmpleado);
+    $data = base64_encode(file_get_contents($rutaFotoEmpleado));
+    $rutaFotoEmpleadoBase64 = 'data:' . $tipoMime . ';base64,' . $data;
+} else {
+    $rutaFotoEmpleadoBase64 = ''; // Aquí puedes poner una imagen de respaldo en caso de que la imagen del empleado no exista
+}
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +72,11 @@ $anioActual = date('Y');
             float: left;
             margin-right: 5px;
         }
+        .foto-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         .info {
             font-size: 10px;
         }
@@ -84,10 +100,14 @@ $anioActual = date('Y');
     <!-- Parte Frontal de la Credencial -->
     <div class="credencial">
         <div class="header">
-            <p>Constructora Atzco, S.A. de C.V.</p>
+            <p>Atzco, S.A. de C.V.</p>
         </div>
         <div class="foto-area">
-            Foto
+            <?php if ($rutaFotoEmpleadoBase64): ?>
+                <img src="<?php echo $rutaFotoEmpleadoBase64; ?>" alt="Foto del empleado">
+            <?php else: ?>
+                <span>Foto no disponible</span>
+            <?php endif; ?>
         </div>
         <div class="info">
             <p><span class="label">Nombre:</span> <?php echo "$nombres $apellidoPaterno $apellidoMaterno"; ?></p>
@@ -107,7 +127,7 @@ $anioActual = date('Y');
             <p><strong class="label">Emergencias avisar a:</strong> <?php echo $numeroEmergencia; ?></p>
         </div>
         <div class="signature">
-            <p>Firma del Trabajador _______ Recursos Humanos _______</p>
+            <p>Firma del Trabajador _____________ Recursos Humanos ______________</p>
         </div>
     </div>
 </body>

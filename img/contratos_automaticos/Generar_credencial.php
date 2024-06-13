@@ -75,6 +75,7 @@ if (file_exists($imagenISO)) {
             margin-bottom: 0; /* Eliminar margen inferior */
             box-sizing: border-box;
             display: inline-block; /* Mostrar en línea para quitar el espacio */
+            position: relative;
         }
         .header {
             display: flex;
@@ -114,15 +115,15 @@ if (file_exists($imagenISO)) {
         }
         .signature {
             position: absolute;
-            bottom: 5px;
             width: 100%;
             text-align: center;
             font-size: 9.5px;
         }
         .back-info {
             font-size: 10px;
-            margin-bottom: 20px;
+            margin-top: 50px; /* Añadir margen superior */
             position: relative;
+            transform: rotate(180deg); /* Girar la parte trasera 180 grados */
         }
         .iso-image {
             position: absolute;
@@ -130,6 +131,10 @@ if (file_exists($imagenISO)) {
             right: 5px;
             width: 3cm; /* Ajusta el tamaño de la imagen ISO */
             height: auto;
+        }
+        .small-blue-text {
+            font-size: 8px; /* Tamaño de letra más pequeño */
+            color: lightblue; /* Color azul claro */
         }
     </style>
 </head>
@@ -161,6 +166,8 @@ if (file_exists($imagenISO)) {
     <!-- Parte Trasera de la Credencial -->
     <div class="credencial">
         <div class="back-info">
+            <p class="small-blue-text">SIGCSSL y A</p>
+            <p>ISO 9001:2015/NMX-CC.9001-IMNC-2015</p>
             <?php if ($rutaISOBase64): ?>
                 <img src="<?php echo $rutaISOBase64; ?>" alt="ISO" class="iso-image">
             <?php endif; ?>
@@ -169,8 +176,8 @@ if (file_exists($imagenISO)) {
             <p><strong class="label">Enfermedades:</strong> <?php echo $enfermedades; ?></p>
             <p><strong class="label">Emergencias avisar a:</strong> <?php echo $numeroEmergencia; ?></p>
             <div class="signature">
-            <p><strong>Firma del Trabajador</strong> _____________ <strong>Recursos Humanos</strong> ____________</p>
-        </div>
+                <p><strong>Firma del Trabajador</strong> _____________ <strong>Recursos Humanos</strong> ____________</p>
+            </div>
         </div>
     </div>
 </body>

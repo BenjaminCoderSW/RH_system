@@ -27,9 +27,9 @@ $rutaLogo = "C:/laragon/www/HR_System/img/logo_fondo_blanco.jpg";
 $imagenISO = "C:/laragon/www/HR_System/img/imagen_credencial.png";
 
 // Ruta absoluta desde la perspectiva del servidor para el hosting
-//$rutaFotoEmpleado = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;
-//$rutaLogo = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/logo_fondo_blanco.jpg";
-//$imagenISO = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/imagen_credencial.png";
+// $rutaFotoEmpleado = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;
+// $rutaLogo = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/logo_fondo_blanco.jpg";
+// $imagenISO = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/imagen_credencial.png";
 
 // Verifica si el archivo de la foto del empleado existe
 if (file_exists($rutaFotoEmpleado)) {
@@ -72,9 +72,9 @@ if (file_exists($imagenISO)) {
             padding: 5px;
             font-family: Arial, sans-serif;
             color: #000;
-            position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 0; /* Eliminar margen inferior */
             box-sizing: border-box;
+            display: inline-block; /* Mostrar en línea para quitar el espacio */
         }
         .header {
             display: flex;
@@ -117,17 +117,18 @@ if (file_exists($imagenISO)) {
             bottom: 5px;
             width: 100%;
             text-align: center;
-            font-size: 8px;
+            font-size: 9.5px;
         }
         .back-info {
             font-size: 10px;
             margin-bottom: 20px;
+            position: relative;
         }
         .iso-image {
             position: absolute;
-            bottom: 5px;
-            left: 5px;
-            width: 1.5cm;
+            top: 5px;
+            right: 5px;
+            width: 3cm; /* Ajusta el tamaño de la imagen ISO */
             height: auto;
         }
     </style>
@@ -140,9 +141,6 @@ if (file_exists($imagenISO)) {
                 <img src="<?php echo $rutaLogoBase64; ?>" alt="Logo de la empresa">
             <?php endif; ?>
             Atzco, S.A. de C.V.
-            <?php if ($rutaISOBase64): ?>
-                <img src="<?php echo $rutaISOBase64; ?>" alt="ISO" class="iso-image">
-            <?php endif; ?>
         </div>
         <div class="foto-area">
             <?php if ($rutaFotoEmpleadoBase64): ?>
@@ -163,13 +161,16 @@ if (file_exists($imagenISO)) {
     <!-- Parte Trasera de la Credencial -->
     <div class="credencial">
         <div class="back-info">
+            <?php if ($rutaISOBase64): ?>
+                <img src="<?php echo $rutaISOBase64; ?>" alt="ISO" class="iso-image">
+            <?php endif; ?>
             <p><strong class="label">Tipo de Sangre:</strong> <?php echo $tipoSangre; ?></p>
             <p><strong class="label">Alergias:</strong> <?php echo $alergias; ?></p>
             <p><strong class="label">Enfermedades:</strong> <?php echo $enfermedades; ?></p>
             <p><strong class="label">Emergencias avisar a:</strong> <?php echo $numeroEmergencia; ?></p>
+            <div class="signature">
+            <p><strong>Firma del Trabajador</strong> _____________ <strong>Recursos Humanos</strong> ____________</p>
         </div>
-        <div class="signature">
-            <p>Firma del Trabajador _____________ Recursos Humanos ______________</p>
         </div>
     </div>
 </body>

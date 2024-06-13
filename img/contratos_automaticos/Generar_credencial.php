@@ -24,10 +24,12 @@ $fotoEmpleado = $datosEmpleado['empleado_foto'];
 // Ruta absoluta desde la perspectiva del servidor para localhost
 $rutaFotoEmpleado = "C:/laragon/www/HR_System/img/fotos_empleados/" . $fotoEmpleado;
 $rutaLogo = "C:/laragon/www/HR_System/img/logo_fondo_blanco.jpg";
+$imagenISO = "C:/laragon/www/HR_System/img/imagen_credencial.png";
 
 // Ruta absoluta desde la perspectiva del servidor para el hosting
-// $rutaFotoEmpleado = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;
-// $rutaLogo = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/logo_fondo_blanco.jpg";
+//$rutaFotoEmpleado = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;
+//$rutaLogo = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/logo_fondo_blanco.jpg";
+//$imagenISO = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/imagen_credencial.png";
 
 // Verifica si el archivo de la foto del empleado existe
 if (file_exists($rutaFotoEmpleado)) {
@@ -45,6 +47,15 @@ if (file_exists($rutaLogo)) {
     $rutaLogoBase64 = 'data:' . $tipoMimeLogo . ';base64,' . $dataLogo;
 } else {
     $rutaLogoBase64 = ''; // Aquí puedes poner una imagen de respaldo en caso de que el logo no exista
+}
+
+// Verifica si el archivo de la imagen ISO existe
+if (file_exists($imagenISO)) {
+    $tipoMimeISO = mime_content_type($imagenISO);
+    $dataISO = base64_encode(file_get_contents($imagenISO));
+    $rutaISOBase64 = 'data:' . $tipoMimeISO . ';base64,' . $dataISO;
+} else {
+    $rutaISOBase64 = ''; // Aquí puedes poner una imagen de respaldo en caso de que la imagen ISO no exista
 }
 ?>
 
@@ -112,6 +123,13 @@ if (file_exists($rutaLogo)) {
             font-size: 10px;
             margin-bottom: 20px;
         }
+        .iso-image {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            width: 1.5cm;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -119,7 +137,11 @@ if (file_exists($rutaLogo)) {
     <div class="credencial">
         <div class="header">
             <?php if ($rutaLogoBase64): ?>
-                <img src="<?php echo $rutaLogoBase64; ?>" alt="Logo de la empresa">Atzco, S.A. de C.V.
+                <img src="<?php echo $rutaLogoBase64; ?>" alt="Logo de la empresa">
+            <?php endif; ?>
+            Atzco, S.A. de C.V.
+            <?php if ($rutaISOBase64): ?>
+                <img src="<?php echo $rutaISOBase64; ?>" alt="ISO" class="iso-image">
             <?php endif; ?>
         </div>
         <div class="foto-area">

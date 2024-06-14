@@ -16,36 +16,36 @@
                             <label for="Usuario_nombre_completo">Nombre Completo</label>
                             <input type="text" class="form-control" id="Usuario_nombre_completo" name="usuario_nombre"
                                 placeholder="Nombre Completo del Usuario" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,200}"
-                                maxlength="200" required>
+                                maxlength="200" data-toggle="tooltip" title="Solo letras Aa-Zz, mínimo 3 caracteres, máximo 200" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Usuario_email">Email</label>
                             <input type="email" class="form-control" id="Usuario_email" name="usuario_email"
-                                placeholder="Email del Usuario" maxlength="80" required>
+                                placeholder="Email del Usuario" maxlength="80" data-toggle="tooltip" title="Introduce un email válido" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Usuario_usuario">Nombre de Usuario</label>
                             <input type="text" class="form-control" id="Usuario_usuario" name="usuario_usuario"
-                                placeholder="Nombre de Usuario" pattern="[a-zA-Z0-9]{4,50}" maxlength="50" required>
+                                placeholder="Nombre de Usuario" pattern="[a-zA-Z0-9]{4,50}" maxlength="50" data-toggle="tooltip" title="Letras y números, mínimo 4 caracteres, máximo 50" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Usuario_clave">Contraseña</label>
                             <input type="password" class="form-control" id="Usuario_clave" name="usuario_clave_1"
-                                placeholder="Contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255" required>
+                                placeholder="Contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255" data-toggle="tooltip" title="Letras, números y caracteres $@.-, mínimo 7 caracteres" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Usuario_clave_2">Confirmar contraseña</label>
                             <input type="password" class="form-control" id="Usuario_clave_2" name="usuario_clave_2"
-                                placeholder="Repite tu contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255" required>
+                                placeholder="Repite tu contraseña" pattern="[a-zA-Z0-9$@.-]{7,255}" maxlength="255" data-toggle="tooltip" title="Repite tu contraseña, debe coincidir" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Usuario_rol">Rol de usuario</label>
-                            <select class="form-control" id="Usuario_rol" name="usuario_rol">
+                            <select class="form-control" id="Usuario_rol" name="usuario_rol" data-toggle="tooltip" title="Selecciona el rol del usuario">
                                 <option value="Superadministrador">Super administrador</option>
                                 <option value="Jefe de Proceso">Jefe de Proceso</option>
                                 <option value="Auxiliar">Auxiliar</option>

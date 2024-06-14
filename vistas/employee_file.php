@@ -45,7 +45,7 @@ if ($tiene_expediente) {
                     <input type="hidden" name="action" value="upload">
                     <div class="form-group">
                         <label for="file">Seleccione el archivo del expediente (.rar, .zip) MAX 20MB</label>
-                        <input type="file" class="form-control-file" id="file" name="empleado_expediente" accept=".rar,.zip" required>
+                        <input type="file" class="form-control-file" id="file" name="empleado_expediente" accept=".rar,.zip" data-toggle="tooltip" title="Formatos permitidos: .rar, .zip. Tamaño máximo: 20MB" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Subir Archivo</button>
                 </form>

@@ -36,18 +36,18 @@ osea el archivo ajax.js a treves de la clase form-rest -->
                             <div class="form-group">
                                 <label for="Vacaciones_Dias_Solicitados">Días solicitados:</label>
                                 <input type="text" class="form-control" id="Vacaciones_Dias_Solicitados" name="vacaciones_dias_solicitados"
-                                pattern="^\d+$" maxlength="2" required>
+                                pattern="^\d+$" maxlength="2" data-toggle="tooltip" title="Solo números, máximo 2 caracteres" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="Vacaciones_Dia_Solicitud">Dia en que se solicita:</label>
                                 <input type="text" class="form-control" id="Vacaciones_Dia_Solicitud" name="vacaciones_dia_solicitud"
-                                pattern="^(0[1-9]|[12][0-9]|3[01])$" maxlength="2" required>
+                                pattern="^(0[1-9]|[12][0-9]|3[01])$" maxlength="2" data-toggle="tooltip" title="Formato: DD (01-31)" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="Vacaciones_Mes_Solicitud">Mes en que se solicitan:</label>
-                                <select class="form-control" id="Vacaciones_Mes_Solicitud" name="vacaciones_mes_solicitud">
+                                <select class="form-control" id="Vacaciones_Mes_Solicitud" name="vacaciones_mes_solicitud" data-toggle="tooltip" title="Selecciona el mes">
                                     <option value="Enero">Enero</option>
                                     <option value="Febrero">Febrero</option>
                                     <option value="Marzo">Marzo</option>
@@ -66,7 +66,7 @@ osea el archivo ajax.js a treves de la clase form-rest -->
                             <div class="form-group">
                                 <label for="Vacaciones_Anio_Solicitud">Año en que se solicitan:</label>
                                 <input type="text" class="form-control" id="Vacaciones_Anio_Solicitud" name="vacaciones_anio_solicitud"
-                                pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" required>
+                                pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" data-toggle="tooltip" title="Formato: AAAA (2020 en adelante)" required>
                             </div>
 
                             <div class="mt-2">
@@ -76,10 +76,10 @@ osea el archivo ajax.js a treves de la clase form-rest -->
                             <div>
                                 <div class="row row-cols-2 form-group">
                                     <div class="col">
-                                        <input type="text" class="form-control" id="Vacaciones_Periodo_Inicio" name="vacaciones_periodo_inicio" pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" required>
+                                        <input type="text" class="form-control" id="Vacaciones_Periodo_Inicio" name="vacaciones_periodo_inicio" pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" data-toggle="tooltip" title="Año de inicio del periodo (2020 en adelante)" required>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="Vacaciones_Periodo_Fin" name="vacaciones_periodo_fin" pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" required>
+                                        <input type="text" class="form-control" id="Vacaciones_Periodo_Fin" name="vacaciones_periodo_fin" pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" data-toggle="tooltip" title="Año de fin del periodo (2020 en adelante)" required>
                                     </div>
                                 </div>
                             </div>

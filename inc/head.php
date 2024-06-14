@@ -17,4 +17,10 @@
   <link rel="stylesheet" href="./css/estilos2.css">
   <link rel="stylesheet" href="./css/sweetalert2.min.css">
   <script src="./js/sweetalert2.all.min.js"></script>
+  <!-- Este es para poner recomendaciones amigables en los formualrios con bootstrap usando tooltips -->
+  <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip(); 
+        });
+    </script>
 </head>

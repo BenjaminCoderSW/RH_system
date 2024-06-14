@@ -21,7 +21,7 @@ if ($estado != "todos") {
 $filtro_busqueda = "";
 if ($busqueda != "") {
     $busqueda = "%$busqueda%";
-    $filtro_busqueda = " AND (empleado_nombres LIKE :busqueda OR empleado_apellido_paterno LIKE :busqueda OR empleado_apellido_materno LIKE :busqueda OR empleado_rfc LIKE :busqueda)";
+    $filtro_busqueda = " AND (empleado_sexo LIKE :busqueda OR empleado_domicilio LIKE :busqueda OR empleado_estado_civil LIKE :busqueda OR empleado_curp LIKE :busqueda OR empleado_rfc LIKE :busqueda OR empleado_nss LIKE :busqueda OR empleado_tipo_de_sangre LIKE :busqueda OR empleado_alergias LIKE :busqueda OR empleado_enfermedades LIKE :busqueda OR empleado_telefono_de_contacto_para_emergencia LIKE :busqueda OR empleado_estado LIKE :busqueda OR empleado_puesto_de_trabajo LIKE :busqueda OR empleado_lugar_de_servicio_o_de_proyecto LIKE :busqueda OR empleado_numero_de_contrato LIKE :busqueda OR empleado_quien_lo_contrato LIKE :busqueda OR empleado_nombres LIKE :busqueda OR empleado_apellido_paterno LIKE :busqueda OR empleado_apellido_materno LIKE :busqueda OR empleado_mes_de_ingreso LIKE :busqueda OR empleado_año_de_ingreso LIKE :busqueda)";
     $parametros[':busqueda'] = $busqueda;
 }
 

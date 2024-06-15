@@ -15,7 +15,12 @@ if ($stmt->fetchColumn() > 0) {
         <strong>¡Atención!</strong><br>
         Este empleado ya tiene un expediente cargado.
     </div>';
-    exit; // Salir si ya existe un expediente para evitar duplicados
+    echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
+    exit(); // Salir si ya existe un expediente para evitar duplicados
 }
 
 $exp_dir = '../img/expedientes/';
@@ -26,6 +31,11 @@ if ($_FILES['empleado_expediente']['name'] != "" && $_FILES['empleado_expediente
             <strong>¡Ocurrió un error inesperado!</strong><br>
             Error al crear el directorio de imágenes
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
         exit();
     }
 
@@ -41,6 +51,11 @@ if ($_FILES['empleado_expediente']['name'] != "" && $_FILES['empleado_expediente
             <strong>¡Ocurrió un error inesperado!</strong><br>
             El archivo que ha seleccionado es de un formato que no está permitido (' . $fileType . ')
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
         exit();
     }
 
@@ -49,6 +64,11 @@ if ($_FILES['empleado_expediente']['name'] != "" && $_FILES['empleado_expediente
             <strong>¡Ocurrió un error inesperado!</strong><br>
             El archivo que ha seleccionado supera el límite de peso permitido de 20 MB.
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
         exit();
     }
 
@@ -61,6 +81,11 @@ if ($_FILES['empleado_expediente']['name'] != "" && $_FILES['empleado_expediente
             <strong>¡Ocurrió un error inesperado!</strong><br>
             No podemos subir el archivo al sistema en este momento, por favor intente nuevamente
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
         exit();
     }
 } else {
@@ -77,6 +102,11 @@ if ($stmt->rowCount() == 1) {
         <strong>¡EXPEDIENTE AGREGADO!</strong><br>
         El expediente se subió con éxito
     </div>';
+    echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
 } else {
     if (is_file($exp_dir . $expediente)) {
         unlink($exp_dir . $expediente);
@@ -85,6 +115,11 @@ if ($stmt->rowCount() == 1) {
         <strong>¡Ocurrió un error inesperado!</strong><br>
         No se pudo subir el expediente, por favor intente nuevamente
     </div>';
+    echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
 }
 $conexion = null;
 ?>

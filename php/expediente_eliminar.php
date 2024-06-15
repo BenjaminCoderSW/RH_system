@@ -31,6 +31,11 @@ try {
         echo '<div class="notification is-success is-light">
             <strong>¡Expediente eliminado con éxito!</strong>
         </div>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../index.php?vista=employee_list";
+            }, 3000);
+        </script>';
     } else {
         // Si no se encontró el registro, lanzamos una excepción
         throw new Exception("No se encontró el registro del expediente.");

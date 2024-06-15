@@ -73,23 +73,11 @@ if ($_FILES['contractImage']['name'] != "" && $_FILES['contractImage']['size'] >
         exit();
     }
 
-    // Verificar si ya existe un archivo con el mismo nombre
+    // Generar un nombre único para el archivo y limpiar caracteres problemáticos
     $contract_ext = $allowedTypes[$fileType];
     $contract_nombre = pathinfo($_FILES['contractImage']['name'], PATHINFO_FILENAME);
-    $documento = $contract_nombre . $contract_ext;
-
-    if (file_exists($contrato_dir . $documento)) {
-        echo '<div class="notification is-warning is-light">
-            <strong>¡Atención!</strong><br>
-            Ya existe un archivo con este nombre. Por favor, use un nombre diferente.
-        </div>';
-        echo '<script>
-            setTimeout(function() {
-                window.location.href = "../index.php?vista=contract_new";
-            }, 3000);
-        </script>';
-        exit();
-    }
+    $contract_nombre = preg_replace('/[^a-zA-Z0-9_-]/', '_', $contract_nombre);
+    $documento = $contract_nombre . '_' . time() . $contract_ext;
 
     if (!move_uploaded_file($_FILES['contractImage']['tmp_name'], $contrato_dir . $documento)) {
         echo '<div class="notification is-danger is-light">

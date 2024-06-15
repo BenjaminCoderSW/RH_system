@@ -40,7 +40,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
     <title>CONTRATO INDIVIDUAL DE TRABAJO</title>
     <style>
         body {
-            font-family: Verdana;
+            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 20mm;
             font-size: 13px;
@@ -198,7 +198,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
 
         <h4>OCTAVA.- DURACIÓN DE LA JORNADA</h4>
         <p>"EL TRABAJADOR (A)" conviene en que dedicará al desempeño de sus labores el tiempo de manera efectiva de la duración de su jornada de trabajo a efecto de que no haya atraso ni retraso algunos en el trabajo contratado durante la vigencia del presente contrato. Asimismo, las partes convienen que "EL TRABAJADOR" no podrá laborar jornada extraordinaria, sin el previo consentimiento expreso y por escrito de "LA EMPRESA".</p>
-
+        <br><br><br>
         <h4>NOVENA.- ABANDONO DEL TRABAJO</h4>
         <p>Las partes convienen que derivado de la importancia del trabajo contratado, regulado en éste contrato y materia del mismo, "EL TRABAJADOR (A)” manifiesta expresamente en éste acto su conformidad y conviene que se abstendrá de abandonar el mismo por ninguna razón o motivo, en ninguna etapa de la misma, salvo casos fortuitos o de fuerza mayor, y continuará en su cargo y en el desempeño de sus funciones hasta la conclusión del trabajo materia del presente contrato y durante la vigencia del mismo, referido de forma específica en la cláusula Primera del mismo.</p>
 
@@ -375,7 +375,7 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
 
 </p>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br>
 <h3 class="red-box">CARTA DE CONSENTIMIENTO</h3>
 
 <p>Por medio de la presente el que suscribe C. <?php echo $nombreCompleto; ?> le externo mi consentimiento y aceptación de manera libre y espontánea, para que se me entreviste y se realice el llenado de mi declaración de estado de salud para cuestiones informativas.</p>
@@ -391,7 +391,7 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
     <p><strong>NOMBRE Y FIRMA</strong></p>
 </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 
 <div class="red-box">DECLARACIÓN DEL ESTADO DE SALUD</div>
@@ -696,7 +696,7 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
     </div>
 </div>
 </div>
-<br><br><br>
+<br>
     <div class="red-box">DECLARACIÓN INFONAVIT</div>
     <p class="centrado">FECHA: <?php echo $fechaActual; ?></p>
     <p>POR ÉSTE MEDIO, YO <strong><?php echo $nombreCompleto; ?></strong> COMUNICO A CONSTRUCTORA ATZCO SA DE CV QUE <?php echo $creditoInfonavit ?> TENGO CRÉDITO DE INFONAVIT:</p>

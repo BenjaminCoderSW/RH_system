@@ -24,7 +24,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
     <title>Convenio de Confidencialidad</title>
     <style>
         body {
-            font-family: Verdana; /* Lista de fuentes alternativas */
+            font-family: Arial, Helvetica, sans-serif; /* Lista de fuentes alternativas */
             font-size: 15px;
             margin: 45px;
         }
@@ -152,9 +152,9 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             <div class="seccionDeArticulo">
                 <p><strong>“Artículo 223: </strong>Son delitos:</p>
                 <p>...IV. Revelar a un tercero un secreto industrial, que se conozca con motivo de su trabajo, puesto, cargo, desempeño de su profesión, relación de negocios o en virtud del otorgamiento de una licencia para su uso, sin consentimiento de la persona que guarde el secreto industrial, habiendo sido prevenido de su confidencialidad, con el propósito de obtener un beneficio económico para sí o para el tercero o con el fin de causar un perjuicio a la persona que guarde el secreto;</p>
-                <p>V. Apoderarse de un secreto industrial sin derecho y sin consentimiento de la persona que lo guarde o de su usuario autorizado, para usarlo o revelarlo a un tercero, con el propósito de obtener un beneficio económico para sí o para el tercero o con el fin de causar un perjuicio a la persona que guarde el secreto industrial o a su usuario autorizado, y</p>
-                <p>VI. Usar la información contenida en un secreto industrial, que conozca por virtud de su trabajo, cargo o puesto, ejercicio de su profesión o relación de</p>
+                <p>V. Apoderarse de un secreto industrial sin derecho y sin consentimiento de la persona que lo guarde o de su usuario autorizado, para usarlo o prevelarlo a un tercero, con el propósito de obtener un beneficio económico para sí o para el tercero o con el fin de causar un perjuicio a la persona que guarde el secreto industrial o a su usuario autorizado, y</p>
                 <p class="pieDePagina">3</p>
+                <p>VI. Usar la información contenida en un secreto industrial, que conozca por virtud de su trabajo, cargo o puesto, ejercicio de su profesión o relación de</p>
                 <p>negocios, sin consentimiento de quien lo guarde o de su usuario autorizado, o que le haya sido revelado por un tercero, a sabiendas que éste no contaba para ello con el consentimiento de la persona que guarde el secreto industrial o su usuario autorizado, con el propósito de obtener un beneficio económico o con el fin de causar un perjuicio a la persona que guarde el secreto industrial o su usuario autorizado…”</p>
             </div>
             <p><strong>QUINTA.- </strong>Si EL CONFIDENTE fuera requerido por autoridad competente de cualquier tipo para revelar información delicada, relevante o Información Confidencial de LA EMPRESA y/o de clientes de la misma, se obliga a dar aviso por escrito a LA EMPRESA y/o al cliente de que se trate, dentro de los 3 (tres) días hábiles siguientes a la recepción del documento respectivo, con la finalidad de que la parte que corresponda pueda ejercitar los actos o derechos que correspondan para salvaguardar sus intreses.</p>
@@ -163,6 +163,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             <p><strong>OCTAVA.- </strong>Este Convenio tendrá una vigencia de 5 cinco años a partir de la fecha de firma de este documento, sin perjuicio de que EL CONFIDENTE no podrá en ningún momento usar o disponer de documentación o Información Confidencial que no le sea propia por sí mismo o por interpósita persona física o moral.</p>
             <p><strong>NOVENA.- </strong>Las obligaciones expuestas en este convenio tendrán efectos en toda la República Mexicana.</p>
             <p><strong>DÉCIMA.- </strong>Para cualquier notificación, aviso o comunicado vinculado con este convenio, las Partes señalan como sus domicilios convencionales los siguientes:</p>
+            <br><br><p class="pieDePagina" >4</p><br>
             <table>
                 <tr>
                     <th><strong>LA EMPRESA</strong></th>
@@ -176,7 +177,6 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
                 </tr>
             </table>
             <p><strong>DÉCIMA PRIMERA.- </strong>Este Convenio constituye y expresa el total entendimiento entre las Partes en relación con su objeto, así como su total entendimiento y condiciones, ya sean implícitas o expresas, orales o escritas. Ni el Convenio en su totalidad ni alguna parte del mismo podrán ser alterados, cambiados, renunciados o modificados sino mediante un convenio por escrito debidamente aceptado y firmado por ambas Partes. </p>
-            <p class="pieDePagina" >4</p>
         </div>
         <div class="Hoja4">
             <p><strong>DÉCIMA SEGUNDA.- </strong>La invalidez o exclusión de alguna de las Cláusulas de este Convenio o parte de ella, no modificará ni alterará el contenido de las cláusulas que permanezcan, mismas que deberán continuar en vigor y en efecto, e interpretadas como si las inválidas o excluidas no hubieren sido insertadas.</p>
@@ -184,8 +184,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             <br>Independientemente de la cantidad que deba pagar EL CONFIDENTE por dicho incumplimiento, LA EMPRESA podrá presentar la querella por el delito de revelación de secretos tipificado en el Código Penal para el Estado de Guanajuato en su artículo 229 o bien por el delito que corresponda ante las autoridades judiciales en materia penal, así como el pago de daños y perjuicios ante el juzgado civil en turno y/o a interponer demanda en cualquier vía según sea el caso.</p>
             <p><strong>DÉCIMA CUARTA.- </strong>Para la interpretación y cumplimiento de este Convenio las Partes aceptan sujetarse a la jurisdicción y leyes de los Tribunales competentes de la ciudad de León, Guanajuato, renunciando expresamente a cualquier otro fuero que por razón de sus domicilios presentes o futuros, o por cualquier otra razón, pudiera corresponderles.</p>
             <p><strong>DÉCIMA QUINTA</strong>.- </strong>El presente Convenio y sus Anexos son la compilación completa y exclusiva de todos los términos y condiciones que rigen el acuerdo de las Partes en relación con el objeto del mismo.  Ninguna declaración de ningún agente, empleado o representante de LA EMPRESA realizada con anterioridad a la celebración del presente Convenio admitida en la interpretación de los términos del mismo.  En caso de que existiera conflicto entre el texto del presente Convenio y su Anexo, el texto del presente Convenio prevalecerá sobre el Anexo.</p>
-            <br><p>Leído que fue este Convenio por las Partes y enteradas plenamente de su contenido y efectos legales y no existiendo ninguna clase de vicio, dolo o mala fe, ambas lo firman en original en 2 (dos) tantos de conformidad, en la ciudad de León, Guanajuato, el día <?php echo $diaDeIngreso; ?> de <?php echo $mesDeIngreso; ?> de <?php echo $anioDeIngreso; ?></p>
-            <br><br><br><br><br><br><br><br><br><br><br>
+            <p>Leído que fue este Convenio por las Partes y enteradas plenamente de su contenido y efectos legales y no existiendo ninguna clase de vicio, dolo o mala fe, ambas lo firman en original en 2 (dos) tantos de conformidad, en la ciudad de León, Guanajuato, el día <?php echo $diaDeIngreso; ?> de <?php echo $mesDeIngreso; ?> de <?php echo $anioDeIngreso; ?></p>
             <p class="pieDePagina">5</p>
 
         </div>
@@ -200,7 +199,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             <br><br><br>
             <pre>_____________________________    _______________________________</pre>
             <pre>LIC.FABIOLA ESQUIVEL MEZA        ING.CARLOS ROMERO GUERRERO</pre>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <p class="pieDePagina">6</p><br>
         </div>
         <div class="Hoja7">
@@ -221,10 +220,10 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
                 <li>Información de los proveedores que le suministran insumos a LA EMPRESA y a los clientes de la misma. </li>
                 <br>
                 <li>Información relativa a insumos estratégicos de LA EMPRESA y de los clientes de la misma. De forma enunciativa más no limitativa, se define como estratégicos aquellos productos que representen una parte importante de los costos del servicio o aquellos productos y servicios que por sus características o entorno del mercado, contribuyan con un beneficio adicional.</li>
+                <p class="pieDePagina">7</p>
                 <br>
                 <li>Información relativa a costos, proveedores, redes de distribución, y cualquier otra que sea relativa respecto a la línea de productos y servicios en los que participan LA EMPRESA y los clientes de la misma.</li>
             </ul>
-                <p class="pieDePagina">7</p>
         </div>
         <div class="Hoja8">
             <ul>
@@ -237,7 +236,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
                 <li>Información referente a la administración, contabilidad, situación fiscal, estados financieros, planta laboral, principales ejecutivos, software, integración de su capital, accionistas, proyectos por desarrollar, relaciones comerciales, financieras y de negocios de LA EMPRESA y/o de los clientes de la misma.</li>
             </ul>
             <p>Se considera Información Confidencial, relevante y delicada para LA EMPRESA y/o para los clientes de la misma (según se define en el cuerpo principal del Convenio), todo lo relacionado directa o indirectamente con los rubros antes mencionados, entre otros las claves de acceso (passwords), saldos, disponibilidades, características, manejos históricos o de cualquier clase, etc.</p>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <p class="pieDePagina">8</p>
         </div>
         <div class="Hoja9">

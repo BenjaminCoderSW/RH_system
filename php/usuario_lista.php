@@ -3,11 +3,11 @@ $inicio = ($pagina > 0) ? (($pagina * $registros) - $registros) : 0;
 $tabla = "";
 
 if (isset($busqueda) && $busqueda != "") {
-    $consulta_datos = "SELECT * FROM usuario WHERE ((usuario_nombre_completo LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_clave LIKE '%$busqueda%' OR usuario_rol LIKE '%$busqueda%')) ORDER BY usuario_nombre_completo ASC LIMIT $inicio,$registros";
-    $consulta_total = "SELECT COUNT(usuario_id) FROM usuario WHERE ((usuario_nombre_completo LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_clave LIKE '%$busqueda%' OR usuario_rol LIKE '%$busqueda%'))";
+    $consulta_datos = "SELECT * FROM usuario WHERE ((usuario_id!=1) AND (usuario_nombre_completo LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_clave LIKE '%$busqueda%' OR usuario_rol LIKE '%$busqueda%')) ORDER BY usuario_nombre_completo ASC LIMIT $inicio,$registros";
+    $consulta_total = "SELECT COUNT(usuario_id) FROM usuario WHERE ((usuario_id!=1) AND (usuario_nombre_completo LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_clave LIKE '%$busqueda%' OR usuario_rol LIKE '%$busqueda%'))";
 } else {
-    $consulta_datos = "SELECT * FROM usuario ORDER BY usuario_nombre_completo ASC LIMIT $inicio,$registros";
-    $consulta_total = "SELECT COUNT(usuario_id) FROM usuario";
+    $consulta_datos = "SELECT * FROM usuario WHERE usuario_id!=1 ORDER BY usuario_nombre_completo ASC LIMIT $inicio,$registros";
+    $consulta_total = "SELECT COUNT(usuario_id) FROM usuario WHERE usuario_id!=1";
 }
 
 $conexion = conexion();

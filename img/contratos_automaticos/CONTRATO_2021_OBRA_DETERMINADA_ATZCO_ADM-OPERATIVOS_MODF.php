@@ -42,7 +42,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
 
     <style>
         body {
-            font-family: Verdana;
+            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 20mm;
             font-size: 13px;
@@ -200,7 +200,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
 
         <h4>OCTAVA.- DURACIÓN DE LA JORNADA</h4>
         <p>"EL TRABAJADOR (A)" conviene en que dedicará al desempeño de sus labores el tiempo de manera efectiva de la duración de su jornada de trabajo a efecto de que no haya atraso ni retraso algunos en el trabajo contratado durante la vigencia del presente contrato. Asimismo, las partes convienen que "EL TRABAJADOR" no podrá laborar jornada extraordinaria, sin el previo consentimiento expreso y por escrito de "LA EMPRESA".</p>
-
+        <br>
         <h4>NOVENA.- ABANDONO DEL TRABAJO</h4>
         <p>Las partes convienen que derivado de la importancia del trabajo contratado, regulado en éste contrato y materia del mismo, "EL TRABAJADOR (A)” manifiesta expresamente en éste acto su conformidad y conviene que se abstendrá de abandonar el mismo por ninguna razón o motivo, en ninguna etapa de la misma, salvo casos fortuitos o de fuerza mayor, y continuará en su cargo y en el desempeño de sus funciones hasta la conclusión del trabajo materia del presente contrato y durante la vigencia del mismo, referido de forma específica en la cláusula Primera del mismo.</p>
 
@@ -244,7 +244,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
             <p><strong>lV.</strong> Por la comisión, por parte de "EL TRABAJADOR (A)", de cualesquiera de los supuestos establecidos en el Artículo 47 de la Ley Federal del Trabajo.</p>
         </ul>
         </p>
-
+        <br><br><br>
         <h4>VIGESIMA PRIMERA.- TERMINACIÓN POR MUTUO CONSENTIMIENTO</h4>
         <p>"LA EMPRESA" y "EL TRABAJADOR (A)" podrán dar por terminada la presente relación laboral, en los siguientes casos, de conformidad con lo establecido en el Artículo 53 de la Ley Federal del Trabajo:
         <ul>
@@ -384,6 +384,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
         <h4>III. Ambas Partes declaran que:</h4>
         <p>a) Que por así convenir a sus intereses, es su deseo y libre voluntad obligarse a lo dispuesto por las siguientes:</p>
 
+        <br><br><br><br><br>
         <h3 class="titulo-centrado">C L A U S U L A S</h3>
         <h5>PRIMERA.- <p> Se tienen por puestas todas y cada una de las DECLARACIONES inmediatas anteriores en la presente cláusula como si a la letra se insertasen, para todos los efectos legales a los que haya lugar.</h5>
         <h5>SEGUNDA.- EL CONFIDENTE se obliga a guardar en pleno secreto y confidencia la totalidad de la documentación e información a la que tiene acceso como consecuencia directa o indirecta de su relación laboral con LA EMPRESA y con los clientes de la misma, la cual se encuentra descrita en forma enunciativa, más no limitativa, en el Anexo A del presente Convenio (la “Información Confidencial”).</h5>
@@ -474,7 +475,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
                 </td>
             </tr>
         </table>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
         <div class="content">
             <h3 class="titulo-centrado">ANEXO A</h3>
@@ -541,7 +542,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
                 </tr>
             </table>
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div class="red-box">AVISO DE PRIVACIDAD</div>
         <p class="centrado">SALAMANCA, GUANAJUATO a <?php echo $diaIngreso; ?> <?php echo $mesIngreso; ?> <?php echo $anioIngreso; ?>.</p>
         <p><?php echo $nombreCompleto; ?>, (el “Responsable”) con domicilio en <?php echo $domicilio; ?> reconoce que nos estás proporcionando tus datos personales, laborales y académicos que aparecen en tu CV y/o Solicitud de empleo, así como en la documentación de contratación solicitada. Nuestro compromiso es tratar los datos únicamente para los fines de Reclutamiento, Selección, Contratación y Administración de personal y las Relaciones laborales propios del “Responsable”. Salvo para cumplir con las anteriores finalidades, no transferiremos tus datos a ningún tercero.</p>

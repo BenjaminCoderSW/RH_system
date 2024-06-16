@@ -29,7 +29,8 @@ function enviar_correo($asunto, $cuerpo, $destinatario) {
         $mail->send();
         return true;
     } catch (Exception $e) {
-        echo 'No se a podido hacer la configuracion correctamente';
+        echo 'No se pudo enviar el correo de verificación. Error: ', $mail->ErrorInfo;
+        return false;
     }
 }
 ?>

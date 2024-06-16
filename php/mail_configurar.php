@@ -38,7 +38,7 @@ if ($action == 'guardar') {
     $insert->execute([":correo" => $correo_notificaciones, ":token" => $token, ":fecha_expiracion" => $fecha_expiracion]);
 
     // Enviar el correo de verificación
-    $asunto = "Verificación de correo electrónico";
+    $asunto = "Verificacion de correo electronico";
     $cuerpo = "Tu token de verificación es: $token. Ingresa este token en el sistema para verificar tu correo. Este token expira en 5 minutos.";
 
     if (enviar_correo($asunto, $cuerpo, $correo_notificaciones)) {

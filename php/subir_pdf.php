@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             }
 
-            $nombre_archivo = basename($archivo_pdf['name']);
+            $file_ext = pathinfo($archivo_pdf['name'], PATHINFO_EXTENSION);
+            $nombre_archivo = 'vacacion_' . $vacaciones_id . '_' . time() . '.' . $file_ext;
             $ruta_destino = "../img/pdfs/" . $nombre_archivo;
 
             // Crear el directorio si no existe

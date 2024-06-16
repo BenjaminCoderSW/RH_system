@@ -19,9 +19,15 @@ if (isset($_GET['vacacion_id'])) {
         // Ruta completa del archivo PDF
         $ruta_archivo = "../img/pdfs/" . $archivo_pdf;
 
+        // Depuración
+        error_log("Ruta del archivo a eliminar: " . $ruta_archivo);
+
         // Eliminar el archivo del servidor si existe
         if (file_exists($ruta_archivo)) {
             if (unlink($ruta_archivo)) {
+                // Depuración
+                error_log("Archivo eliminado del servidor.");
+
                 // Eliminar el registro de la base de datos
                 $consulta_eliminar = $conexion->prepare("UPDATE vacaciones SET archivo_pdf = NULL WHERE vacaciones_id = :vacacion_id");
                 $consulta_eliminar->bindParam(':vacacion_id', $vacacion_id, PDO::PARAM_INT);
@@ -37,18 +43,21 @@ if (isset($_GET['vacacion_id'])) {
                     ];
                 }
             } else {
+                error_log("Error al eliminar el archivo del servidor.");
                 $response = [
                     'status' => false,
                     'message' => 'No se pudo eliminar el archivo del servidor.'
                 ];
             }
         } else {
+            error_log("El archivo no existe en el servidor.");
             $response = [
                 'status' => false,
                 'message' => 'El archivo no existe en el servidor.'
             ];
         }
     } else {
+        error_log("No se encontró el registro en la base de datos.");
         $response = [
             'status' => false,
             'message' => 'No se encontró el registro en la base de datos.'
@@ -58,6 +67,7 @@ if (isset($_GET['vacacion_id'])) {
     echo json_encode($response);
     $conexion = null;
 } else {
+    error_log("Solicitud inválida.");
     echo json_encode([
         'status' => false,
         'message' => 'Solicitud inválida.'

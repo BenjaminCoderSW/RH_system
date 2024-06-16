@@ -9,33 +9,41 @@ if (isset($_GET['vacaciones_id']) && isset($_GET['dias_solicitados'])) {
     $conexion = conexion();
 
     // Obtener el nombre del archivo PDF de la base de datos
-    $consulta_pdf = $conexion->prepare("SELECT archivo_pdf FROM vacaciones WHERE vacaciones_id = :vacaciones_id");
-    $consulta_pdf->bindParam(':vacaciones_id', $vacaciones_id, PDO::PARAM_INT);
-    $consulta_pdf->execute();
-    $resultado_pdf = $consulta_pdf->fetch(PDO::FETCH_ASSOC);
+    $consulta = $conexion->prepare("SELECT archivo_pdf FROM vacaciones WHERE vacaciones_id = :vacaciones_id");
+    $consulta->bindParam(':vacaciones_id', $vacaciones_id, PDO::PARAM_INT);
+    $consulta->execute();
+    $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
-    if ($resultado_pdf && !empty($resultado_pdf['archivo_pdf'])) {
-        $archivo_pdf = $resultado_pdf['archivo_pdf'];
+    if ($resultado) {
+        $archivo_pdf = $resultado['archivo_pdf'];
+        
+        // Ruta completa del archivo PDF
         $ruta_archivo = "../img/pdfs/" . $archivo_pdf;
 
         // Eliminar el archivo del servidor si existe
-        if (file_exists($ruta_archivo)) {
+        if ($archivo_pdf && file_exists($ruta_archivo)) {
             unlink($ruta_archivo);
         }
-    }
 
-    // Eliminar el registro de vacaciones de la base de datos
-    $consulta_eliminar = $conexion->prepare("DELETE FROM vacaciones WHERE vacaciones_id = :vacaciones_id");
-    $consulta_eliminar->bindParam(':vacaciones_id', $vacaciones_id, PDO::PARAM_INT);
-    if ($consulta_eliminar->execute()) {
-        $response = [
-            'status' => true,
-            'message' => 'Solicitud de vacaciones y archivo (si existía) eliminados correctamente.'
-        ];
+        // Eliminar la solicitud de la base de datos
+        $consulta_eliminar = $conexion->prepare("DELETE FROM vacaciones WHERE vacaciones_id = :vacaciones_id");
+        $consulta_eliminar->bindParam(':vacaciones_id', $vacaciones_id, PDO::PARAM_INT);
+
+        if ($consulta_eliminar->execute()) {
+            $response = [
+                'status' => true,
+                'message' => 'Solicitud de vacaciones y archivo eliminados correctamente.'
+            ];
+        } else {
+            $response = [
+                'status' => false,
+                'message' => 'No se pudo eliminar la solicitud de la base de datos.'
+            ];
+        }
     } else {
         $response = [
             'status' => false,
-            'message' => 'No se pudo eliminar la solicitud de vacaciones.'
+            'message' => 'No se encontró el registro en la base de datos.'
         ];
     }
 
@@ -44,7 +52,7 @@ if (isset($_GET['vacaciones_id']) && isset($_GET['dias_solicitados'])) {
 } else {
     echo json_encode([
         'status' => false,
-        'message' => 'Parámetros faltantes.'
+        'message' => 'Solicitud inválida.'
     ]);
 }
 ?>

@@ -38,7 +38,7 @@ if (count($datos) > 0) {
         echo '<td>' . $row['vacaciones_dia_solicitud'] . '/' . $row['vacaciones_mes_solicitud'] . '/' . $row['vacaciones_anio_solicitud'] . '</td>';
         echo '<td>
                 <button class="btn btn-sm btn-primary" onclick="mostrarDetallesVacacion(' . $row['vacaciones_id'] . ', \'' . $row['empleado_nombres'] . '\')"><i class="fas fa-umbrella-beach"></i> Detalles</button>
-                <button class="btn btn-danger btn-sm" onclick="eliminarVacacion(' . $row['vacaciones_id'] . ')">Eliminar</button>
+                <button class="btn btn-danger btn-sm" onclick="eliminarVacaciones(' . $row['vacaciones_id'] . ', ' . $row['vacaciones_dias_solicitados'] . ')">Eliminar</button>
               </td>';
         echo '</tr>';
     }
@@ -55,36 +55,3 @@ if (count($datos) > 0) {
     echo '<p class="mt-4">No se encontraron resultados para la búsqueda: ' . htmlspecialchars($busqueda) . '</p>';
 }
 ?>
-
-<script>
-function eliminarVacacion(id) {
-    if (confirm('¿Estás seguro de eliminar esta solicitud de vacaciones?')) {
-        fetch(`./php/eliminar_vacacion.php?vacaciones_id=${id}`, {
-            method: 'GET',
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                const notification = document.createElement('div');
-                notification.className = 'notification is-success is-light';
-                notification.innerHTML = `<strong>¡Eliminado!</strong> ${data.message}`;
-                document.body.appendChild(notification);
-                setTimeout(() => {
-                    window.location.href = `index.php?vista=holiday_search&buscar=<?php echo $busqueda; ?>&page=<?php echo $pagina; ?>`;
-                }, 3000);
-            } else {
-                const notification = document.createElement('div');
-                notification.className = 'notification is-danger is-light';
-                notification.innerHTML = `<strong>Error:</strong> ${data.message}`;
-                document.body.appendChild(notification);
-            }
-        })
-        .catch(error => {
-            const notification = document.createElement('div');
-            notification.className = 'notification is-danger is-light';
-            notification.innerHTML = `<strong>Error:</strong> Ocurrió un error al eliminar la solicitud de vacaciones.`;
-            document.body.appendChild(notification);
-        });
-    }
-}
-</script>

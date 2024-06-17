@@ -72,6 +72,11 @@
 
     </ul>
 
+    <!-- Boton de descarga del manual -->
+    <a href="Manual.pdf" class="btn btn-success my-2 my-lg-0 mx-2" download>
+      <i class="fas fa-file-download"></i> Descargar Manual
+    </a>
+
     <!-- Boton para cerrar sesion -->
     <!-- A este boton le ponemos en el href la direccion para cerrar sesion y salir al login -->
     <a href="index.php?vista=logout" class="my-2 my-lg-0 btn btn-danger">

@@ -46,7 +46,6 @@
                         <div class="form-group">
                             <label for="Usuario_rol">Rol de usuario</label>
                             <select class="form-control" id="Usuario_rol" name="usuario_rol" data-toggle="tooltip" title="Selecciona el rol del usuario">
-                                <option value="Superadministrador">Super administrador</option>
                                 <option value="Jefe de Proceso">Jefe de Proceso</option>
                                 <option value="Auxiliar">Auxiliar</option>
                             </select>

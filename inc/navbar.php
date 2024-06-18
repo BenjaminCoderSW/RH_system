@@ -62,6 +62,18 @@
 
       <!-- Este modulo con estas secciones queda pendiente -->
       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBackups" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-database fa-xs"></i> Base de datos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownBackups">
+          <a class="dropdown-item" href="index.php?vista=backup_new"><i class="fas fa-database fa-xs"></i> Crear Backup</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="index.php?vista=backup_list"><i class="fas fa-eye fa-xs"></i> Historial de Backups</a>
+        </div>
+      </li>
+
+      <!-- Este modulo con estas secciones queda pendiente -->
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNotificaciones" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell fa-xs"></i> Notificaciones
         </a>

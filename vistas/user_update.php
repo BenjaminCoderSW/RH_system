@@ -79,23 +79,15 @@
                             <label for="Usuario_rol">Rol de usuario</label>
                             <select class="form-control" id="Usuario_rol_Update" name="usuario_rol" data-toggle="tooltip" title="Selecciona el rol del usuario">
                                 <?php 
-                                    if($datos['usuario_rol'] == "Superadministrador"){
-                                ?>
-                                        <option value="Superadministrador">Super administrador</option>
-                                        <option value="Jefe de Proceso">Jefe de Proceso</option>
-                                        <option value="Auxiliar">Auxiliar</option>
-                                <?php
-                                    }elseif($datos['usuario_rol'] == "Jefe de Proceso"){
+                                    if($datos['usuario_rol'] == "Jefe de Proceso"){
                                 ?>
                                         <option value="Jefe de Proceso">Jefe de Proceso</option>
-                                        <option value="Superadministrador">Super administrador</option>
                                         <option value="Auxiliar">Auxiliar</option>
                                 <?php    
                                     }else{
                                 ?>
                                         <option value="Auxiliar">Auxiliar</option>
                                         <option value="Jefe de Proceso">Jefe de Proceso</option>
-                                        <option value="Superadministrador">Super administrador</option>
                                 <?php
                                     }
                                 ?>

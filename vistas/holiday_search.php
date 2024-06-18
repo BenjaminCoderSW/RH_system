@@ -22,7 +22,7 @@ require_once "./php/main.php";
                     $pagina = 1;
                 }
                 $url = "index.php?vista=holiday_search&buscar=$busqueda&page=";
-                $registros = 10;
+                $registros = 30;
                 require_once "./php/vacaciones_search.php";
             }
             ?>

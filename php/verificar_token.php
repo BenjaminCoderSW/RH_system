@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = $config->prepare("SELECT correo, fecha_expiracion FROM configuracion_temporal WHERE token = :token LIMIT 1");
     $query->execute([":token" => $token]);
 
+    // Si la consulta selecciono un registro entonces:
     if ($query->rowCount() > 0) {
         $row = $query->fetch();
         $correo = $row['correo'];

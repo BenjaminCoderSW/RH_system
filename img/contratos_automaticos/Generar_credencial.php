@@ -31,6 +31,11 @@ $imagenISO = "C:/laragon/www/HR_System/img/imagen_credencial.png";
 // $rutaLogo = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/logo_fondo_blanco.jpg";
 // $imagenISO = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/imagen_credencial.png";
 
+// HOSTING DE LA EMPRESA
+//$rutaFotoEmpleado = "/home/u496700722/domains/atzcorh.net/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;
+//$rutaLogo = "/home/u496700722/domains/atzcorh.net/public_html/HR_System/img/logo_fondo_blanco.jpg";
+//$imagenISO = "/home/u496700722/domains/atzcorh.net/public_html/HR_System/img/imagen_credencial.png";
+
 // Verifica si el archivo de la foto del empleado existe
 if (file_exists($rutaFotoEmpleado)) {
     $tipoMimeFoto = mime_content_type($rutaFotoEmpleado);

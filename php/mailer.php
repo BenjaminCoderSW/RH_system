@@ -10,15 +10,15 @@ function enviar_correo($asunto, $cuerpo, $destinatario) {
     try {
         // Configuración del servidor
         $mail->isSMTP();
-        $mail->Host       = 'smtp.hostinger.com'; // Cambia esto al servidor SMTP que estés usando
+        $mail->Host       = 'smx5.hostdime.com.mx'; // Cambia esto al servidor SMTP que estés usando
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'inventariosmart@cinetickett.com'; // Cambia esto por tu correo
-        $mail->Password   = 'Hola123.'; // Cambia esto por tu contraseña
+        $mail->Username   = 'soporte@atzco.com.mx';
+        $mail->Password   = 'Atzco.170624*SPT';
         $mail->SMTPSecure = 'ssl';
         $mail->Port       = 465;
 
         // Configuración del remitente y destinatario
-        $mail->setFrom('inventariosmart@cinetickett.com', 'Sistema RH Atzco');
+        $mail->setFrom('soporte@atzco.com.mx', 'Sistema RH Atzco');
         $mail->addAddress($destinatario);
 
         // Contenido del correo

@@ -9,7 +9,14 @@
 //      return $pdo;
 // }
 
-#  Conexion a la base de datos de manera local
+#  Conexion a la base de datos al hosting de la empresa
+//function conexion(){
+//    #  Creamos una variable de instancia a la clase PDO y la conexion a la BD inventario dentro de esa variable
+//    $pdo = new PDO('mysql:host=srv1288.hstgr.io;dbname=u496700722_hr_basededatos','u496700722_benja','hGtH5T!>0X');
+//    return $pdo;
+// }
+
+#  Conexion a la base de datos de mi hosting
 function conexion(){
     #  Creamos una variable de instancia a la clase PDO y la conexion a la BD inventario dentro de esa variable
     $pdo = new PDO('mysql:host=srv867.hstgr.io;dbname=u954703204_hr_basededatos','u954703204_brian','p:0CSIT>l=Y4');

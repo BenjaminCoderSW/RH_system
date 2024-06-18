@@ -27,7 +27,7 @@ $Npaginas = ceil($total / $registros);
 if (count($datos) > 0) {
     echo '<div class="table-responsive">';
     echo '<table class="table table-hover">';
-    echo '<thead><tr><th>Nombre</th><th>CURP</th><th>RFC</th><th>Días Solicitados</th><th>Fecha de Solicitud</th><th>Acciones</th></tr></thead>';
+    echo '<thead><tr><th>Nombre</th><th>CURP</th><th>RFC</th><th>Días Solicitados</th><th>Fecha de Solicitud</th><th>Detalles</th><th>Eliminar</th></tr></thead>';
     echo '<tbody>';
     foreach ($datos as $row) {
         echo '<tr>';
@@ -37,7 +37,9 @@ if (count($datos) > 0) {
         echo '<td>' . $row['vacaciones_dias_solicitados'] . '</td>';
         echo '<td>' . $row['vacaciones_dia_solicitud'] . '/' . $row['vacaciones_mes_solicitud'] . '/' . $row['vacaciones_anio_solicitud'] . '</td>';
         echo '<td>
-                <button class="btn btn-sm btn-primary" onclick="mostrarDetallesVacacion(' . $row['vacaciones_id'] . ', \'' . $row['empleado_nombres'] . '\')"><i class="fas fa-umbrella-beach"></i> Detalles</button>
+                <button class="btn btn-sm btn-primary" onclick="mostrarDetallesVacacion(' . $row['vacaciones_id'] . ', \'' . $row['empleado_nombres'] . '\')"> Detalles</button>
+              </td>';
+        echo '<td>
                 <button class="btn btn-danger btn-sm" onclick="eliminarVacaciones(' . $row['vacaciones_id'] . ', ' . $row['vacaciones_dias_solicitados'] . ')">Eliminar</button>
               </td>';
         echo '</tr>';

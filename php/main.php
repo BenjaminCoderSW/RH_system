@@ -1,4 +1,7 @@
 <?php
+// Establecer la zona horaria
+date_default_timezone_set('America/Mexico_City');
+
 
 /* Aqui en principal (main vamos a tener todas las funciones que se repiten en el sistema */
 

@@ -1,4 +1,5 @@
 <?php
+include 'main.php';
 // php/listar_backups.php
 $backupDir = '../Backups/';
 $backups = array();

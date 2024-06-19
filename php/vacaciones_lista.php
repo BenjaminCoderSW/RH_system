@@ -96,7 +96,7 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>
                 <td>' . $dias_disponibles . '</td>
                 <td>
-                    <button class="btn btn-sm btn-primary" onclick="mostrarDetallesEmpleado(' . $rows['empleado_id'] . ', \'' . $rows['empleado_nombres'] . '\')"><i class="fas fa-umbrella-beach"></i> Vacaciones</button>
+                    <button class="btn btn-sm btn-primary" onclick="mostrarDetallesEmpleado(' . $rows['empleado_id'] . ', \'' . $rows['empleado_nombres'] . '\')"><i class="fas fa-umbrella-beach"></i> Historial</button>
                 </td>
             </tr>
         ';

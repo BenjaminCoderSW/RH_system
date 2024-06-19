@@ -1,5 +1,6 @@
 <?php
     require "./inc/session_start.php";
+    require_once "./php/main.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +11,13 @@
 </head>
 <body>
     <?php
+    // Definir las vistas permitidas para cada rol
+    $vistas_por_rol = [
+        'Jefe de Proceso' => ['employee_list', 'user_new', 'user_update', 'user_search', 'user_list', 'employee_new', 'employee_update', 'employee_search', 'employee_contract', 'employee_file', 'contract_new', 'contract_search', 'contract_list', 'holiday_new', 'holiday_search', 'holiday_list', 'logout'],
+        'Auxiliar' => ['employee_list', 'employee_new', 'employee_update', 'employee_search', 'employee_contract', 'employee_file', 'contract_new', 'contract_search', 'contract_list', 'logout'],
+        'Superadministrador' => ['employee_list', 'user_new', 'user_update', 'user_search', 'employee_contract', 'user_list', 'employee_new', 'employee_update', 'employee_search', 'employee_file', 'contract_new', 'contract_search', 'contract_list', 'holiday_new', 'holiday_search', 'holiday_list', 'backup_new', 'backup_list', 'mail_configuration', 'logout']
+    ];
+
     // Verificar si la sesión ha expirado por tiempo limite y mostrar la alerta
     if (isset($_GET['expirado']) && $_GET['expirado'] == 1) {
         echo "<script>
@@ -23,43 +31,36 @@
     }
 
     // Determinación de la Vista:
-    // Si mi variable tipo GET llamada vista no viene definida o esta vacia
-    if(!isset($_GET['vista']) || $_GET['vista'] == ""){
-        // entonces le ponemos el valor el nombre de mi archivo login en las vistas
-        $_GET['vista']="login";
+    if (!isset($_GET['vista']) || $_GET['vista'] == "") {
+        $_GET['vista'] = "login";
+    }
+
+    // Verificación de sesión y rol de usuario
+    if (!isset($_SESSION['id']) || $_SESSION['id'] == "" || !isset($_SESSION['nombre']) || $_SESSION['nombre'] == "") {
+        if ($_GET['vista'] != "login") {
+            include "./vistas/logout.php";
+            exit();
+        }
+    }
+
+    // Obtener el rol del usuario desde la sesión para restringir vistas según el rol de usuario
+    if (isset($_SESSION['rol'])) {
+        $rol_usuario = $_SESSION['rol'];
+        $vistas_permitidas = isset($vistas_por_rol[$rol_usuario]) ? $vistas_por_rol[$rol_usuario] : [];
+    } else {
+        $vistas_permitidas = [];
     }
 
     // Carga de Vistas:
-    /*   Si en la carpeta vistas existe el archivo que viene almacenado en mi variable vista por ejemplo home
-     y es diferente a login 
-     y es diferente a 404    */
-    if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista'] != "login" && $_GET['vista'] != "404"){
-
-        # Cerrar la sesion #
-        /* Aqui comprobamos si el usuario ingreso datos en el login al entrar al home o solo intento ingresar mediante la URL brincandose el login*/
-
-        // Si la variable de sesion llamada id NO esta definida o NO tiene valor
-        // O
-        // Si la variable de sesion llamada nombre NO esta definida o NO tiene valor entonces:
-        if((!isset($_SESSION['id']) || $_SESSION['id'] == "") || (!isset($_SESSION['nombre']) || $_SESSION['nombre'] == "")){
-            // Cerramos la sesion destruyendola y reedireccionamos al usuario al login incluyendo el script del archivo logout.php de la carpeta vistas
-            include "./vistas/logout.php";
-            //Detenemos el script
-            exit();
+    if (is_file("./vistas/".$_GET['vista'].".php") && ($_GET['vista'] == "login" || in_array($_GET['vista'], $vistas_permitidas))) {
+        if ($_GET['vista'] != "login") {
+            include "./inc/navbar.php";
         }
-
-        // Entonces se va a cargar mi navbar
-        include "./inc/navbar.php";
-        // La vista que contenga la variable vista desde mi carpeta vistas: por ejemplo la variable vista puede traer home
         include "./vistas/".$_GET['vista'].".php";
-    }else{
-        // SINO que abra el login o la pagina 404
-        if($_GET['vista'] == "login"){
-            include "./vistas/login.php";
-        }else{
-            include "./vistas/404.php";
-        }
+    } else {
+        include "./vistas/404.php";
     }
+
     include "./inc/end.php";
     ?>
 </body>

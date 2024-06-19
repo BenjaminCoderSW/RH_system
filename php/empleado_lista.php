@@ -1,4 +1,9 @@
 <?php
+require_once "./inc/session_start.php";
+
+// Obtenemos el rol del usuario desde la sesión
+$rol_usuario = $_SESSION['rol'];
+
 // Esta variable va a servir para saber desde donde vamos a empezar a contar los registros que vamos a mostrar en las tablas de usuarios, contendra el indice 
 // Si la pagina viene definida osea es mayor a 0 entonces hace el calculo para saber desde donde contar
 // Sino se le agrega el valor 0 a la variable inicio (empezaremos a contar desde el indice 0)
@@ -26,7 +31,8 @@ $total = (int) $total->fetchColumn();
 // Y el resultado lo redondeo con la funcion ceil() a su numero proximo, por ejemplo 2.1 se redondea a 3
 $Npaginas = ceil($total / $registros);
 
-$tabla .= '
+// Generar la tabla de resultados
+$tabla = '
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
@@ -38,10 +44,15 @@ $tabla .= '
                 <th>Cargo</th>
                 <th>Fecha de Ingreso</th>
                 <th>Quien lo contrato</th>
-                <th>Detalles</th>
+                <th>Detalles</th>';
+                // Agregar los encabezados de las columnas Eliminar y Vacaciones solo si el rol no es Auxiliar
+                if ($rol_usuario != 'Auxiliar') {
+                    $tabla .= '
                 <th>Eliminar</th>
+                <th>Vacaciones</th>';
+                }
+$tabla .= '
                 <th>Expediente</th>
-                <th>Vacaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -71,19 +82,26 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 <td>' . $rows['empleado_dia_de_ingreso'] . " de " . $rows['empleado_mes_de_ingreso'] . " del " .$rows['empleado_año_de_ingreso'] . '</td>
                 <td>' . $rows['empleado_quien_lo_contrato'] . '</td>
                 <td>
-                <button class="btn btn-primary btn-sm" onclick="mostrarDetallesEmpleado(\'' . $rows['empleado_id'] . '\')">Detalles</button>
-                </td>
+                    <button class="btn btn-primary btn-sm" onclick="mostrarDetallesEmpleado(\'' . $rows['empleado_id'] . '\')">Detalles</button>
+                </td>';
+        
+        // Mostrar los botones de eliminación y vacaciones solo si el rol del usuario no es "Auxiliar"
+        if ($rol_usuario != 'Auxiliar') {
+            $tabla .= '
                 <td>
                     <button class="btn btn-danger btn-sm" onclick="confirmarEliminacion(\'' . $rows['empleado_id'] . '\', \'' . $url . $pagina . '\')">Eliminar</button>
                 </td>
                 <td>
-                    <a href="index.php?vista=employee_file&employee_id_exp='.$rows['empleado_id'].'" class="btn btn-sm"><i class="fas fa-upload"></i> Expediente </a>
-                </td>
-                <td>
                     <a href="index.php?vista=holiday_new&employee_id_vac=' . $rows['empleado_id'] . '" class="btn btn-sm"><i class="fas fa-umbrella-beach"></i> Vacaciones </a>
+                </td>';
+        }
+        
+        // Agregar el botón de expediente después de verificar el rol
+        $tabla .= '
+                <td>
+                    <a href="index.php?vista=employee_file&employee_id_exp=' . $rows['empleado_id'] . '" class="btn btn-sm"><i class="fas fa-upload"></i> Expediente </a>
                 </td>
-            </tr>
-        ';
+            </tr>';
         $contador++;
     }
     $pag_final = $contador - 1;
@@ -143,3 +161,4 @@ function confirmarEliminacion(employeeId, redirectUrl) {
 }
 </script>
 ';
+?>

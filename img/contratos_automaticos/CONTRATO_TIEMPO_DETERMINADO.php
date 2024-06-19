@@ -676,7 +676,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
             <div class="margen-solo-izquierdo justificado">
                 <p class="justificado">SALAMANCA,GTO,GUANAJUATO a <?php echo $diaDeIngreso . " del mes " . $mesDeIngreso . " del " . $anioDeIngreso; ?>. <?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?>(el “Responsable”) con domicilio en <?php echo $domicilio; ?> reconoce que nos estás proporcionando tus datos personales, laborales y académicos que aparecen en tu CV y/ o Solicitud de empleo, así como en la documentación de contratación solicitada. Nuestro compromiso es tratar los datos únicamente para los fines de Reclutamiento, Selección, Contratación y Administración de personal y las Relaciones laborales propios del  “Responsable”.</p>
             </div>
-            <br><br><br><p class="pieDePagina" >15</p><br><br><br>
+            <p class="pieDePagina" >15</p><br>
             <p>Salvo para cumplir con las anteriores finalidades, no transferiremos tus datos a ningún tercero.</p>
             <p>Este aviso de privacidad se pone a disposición de Usted (el “Titular”) previo a la obtención y tratamiento de sus datos personales (los “Datos”)</p>
             <p>I.	<strong>Datos recabados y su finalidad:</strong> los datos que usted nos proporciona incluyen: (a) nombre, (b) domicilio completo; (c) correo electrónico; (d) teléfono celular o particular; (e) fotografía; (f) datos académicos y laborales (empleos anteriores); (g) datos personales y datos relativos a interés en puestos de trabajo, incluyendo aptitudes y capacidades, nivel socioeconómico y</p>

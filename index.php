@@ -15,7 +15,7 @@
     $vistas_por_rol = [
         'Jefe de Proceso' => ['employee_list', 'user_new', 'user_update', 'user_search', 'user_list', 'employee_new', 'employee_update', 'employee_search', 'employee_contract', 'employee_file', 'contract_new', 'contract_search', 'contract_list', 'holiday_new', 'holiday_search', 'holiday_list', 'logout'],
         'Auxiliar' => ['employee_list', 'employee_new', 'employee_update', 'employee_search', 'employee_contract', 'employee_file', 'contract_new', 'contract_search', 'contract_list', 'logout'],
-        'Superadministrador' => ['employee_list', 'user_new', 'user_update', 'user_search', 'employee_contract', 'user_list', 'employee_new', 'employee_update', 'employee_search', 'employee_file', 'contract_new', 'contract_search', 'contract_list', 'holiday_new', 'holiday_search', 'holiday_list', 'backup_new', 'backup_list', 'mail_configuration', 'logout']
+        'Superadministrador' => ['employee_list', 'user_new', 'user_update', 'user_search', 'employee_contract', 'user_list', 'employee_new', 'employee_update', 'employee_search', 'employee_file', 'contract_new', 'contract_search', 'contract_list', 'holiday_new', 'holiday_search', 'holiday_list', 'backup_new', 'backup_list', 'mail_configuration', 'logout', 'verify_token']
     ];
 
     // Verificar si la sesión ha expirado por tiempo limite y mostrar la alerta

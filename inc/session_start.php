@@ -2,8 +2,8 @@
 session_name("IV");
 session_start();
 
-// Definir tiempo de inactividad en segundos (900 segundos = 15 minutos)
-$tiempo_inactividad = 900;
+// Definir tiempo de inactividad en segundos (1500 segundos = 25 minutos)
+$tiempo_inactividad = 1500;
 
 // Comprobar si la variable de tiempo de inactividad está configurada
 if (isset($_SESSION['ultimo_acceso'])) {

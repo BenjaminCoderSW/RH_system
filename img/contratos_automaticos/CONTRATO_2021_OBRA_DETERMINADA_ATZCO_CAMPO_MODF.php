@@ -17,10 +17,11 @@ $sexo = $datosEmpleado['empleado_sexo'];
 $puesto = $datosEmpleado['empleado_puesto_de_trabajo'];
 $curp = $datosEmpleado['empleado_curp'];
 $nss = $datosEmpleado['empleado_nss'];
-$nombreEmpresa = 'Constructora ATZCO, S.A. de C.V.';
+$nombreEmpresa = 'CONSTRUCTORA ATZCO, S.A. de C.V.';
 $representanteLegal = 'Israel Rodríguez Escamilla';
-$ciudad = 'Salamanca, Guanajuato';
+$ciudad = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
 $fechaActual = date('d/m/Y');
+$sangre = $datosEmpleado['empleado_tipo_de_sangre'];
 $numeroContrato = $datosEmpleado['empleado_numero_de_contrato'];
 $salario = $datosEmpleado['empleado_salario_diario_integrado'];
 $salarioEscrito = $datosEmpleado['empleado_salario_diario_integrado_escrito'];
@@ -28,6 +29,8 @@ $nombreEmergencia = $datosEmpleado['empleado_nombre_de_contacto_para_emergencia'
 $parentezcoEmergencia = $datosEmpleado['empleado_parentezco_con_el_contacto_de_emergencia'];
 $telefonoEmergencia = $datosEmpleado['empleado_telefono_de_contacto_para_emergencia'];
 $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
+$testigo = $datosEmpleado['empleado_quien_lo_contrato'];
+
 
 ?>
 
@@ -55,6 +58,10 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
 
         .content {
             text-align: justify;
+        }
+        .content-terms {
+            text-align: justify;
+            font-style: italic;
         }
 
         .signature-block {
@@ -128,6 +135,36 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
         .indice td:nth-child(1) {
             padding-right: 10px;
         }
+        .centrado {
+            text-align: center;
+        }
+
+        .page-break {
+            page-break-before: always;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .blank-page .name-at-bottom {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .name-at-bottom {
+            position: absolute;
+            bottom: 20mm;
+            width: 100%;
+            text-align: center;
+        }
+        .blank-page {
+            page-break-before: always;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
     </style>
 </head>
 
@@ -185,11 +222,11 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
         <p>"EL TRABAJADOR (A)" en este acto acorde a su consentimiento expreso y libre designa para el pago de salarios y prestaciones devengadas y no cobradas a la muerte del mismo a los siguientes beneficiarios y sus porcentajes:
             <br><br><br>
         <ul>
-            <li>Esposa(o): ________________________en_%</li>
-            <li>Hijo(a): ________________________en_%</li>
-            <li>Padre: ________________________en_%</li>
-            <li>Madre: ________________________en_%</li>
-            <li>Dependiente económico:_____________parentesco_____en_%</li>
+            <li>Esposa(o): _________en%</li>
+            <li>Hijo(a): _________en%</li>
+            <li>Padre: _________en%</li>
+            <li>Madre: _________en%</li>
+            <li>Dependiente económico:____parentesco_en%</li>
         </ul>
         Lo anterior en cumplimiento con lo establecido en el artículo 25 fracción X de la Ley Federal del Trabajo.</p>
 
@@ -263,7 +300,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
                     <td>
                         <div class="signature-block">
                             <p>LA EMPRESA</p>
-                            <p>__________</p>
+                            <p>____</p>
                             <strong><span>CONSTRUCTORA ATZCO SA DE CV</span></strong>
                             <p><strong>ISRAEL RODRÍGUEZ ESCAMILLA</strong></p>
 
@@ -272,7 +309,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
                     <td>
                         <div class="signature-block">
                             <p>EL TRABAJADOR</p>
-                            <p>__________</p>
+                            <p>____</p>
                             <strong>
                                 <p><?php echo $nombreCompleto; ?></p>
                             </strong>
@@ -283,20 +320,20 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
                     <td>
                         <div class="signature-block">
                             <p>TESTIGO</p>
-                            <p>__________</p>
+                            <p>____</p>
                             <p><strong>ELIZABETH BARRIENTOS RUIZ</strong></p>
                         </div>
                     </td>
                     <td>
                         <div class="signature-block">
                             <p>TESTIGO</p>
-                            <p>__________</p>
-                            <p><strong>MARISOL SANTOS RAMOS</strong></p>
+                            <p>____</p>
+                            <p><strong><?php echo $testigo; ?></strong></p>
                         </div>
                     </td>
                 </tr>
             </table>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <strong><p>CONSTRUCTORA ATZCO, S.A. DE C.V.<br>PRESENTE,</p></strong>
 
@@ -309,7 +346,7 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
 <p>DERIVADO DE LO ANTERIOR, MANIFIESTO QUE NO SE ME ADEUDA CANTIDAD ALGUNA POR NINGÚN CONCEPTO, POR LO QUE NO ME RESERVO ACCIÓN O DERECHO ALGUNOS QUE EJERCITAR EN CONTRA DE <strong>"CONSTRUCTORA ATZCO", S.A. DE C.V.</strong>, ASÍ COMO EN CONTRA DE CUALQUIER OTRA PERSONA QUE PRESTE SUS SERVICIOS EN SU BENEFICIO, LA REPRESENTE LEGALMENTE, O SEA ACCIONISTA DE LA MISMA.</p>
 
 <p>POR LO ANTERIOR, RATIFICO EL PRESENTE ESCRITO EN TODAS Y CADA UNA DE SUS PARTES Y LO FIRMO AL CALCE, PARA TODOS LOS EFECTOS LEGALES A QUE HAYA LUGAR.</p>
-<br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
     <p><strong><?php echo $nombreCompleto; ?></strong></p>
 <h3 class="titulo-centrado">RECIBO DE FINIQUITO</h3>
 
@@ -342,32 +379,118 @@ $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
 
 <p>Asimismo, quiero manifestar expresamente que durante todo el tiempo que labore para la sociedad mercantil denominada<strong> “CONSTRUCTORA ATZCO”, S.A. DE C.V.</strong>, quien reconozco como mi único patrón, me fueron cubiertos a mi entera y total satisfacción todos y cada uno de los conceptos mencionados anteriormente, por lo que a través del presente finiquito extiendo el más amplio recibo que en derecho proceda, manifestando además que no me reservo acción legal o derecho algunos que hacer valer en contra de cualquier persona ya sea física o moral, así como de cualquier persona que legalmente le represente o trabaje para dicha empresa.</p>
 
-<p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de TULA, HIDALGO, estado de <?php echo $datosEmpleado['empleado_estado']; ?>,</p>
+<p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de <?php echo $ciudad ?><br><strong><?php echo $nombreCompleto; ?></strong>
+</p>
+<div class="blank-page">
 
-    <p><strong><?php echo $nombreCompleto; ?></strong></p>
-
+</div>
+<div class="name-at-bottom">
+<strong><?php echo $nombreCompleto; ?></strong>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <h3 class="red-box">AVISO DE PRIVACIDAD</h3>
+<p class="centrado"><?php echo $ciudad; ?> a <?php echo $diaIngreso; ?> <?php echo $mesIngreso; ?> <?php echo $anioIngreso; ?>.</p><p>AVISO DE PRIVACIDAD relacionado con los datos personales de los Prospectos y/o Colaboradores, (en adelante el “Titular”), recabados por CONSTRUCTORA ATZCO, S.A. DE C.V., sus filiales y subsidiarias (en adelante denominada como “ATZCO”)</p>
+<div class="content-terms">
+    <p><strong>Generales</strong></p>
+    <p>1.1.- ATZCO es una persona moral comprometida y respetuosa de los derechos sobre los datos personales de las personas físicas, reconocidos en el artículo 16, párrafo II de la Constitución Política de los Estados Unidos Mexicanos, así como de las disposiciones de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y la demás normativa aplicable. Por lo anterior, pone a su disposición el presente Aviso de Privacidad, en aras de que el titular de los datos personales, se encuentre facultado a ejercitar su derecho a la autodeterminación informativa.</p>
+    <p>1.2.- Que derivado de los procesos de selección de y administración de personal que lleva a cabo ATZCO, requiere inminentemente obtener y almacenar los datos personales sensibles y no sensibles de EL TITULAR, por lo que es su deseo tratar los datos personales de éste, de conformidad con lo estipulado en el presente Aviso de Privacidad. Si EL TITULAR no acepta en forma absoluta y completa los términos y condiciones de este Aviso, deberá abstenerse de compartir cualquier tipo de información a ATZCO por cualquier medio.</p>
+    <p>1.3.- EL TITULAR, es una persona física, mayor de edad, con capacidad jurídica, que reconoce que derivado del proceso de selección de personal, al que es su deseo someterse, ATZCO directamente o a través del Encargado, requiere realizar el tratamiento de sus datos personales, sensibles y no sensibles y, por lo tanto, otorga su consentimiento expreso a ATZCO, para que éste los trate, en términos de lo estipulado en el presente Aviso de Privacidad.</p>
+    <p>Las partes declaran que, al no existir error, dolo, mala fe o cualquier otro vicio de la voluntad que pudiera nulificar la validez del presente instrumento, ambas acuerdan en sujetarse al tenor de lo estipulado en el presente documento:</p>
+    <p><strong>2.- Definiciones</strong></p>
+    <p>2.1.- Datos personales.- Cualquier información concerniente a una persona física identificada o identificable.</p>
+    <p>2.2.- Datos personales sensibles.- Aquellos datos personales que afecten a la esfera más íntima de su TITULAR, o cuya utilización indebida pueda dar origen a discriminación o conlleve un riesgo grave para éste. En particular, se consideran sensibles aquellos que puedan revelar aspectos como origen racial o étnico, estado de salud presente y futuro, información genética, creencias religiosas, filosóficas y morales, afiliación sindical, opiniones políticas, preferencia sexual.</p>
+    <p>2.3.- Titular.- La persona física (EL TITULAR) a quien identifican o corresponden los datos personales.</p>
+    <p>2.4.- Responsable.- Persona física o moral (ATZCO) de carácter privado que decide sobre el tratamiento de los datos personales.</p>
+    <p>2.5.- Encargado.- La persona física o moral que sola o conjuntamente con otras trate datos personales por cuenta del responsable.</p>
+    <p>2.6.- Tratamiento.- La obtención, uso (que incluye el acceso, manejo, aprovechamiento, transferencia o disposición de datos personales), divulgación o almacenamiento de datos personales por cualquier medio.</p>
+    <p>2.6.1.- Transferencia.- Toda comunicación de datos realizada a persona distinta del responsable o encargado del tratamiento.</p>
+    <p>2.6.2.- Remisión.- La comunicación de datos personales entre el responsable y el encargado, dentro o fuera del territorio mexicano.</p>
+    <p>2.7.- Tercero.- La persona física o moral, nacional o extranjera, distinta del titular o del responsable de los datos.</p>
+    <p>2.8.- Derechos ARCO.- Derechos de Acceso, Rectificación, Cancelación y Oposición.</p>
+    <p>2.9.- Consentimiento Tácito.- Se entenderá que EL TITULAR ha consentido en el tratamiento de los datos, cuando habiéndose puesto a su disposición el Aviso de Privacidad, no manifieste su oposición.</p>
+    <p>2.10.- Finalidades Primarias.- Son aquellas finalidades para las cuales se solicitan principalmente los datos personales y por lo que se da origen a la relación entre ATZCO y EL TITULAR.</p>
+    <p>2.11.- Finalidades Secundarias.- Son aquellas finalidades que no son imprescindibles para la relación entre ATZCO y EL TITULAR, pero que con su tratamiento contribuyen al cumplimiento del objeto social.</p>
+    <p><strong>3.- Identidad y domicilio del responsable que trata los datos personales</strong></p>
+    <p>3.1.- La responsable del tratamiento de los datos personales es CONSTRUCTORA ATZCO, S.A. DE C.V., persona moral constituida de conformidad con las leyes de la República Mexicana, (en adelante denominada como ATZCO), quien se compromete a respetar lo establecido en el presente Aviso de Privacidad (en lo sucesivo el “Aviso” o el “Aviso de Privacidad” indistintamente), mismo que está puesto a su disposición en cumplimiento de lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (en lo sucesivo la “Ley” o “LFPDPPP” indistintamente) y es aplicable respecto de los datos personales de EL TITULAR.</p>
+    <p>3.2.- El domicilio que para los efectos del presente Aviso establece ATZCO es el ubicado en Boulevard Paseo de los Insurgentes No.902 Int. 7 Col. Jardines del Moral León Guanajuato. y/o su portal de internet es www.atzco.com.mx.</p>
+    <p><strong>4.- Datos que se recaban y su origen</strong></p>
+    <p>EL TITULAR acepta y reconoce que ATZCO obtendrá directamente, a través de recomendaciones de otros colaboradores, a través de Bolsas de Trabajo o publicaciones en redes sociales los datos personales sensibles y no sensibles de EL TITULAR, mismos que corresponden a los siguientes:</p>
+    <p>Generales: Nombre, Dirección, Teléfono de casa y para recados, teléfono móvil, dirección de correo electrónico, estado civil, número de seguridad social, afore, Clave Única de Registro de Población, dirección y fotografías. </p>
+    <p>Académicos: nivel de estudios, escuela, período de estudios, manejo de idiomas y software, cursos de capacitación, pasatiempos, características de la personalidad, valores.</p>
+    <p>Referencias personales (de las cuales, EL TITULAR asegura contar con el consentimiento para compartir los datos personales de dichos terceros): nombre, domicilio, teléfono, ocupación, tiempo de conocerle y motivo de conocerle. </p>
+    <p>Referencias laborales (de las cuales, EL TITULAR asegura contar con el consentimiento para compartir los datos personales de dichos terceros): empresas donde ha laborado, nombre de los jefes inmediatos, sueldos percibidos, teléfonos, motivos de salida. </p>
+    <p>Datos familiares: nombres y ocupación de padres y hermanos, nombres de hijos y cónyuge.</p>
+    <p>Datos Médicos: Estado de salud actual, enfermedades, padecimientos, operaciones, accidentes, hábitos alimenticios, deportes y vicios.</p>
+    <p>Vida social: pasatiempos, grupos y asociaciones y religión. </p>
+    <p>Datos Económicos: Cuentas bancarias, gastos actuales, servicios adquiridos y créditos, nivel de ingresos y egresos, propiedades.</p>
+    <p>4.1.- EL TITULAR en este acto, otorga su consentimiento expreso en términos del artículo 9 de la ley de la materia, para que ATZCO, trate sus datos personales, incluidos los denominados sensibles, contenidos en ésta cláusula, para cumplir con las finalidades que establece el presente Aviso de Privacidad y en cumplimiento de la legislación vigente se recabará el consentimiento expreso, por escrito y con la firma autógrafa del TITULAR a través del presente.</p>
+    <p>4.2.- ATZCO manifiesta que única y exclusivamente accederá y, tratará los datos personales de EL TITULAR, a efecto de llevar a cabo la selección, contratación y administración de personal, debiendo realizar el tratamiento de los datos personales de conformidad con el presente aviso de privacidad.</p>
+    <p>4.3.- EL TITULAR en este acto, bajo protesta de decir verdad, acepta que los datos que ha proporcionado a ATZCO son veraces, actuales y correctos. Además, se compromete a sacar en paz y a salvo a ATZCO de cualquier demanda o reclamación, derivada de los errores en los datos que le haya entregado.</p>
+    <p>4.4.- ATZCO manifiesta que podrá obtener los datos personales de EL TITULAR mediante las denominadas fuentes de acceso público, a efecto de validar y actualizar los datos de EL TITULAR, respetando en todo momento la expectativa razonable de privacidad, a que se refiere el artículo 7 de la LFPDPPP.</p>
+    <p><strong>5.- Finalidades del tratamiento de los datos personales</strong></p>
+    <p>5.1.- ATZCO acepta y reconoce que podrá tratar los datos personales de EL TITULAR, directamente y/o a través de encargados, de conformidad al tipo de relación que tiene con EL TITULAR, para las siguientes finalidades primarias:</p>
+    <ul>
+        <li>Contactarlo para efectuar los trámites que en su momento se estén llevando a cabo.</li>
+        <li>Validar la información personal presentada por el titular de los datos.</li>
+        <li>Contactar a sus familiares para el caso de emergencia.</li>
+        <li>Hacer intercambios de bolsas de trabajo con terceros y hacer recomendaciones personales de EL TITULAR o dar referencias al respecto del mismo. </li>
+        <li>Conocer las competencias lingüísticas, experiencia laboral y el estado de salud de EL TITULAR a efecto de identificar algún antecedente patológico, hereditario y traumatológico que pueda influir en su desempeño y desarrollo en la empresa y, conocer la viabilidad de que realice otras funciones. </li>
+        <li>Realizar un expediente de EL TITULAR que será resguardado en las oficinas de Recursos Humanos ya sea en medios físicos, magnéticos o electrónicos. Para el caso de los prospectos/candidatos que no hayan sido seleccionados por ATZCO para una determinada posición, sus datos serán conservados por el plazo de 1-un año desde el momento de su recolección. Para aquellos prospectos/candidatos que hayan sido seleccionados para desempeñar una determinada posición, sus datos serán conservados por toda la vigencia de la relación laboral que los une con ATZCO y hasta 5 años luego de finalizada dicha relación laboral.</li>
+        <li>En su caso, para realizar los trámites de selección y administración de personal, tales como alta ante el Instituto Mexicano del Seguro Social y demás instituciones que se requiera. </li>
+        <li>Dar cumplimiento a lo establecido en las reformas fiscales vigentes y/o que estén por entrar en vigor.</li>
+    </ul>
+    <p>5.2.- Las partes acuerdan que ATZCO se obliga a observar respecto de los datos personales que recaba de EL TITULAR, los principios de licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad.</p>
+    <p><strong>6.- Limitaciones para el acceso y divulgación de los datos personales</strong></p>
+    <p>6.1.- ATZCO, se compromete a realizar su mejor esfuerzo para proteger la seguridad de los datos personales que EL TITULAR le está entregando, adoptando, estableciendo y manteniendo, en la medida de sus capacidades, medidas de seguridad administrativas, legales, técnicas y físicas que permitan proteger los datos personales contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado. (i) utiliza redes privadas, (ii) mantenimientos programados al site donde se guarda la información (iii) se utilizan equipos firewall, (iv) equipos no-breaks, (v) restricciones de Internet en equipos de cómputo (vi) bloqueos a través de antivirus, de salidas USB y de quemadores de discos compactos, en todos los equipos de su personal y colaboradores (vii) mantiene actualizados los equipos de respaldo, (viii) cuentas de acceso personalizado al sistema a través de usuarios y contraseñas; (ix) garantiza la confidencialidad de la información y de los datos personales que trata, a través de la celebración de contratos de confidencialidad con todos los proveedores, prestadores de servicios y colaboradores.</p>
+    <p>6.2.- En este tenor, ATZCO se obliga a tomar las medidas necesarias para garantizar que los encargados que utilice cumplan con lo establecido en el presente Aviso de Privacidad, con las obligaciones a su cargo.</p>
+    <p>6.3.- No obstante lo anterior y, en caso de que se presenten vulneraciones de seguridad ocurridas en cualquier fase del tratamiento, que afecten de forma significativa los derechos patrimoniales o morales de LOS TITULARES, esto será informado por correo electrónico, de forma inmediata, por ATZCO, a fin de que estos últimos puedan tomar las medidas correspondientes a la defensa de sus derechos, deslindando de cualquier responsabilidad a ATZCO si la vulneración no es imputable a él.</p>
+    <p><strong>7.- Designado para tramitar las solicitudes</strong></p>
+    <p>7.1.- En caso de que EL TITULAR necesite revocar su consentimiento, así como acceder, rectificar, cancelar u oponerse al tratamiento de los datos personales que ha proporcionado, lo deberá hacer a través de la persona designada por ATZCO cuyos datos se describen a continuación: Correo electrónico: datos.legal@atzco.com.mx. </p>
+    <p><strong>8.- Medios para revocar el consentimiento</strong></p>
+    <p>EL TITULAR de los datos personales podrá revocar el consentimiento que se otorga con la aceptación del presente. Dicha revocación del consentimiento se deberá de hacer observando el siguiente procedimiento que ATZCO pone a su disposición:</p>
+    <p>8.1.- Enviar un correo electrónico en atención al Designado en el punto 7-siete del presente Aviso, mediante el cual serán atendidas dichas solicitudes.</p>
+    <p>8.2.- Enviar una solicitud o mensaje de datos al correo electrónico antes precisado, en el que señale:</p>
+    <ul>
+        <li>8.2.1.- El nombre completo de EL TITULAR, domicilio y correo electrónico para recibir la respuesta que se genere con motivo de su solicitud;</li>
+        <li>8.2.2.- El motivo de su solicitud;</li>
+        <li>8.2.3.- Los argumentos que sustenten su solicitud o petición;</li>
+        <li>8.2.4.- Documento oficial que acredite su identidad y que demuestre que es quien dice ser; </li>
+        <li>8.2.5.- Fecha a partir de la cual, se hace efectiva la revocación de su consentimiento.</li>
+    </ul>
+    <p>8.3.- ATZCO notificará a EL TITULAR, en un plazo máximo de 20-veinte días, contados desde la fecha en que se recibió la solicitud sobre la revocación del consentimiento, la resolución adoptada, a efecto de que, si resulta procedente, se haga efectiva la misma dentro de los 15-quince días siguientes a la fecha en que se comunica la respuesta, mediante un mensaje que contenga que ha ejecutado de todos los actos tendientes a no tratar los datos personales de EL TITULAR.</p>
+    <p><strong>9.- Medios para ejercer los derechos ARCO</strong></p>
+    <p>9.1.- En caso de que EL TITULAR necesite Acceder, Rectificar, Cancelar u Oponerse a los datos personales que ha proporcionado a ATZCO, EL TITULAR deberá seguir el siguiente procedimiento que ATZCO pone a su disposición:</p>
+    <p>9.2.- Enviar un correo electrónico en atención al Designado del punto 7-siete del presente Aviso, mediante el cual serán atendidas dichas solicitudes, señalando lo siguiente:</p>
+    <ul>
+        <li>9.2.1.- El nombre completo de EL TITULAR, domicilio y correo electrónico para recibir la respuesta que se genere con motivo de su solicitud;</li>
+        <li>9.2.2.- El motivo de su solicitud;</li>
+        <li>9.2.3.- Los argumentos que sustenten su solicitud o petición;</li>
+        <li>9.2.4.- Documento oficial que acredite su identidad y que demuestre que es quien dice ser;</li>
+        <li>9.2.5.- Descripción clara y precisa de los datos personales respecto de los que se busca ejercer alguno de los derechos ARCO, y cualquier otro elemento o documento que facilite la localización de los datos personales.</li>
+        <li>9.2.6.- Tratándose de solicitudes de rectificación de datos personales, EL TITULAR deberá indicar, además de lo señalado, las modificaciones a realizarse y aportar la documentación que sustente su petición.</li>
+    </ul>
+    <p>9.3.- ATZCO notificará a EL TITULAR, en un plazo máximo de 20-veinte días contados desde la fecha en que se recibió la solicitud de acceso, rectificación, cancelación u oposición, la resolución adoptada, a efecto de que, si resulta procedente, se haga efectiva la misma dentro de los 15-quince días siguientes a la fecha en que se comunica la respuesta. Tratándose de solicitudes de acceso a datos personales, procederá la entrega previa acreditación de la identidad del solicitante o representante legal, según corresponda.</p>
+    <p><strong>10.- Transferencia de datos personales</strong></p>
+    <p>10.1.- ATZCO se obliga a no transferir o compartir los datos a que se refiere el presente Aviso, a favor de terceros, salvo en los casos en que resulte necesario para cumplir con las finalidades del presente Aviso, o bien, sean necesarios en cumplimiento de un requerimiento de autoridad.</p>
+    <p>10.2.- Asimismo, en cumplimiento de sus obligaciones legales, y con efectos informativos a EL TITULAR, se le indica que ATZCO podrá realizar las siguientes transferencias:</p>
+    <ul>
+        <li>10.2.1.- IMSS, INFONAVIT y SAT, a efecto de dar cumplimiento a la legislación laboral, de seguridad social, así como el pago de impuestos.</li>
+        <li>10.2.2.- Instituciones bancarias, a efecto de realizar el cobro de los productos y/o servicios comercializados por ATZCO así como el pago de los productos y/o servicios adquiridos por ATZCO.</li>
+    </ul>
+    <p><strong>11.- Modificaciones</strong></p>
+    <p>11.1.- Las partes acuerdan que el Aviso de Privacidad, puede ser modificado en el tiempo y forma que ATZCO lo determine, atendiendo al estudio y las regulaciones que en materia de protección de datos personales surjan, por lo que se obliga a mantener actualizado el presente aviso a efecto de que, en su caso, EL TITULAR se encuentre en posibilidad de ejercer sus derechos ARCO.</p>
+    <p><strong>12.- Autoridad garante</strong></p>
+    <p>12.1.- Si EL TITULAR considera que su derecho a la protección de sus datos personales ha sido lesionado por alguna conducta u omisión por parte de ATZCO o presume alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás ordenamientos aplicables, podrá interponer su inconformidad o denuncia ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI). Para mayor información, le sugerimos visitar su página oficial de Internet www.inai.org.mx.</p>
+    <p><strong>13.- Ley aplicable y jurisdicción</strong></p>
+    <p>13.1.- Las partes expresan que el presente aviso, se regirá por las disposiciones legales aplicables en la República Mexicana, en especial, por lo dispuesto en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y la demás normativa vinculada aplicable.</p>
+    <p>13.2.- Para el caso de que exista una disputa o controversia, derivada de la interpretación, ejecución o cumplimiento del aviso o de cualquiera de los documentos que del mismo se deriven, o que guarden relación con éste, las partes amigablemente, buscarán llegar a un acuerdo dentro de un plazo de 30-treinta días naturales, contados a partir de la fecha en que surja cualquier diferencia y se notifique por escrito sobre dicho evento a la contraparte, deduciendo el proceso de mediación ante el Instituto Nacional de Transparencia, Acceso a la información y Protección de Datos Personales (INAI). </p>
+    <p>13.3.- En caso de que las partes no lleguen a un acuerdo, convienen en este acto en someter todas las desavenencias que deriven del presente Aviso de Privacidad o de cualquiera de los documentos que del mismo se deriven, o que guarden relación con éste o con aquéllos, a ser resueltas de manera definitiva, sometiéndose a la competencia y leyes de las Autoridades Administrativas Federales o Tribunales del Estado de Guanajuato, renunciando expresamente a cualquier fuero distinto que por razones de sus domicilios presentes o futuros pudieren corresponderles.</p>
+    <p>Fecha última de actualización: 22 de junio del 2022</p>
+</div>
 
-<p>TULA, HIDALGO, a <?php echo $diaIngreso ?> del mes de <?php echo $mesIngreso ?> del <?php echo $anioIngreso ?>.<br>
-<?php echo $nombreCompleto; ?>, (el “Responsable”) con domicilio en <?php echo $domicilio; ?> reconoce que nos estás proporcionando tus datos personales, laborales y académicos que aparecen en tu CV y/o Solicitud de empleo, así como en la documentación de contratación solicitada. Nuestro compromiso es tratar los datos únicamente para los fines de Reclutamiento, Selección, Contratación y Administración de personal y las Relaciones laborales propios del “Responsable”. Salvo para cumplir con las anteriores finalidades, no transferiremos tus datos a ningún tercero.</p>
-
-<p>Este aviso de privacidad se pone a disposición de Usted (el “Titular”) previo a la obtención y tratamiento de sus datos personales (los “Datos”)</p>
-
-<p><strong>I. Datos recabados y su finalidad:</strong> los datos que usted nos proporciona incluyen: (a) nombre, (b) domicilio completo; (c) correo electrónico; (d) teléfono celular o particular; (e) fotografía; (f) datos académicos y laborales (empleos anteriores); (g) datos personales y datos relativos a interés en puestos de trabajo, incluyendo aptitudes y capacidades, nivel socioeconómico y pretensiones laborales (incluyendo sueldo), los cuales serán tratados con la única finalidad de Reclutamiento, Selección, Contratación y Administración del personal y las relaciones laborales.</p>
-
-<p>Hacemos de su conocimiento que en todo momento los “datos personales” serán tratados con apego a los principios y requisitos contenidos en la Ley.</p>
-
-<p><strong>II. Datos sensibles:</strong> El Titular declara que no ha proporcionado y en ningún caso proporcionará al Responsable “datos personales sensibles”, es decir, aquellos datos personales íntimos o cuya utilización debida o indebida pueda dar origen a discriminación o conlleve un riesgo grave para éste. En particular, el Titular se obliga a no proporcionar al Responsable ningún Dato relativo a origen racial o étnico, información genética, creencias religiosas, filosóficas y morales, opiniones políticas o preferencia sexual.</p>
-
-<p><strong>III. Almacenamiento y divulgación:</strong> Para poder cumplir con las finalidades de este aviso, así como para poder almacenar y tratar sus datos, es posible que el Responsable entregue todo o parte de los Datos a terceros, incluyendo proveedores de bienes o servicios, nacionales o extranjeros, que requieren conocer esta información, como por ejemplo servidores de almacenamiento de información, quienes quedarán obligados, por contrato, a mantener la confidencialidad de los Datos y conforme a este Aviso de Privacidad. El Responsable se compromete a contar con las medidas legales y de seguridad suficiente y necesaria para garantizar que sus Datos permanezcan confidenciales y seguros.</p>
-
-<p>IV. Acceso, rectificación: El Titular tendrá derecho para solicitar al Responsable en cualquier momento el acceso, rectificación, cancelación u oposición respecto de sus Datos, para lo cual deberá enviar una solicitud a los datos que aparecen a continuación:
-La solicitud de acceso, rectificación, cancelación u oposición deberá contener y acompañar lo siguiente: (1) El nombre del Titular y domicilio u otro medio para comunicarle la respuesta a su solicitud; (2) Los documentos que acrediten la identidad o, en su caso, la representación legal del Titular; (3) La descripción clara y precisa de los Datos respecto de los que se busca ejercer alguno de los derechos antes mencionados, y (4) Cualquier otro elemento o documento que facilite la localización de los Datos del Titular.</p>
-
-<p>V. El Titular está de acuerdo y conforme en que cualquier cambio a este “Aviso de Privacidad” o a las políticas de privacidad se notifique avisos internos, por lo que es obligación del Titular solicitar al Departamento de Capital Humano la versión más actual del Aviso de Privacidad.</p>
 <br><br><br>
 <div class="signature-block">
-    <p>__________</p>
+    <p>____</p>
     <p><strong><?php echo $nombreCompleto; ?></strong></p>
     <p>Nombre, Firma y Huella</p>
     <br><br>
@@ -387,287 +510,287 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
 <div class="signature-block">
     <p><strong>ATENTAMENTE</strong></p>
     <br>
-    <p>__________</p>
+    <p>____</p>
     <p><strong>NOMBRE Y FIRMA</strong></p>
 </div>
 </div>
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 <div class="red-box">DECLARACIÓN DEL ESTADO DE SALUD</div>
-<div class="content">
-    <table class="table">
-        <tr>
-            <th>NOMBRE DEL ASPIRANTE:</th>
-            <td><?php echo $datosEmpleado['empleado_nombres'] . ' ' . $datosEmpleado['empleado_apellido_paterno'] . ' ' . $datosEmpleado['empleado_apellido_materno']; ?></td>
-            <th>SEXO:</th>
-            <td><?php echo $datosEmpleado['empleado_sexo']; ?></td>
-        </tr>
-        <tr>
-            <th>EDAD:</th>
-            <td></td>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Fecha de su última consulta médica:</th>
-            <td>________</td>
-            <th>Tipo de Sangre:</th>
-            <td>________</td>
-        </tr>
-        <tr>
-            <th>En caso de accidente, favor de avisar a:</th>
-            <td colspan="3">
-                Nombre:<?php echo $nombreEmergencia ?> <br>
-                Parentezco:<?php echo $parentezcoEmergencia?>
-                Teléfono:<?php echo $telefonoEmergencia ?> <br>
-                Dirección:<?php echo $domicilio ?>
+        <div class="content">
+            <table class="table">
+                <tr>
+                    <th>NOMBRE DEL ASPIRANTE:</th>
+                    <td><?php echo $datosEmpleado['empleado_nombres'] . ' ' . $datosEmpleado['empleado_apellido_paterno'] . ' ' . $datosEmpleado['empleado_apellido_materno']; ?></td>
+                    <th>SEXO:</th>
+                    <td><?php echo $datosEmpleado['empleado_sexo']; ?></td>
+                </tr>
+                <tr>
+                    <th>EDAD:</th>
+                    <td></td>
+                    <th></th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Fecha de su última consulta médica:</th>
+                    <td>____</td>
+                    <th>Tipo de Sangre:</th>
+                    <td><?php echo $sangre ?></td>
+                </tr>
+                <tr>
+                    <th>En caso de accidente, favor de avisar a:</th>
+                    <td colspan="3">
+                        Nombre:<?php echo $nombreEmergencia ?> <br>
+                        Parentezco:<?php echo $parentezcoEmergencia?>
+                        Teléfono:<?php echo $telefonoEmergencia ?> <br>
+                        Dirección:<?php echo $domicilio ?>
 
-            </td>
-        </tr>
-    </table>
-</div>
-<div class="red-box">ESTADO DE SALUD</div>
-<div class="content">
-    <p>Marcar con una "X" si su respuesta es afirmativa o negativa</p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Enfermedades</th>
-                <th>SI</th>
-                <th>NO</th>
-                <th>Enfermedades</th>
-                <th>SI</th>
-                <th>NO</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1. Desmayos</td>
-                <td>_</td>
-                <td>_</td>
-                <td>29. Enfisema pulmonar</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>2. Accidente cerebral</td>
-                <td>_</td>
-                <td>_</td>
-                <td>30. Asma</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>3. Tumores en cerebro</td>
-                <td>_</td>
-                <td>_</td>
-                <td>31. Cirugía del corazón</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>4. Enfermedades neurológicas</td>
-                <td>_</td>
-                <td>_</td>
-                <td>32. Cirugía del pulmón</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>5. Trauma craneo encefálico</td>
-                <td>_</td>
-                <td>_</td>
-                <td>33. Úlcera gástrica o duodenal</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>6. Convulsiones</td>
-                <td>_</td>
-                <td>_</td>
-                <td>34. Hernia diafragmática</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>7. Poliomyelitis</td>
-                <td>_</td>
-                <td>_</td>
-                <td>35. Reflujo gastroesofático</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>8. Sordera</td>
-                <td>_</td>
-                <td>_</td>
-                <td>36. Cálculos biliares</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>9. Otitis</td>
-                <td>_</td>
-                <td>_</td>
-                <td>37. Pancreatitis</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>10. Cirugía de oído</td>
-                <td>_</td>
-                <td>_</td>
-                <td>38. Hernia umbilical</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>11. Defecto de la visión</td>
-                <td>_</td>
-                <td>_</td>
-                <td>39. Hernia inguinal</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>12. Estrabismo</td>
-                <td>_</td>
-                <td>_</td>
-                <td>40. Hepatitis B - C - D</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>13. Catarata</td>
-                <td>_</td>
-                <td>_</td>
-                <td>41. Cirugía abdominal</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>14. Cirugía ocular</td>
-                <td>_</td>
-                <td>_</td>
-                <td>42. Cáncer del estomago o intestinal</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>15. Desviación del tabique nasal</td>
-                <td>_</td>
-                <td>_</td>
-                <td>43. Prolapso genital</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>16. Cirugía de la nariz</td>
-                <td>_</td>
-                <td>_</td>
-                <td>44. Miomatosis uterina</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>17. Bocio</td>
-                <td>_</td>
-                <td>_</td>
-                <td>45. Incontinencia urinaria</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>18. Masas del cuello</td>
-                <td>_</td>
-                <td>_</td>
-                <td>46. Cálculos renales</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>19. Tumores, quistes en mamas</td>
-                <td>_</td>
-                <td>_</td>
-                <td>47. Várices miembros inferiores</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>20. Cirugía de mamas</td>
-                <td>_</td>
-                <td>_</td>
-                <td>48. Fracturas</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>21. Hipertensión arterial</td>
-                <td>_</td>
-                <td>_</td>
-                <td>49. Juanetes</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>22. Diabetes</td>
-                <td>_</td>
-                <td>_</td>
-                <td>50. Trastornos de la columna</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>23. Infarto de miocardio</td>
-                <td>_</td>
-                <td>_</td>
-                <td>51. Lesión de ligamentos y/o meniscos</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>24. Soplos</td>
-                <td>_</td>
-                <td>_</td>
-                <td>52. Infección por VIH (SIDA)</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>25. Enfermedad de las válvulas cardiacas</td>
-                <td>_</td>
-                <td>_</td>
-                <td>53. Tumores malignos</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>26. Reumatismo</td>
-                <td>_</td>
-                <td>_</td>
-                <td>54. Leucemia</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>27. Enfermedad congénita del corazón</td>
-                <td>_</td>
-                <td>_</td>
-                <td>55. Otros (especificar)</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>28. Tuberculosis pulmonar</td>
-                <td>_</td>
-                <td>_</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="red-box">ESTADO DE SALUD</div>
+        <div class="content">
+            <p>Marcar con una "X" si su respuesta es afirmativa o negativa</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Enfermedades</th>
+                        <th>SI</th>
+                        <th>NO</th>
+                        <th>Enfermedades</th>
+                        <th>SI</th>
+                        <th>NO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Desmayos</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>29. Enfisema pulmonar</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>2. Accidente cerebral</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>30. Asma</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>3. Tumores en cerebro</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>31. Cirugía del corazón</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>4. Enfermedades neurológicas</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>32. Cirugía del pulmón</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>5. Trauma craneo encefálico</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>33. Úlcera gástrica o duodenal</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>6. Convulsiones</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>34. Hernia diafragmática</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>7. Poliomyelitis</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>35. Reflujo gastroesofático</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>8. Sordera</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>36. Cálculos biliares</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>9. Otitis</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>37. Pancreatitis</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>10. Cirugía de oído</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>38. Hernia umbilical</td>
+                        <td>_</td>
+                        <td>__</td>
+                    </tr>
+                    <tr>
+                        <td>11. Defecto de la visión</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>39. Hernia inguinal</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>12. Estrabismo</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>40. Hepatitis B - C - D</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>13. Catarata</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>41. Cirugía abdominal</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>14. Cirugía ocular</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>42. Cáncer del estomago o intestinal</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>15. Desviación del tabique nasal</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>43. Prolapso genital</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>16. Cirugía de la nariz</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>44. Miomatosis uterina</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>17. Bocio</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>45. Incontinencia urinaria</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>18. Masas del cuello</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>46. Cálculos renales</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>19. Tumores, quistes en mamas</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>47. Várices miembros inferiores</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>20. Cirugía de mamas</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>48. Fracturas</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>21. Hipertensión arterial</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>49. Juanetes</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>22. Diabetes</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>50. Trastornos de la columna</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>23. Infarto de miocardio</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>51. Lesión de ligamentos y/o meniscos</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>24. Soplos</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>52. Infección por VIH (SIDA)</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>25. Enfermedad de las válvulas cardiacas</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>53. Tumores malignos</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>26. Reumatismo</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>54. Leucemia</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>27. Enfermedad congénita del corazón</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>55. Otros (especificar)</td>
+                        <td>_</td>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <td>28. Tuberculosis pulmonar</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
     <div class="red-box">Las preguntas de esta sección deben ser respondidas SOLAMENTE por el SEXO FEMENINO</div>
     <table class="table">
         <tr>
@@ -676,7 +799,7 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
             <th>Observaciones</th>
         </tr>
         <tr>
-            <th>¿Número de partos?</th>
+        <th>¿Número de partos?</th>
             <td>_</td>
             <td rowspan="4"></td>
         </tr>
@@ -689,11 +812,8 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
             <td>_</td>
         </tr>
     </table>
-    <p>Declaro bajo protesta de decir verdad que las contestaciones que anteceden son ciertas y verídicas, y que la detección de algún padecimiento no declarado podrá ser considerado como intento de engaño o abuso de confianza, pudiendo ser causal de recisión de contrato sin responsabilidad para la empresa de acuerdo a lo establecido en el artículo 47 de la Ley Federal del Trabajo y en el reglamento interno de trabajo.</p>
-    <div class="signature-block">
-        <p>Firma del aspirante: ____________ Huella: ______</p>
-        <p>Ciudad y Fecha</p>
-    </div>
+    <h5>Declaro bajo protesta de decir verdad que las contestaciones que anteceden son ciertas y verídicas, y que la detección de algún padecimiento no declarado podrá ser considerado como intento de engaño o abuso de confianza, pudiendo ser causal de recisión de contrato sin responsabilidad para la empresa de acuerdo a lo establecido en el artículo 47 de la Ley Federal del Trabajo y en el reglamento interno de trabajo.</h5>
+        <p>Firma del aspirante: ____ Huella: __ Ciudad y Fecha</p>
 </div>
 </div>
 <br>
@@ -708,7 +828,7 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
     <div class="signature-block">
         <br><br>
         <p class="centrado"><strong><?php echo $nombreCompleto; ?></strong></p>
-        <p>______________</p>
+        <p>______</p>
         <p>FIRMA</p>
     </div>
 
@@ -719,8 +839,8 @@ La solicitud de acceso, rectificación, cancelación u oposición deberá conten
     <p>Responsabilizándome a conservarlo durante mi permanencia laboral y dar seguimiento puntual a este.</p>
     <p>Nombre completo del colaborador: <strong><?php echo $nombreCompleto; ?></strong></p>
     <div class="signature-block">
-        <p>Firma: __________</p>
-        <p>Fecha: __________</p>
+        <p>Firma: ____</p>
+        <p>Fecha: ____</p>
     </div>
     </div>
 

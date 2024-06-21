@@ -6,7 +6,7 @@
 	<div class="form-rest mb-6 mt-6"></div>
   
     <!-- En el action del formulario colocamos la ruta a la que queremos que se vayan estos datos al enviarlos, y en la clase 
-    colocamos FormularioAjax ya que es la clase que tengo en ajax.js -->
+     colocamos FormularioAjax ya que es la clase que tengo en ajax.js -->
     <form action="./php/empleado_guardar.php" method="POST" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data">
       <div class="row">
 
@@ -42,7 +42,8 @@
 
           <div class="form-group">
             <label for="Empleado_fechaNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" class="form-control" id="Empleado_fechaNacimiento" name="empleado_fecha_de_nacimiento" data-toggle="tooltip" title="Ingresa la fecha en el calendario" required>
+            <input type="text" class="form-control" id="Empleado_fechaNacimiento" name="empleado_fecha_de_nacimiento" 
+            pattern="^(0[1-9]|[12][0-9]|3[01]) de (Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre) de (19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="30" data-toggle="tooltip" title="ejemplo: 01 de Enero de 1980" required>
           </div>
 
           <div class="form-group">
@@ -143,14 +144,20 @@
           </div>
 
           <div class="form-group">
-            <label for="Empleado_año_de_ingreso">Año de Ingreso:</label>
-            <input type="text" class="form-control" id="Empleado_año_de_ingreso" name="empleado_anio_de_ingreso" 
-            pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" data-toggle="tooltip" title="Formato: AAAA (2020 en adelante)" required>
+              <label for="Empleado_año_de_ingreso">Año de Ingreso:</label>
+              <input type="text" class="form-control" id="Empleado_año_de_ingreso" name="empleado_anio_de_ingreso"
+              pattern="^(19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="4" data-toggle="tooltip" title="Formato: AAAA (1980 en adelante)" required>
+          </div>
+
+          <div class="form-group">
+              <label for="Empleado_año_de_ingreso">Fecha Completa en que Ingreso el Empleado:</label>
+              <input type="text" class="form-control" id="Empleado_Fecha_De_Ingreso" name="empleado_fecha_de_ingreso" 
+              pattern="^(0[1-9]|[12][0-9]|3[01]) de (Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre) de (19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="30" data-toggle="tooltip" title="ejemplo: 01 de Enero de 1980" required>
           </div>
 
           <div class="form-group">
             <label for="Empleado_Fecha_de_Termino_de_Contrato">Fecha de Término de Contrato:</label>
-            <input type="date" class="form-control" id="Empleado_Fecha_de_Termino_de_Contrato" name="empleado_fecha_de_termino_de_contrato" data-toggle="tooltip" title="Selecciona la fecha en el calendario" required>
+            <input type="text" class="form-control" id="Empleado_Fecha_de_Termino_de_Contrato" name="empleado_fecha_de_termino_de_contrato" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha DD/MM/AAAA, maximo 50 caracteres">
           </div>
 
           <div class="form-group">
@@ -160,19 +167,19 @@
           </div>
 
           <div class="form-group">
-            <label for="Empleado_Numero_de_Contrato">Número de Contrato:</label>
-            <input type="text" class="form-control" id="Empleado_Numero_de_Contrato" name="empleado_numero_de_contrato"
-            pattern="[0-9]+" maxlength="50" data-toggle="tooltip" title="Solo números, máximo 50 caracteres" required>
+              <label for="Empleado_Numero_de_Contrato">Número de Contrato:</label>
+              <input type="text" class="form-control" id="Empleado_Numero_de_Contrato" name="empleado_numero_de_contrato"
+              pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+" maxlength="100" data-toggle="tooltip" title="Letras, números, espacios y acentos permitidos, maximo 100 caracteres" required>
           </div>
 
           <div class="form-group">
             <label for="Empleado_Inicio_de_Contrato_Pemex">Inicio de Contrato Pemex:</label>
-            <input type="date" class="form-control" id="Empleado_Inicio_de_Contrato_Pemex" name="empleado_inicio_de_contrato_pemex" data-toggle="tooltip" title="Selecciona la fecha en el calendario">
+            <input type="text" class="form-control" id="Empleado_Inicio_de_Contrato_Pemex" name="empleado_inicio_de_contrato_pemex" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha ejemplo: 01 de Enero de 1980, maximo 50 caracteres">
           </div>
 
           <div class="form-group">
             <label for="Empleado_Fin_de_Contrato_Pemex">Fin de Contrato Pemex:</label>
-            <input type="date" class="form-control" id="Empleado_Fin_de_Contrato_Pemex" name="empleado_fin_de_contrato_pemex" data-toggle="tooltip" title="Selecciona la fecha en el calendario">
+            <input type="text" class="form-control" id="Empleado_Fin_de_Contrato_Pemex" name="empleado_fin_de_contrato_pemex" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha ejemplo: 01 de Enero de 1980, maximo 50 caracteres">
           </div>
 
           <div class="form-group">
@@ -182,9 +189,9 @@
           </div>
 
           <div class="form-group">
-            <label for="Empleado_Salario_Diario_integrado_escrito">Salario Diario Integrado en letra:</label>
-            <input type="text" class="form-control" id="Empleado_Salario_Diario_integrado_escrito" name="empleado_salario_diario_integrado_escrito"
-            pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" data-toggle="tooltip" title="Solo letras Aa-Zz, mínimo 3 caracteres, máximo 255" required>
+              <label for="Empleado_Salario_Diario_integrado_escrito">Salario Diario Integrado en letra:</label>
+              <input type="text" class="form-control" id="Empleado_Salario_Diario_integrado_escrito" name="empleado_salario_diario_integrado_escrito" 
+              pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s/.]{3,255}" maxlength="255" data-toggle="tooltip" title="Letras, números, diagonales (/) y puntos (.), mínimo 3 caracteres, máximo 255" required>
           </div>
 
           <div class="form-group">

@@ -27,6 +27,7 @@ $puestoDeTrabajo = limpiar_cadena($_POST['empleado_puesto_de_trabajo']);
 $diaDeIngreso = limpiar_cadena($_POST['empleado_dia_de_ingreso']);
 $mesDeIngreso = limpiar_cadena($_POST['empleado_mes_de_ingreso']);
 $anioDeIngreso = limpiar_cadena($_POST['empleado_anio_de_ingreso']);
+$fechaCompletaDeIngreso = limpiar_cadena($_POST['empleado_fecha_de_ingreso']);
 $fechaDeTerminoDeContrato = limpiar_cadena($_POST['empleado_fecha_de_termino_de_contrato']);
 $lugarDeServicio = limpiar_cadena($_POST['empleado_lugar_de_servicio_o_de_proyecto']);
 $lugaresDeServicioHistorial = $lugarDeServicio;
@@ -113,10 +114,9 @@ if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == 0) {
 // Verificar que todos los campos obligatorios estén llenos
 if ($nombres == "" || $apellidoPaterno == "" || $apellidoMaterno == "" || $sexo == "" || $fechaDeNacimiento == "" || $lugarDeNacimiento == "" || $estadoCivil == "" 
     || $domicilio == "" || $telefono == "" || $nombreContactoEmergencia == "" || $parentezco == "" 
-    || $telefonoEmergencia == "" || $puestoDeTrabajo == "" || $diaDeIngreso == "" || $mesDeIngreso == "" || $anioDeIngreso == "" || $fechaDeTerminoDeContrato == "" 
-    || $lugarDeServicio == "" || $numeroDeContrato == "" || $inicioContratoPemex == "" || $finContratoPemex == "" 
-    || $salarioDiarioIntegrado == "" || $salarioDiarioIntegradoEscrito == "" || $creditoInfonavit == "" || $curp == "" || $rfc == "" 
-    || $nss == "" || $tipoSangre == "" || $alergias == "" || $enfermedades == ""
+    || $telefonoEmergencia == "" || $puestoDeTrabajo == "" || $diaDeIngreso == "" || $mesDeIngreso == "" || $anioDeIngreso == "" || $fechaCompletaDeIngreso == "" 
+    || $lugarDeServicio == "" || $numeroDeContrato == "" || $salarioDiarioIntegrado == "" || $salarioDiarioIntegradoEscrito == "" || $creditoInfonavit == "" || $curp == "" || $rfc == "" 
+    || $nss == "" || $tipoSangre == "" || $alergias == "" || $enfermedades == "" 
     || $nombreMadre == "" || $nombrePadre == "" || $estado == "" || $quienLoContrato == "") {
     echo '<div class="notification is-danger is-light">
             <strong>¡Ocurrió un error inesperado!</strong><br>
@@ -198,7 +198,7 @@ if (verificar_datos("^(0[1-9]|[12][0-9]|3[01])$", $diaDeIngreso)) {
     exit();
 }
 
-if (verificar_datos("^(20[2-9]\d|21[0-9]\d)$", $anioDeIngreso)) {
+if (verificar_datos("^(19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$", $anioDeIngreso)) {
     echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -208,7 +208,7 @@ if (verificar_datos("^(20[2-9]\d|21[0-9]\d)$", $anioDeIngreso)) {
     exit();
 }
 
-if (verificar_datos("[0-9]+", $numeroDeContrato)) {
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+", $numeroDeContrato)) {
     echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -219,17 +219,6 @@ if (verificar_datos("[0-9]+", $numeroDeContrato)) {
 }
 
 if (verificar_datos("^-?\d{1,8}(\.\d{2})?$", $salarioDiarioIntegrado)) {
-    echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                El SALARIO CON LETRA no coincide con el formato solicitado.
-            </div>
-        ';
-    exit();
-}
-
-// shidgha
-if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}", $salarioDiarioIntegradoEscrito)) {
     echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -323,8 +312,8 @@ if ($check_empleado->rowCount() > 0) {
 $check_empleado = null;
 
 $guardar_empleado = conexion();
-$guardar_empleado = $guardar_empleado->prepare("INSERT INTO empleado (empleado_sexo, empleado_domicilio, empleado_estado_civil, empleado_curp, empleado_rfc, empleado_nss, empleado_fecha_de_nacimiento, empleado_lugar_de_nacimiento, empleado_telefono, empleado_tipo_de_sangre, empleado_alergias, empleado_enfermedades, empleado_nombre_completo_de_la_madre, empleado_nombre_completo_del_padre, empleado_nombre_de_contacto_para_emergencia, empleado_parentezco_con_el_contacto_de_emergencia, empleado_telefono_de_contacto_para_emergencia, empleado_estado, empleado_credito_infonavit, empleado_salario_diario_integrado, empleado_fecha_de_termino_de_contrato, empleado_puesto_de_trabajo, empleado_lugar_de_servicio_o_de_proyecto, empleado_numero_de_contrato, empleado_inicio_de_contrato_pemex, empleado_fin_de_contrato_pemex, empleado_quien_lo_contrato, empleado_nombres, empleado_apellido_paterno, empleado_apellido_materno, empleado_dia_de_ingreso, empleado_mes_de_ingreso, empleado_año_de_ingreso, empleado_salario_diario_integrado_escrito, empleado_historial_lugares_de_servicio, empleado_foto)
-VALUES(:sexo, :domicilio, :estadoCivil, :curp, :rfc, :nss, :fechaDeNacimiento, :lugarDeNacimiento, :telefono, :tipoSangre, :alergias, :enfermedades, :nombreMadre, :nombrePadre, :nombreContactoEmergencia, :parentezco, :telefonoEmergencia, :estado, :creditoInfonavit, :salarioDiarioIntegrado, :fechaDeTerminoDeContrato, :puestoDeTrabajo, :lugarDeServicio, :numeroDeContrato, :inicioContratoPemex, :finContratoPemex, :quienLoContrato, :nombres, :apellidoPaterno, :apellidoMaterno, :diaDeIngreso, :mesDeIngreso, :anioDeIngreso, :salarioDiarioIntegradoEscrito, :lugaresDeServicioHistorial, :foto)");
+$guardar_empleado = $guardar_empleado->prepare("INSERT INTO empleado (empleado_sexo, empleado_domicilio, empleado_estado_civil, empleado_curp, empleado_rfc, empleado_nss, empleado_fecha_de_nacimiento, empleado_lugar_de_nacimiento, empleado_telefono, empleado_tipo_de_sangre, empleado_alergias, empleado_enfermedades, empleado_nombre_completo_de_la_madre, empleado_nombre_completo_del_padre, empleado_nombre_de_contacto_para_emergencia, empleado_parentezco_con_el_contacto_de_emergencia, empleado_telefono_de_contacto_para_emergencia, empleado_estado, empleado_credito_infonavit, empleado_salario_diario_integrado, empleado_fecha_de_ingreso, empleado_fecha_de_termino_de_contrato, empleado_puesto_de_trabajo, empleado_lugar_de_servicio_o_de_proyecto, empleado_numero_de_contrato, empleado_inicio_de_contrato_pemex, empleado_fin_de_contrato_pemex, empleado_quien_lo_contrato, empleado_nombres, empleado_apellido_paterno, empleado_apellido_materno, empleado_dia_de_ingreso, empleado_mes_de_ingreso, empleado_año_de_ingreso, empleado_salario_diario_integrado_escrito, empleado_historial_lugares_de_servicio, empleado_foto)
+VALUES(:sexo, :domicilio, :estadoCivil, :curp, :rfc, :nss, :fechaDeNacimiento, :lugarDeNacimiento, :telefono, :tipoSangre, :alergias, :enfermedades, :nombreMadre, :nombrePadre, :nombreContactoEmergencia, :parentezco, :telefonoEmergencia, :estado, :creditoInfonavit, :salarioDiarioIntegrado, :fechaCompletaDeIngreso, :fechaDeTerminoDeContrato, :puestoDeTrabajo, :lugarDeServicio, :numeroDeContrato, :inicioContratoPemex, :finContratoPemex, :quienLoContrato, :nombres, :apellidoPaterno, :apellidoMaterno, :diaDeIngreso, :mesDeIngreso, :anioDeIngreso, :salarioDiarioIntegradoEscrito, :lugaresDeServicioHistorial, :foto)");
 
 $marcadores = [
     ":nombres" => $nombres,
@@ -343,6 +332,7 @@ $marcadores = [
     ":diaDeIngreso" => $diaDeIngreso,
     ":mesDeIngreso" => $mesDeIngreso,
     ":anioDeIngreso" => $anioDeIngreso,
+    ":fechaCompletaDeIngreso" => $fechaCompletaDeIngreso,
     ":fechaDeTerminoDeContrato" => $fechaDeTerminoDeContrato,
     ":lugarDeServicio" => $lugarDeServicio,
     ":lugaresDeServicioHistorial" => $lugaresDeServicioHistorial,

@@ -79,7 +79,7 @@ if ($total >= 1 && $pagina <= $Npaginas) {
                 <td>' . $rows['empleado_rfc'] . '</td>
                 <td>' . $rows['empleado_nss'] . '</td>
                 <td>' . $rows['empleado_puesto_de_trabajo'] . '</td>
-                <td>' . $rows['empleado_dia_de_ingreso'] . " de " . $rows['empleado_mes_de_ingreso'] . " del " .$rows['empleado_año_de_ingreso'] . '</td>
+                <td>' . $rows['empleado_fecha_de_ingreso'] . '</td>
                 <td>' . $rows['empleado_quien_lo_contrato'] . '</td>
                 <td>
                     <button class="btn btn-primary btn-sm" onclick="mostrarDetallesEmpleado(\'' . $rows['empleado_id'] . '\')">Detalles</button>

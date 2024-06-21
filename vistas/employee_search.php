@@ -23,7 +23,7 @@
                     <form action="" method="POST" autocomplete="off" >
                         <input type="hidden" name="modulo_buscador" value="empleado">   
                         <div class="form-group d-flex">
-                            <input class="form-control me-2" type="text" name="txt_buscador" placeholder="Ingresa cualquier cosa relacionada con el empleado que buscas" >
+                            <input class="form-control me-2" type="text" name="txt_buscador" placeholder="Ingresa un dato para buscar empleados" data-toggle="tooltip" title="Ingresa Nombre, RFC, CURP, NSS, fecha de contratacion o lugar de servicio o de proyecto de los empleados que buscas">
                             <select name="estado" class="custom-select" id="estado-select">
                                 <option value="selecciona">Selecciona un filtro</option>
                                 <option value="todos">Ver Todos</option>
@@ -108,4 +108,4 @@
   </div>
 </div>
 
-<script src="./js/empleado3.js"></script>
+<script src="./js/empleado6.js"></script>

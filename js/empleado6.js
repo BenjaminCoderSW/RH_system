@@ -25,7 +25,7 @@ function mostrarDetallesEmpleado(empleadoId) {
             <Strong><p>Credito Infonavit:</Strong> ${data.empleado_credito_infonavit}</p>
             <Strong><p>Salario Diario Integrado:</Strong> ${data.empleado_salario_diario_integrado}</p>
             <Strong><p>Salario Diario Escrito:</Strong> ${data.empleado_salario_diario_integrado_escrito}</p>
-            <Strong><p>Fecha de ingreso:</Strong> ${data.empleado_dia_de_ingreso} de ${data.empleado_mes_de_ingreso} del ${data.empleado_año_de_ingreso}</p>
+            <Strong><p>Fecha de ingreso:</Strong> ${data.empleado_fecha_de_ingreso}</p>
             <Strong><p>Fecha de termino de contrato:</Strong> ${data.empleado_fecha_de_termino_de_contrato}</p>
             <Strong><p>Puesto de Trabajo:</Strong> ${data.empleado_puesto_de_trabajo}</p>
             <Strong><p>Lugar de Servicio o de Proyecto:</Strong> ${data.empleado_lugar_de_servicio_o_de_proyecto}</p>

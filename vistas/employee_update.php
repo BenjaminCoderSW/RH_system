@@ -53,7 +53,8 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_fechaNacimiento_Update">Fecha de Nacimiento:</label>
-                        <input type="date" class="form-control" id="Empleado_fechaNacimiento_Update" name="empleado_fecha_de_nacimiento" data-toggle="tooltip" title="Ingresa la fecha en el calendario" required value="<?php echo $datos['empleado_fecha_de_nacimiento']; ?>">
+                        <input type="text" class="form-control" id="Empleado_fechaNacimiento_Update" name="empleado_fecha_de_nacimiento" 
+                        pattern="^(0[1-9]|[12][0-9]|3[01]) de (Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre) de (19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="30" data-toggle="tooltip" title="ejemplo: 01 de Enero de 1980" required value="<?php echo $datos['empleado_fecha_de_nacimiento']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -144,12 +145,18 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_año_de_ingreso_Update">Año de Ingreso:</label>
                         <input type="text" class="form-control" id="Empleado_año_de_ingreso_Update" name="empleado_anio_de_ingreso" 
-                        pattern="^(20[2-9]\d|21[0-9]\d)$" maxlength="4" data-toggle="tooltip" title="Formato: AAAA (2020 en adelante)" required value="<?php echo $datos['empleado_año_de_ingreso']; ?>">
+                        pattern="^(19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="4" data-toggle="tooltip" title="Formato: AAAA (1980 en adelante)" required value="<?php echo $datos['empleado_año_de_ingreso']; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Empleado_año_de_ingreso_Update">Fecha Completa en que Ingreso el Empleado:</label>
+                        <input type="text" class="form-control" id="Empleado_año_de_ingreso_Update" name="empleado_fecha_de_ingreso" 
+                        pattern="^(0[1-9]|[12][0-9]|3[01]) de (Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre) de (19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="30" data-toggle="tooltip" title="ejemplo: 01 de Enero de 1980" required value="<?php echo $datos['empleado_fecha_de_ingreso']; ?>">
                     </div>
 
                     <div class="form-group">
                         <label for="Empleado_Fecha_de_Termino_de_Contrato">Fecha de Término de Contrato:</label>
-                        <input type="date" class="form-control" id="Empleado_Fecha_de_Termino_de_Contrato_Update" name="empleado_fecha_de_termino_de_contrato" data-toggle="tooltip" title="Selecciona la fecha en el calendario" required value="<?php echo $datos['empleado_fecha_de_termino_de_contrato']; ?>">
+                        <input type="text" class="form-control" id="Empleado_Fecha_de_Termino_de_Contrato_Update" name="empleado_fecha_de_termino_de_contrato" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha DD/MM/AAAA, maximo 50 caracteres" value="<?php echo $datos['empleado_fecha_de_termino_de_contrato']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -159,17 +166,18 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_Numero_de_Contrato">Número de Contrato:</label>
-                        <input type="text" class="form-control" id="Empleado_Numero_de_Contrato_Update" name="empleado_numero_de_contrato" pattern="[0-9]+" maxlength="50" data-toggle="tooltip" title="Solo números, máximo 50 caracteres" required value="<?php echo $datos['empleado_numero_de_contrato']; ?>">
+                        <input type="text" class="form-control" id="Empleado_Numero_de_Contrato_Update" name="empleado_numero_de_contrato" 
+                        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+" maxlength="100" data-toggle="tooltip" title="Letras, números, espacios y acentos permitidos, máximo 100 caracteres" required value="<?php echo $datos['empleado_numero_de_contrato']; ?>">
                     </div>
 
                     <div class="form-group">
                         <label for="Empleado_Inicio_de_Contrato_Pemex">Inicio de Contrato Pemex:</label>
-                        <input type="date" class="form-control" id="Empleado_Inicio_de_Contrato_Pemex_Update" name="empleado_inicio_de_contrato_pemex" data-toggle="tooltip" title="Selecciona la fecha en el calendario" required value="<?php echo $datos['empleado_inicio_de_contrato_pemex']; ?>">
+                        <input type="text" class="form-control" id="Empleado_Inicio_de_Contrato_Pemex_Update" name="empleado_inicio_de_contrato_pemex" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha ejemplo: 01 de Enero de 1980, maximo 50 caracteres" value="<?php echo $datos['empleado_inicio_de_contrato_pemex']; ?>">
                     </div>
 
                     <div class="form-group">
                         <label for="Empleado_Fin_de_Contrato_Pemex">Fin de Contrato Pemex:</label>
-                        <input type="date" class="form-control" id="Empleado_Fin_de_Contrato_Pemex_Update" name="empleado_fin_de_contrato_pemex" data-toggle="tooltip" title="Selecciona la fecha en el calendario" value="<?php echo $datos['empleado_fin_de_contrato_pemex']; ?>">
+                        <input type="text" class="form-control" id="Empleado_Fin_de_Contrato_Pemex_Update" name="empleado_fin_de_contrato_pemex" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha ejemplo: 01 de Enero de 1980, maximo 50 caracteres" value="<?php echo $datos['empleado_fin_de_contrato_pemex']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -181,7 +189,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_Salario_Diario_integrado_escrito_Update">Salario Diario Integrado en letra:</label>
                         <input type="text" class="form-control" id="Empleado_Salario_Diario_integrado_escrito_Update" name="empleado_salario_diario_integrado_escrito"
-                        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,255}" maxlength="255" data-toggle="tooltip" title="Solo letras Aa-Zz, mínimo 3 caracteres, máximo 255" required value="<?php echo $datos['empleado_salario_diario_integrado_escrito']; ?>">
+                        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s/.]{3,255}" maxlength="255" data-toggle="tooltip" title="Letras, números, diagonales (/) y puntos (.), mínimo 3 caracteres, máximo 255" required value="<?php echo $datos['empleado_salario_diario_integrado_escrito']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -247,7 +255,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_Historial_Lugares_De_Servicio_Update">Historial de Lugares de Servicio:</label>
-                        <textarea class="form-control" id="Empleado_Historial_Lugares_De_Servicio_Update" name="empleado_historial_lugares_de_servicio" rows="9" maxlength="65535" data-toggle="tooltip" title="Máximo 65535 caracteres" required><?php echo $datos['empleado_historial_lugares_de_servicio']; ?></textarea>
+                        <textarea class="form-control" id="Empleado_Historial_Lugares_De_Servicio_Update" name="empleado_historial_lugares_de_servicio" rows="9" maxlength="65535" data-toggle="tooltip" title="Máximo 65535 caracteres"><?php echo $datos['empleado_historial_lugares_de_servicio']; ?></textarea>
                     </div>
 
 

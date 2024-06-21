@@ -23,7 +23,7 @@
                     <form action="" method="POST" autocomplete="off" >
                         <input type="hidden" name="modulo_buscador" value="contrato">   
                         <div class="form-group d-flex">
-                            <input class="form-control me-2" type="text" name="txt_buscador" placeholder="Ingresa cualquier cosa relacionada con el contrato que buscas" >
+                            <input class="form-control me-2" type="text" name="txt_buscador" placeholder="Ingresa el nombre del contrato que buscas" >
                             <button class="btn btn-info" type="submit" >Buscar</button>
                         </div>
                     </form>

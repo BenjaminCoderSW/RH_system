@@ -42,7 +42,9 @@ $dato_nombre = $nombre->fetch();
                                             <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF</option>
                                             <option value="CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF.php" >CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF</option>
                                             <option value="CONTRATO_TIEMPO_DETERMINADO.php" >CONTRATO_TIEMPO_DETERMINADO</option>
-                                            <option value="Generar_credencial.php" >Generar credencial</option>
+                                            <option value="GRUPO_ATZCO_CAMPO.php" >GRUPO_ATZCO_CAMPO</option>
+                                            <option value="Generar_credencial.php" >Generar credencial Constructura Atzco</option>
+                                            <option value="Generar_Credencial_Grupo.php" >Generar credencial Grupo Atzco</option>
                                         </select>
                                     </div>
                                 </div>

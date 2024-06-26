@@ -106,6 +106,12 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                         <label for="Empleado_foto_Update">Foto del Empleado:</label>
                         <input type="file" class="form-control" id="Empleado_foto_Update" name="empleado_foto" accept=".jpeg, .jpg, .png" data-toggle="tooltip" title="Formatos permitidos: JPEG, PNG, JPG. Tamaño máximo: 2MB">
                     </div>
+
+                    <div class="form-group">
+                        <label for="Empleado_domicilio_empresa_Update">Domicilio de la empresa:</label>
+                        <input type="text" class="form-control" id="Empleado_domicilio_empresa_Update" name="empleado_domicilio_empresa" maxlength="255" data-toggle="tooltip" title="Máximo 255 caracteres" required value="<?php echo $datos['empleado_domicilio_empresa']; ?>">
+                    </div>
+
                 </div>
             </div>
 

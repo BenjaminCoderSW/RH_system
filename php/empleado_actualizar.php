@@ -54,6 +54,7 @@ $nombreMadre = limpiar_cadena($_POST['empleado_nombre_completo_de_la_madre']);
 $nombrePadre = limpiar_cadena($_POST['empleado_nombre_completo_del_padre']);
 $estado = limpiar_cadena($_POST['empleado_estado']);
 $quienLoContrato = limpiar_cadena($_POST['empleado_quien_lo_contrato']);
+$domicilioEmpresa = limpiar_cadena($_POST['empleado_domicilio_empresa']);
 
 
 
@@ -152,7 +153,8 @@ empleado_mes_de_ingreso=:mesDeIngreso,
 empleado_año_de_ingreso=:anioDeIngreso,
 empleado_salario_diario_integrado_escrito=:salarioDiarioIntegradoEscrito,
 empleado_historial_lugares_de_servicio=:lugaresDeServicioHistorial,
-empleado_foto=:foto WHERE empleado_id=:id");
+empleado_foto=:foto,
+empleado_domicilio_empresa=:domicilioEmpresa WHERE empleado_id=:id");
 
 $marcadores = [
     ":nombre" => $nombres,
@@ -191,6 +193,7 @@ $marcadores = [
     ":nombrePadre" => $nombrePadre,
     ":estado" => $estado,
     ":quienLoContrato" => $quienLoContrato,
+    ":domicilioEmpresa" => $domicilioEmpresa,
     ':foto' => $fotoNombreNuevo,
     ':id' => $id
 ];

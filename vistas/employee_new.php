@@ -104,6 +104,12 @@
               <input type="file" class="form-control" id="Empleado_foto" name="empleado_foto" accept="image/jpeg, image/png, image/jpg" data-toggle="tooltip" title="Formatos permitidos: JPEG, PNG, JPG. Tamaño máximo: 2MB" required>
           </div>
 
+          <div class="form-group">
+            <label for="Empleado_domicilio_empresa">Domicilio de la empresa:</label>
+            <input type="text" class="form-control" id="Empleado_domicilio_empresa" name="empleado_domicilio_empresa" 
+            maxlength="255" data-toggle="tooltip" title="Máximo 255 caracteres" required>
+          </div>
+
         </div>
       </div>
 

@@ -29,7 +29,47 @@ $nombreEmergencia = $datosEmpleado['empleado_nombre_de_contacto_para_emergencia'
 $parentezcoEmergencia = $datosEmpleado['empleado_parentezco_con_el_contacto_de_emergencia'];
 $telefonoEmergencia = $datosEmpleado['empleado_telefono_de_contacto_para_emergencia'];
 $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
-$testigo = $datosEmpleado['empleado_quien_lo_contrato']
+$testigo = $datosEmpleado['empleado_quien_lo_contrato'];
+$domicilioEmpresa = $datosEmpleado['empleado_domicilio_empresa'];
+
+if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmpleado['empleado_fecha_de_nacimiento'])) {
+    $fechaNacimientoStr = $datosEmpleado['empleado_fecha_de_nacimiento'];
+    $meses = [
+        'Enero' => '01',
+        'Febrero' => '02',
+        'Marzo' => '03',
+        'Abril' => '04',
+        'Mayo' => '05',
+        'Junio' => '06',
+        'Julio' => '07',
+        'Agosto' => '08',
+        'Septiembre' => '09',
+        'Octubre' => '10',
+        'Noviembre' => '11',
+        'Diciembre' => '12'
+    ];
+
+    // Extraer día, mes y año
+    if (preg_match('/(\d{1,2}) de (\w+) de (\d{4})/', $fechaNacimientoStr, $matches)) {
+        $dia = $matches[1];
+        $mes = $meses[$matches[2]];
+        $anio = $matches[3];
+        $fechaNacimiento = "$anio-$mes-$dia";
+        
+        try {
+            $fechaNacimientoObj = new DateTime($fechaNacimiento);
+            $hoy = new DateTime();
+            $edad = $hoy->diff($fechaNacimientoObj)->y;
+            echo $edad;
+        } catch (Exception $e) {
+            echo 'Error al crear el objeto DateTime: ',  $e->getMessage();
+        }
+    } else {
+        echo 'Formato de fecha de nacimiento no válido.';
+    }
+} else {
+    echo 'Fecha de nacimiento no disponible o no válida.';
+}
 
     ?>
 
@@ -290,7 +330,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
 
 
         <p><strong>SEGUNDA.-</strong> "EL TRABAJADOR ( A )" prestará sus servicios a "LA EMPRESA" en el domicilio
-            ubicado en SALAMANCASALAMANCA TIERRA BLANCA 400 COL BELLAVISTA C.P. 36730/o cualquiera de sus oficinas o
+            ubicado en <?php echo $domicilioEmpresa; ?>/o cualquiera de sus oficinas o
             sucursales ubicadas en el interior de la República Mexicana, por lo que previo su consentimiento podrá "LA
             EMPRESA" realizar los cambios necesarios al respecto, de acuerdo con sus necesidades, sin menoscabo de la
             categoría o salario asignados a "EL TRABAJADOR ( A )". Cuando por la naturaleza del trabajo "EL TRABAJADOR (
@@ -499,7 +539,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
             Conciliación y Arbitraje de la ciudad de León, Guanajuato.</p>
 
         <p>Las partes, conscientes del contenido, obligaciones, alcance y fuerza legal del presente contrato por tiempo
-            determinado, lo firman y ratifican por duplicado ante testigos, en la ciudad de SALAMANCA, a los días
+            determinado, lo firman y ratifican por duplicado ante testigos, en la ciudad de <?php echo $ciudad; ?>, a los días
             <?php echo $diaIngreso; ?> del mes de <?php echo $mesIngreso; ?> de <?php echo $anioIngreso; ?>
         </p>
 
@@ -535,7 +575,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                         <br>
                         <p>________________________</p>
                         <strong>
-                            <p>Lic. <?php echo $testigo ?></p>
+                            <p>MARISOL SANTOS RAMOS</p>
                         </strong>
                     </div>
                 </td>
@@ -623,7 +663,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                 trabaje para dicha empresa.</p>
             <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente
                 documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de
-                SALAMANCA, estado de GUANAJUATO,</p>
+                <?php echo $ciudad; ?></p>
             <br><br><br>
             <p class="centrado"><strong><?php echo $nombreCompleto; ?></strong></p>
         </div>
@@ -641,8 +681,8 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
 
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <div class="red-box">AVISO DE PRIVACIDAD</div>
-            <p class="centrado"><?php echo $ciudad; ?> a <?php echo $diaIngreso; ?> <?php echo $mesIngreso; ?>
-                <?php echo $anioIngreso; ?>.
+            <p class="centrado"><?php echo $ciudad; ?> a <?php echo $diaIngreso; ?> de <?php echo $mesIngreso; ?>
+                de <?php echo $anioIngreso; ?>.
             </p>
             <p class="terminos"><?php echo $nombreCompleto; ?>, <small>(el "Titular") con domicilio en</small>
                 <?php echo $domicilio; ?>,</p>
@@ -742,7 +782,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                     </tr>
                     <tr>
                         <th>EDAD:</th>
-                        <td></td>
+                        <td><?php echo $edad; ?></td>
                         <th></th>
                         <td></td>
                     </tr>
@@ -756,7 +796,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                         <th>En caso de accidente, favor de avisar a:</th>
                         <td colspan="3">
                             Nombre:<?php echo $nombreEmergencia ?> <br>
-                            Parentezco:<?php echo $parentezcoEmergencia ?>
+                            Parentezco:<?php echo $parentezcoEmergencia ?> ¿Le puede donar sangre? SI__ NO__
                             Teléfono:<?php echo $telefonoEmergencia ?> <br>
                             Dirección:<?php echo $domicilio ?>
 
@@ -1035,7 +1075,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                     de acuerdo a lo establecido en el artículo 47 de la Ley Federal del Trabajo y en el reglamento
                     interno de trabajo.</h5>
                 <div class="">
-                    <h5>Firma del aspirante: ____________ Huella: ______ Ciudad y Fecha</h5>
+                    <h5>Firma del aspirante: ___________________________ Huella: _____________________ Ciudad y Fecha</h5>
                 </div>
             </div>
         </div>

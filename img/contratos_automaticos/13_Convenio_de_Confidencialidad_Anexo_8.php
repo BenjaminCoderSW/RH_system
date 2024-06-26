@@ -164,7 +164,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
                     <th><strong>EL CONFIDENTE</strong></th>
                 </tr>
                 <tr>
-                    <td>CARRETERA JOROBAS KM.26.5 COL LA LOMA ATITALAQUIA,HGO.</td>
+                    <td>BOULEVARD PASEO DE LOS INSURGENTES 902 INT. 7 COLONIA JARDINES DEL MORAL  LEÓN, GTO C.P 37160.</td>
                     <td> </td>
                     <td><?php echo $domicilio; ?></td>
                 </tr>
@@ -190,7 +190,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             <b><br></b><pre>           TESTIGO                          TESTIGO            </pre>
             <br><br><br>
             <pre>_____________________________    _______________________________</pre>
-            <pre>ELIZABETH BARRIENTOS RUIZ        ING.CARLOS ROMERO GUERRERO</pre>
+            <pre>LIC.ELIZABETH BARRIENTOS RUIZ        ING.CARLOS ROMERO GUERRERO</pre>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
         <div class="Hoja7">
@@ -241,7 +241,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
                 <b><br></b><pre>           TESTIGO                          TESTIGO            </pre>
                 <br><br><br>
                 <pre>_____________________________    _______________________________</pre>
-                <pre>ELIZABETH BARRIENTOS RUIZ        ING.CARLOS ROMERO GUERRERO</pre>
+                <pre>LIC.ELIZABETH BARRIENTOS RUIZ        ING.CARLOS ROMERO GUERRERO</pre>
             </div>
         </div>
     </div>

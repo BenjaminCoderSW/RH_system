@@ -31,8 +31,48 @@ $nombreEmergencia = $datosEmpleado['empleado_nombre_de_contacto_para_emergencia'
 $parentezcoEmergencia = $datosEmpleado['empleado_parentezco_con_el_contacto_de_emergencia'];
 $telefonoEmergencia = $datosEmpleado['empleado_telefono_de_contacto_para_emergencia'];
 $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
-$testigo = $datosEmpleado['empleado_quien_lo_contrato']
+$testigo = $datosEmpleado['empleado_quien_lo_contrato'];
+$domicilioEmpresa = $datosEmpleado['empleado_domicilio_empresa'];
 
+
+if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmpleado['empleado_fecha_de_nacimiento'])) {
+    $fechaNacimientoStr = $datosEmpleado['empleado_fecha_de_nacimiento'];
+    $meses = [
+        'Enero' => '01',
+        'Febrero' => '02',
+        'Marzo' => '03',
+        'Abril' => '04',
+        'Mayo' => '05',
+        'Junio' => '06',
+        'Julio' => '07',
+        'Agosto' => '08',
+        'Septiembre' => '09',
+        'Octubre' => '10',
+        'Noviembre' => '11',
+        'Diciembre' => '12'
+    ];
+
+    // Extraer día, mes y año
+    if (preg_match('/(\d{1,2}) de (\w+) de (\d{4})/', $fechaNacimientoStr, $matches)) {
+        $dia = $matches[1];
+        $mes = $meses[$matches[2]];
+        $anio = $matches[3];
+        $fechaNacimiento = "$anio-$mes-$dia";
+        
+        try {
+            $fechaNacimientoObj = new DateTime($fechaNacimiento);
+            $hoy = new DateTime();
+            $edad = $hoy->diff($fechaNacimientoObj)->y;
+            echo $edad;
+        } catch (Exception $e) {
+            echo 'Error al crear el objeto DateTime: ',  $e->getMessage();
+        }
+    } else {
+        echo 'Formato de fecha de nacimiento no válido.';
+    }
+} else {
+    echo 'Fecha de nacimiento no disponible o no válida.';
+}
 
 ?>
 
@@ -247,7 +287,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
         <h3 class="titulo-centrado">CLAUSULAS:</h3>
 
 
-        <p><strong>SEGUNDA.-</strong> "EL TRABAJADOR ( A )" prestará sus servicios a "LA EMPRESA" en el domicilio ubicado en SALAMANCASALAMANCA TIERRA BLANCA 400 COL BELLAVISTA C.P. 36730/o cualquiera de sus oficinas o sucursales ubicadas en el interior de la República Mexicana, por lo que previo su consentimiento podrá "LA EMPRESA" realizar los cambios necesarios al respecto, de acuerdo con sus necesidades, sin menoscabo de la categoría o salario asignados a "EL TRABAJADOR ( A )". Cuando por la naturaleza del trabajo "EL TRABAJADOR ( A )" tuviera que desempeñarlo fuera de las Instalaciones de "LA EMPRESA" deberá rendir un informe detallado de las labores y actividades desempeñadas en el local o empresa que se le asigne por parte de "LA EMPRESA", según las necesidades de ésta última.
+        <p><strong>SEGUNDA.-</strong> "EL TRABAJADOR ( A )" prestará sus servicios a "LA EMPRESA" en el domicilio ubicado en <?php echo $domicilioEmpresa; ?>/o cualquiera de sus oficinas o sucursales ubicadas en el interior de la República Mexicana, por lo que previo su consentimiento podrá "LA EMPRESA" realizar los cambios necesarios al respecto, de acuerdo con sus necesidades, sin menoscabo de la categoría o salario asignados a "EL TRABAJADOR ( A )". Cuando por la naturaleza del trabajo "EL TRABAJADOR ( A )" tuviera que desempeñarlo fuera de las Instalaciones de "LA EMPRESA" deberá rendir un informe detallado de las labores y actividades desempeñadas en el local o empresa que se le asigne por parte de "LA EMPRESA", según las necesidades de ésta última.
             El presente contrato lo celebran las partes, conforme a lo estipulado en el artículo 39 A de la Ley Federal del Trabajo, el Trabajador se obliga a sus servicios personales, subordinado jurídicamente al Patrón, consistentes en: <?php echo $puesto ?> cuya descripción del puesto y/o funciones del mismo se adjuntan al presente contrato y son del conocimiento del Trabajador, con el único fin de verificar que éste cumple con los requisitos y conocimientos necesarios para desarrollar el trabajo que se le solicita. Durante este periodo de tiempo, el Trabajador disfrutará del salario, la garantía de seguridad social y de las prestaciones de la categoría o puesto que desempeñe. Al término del periodo de no acreditar el Trabajador que satisface los requisitos y conocimientos necesarios para desarrollar las labores, a juicio del Patrón, tomando en cuenta la opinión de la Comisión Mixta de Capacitación, Adiestramiento y Productividad en términos de la Ley Federal del Trabajo, así como la naturaleza de la categoría o puesto, se dará por terminada la relación de trabajo, sin responsabilidad para la Patrón
         </p>
         
@@ -317,7 +357,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
 
         <p><strong>VIGESIMA SEGUNDA.-</strong> Las partes acuerdan sujetarse, en los casos no previstos en este contrato, a las disposiciones establecidas en la Ley Federal del Trabajo vigente y en el REGLAMENTO INTERIOR DE TRABAJO de "LA EMPRESA" y, en caso de conflicto, a los criterios y jurisdicción de la Junta de Conciliación y Arbitraje de la ciudad de León, Guanajuato.</p>
 
-        <p>Las partes, conscientes del contenido, obligaciones, alcance y fuerza legal del presente contrato por tiempo determinado, lo firman y ratifican por duplicado ante testigos, en la ciudad de SALAMANCA, a los días <?php echo $diaIngreso; ?> del mes de <?php echo $mesIngreso; ?> de <?php echo $anioIngreso; ?></p>
+        <p>Las partes, conscientes del contenido, obligaciones, alcance y fuerza legal del presente contrato por tiempo determinado, lo firman y ratifican por duplicado ante testigos, en la ciudad de <?php echo $ciudad; ?>, a los días <?php echo $diaIngreso; ?> del mes de <?php echo $mesIngreso; ?> de <?php echo $anioIngreso; ?></p>
 
         <table class="signature-table">
             <tr>
@@ -328,13 +368,13 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                         <p>________________________</p>
                         <p><strong>Ing.  Dolores Cu Guerrero</strong></p>
                         <p><strong>Apoderado Legal de</p></strong>
-                        <p><strong>Constructora ATZCO, S.A. de C.V.</strong></p>
+                        <p><strong>GRUPO ATZCO, S.A. de C.V.</strong></p>
                         <br><br>
                         <p><strong>TESTIGO</strong></p>
                         <br>
                         <p>________________________</p>
                         <strong>
-                            <p>Ing. Rocio Ríos Pelcastre</p>
+                            <p>LIC. ANA DANIELA SANCHEZ SERRANO</p>
                         </strong>
                     </div>
                 </td>
@@ -414,7 +454,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
 
         <div class="content">
         <p>Asimismo, quiero manifestar expresamente que durante todo el tiempo que labore para la sociedad mercantil denominada <strong>"GRUPO ATZCO", S.A. DE C.V.”</strong>, quien reconozco como mi único patrón, me fueron cubiertos a mi entera y total satisfacción todos y cada uno de los conceptos mencionados anteriormente, por lo que a través del presente finiquito extiendo el más amplio recibo que en derecho proceda, manifestando además que no me reservo acción legal o derecho algunos que hacer valer en contra de cualquier persona ya sea física o moral, así como de cualquier persona que legalmente le represente o trabaje para dicha empresa.</p>
-        <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de SALAMANCA, estado de GUANAJUATO,</p>
+        <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de <?php echo $ciudad; ?>,</p>
         <br><br><br>
         <p class="centrado"><strong><?php echo $nombreCompleto; ?></strong></p>
     </div>
@@ -432,7 +472,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
        
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div class="red-box">AVISO DE PRIVACIDAD Y/O COLABORADORES</div>
-        <p class="centrado"><?php echo $ciudad; ?> a <?php echo $diaIngreso; ?> <?php echo $mesIngreso; ?> <?php echo $anioIngreso; ?>.</p>
+        <p class="centrado"><?php echo $ciudad; ?> a <?php echo $diaIngreso; ?> de <?php echo $mesIngreso; ?> de <?php echo $anioIngreso; ?>.</p>
         <p class="terminos"><?php echo $nombreCompleto;?>, <small>(el "Titular") con domicilio en</small> <?php echo $domicilio; ?></p>
 <p class="content-terms3">AVISO DE PRIVACIDAD relacionado con los datos personales de los Prospectos y/o Colaboradores, (en adelante el “Titular”), recabados por GRUPO ATZCO, S.A. DE C.V., sus filiales y subsidiarias (en adelante denominada como “ATZCO”).</p>
 <div class="content-terms">
@@ -522,6 +562,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
         <li>10.2.1.- IMSS, INFONAVIT y SAT, a efecto de dar cumplimiento a la legislación laboral, de seguridad social, así como el pago de impuestos.</li>
         <li>10.2.2.- Instituciones bancarias, a efecto de realizar el cobro de los productos y/o servicios comercializados por ATZCO así como el pago de los productos y/o servicios adquiridos por ATZCO.</li>
     </ul>
+    <br>
     <p><strong>11.- Modificaciones</strong></p>
     <p>11.1.- Las partes acuerdan que el Aviso de Privacidad, puede ser modificado en el tiempo y forma que ATZCO lo determine, atendiendo al estudio y las regulaciones que en materia de protección de datos personales surjan, por lo que se obliga a mantener actualizado el presente aviso a efecto de que, en su caso, EL TITULAR se encuentre en posibilidad de ejercer sus derechos ARCO.</p>
     <p><strong>12.- Autoridad garante</strong></p>
@@ -544,7 +585,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div class="red-box">CARTA DE CONSENTIMIENTO</div>
         <p>Por medio de la presente el que suscribe C. <?php echo $nombreCompleto; ?> le externo mi consentimiento y aceptación de manera libre y espontánea, para que se me entreviste y se realice el llenado de mi declaración de estado de salud para cuestiones informativas.</p>
-        <p>Por lo expuesto, no tengo inconveniente alguno en que la Empresa <strong>GRUPO Atzco S.A de C.V</strong> me pida que realice el llenado de mi declaratoria de estado de salud, agradeciendo de antemano la atención y facilidades que le puedan brindar para agilizar los trámites que le interesen.</p>
+        <p>Por lo expuesto, no tengo inconveniente alguno en que la Empresa <strong>GRUPO ATZCO S.A de C.V</strong> me pida que realice el llenado de mi declaratoria de estado de salud, agradeciendo de antemano la atención y facilidades que le puedan brindar para agilizar los trámites que le interesen.</p>
         <p class="centrado">Finalmente</p>
         <p class="centrado">EN <?php echo $ciudad; ?>, a <?php echo $diaIngreso; ?> de <?php echo $mesIngreso; ?> de <?php echo $anioIngreso; ?>.</p>
         <div class="signature-block">
@@ -565,7 +606,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                 </tr>
                 <tr>
                     <th>EDAD:</th>
-                    <td></td>
+                    <td><?php echo $edad; ?></td>
                     <th></th>
                     <td></td>
                 </tr>
@@ -579,7 +620,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                     <th>En caso de accidente, favor de avisar a:</th>
                     <td colspan="3">
                         Nombre:<?php echo $nombreEmergencia ?> <br>
-                        Parentezco:<?php echo $parentezcoEmergencia?>
+                        Parentezco:<?php echo $parentezcoEmergencia?> ¿Le puede donar sangre? SI__ NO__
                         Teléfono:<?php echo $telefonoEmergencia ?> <br>
                         Dirección:<?php echo $domicilio ?>
 
@@ -852,7 +893,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
             </table>
             <h5>Declaro bajo protesta de decir verdad que las contestaciones que anteceden son ciertas y verídicas, y que la detección de algún padecimiento no declarado podrá ser considerado como intento de engaño o abuso de confianza, pudiendo ser causal de recisión de contrato sin responsabilidad para la empresa de acuerdo a lo establecido en el artículo 47 de la Ley Federal del Trabajo y en el reglamento interno de trabajo.</h5>
             <div class="">
-                <h5>Firma del aspirante: ____________ Huella: ______ Ciudad y Fecha</h5> 
+                <h5>Firma del aspirante: ___________________________ Huella: _____________________ Ciudad y Fecha</h5> 
             </div>
         </div>
     </div>

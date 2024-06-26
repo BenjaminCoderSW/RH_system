@@ -27,9 +27,50 @@ $telefonoEmergencia = $datosEmpleado['empleado_telefono_de_contacto_para_emergen
 $tipoDeSangre = $datosEmpleado['empleado_tipo_de_sangre'];
 $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
 $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
+$empresaDireccion = $datosEmpleado['empleado_domicilio_empresa'];
 // Se ocupa tambien la ciudad y estado y ubicacion en la que va a trabajar
 
-// Aquí empieza el contenido de la plantilla
+// EN TODA ESTA PARTE CALCULAMOS LA EDAD DEL EMPLEADO
+if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmpleado['empleado_fecha_de_nacimiento'])) {
+    $fechaNacimientoStr = $datosEmpleado['empleado_fecha_de_nacimiento'];
+    $meses = [
+        'Enero' => '01',
+        'Febrero' => '02',
+        'Marzo' => '03',
+        'Abril' => '04',
+        'Mayo' => '05',
+        'Junio' => '06',
+        'Julio' => '07',
+        'Agosto' => '08',
+        'Septiembre' => '09',
+        'Octubre' => '10',
+        'Noviembre' => '11',
+        'Diciembre' => '12'
+    ];
+
+    // Extraer día, mes y año
+    if (preg_match('/(\d{1,2}) de (\w+) de (\d{4})/', $fechaNacimientoStr, $matches)) {
+        $dia = $matches[1];
+        $mes = $meses[$matches[2]];
+        $anio = $matches[3];
+        $fechaNacimiento = "$anio-$mes-$dia";
+        
+        try {
+            $fechaNacimientoObj = new DateTime($fechaNacimiento);
+            $hoy = new DateTime();
+            $edad = $hoy->diff($fechaNacimientoObj)->y;
+            echo $edad;
+        } catch (Exception $e) {
+            echo 'Error al crear el objeto DateTime: ',  $e->getMessage();
+        }
+    } else {
+        echo 'Formato de fecha de nacimiento no válido.';
+    }
+} else {
+    echo 'Fecha de nacimiento no disponible o no válida.';
+}
+
+// Aquí empieza el contenido de la plantilla del CONTRATO
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -166,7 +207,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
             <p><strong>PRIMERA.- </strong>"EL TRABAJADOR (A)" se obliga a prestar a "LA EMPRESA" sus servicios por <u>CONTRATO DETERMINADO</u> a partir del día <?php echo $diaDeIngreso . " de " . $mesDeIngreso . " de " . $anioDeIngreso; ?> AL <?php echo $fechaDeTerminoDeContrato; ?>, para desempeñar el cargo  de: <?php echo $cargo; ?> que ejecutará en el domicilio ubicado en MONTES URALES NO. 107 de la ciudad de GUANAJUATO la cual una vez concluido el periodo de tiempo establecido en el presente contrato terminará la vigencia del mismo. "EL TRABAJADOR ( A )" prestará dichos servicios de forma subordinada bajo la dirección de los </p>
             <p class="pieDePagina" >1</p>
             <p>funcionarios designados al efecto, aceptando ejecutar al mismo tiempo aquellas labores similares y conexas, así como las que se deriven de los usos y prácticas, además de las señaladas en las disposiciones relativas en los procedimientos de trabajo, y administración del personal que "LA EMPRESA" tiene establecidos en relación a las actividades contratadas.</p>
-            <p><strong>SEGUNDA.- </strong>"EL TRABAJADOR ( A )" prestará sus servicios a "LA EMPRESA" en el domicilio ubicado en MONTES URALES NO. 107  y/o cualquiera de sus oficinas o sucursales ubicadas en el interior de la República Mexicana, por lo que previo su consentimiento podrá "LA EMPRESA" realizar los cambios necesarios al respecto, de acuerdo con sus necesidades, sin menoscabo de la categoría o salario asignados a "EL TRABAJADOR ( A )". Cuando por la naturaleza del trabajo "EL TRABAJADOR ( A )" tuviera que desempeñarlo fuera de las Instalaciones de "LA EMPRESA" deberá rendir un informe detallado de las labores y actividades desempeñadas en el local o empresa que se le asigne por parte de "LA EMPRESA", según las necesidades de ésta última.</p>
+            <p><strong>SEGUNDA.- </strong>"EL TRABAJADOR ( A )" prestará sus servicios a "LA EMPRESA" en el domicilio ubicado en <?php echo $empresaDireccion; ?>  y/o cualquiera de sus oficinas o sucursales ubicadas en el interior de la República Mexicana, por lo que previo su consentimiento podrá "LA EMPRESA" realizar los cambios necesarios al respecto, de acuerdo con sus necesidades, sin menoscabo de la categoría o salario asignados a "EL TRABAJADOR ( A )". Cuando por la naturaleza del trabajo "EL TRABAJADOR ( A )" tuviera que desempeñarlo fuera de las Instalaciones de "LA EMPRESA" deberá rendir un informe detallado de las labores y actividades desempeñadas en el local o empresa que se le asigne por parte de "LA EMPRESA", según las necesidades de ésta última.</p>
             <p><strong>TERCERA.- </strong>"EL TRABAJADOR ( A )" conviene con "LA EMPRESA", en prestar sus servicios dentro de las jornadas máximas previstas en la Ley Federal del Trabajo. Como consecuencia de lo anterior "EL TRABAJADOR ( A )" se obliga a prestar sus servicios indistintamente dentro de dichas jornadas, que podrán ser distribuidas semanalmente de acuerdo con las necesidades de "LA EMPRESA" sin exceder los límites legales establecidos en los artículos 59, 60 y 61 de la Ley Federal de Trabajo vigente. Los tiempos de descanso durante la jornada de trabajo "EL TRABAJADOR ( A )" podrá disfrutarlos fuera de la fuente de trabajo, de conformidad con lo establecido en el artículo 63 de la ley de la materia.</p>
             <p>Asimismo, el trabajador ( a ) conviene con "LA EMPRESA" que ésta podrá realizar, de manera temporal, la reducción del número de horas de la jornada de trabajo asignada a "EL TRABAJADOR ( A )", así como el ajuste correspondiente al salario a éste asignado dependiendo de las horas a laborar por el mismo, de acuerdo con las necesidades de "LA EMPRESA", considerando las exigencias del mercado de la industria al que "LA EMPRESA" provee de servicios y productos. No obstante estas reducciones de carácter temporal, sea su duración cual fuere, no sentarán precedente ni obligación para "LA EMPRESA", y una vez que resuelta sea la problemática que orillo a "LA EMPRESA" a la reducción de la jornada de trabajo y ajuste realizado al salario de "EL TRABAJADOR ( A )", "LA EMPRESA" restablecerá tanto la jornada de trabajo como el salario asignado a "EL TRABAJADOR ( A )" en las mismas condiciones previas a la reducción temporal referida.</p>
             <p><strong>CUARTA.- </strong>Las partes convienen que la retribución que se pagará a "EL TRABAJADOR ( A )" por sus servicios será una cuota diaria de $ <strong><?php echo $salario; ?>, <?php echo $salarioConLetra; ?></strong> o la cantidad que de acuerdo con el tabulador de salarios vigente se tenga convenida. Asimismo, que el salario le será pagado los días sábado de cada semana, el cual incluye la parte proporcional del Séptimo día. Las PARTES convienen que, en razón del Sistema Computarizado de pago establecido en "LA EMPRESA" cualquier cantidad entregada a "EL TRABAJADOR ( A )" en efectivo, cheque, depósito bancario o transferencia electrónica por concepto de sueldos o pago de prestaciones, en fecha posterior a la terminación de la relación de trabajo y, en su caso, cualquier cantidad entregada en exceso deberá ser reembolsada a "LA EMPRESA" de forma inmediata.</p>
@@ -214,7 +255,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                 <b><br></b><pre>               TESTIGO                                 TESTIGO            </pre>
                 <br><br><br>
                 <pre>___________________________________       ______________________________________</pre>
-                <pre>LIC.FABIOLA ESQUIVEL MEZA                 ING.ROCIO RIOS PELCASTRE</pre>
+                <pre>LIC.FABIOLA ESQUIVEL MEZA                 ING.SANCHEZ SERRANO ANA DANIELA</pre>
                     <br><br>
             </div>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><p class="pieDePagina" >6</p><br><br><br><br>
@@ -250,7 +291,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                 <pre>TOTAL A RECIBIR:                                        $</pre>
             </div>
             <p>Asimismo, quiero manifestar expresamente que durante todo el tiempo que labore para  la sociedad mercantil denominada <strong>“CONSTRUCTORA ATZCO”, S.A. DE C.V.</strong>, quien reconozco como mi único patrón, me fueron cubiertos a mi entera y total satisfacción todos y cada uno de los conceptos mencionados anteriormente, por lo que a través del presente finiquito extiendo el más amplio recibo que en derecho proceda, manifestando además que no me reservo acción legal o derecho algunos que hacer valer en contra de cualquier persona ya sea física o moral, así como de cualquier persona que legalmente le represente o trabaje para dicha empresa.</p>
-            <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de SALAMANCA,GTO, estado de GUANAJUATO. </p>
+            <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de <?php echo $lugarDeServicio; ?> </p>
             <br><p><strong><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></strong></p>
             <br><br><br><b<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <p class="letraBlanca">.</p>
@@ -303,7 +344,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                     <th><strong>EL CONFIDENTE</strong></th>
                 </tr>
                 <tr>
-                    <td>SU DOMICILIO SE ENCUENTRA EN BOULEVARD PASEO DE LOS INSURGENTES 902 INT. 7 COLONIA JARDINES DEL MORAL  LEÓN, GTO C.P 37160.</td>
+                    <td>BOULEVARD PASEO DE LOS INSURGENTES 902 INT. 7 COLONIA JARDINES DEL MORAL  LEÓN, GTO C.P 37160.</td>
                     <td> </td>
                     <td><?php echo $domicilio; ?></td>
                 </tr>
@@ -327,7 +368,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                 <b><br></b><pre>               TESTIGO                                 TESTIGO            </pre>
                 <br><br><br>
                 <pre>___________________________________       ______________________________________</pre>
-                <pre>LIC.FABIOLA ESQUIVEL MEZA                 ING.ROCIO RIOS PELCASTRE</pre>
+                <pre>LIC.FABIOLA ESQUIVEL MEZA                 ING.SANCHEZ SERRANO ANA DANIELA</pre>
                     <br><br>
             </div>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -357,12 +398,12 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                 <br><br><br>
                 <pre>___________________________________       ______________________________________</pre>
                 <pre>CONSTRUCTURA ATZCO,S.A DE C.V.            <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
-                <pre>ISRAEL RODRÍGUEZ ESCAMILLA</pre>
+                <pre>ING.ISRAEL RODRÍGUEZ ESCAMILLA</pre>
 
                 <b><br></b><pre>               TESTIGO                                 TESTIGO            </pre>
                 <br><br><br>
                 <pre>___________________________________       ______________________________________</pre>
-                <pre>LIC.ELIZABETH BARRIENTOS RUIZ             ING.ROCIO RIOS PELCASTRE</pre>
+                <pre>LIC.ELIZABETH BARRIENTOS RUIZ             ING.SANCHEZ SERRANO ANA DANIELA</pre>
                     <br><br>
             </div>
             <br><br><br><br><br><br><br><br><br><br>
@@ -393,7 +434,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                             <td> <?php echo $sexo ?> </td>
                         </tr>
                         <tr>
-                            <th>EDAD:</th>
+                            <th>EDAD: <?php echo $edad; ?></th>
                             <td></td>
                             <th></th>
                             <td></td>
@@ -410,7 +451,8 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                                 Nombre:<?php echo $nombreEmergencia ?> <br>
                                 Parentezco:<?php echo $parentezcoEmergencia?>
                                 Teléfono:<?php echo $telefonoEmergencia ?> <br>
-                                Dirección:<?php echo $domicilio ?>
+                                Dirección:<?php echo $domicilio ?><br>
+                                ¿Le puede donar sangre? Si_______ No_______
 
                             </td>
                         </tr>
@@ -418,7 +460,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                 </div>
                 <div class="red-box">ESTADO DE SALUD</div>
                 <div class="content">
-                    <p>Marcar con una "X" si su respuesta es afirmativa o negativa</p>
+                    <p>Marcar con una "X" si su respuesta es afirmativa o negativa <br>Ha parecido, padece o es tratado actualmente de alguna enfermedad o incapacidad relacionada con lo siguiente:</p>
                     <table class="table">
                         <thead>
                             <tr>
@@ -725,7 +767,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                 <p>NÚMERO DE CRÉDITO:</p>
                 <p>FECHA DEL OTORGAMIENTO:</p>
                 <p>FACTOR DE CUOTA FIJA:</p>
-                <div class="centrado negritas"><br>
+                <div class="centrado negritas">
                     <p><strong><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></strong></p>
                     <p>NOMBRE COMPLETO</p>
                     <br><br><br><br>
@@ -739,25 +781,25 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                 <p class="white">.</p>
                 <br><br><br><br><br><br>
                 <p class="centrado"><strong><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></strong></p>
-                <br><br><br><br><br>
+                <br><br><br><br><br><br><br>
                 <p class="centrado">CÓDIGO DE ÉTICA</p>
                 <p class="centrado anexo10">ÍNDICE</p>
                 <p>ÍNDICE <br>
-                    I.	Antecedentes............................................................................................................................................22<br>
-                    II.	Objetivos..................................................................................................................................................22<br>
+                    I.	Antecedentes............................................................................................................................................23<br>
+                    II.	Objetivos..................................................................................................................................................23<br>
                     III.	Alcance...................................................................................................................................................23<br>
-                    IV.	Valores...................................................................................................................................................23<br>
-                    V.	Normas de ética generales.....................................................................................................................23<br>
-                    a)	En relación con clientes y proveedores..................................................................................................23<br>
-                    b)	Competencia...........................................................................................................................................24<br>
-                    c)	En relación con los colaboradores..........................................................................................................24<br>
-                    d)	En relación con la Sociedad...................................................................................................................24<br>
-                    e)	Protección de activos..............................................................................................................................25<br>
-                    f)	Privacidad................................................................................................................................................25<br>
-                    g)	Conflicto de interés.................................................................................................................................25<br>
-                    h)	Integridad y corrupción...........................................................................................................................25<br>
-                    i)	Relaciones personales y familiares.........................................................................................................26<br>
-                    j)	Faltas al código de ética...........................................................................................................................26<br>
+                    IV.	Valores...................................................................................................................................................24<br>
+                    V.	Normas de ética generales.....................................................................................................................24<br>
+                    a)	En relación con clientes y proveedores..................................................................................................24<br>
+                    b)	Competencia...........................................................................................................................................25<br>
+                    c)	En relación con los colaboradores..........................................................................................................25<br>
+                    d)	En relación con la Sociedad...................................................................................................................25<br>
+                    e)	Protección de activos..............................................................................................................................26<br>
+                    f)	Privacidad................................................................................................................................................26<br>
+                    g)	Conflicto de interés.................................................................................................................................26<br>
+                    h)	Integridad y corrupción...........................................................................................................................27<br>
+                    i)	Relaciones personales y familiares.........................................................................................................27<br>
+                    j)	Faltas al código de ética...........................................................................................................................27<br>
                 </p>
                 <p><strong>I. Antecedentes</strong></p>
                 <p>a)	El apego a principios éticos habla de un sentido de respeto, honestidad e integridad, valores imprescindibles para el desempeño armonioso del trabajo.</p>
@@ -819,6 +861,7 @@ $lugarDeServicio = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
                     Procurar la integración laboral con los colaboradores con discapacidad o minusvalía, eliminando todo tipo de barreras de la empresa para su inserción.<br>
                     Facilitar la participación de los colaboradores en los programas de integración y acción social de ATZCO.
                 </p>
+                <br>
                 <p><strong>d)	En relación con la Sociedad </strong></p>
                 <p>Respetar el derecho humano y las instituciones democráticas y promoverlos donde sea posible.<br><br>
                     Mantener el principio de neutralidad política, no interfiriendo políticamente en las comunidades donde desarrolla sus actividades, como muestra además de respeto a las diferentes opiniones y sensibilidades de las personas vinculadas con ATZCO.<br>

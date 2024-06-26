@@ -29,8 +29,47 @@ $nombreEmergencia = $datosEmpleado['empleado_nombre_de_contacto_para_emergencia'
 $parentezcoEmergencia = $datosEmpleado['empleado_parentezco_con_el_contacto_de_emergencia'];
 $telefonoEmergencia = $datosEmpleado['empleado_telefono_de_contacto_para_emergencia'];
 $creditoInfonavit = $datosEmpleado['empleado_credito_infonavit'];
-$testigo = $datosEmpleado['empleado_quien_lo_contrato']
+$testigo = $datosEmpleado['empleado_quien_lo_contrato'];
 
+
+if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmpleado['empleado_fecha_de_nacimiento'])) {
+    $fechaNacimientoStr = $datosEmpleado['empleado_fecha_de_nacimiento'];
+    $meses = [
+        'Enero' => '01',
+        'Febrero' => '02',
+        'Marzo' => '03',
+        'Abril' => '04',
+        'Mayo' => '05',
+        'Junio' => '06',
+        'Julio' => '07',
+        'Agosto' => '08',
+        'Septiembre' => '09',
+        'Octubre' => '10',
+        'Noviembre' => '11',
+        'Diciembre' => '12'
+    ];
+
+    // Extraer día, mes y año
+    if (preg_match('/(\d{1,2}) de (\w+) de (\d{4})/', $fechaNacimientoStr, $matches)) {
+        $dia = $matches[1];
+        $mes = $meses[$matches[2]];
+        $anio = $matches[3];
+        $fechaNacimiento = "$anio-$mes-$dia";
+        
+        try {
+            $fechaNacimientoObj = new DateTime($fechaNacimiento);
+            $hoy = new DateTime();
+            $edad = $hoy->diff($fechaNacimientoObj)->y;
+            echo $edad;
+        } catch (Exception $e) {
+            echo 'Error al crear el objeto DateTime: ',  $e->getMessage();
+        }
+    } else {
+        echo 'Formato de fecha de nacimiento no válido.';
+    }
+} else {
+    echo 'Fecha de nacimiento no disponible o no válida.';
+}
 ?>
 
 <!DOCTYPE html>
@@ -411,7 +450,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
 
         <div class="content">
         <p>Asimismo, quiero manifestar expresamente que durante todo el tiempo que labore para la sociedad mercantil denominada <strong>"CONSTRUCTORA ATZCO", S.A. DE C.V.”</strong>, quien reconozco como mi único patrón, me fueron cubiertos a mi entera y total satisfacción todos y cada uno de los conceptos mencionados anteriormente, por lo que a través del presente finiquito extiendo el más amplio recibo que en derecho proceda, manifestando además que no me reservo acción legal o derecho algunos que hacer valer en contra de cualquier persona ya sea física o moral, así como de cualquier persona que legalmente le represente o trabaje para dicha empresa.</p>
-        <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de SALAMANCA, estado de GUANAJUATO,</p>
+        <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de <?php echo $ciudad; ?>,</p>
         <br><br><br>
         <p class="centrado"><strong><?php echo $nombreCompleto; ?></strong></p>
     </div>
@@ -472,7 +511,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                     <th><strong>EL CONFIDENTE</strong></th>
                 </tr>
                 <tr>
-                    <td>SU DOMICILIO SE ENCUENTRA EN BOULEVARD PASEO DE LOS INSURGENTES 902 INT. 7 COLONIA JARDINES DEL MORAL  LEÓN, GTO C.P 37160.</td>
+                    <td>BOULEVARD PASEO DE LOS INSURGENTES 902 INT. 7 COLONIA JARDINES DEL MORAL  LEÓN, GTO C.P 37160.</td>
                     <td> </td>
                     <td><?php echo $domicilio; ?></td>
                 </tr>
@@ -527,7 +566,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                         <p>TESTIGO</p>
                         <p>________________________</p>
                         <strong>
-                            <p class="signature-name">LIC. <?php echo $testigo; ?></p><strong>
+                            <p class="signature-name">MARISOL SANTOS RAMOS</p><strong>
                     </div>
                 </td>
             </tr>
@@ -558,7 +597,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
 
             <p>Se considera Información Confidencial, relevante y delicada para LA EMPRESA y/o para los clientes de la misma (según se define en el cuerpo principal del Convenio), todo lo relacionado directa o indirectamente con los rubros antes mencionados, entre otros las claves de acceso (passwords), saldos, disponibilidades, características, manejos históricos o de cualquier clase, etc.</p>
 
-            <p>SALAMANCA, GUANAJUATO a <?php echo $diaIngreso ?> <?php echo $mesIngreso ?> <?php echo $anioIngreso ?> </p>
+            <p><?php echo $ciudad; ?> a <?php echo $diaIngreso ?> <?php echo $mesIngreso ?> de <?php echo $anioIngreso ?> </p>
 
             <table class="signature-table">
                 <tr>
@@ -593,7 +632,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                         <div class="signature-block">
                             <p>TESTIGO</p>
                             <p>________________________</p>
-                            <p><strong>LIC. <?php echo $testigo; ?></strong></p>
+                            <p><strong>MARISOL SANTOS RAMOS</strong></p>
                         </div>
                     </td>
                 </tr>
@@ -735,7 +774,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                 </tr>
                 <tr>
                     <th>EDAD:</th>
-                    <td></td>
+                    <td> <?php echo $edad; ?></td>
                     <th></th>
                     <td></td>
                 </tr>
@@ -749,7 +788,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
                     <th>En caso de accidente, favor de avisar a:</th>
                     <td colspan="3">
                         Nombre:<?php echo $nombreEmergencia ?> <br>
-                        Parentezco:<?php echo $parentezcoEmergencia?>
+                        Parentezco:<?php echo $parentezcoEmergencia?> ¿Le puede donar sangre? SI__ NO__
                         Teléfono:<?php echo $telefonoEmergencia ?> <br>
                         Dirección:<?php echo $domicilio ?>
 
@@ -1022,7 +1061,7 @@ $testigo = $datosEmpleado['empleado_quien_lo_contrato']
             </table>
             <h5>Declaro bajo protesta de decir verdad que las contestaciones que anteceden son ciertas y verídicas, y que la detección de algún padecimiento no declarado podrá ser considerado como intento de engaño o abuso de confianza, pudiendo ser causal de recisión de contrato sin responsabilidad para la empresa de acuerdo a lo establecido en el artículo 47 de la Ley Federal del Trabajo y en el reglamento interno de trabajo.</h5>
             <div class="">
-                <h5>Firma del aspirante: ____________ Huella: ______ Ciudad y Fecha</h5> 
+                <h5>Firma del aspirante: ___________________________ Huella: _____________________ Ciudad y Fecha</h5> 
             </div>
         </div>
     </div>

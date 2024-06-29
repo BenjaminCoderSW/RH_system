@@ -32,6 +32,6 @@
         <div class="error-title">404</div>
         <img src="./img/logo.png" alt="Logotipo de la empresa" class="error-logo">
         <div class="error-message">Lo sentimos, la página que buscas no se pudo encontrar.</div>
-        <a href="index.php" class="btn btn-danger error-button">Volver al Inicio</a>
+        <a href="index.php?vista=logout" class="btn btn-danger error-button">Volver al Inicio</a>
     </div>
 </div>

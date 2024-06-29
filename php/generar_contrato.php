@@ -11,6 +11,8 @@ $tipoDeContrato = isset($_POST['empleado_tipo_de_contrato']) ? $_POST['empleado_
 $plantillasPermitidas = [
     "13_Convenio_de_Confidencialidad_Anexo_8.php",
     "CONTRATO_2021_OBRA_DETERMINADA_ATZCO_ADM-OPERATIVOS_MODF.php",
+    "CONTRATO_2021_OBRA_DETERMINADA_GRUPO_ATZCO_ADM_OPERATIVOS_MODF.php",
+    "CONTRATO_2021_OBRA_DETERMINADA_GRUPO_ATZCO_CAMPO_MODF.php",
     "CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF.php",
     "CONTRATO_TIEMPO_DETERMINADO.php",
     "GRUPO_ATZCO_CAMPO.php",

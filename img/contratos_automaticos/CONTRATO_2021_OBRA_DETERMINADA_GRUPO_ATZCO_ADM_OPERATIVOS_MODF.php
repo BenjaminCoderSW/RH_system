@@ -17,7 +17,7 @@ $sexo = $datosEmpleado['empleado_sexo'];
 $puesto = $datosEmpleado['empleado_puesto_de_trabajo'];
 $curp = $datosEmpleado['empleado_curp'];
 $nss = $datosEmpleado['empleado_nss'];
-$nombreEmpresa = 'CONSTRUCTORA ATZCO, S.A. DE C.V.';
+$nombreEmpresa = 'GRUPO ATZCO, S.A. DE C.V.';
 $representanteLegal = 'Israel Rodríguez Escamilla';
 $ciudad = $datosEmpleado['empleado_lugar_de_servicio_o_de_proyecto'];
 $fechaActual = date('d/m/Y');
@@ -364,7 +364,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
                         <p>________________________</p>
                         <p><strong>Ing. José Dolores Cu Guerrero</strong></p>
                         <p><strong>Apoderado Legal de</p></strong>
-                        <p><strong>Constructora ATZCO, S.A. de C.V.</strong></p>
+                        <p><strong>GRUPO ATZCO, S.A. de C.V.</strong></p>
                         <br><br>
                         <p><strong>TESTIGO</strong></p>
                         <br>
@@ -419,18 +419,18 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
 
 
     <div class="content">
-        <p><strong>CONSTRUCTORA ATZCO", S.A. DE C.V.</strong></p>
+        <p><strong><?php echo $nombreEmpresa; ?></strong></p>
         <p>PRESENTE,</p>
-        <p>POR MEDIO DEL PRESENTE ESCRITO, Y POR ASÍ CONVENIR A MIS INTERESES PERSONALES, DESDE ESTE MOMENTO LES INFORMO QUE RENUNCIO DE MANERA VOLUNTARIA A LA RELACIÓN DE TRABAJO QUE ME UNIA CON LA EMPRESA DENOMINADA <strong>"CONSTRUCTORA ATZCO", S.A. DE C.V.</strong></p>
+        <p>POR MEDIO DEL PRESENTE ESCRITO, Y POR ASÍ CONVENIR A MIS INTERESES PERSONALES, DESDE ESTE MOMENTO LES INFORMO QUE RENUNCIO DE MANERA VOLUNTARIA A LA RELACIÓN DE TRABAJO QUE ME UNIA CON LA EMPRESA DENOMINADA <strong><?php echo $nombreEmpresa; ?></strong></p>
         <p>ASIMISMO, MANIFIESTO EXPRESAMENTE QUE MIENTRAS PRESTE MIS SERVICIOS PARA LA EMPRESA, NO SUFRÍ ACCIDENTES DE TRABAJO, NI RIESGO PROFESIONAL ALGUNO. DE IGUAL FORMA, MANIFIESTO QUE RECIBÍ, A MI ENTERA SATISFACCIÓN, EL PAGO DE TODAS Y CADA UNA DE LAS PRESTACIONES LABORALES A QUE TENGO DERECHO TALES COMO VACACIONES, PRIMA VACACIONAL, AGUINALDO, PRIMA DE ANTIGÜEDAD, SALARIOS Y GRATIFICACIÓN, ASÍ COMO CUALESQUIER OTRAS PRESTACIONES A QUE PUDIERA TENER DERECHO Y ME PUDIERAN CORRESPONDER DE CONFORMIDAD CON LO ESTABLECIDO EN LA LEY FEDERAL DEL TRABAJO VIGENTE.</p>
-        <p>ASI MISMO, MANIFIESTO EXPRESAMENTE QUE SIEMPRE LABORE UNA JORNADA LABORAL MAXIMA DE 48 HORAS SEMANALES, MANIFESTANDO ASI MISMO QUE JAMAS DESEMPEÑE JORNADA EXTRAORDINARIA EN BENEFICIO DE <strong>"CONSTRUCTORA ATZCO", S.A. DE C.V.”</strong></p>
-        <p>DERIVADO DE LO ANTERIOR, MANIFIESTO QUE NO SE ME ADEUDA CANTIDAD ALGUNA POR NINGÚN CONCEPTO, POR LO QUE NO ME RESERVO ACCIÓN O DERECHO ALGUNOS QUE EJERCITAR EN CONTRA DE <strong>"CONSTRUCTORA ATZCO", S.A. DE C.V.”</strong>, ASÍ COMO EN CONTRA DE CUALQUIER OTRA PERSONA QUE PRESTE SUS SERVICIOS EN SU BENEFICIO, LA REPRESENTE LEGALMENTE, O SEA ACCIONISTA DE LA MISMA.</p>
+        <p>ASI MISMO, MANIFIESTO EXPRESAMENTE QUE SIEMPRE LABORE UNA JORNADA LABORAL MAXIMA DE 48 HORAS SEMANALES, MANIFESTANDO ASI MISMO QUE JAMAS DESEMPEÑE JORNADA EXTRAORDINARIA EN BENEFICIO DE <strong><?php echo $nombreEmpresa; ?></strong></p>
+        <p>DERIVADO DE LO ANTERIOR, MANIFIESTO QUE NO SE ME ADEUDA CANTIDAD ALGUNA POR NINGÚN CONCEPTO, POR LO QUE NO ME RESERVO ACCIÓN O DERECHO ALGUNOS QUE EJERCITAR EN CONTRA DE <strong><?php echo $nombreEmpresa; ?></strong>, ASÍ COMO EN CONTRA DE CUALQUIER OTRA PERSONA QUE PRESTE SUS SERVICIOS EN SU BENEFICIO, LA REPRESENTE LEGALMENTE, O SEA ACCIONISTA DE LA MISMA.</p>
         <p>POR LO ANTERIOR, RATIFICO EL PRESENTE ESCRITO EN TODAS Y CADA UNA DE SUS PARTES Y LO FIRMO AL CALCE, PARA TODOS LOS EFECTOS LEGALES A QUE HAYA LUGAR.</p>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <p><strong><?php echo $nombreCompleto; ?></strong></p>
 <br>
         <h3 class="titulo-centrado">RECIBO DE FINIQUITO</h3>
-        <p>RECIBÍ DEL ING. JOSE DOLORES CU GUERRERO, EN SU CARÁCTER DE REPRESENTANTE LEGAL DE <strong>"CONSTRUCTORA ATZCO", S.A. DE C.V.”</strong>, QUIEN ES MI ÚNICO PATRON, LA CANTIDAD DE $</p>
+        <p>RECIBÍ DEL ING. JOSE DOLORES CU GUERRERO, EN SU CARÁCTER DE REPRESENTANTE LEGAL DE <strong><?php echo $nombreEmpresa; ?></strong>, QUIEN ES MI ÚNICO PATRON, LA CANTIDAD DE $</p>
         <p><strong>POR LOS SIGUIENTES CONCEPTOS:</strong></p>
             <p><strong>1.</strong> Salarios Devengados: $</p>
             <p><strong>2.</strong> Aguinaldo: $</p>
@@ -449,7 +449,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
         <p><strong>TOTAL A RECIBIR: $</strong></p>
 
         <div class="content">
-        <p>Asimismo, quiero manifestar expresamente que durante todo el tiempo que labore para la sociedad mercantil denominada <strong>"CONSTRUCTORA ATZCO", S.A. DE C.V.”</strong>, quien reconozco como mi único patrón, me fueron cubiertos a mi entera y total satisfacción todos y cada uno de los conceptos mencionados anteriormente, por lo que a través del presente finiquito extiendo el más amplio recibo que en derecho proceda, manifestando además que no me reservo acción legal o derecho algunos que hacer valer en contra de cualquier persona ya sea física o moral, así como de cualquier persona que legalmente le represente o trabaje para dicha empresa.</p>
+        <p>Asimismo, quiero manifestar expresamente que durante todo el tiempo que labore para la sociedad mercantil denominada <strong>"<?php echo $nombreEmpresa; ?>"</strong>, quien reconozco como mi único patrón, me fueron cubiertos a mi entera y total satisfacción todos y cada uno de los conceptos mencionados anteriormente, por lo que a través del presente finiquito extiendo el más amplio recibo que en derecho proceda, manifestando además que no me reservo acción legal o derecho algunos que hacer valer en contra de cualquier persona ya sea física o moral, así como de cualquier persona que legalmente le represente o trabaje para dicha empresa.</p>
         <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de <?php echo $ciudad; ?>,</p>
         <br><br><br>
         <p class="centrado"><strong><?php echo $nombreCompleto; ?></strong></p>
@@ -465,7 +465,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
     <p><strong><?php echo $nombreCompleto; ?></strong></p>
         </div><br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <p>CONVENIO DE CONFIDENCIALIDAD QUE CELEBRAN POR UNA PARTE LA SOCIEDAD DENOMINADA CONSTRUCTORA ATZCO SA DE CV, REPRESENTADA EN ESTE ACTO POR ISRAEL RODRÍGUEZ ESCAMILLA A QUIÉN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONVENIO SE DENOMINARÁ “LA EMPRESA”, Y POR LA OTRA CUEVAS HERNANDEZ EDWIN RODOLFO Y A QUIÉN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONVENIO SE DENOMINARÁ “EL CONFIDENTE”, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS.</p>
+        <p>CONVENIO DE CONFIDENCIALIDAD QUE CELEBRAN POR UNA PARTE LA SOCIEDAD DENOMINADA <?php echo $nombreEmpresa; ?>, REPRESENTADA EN ESTE ACTO POR ISRAEL RODRÍGUEZ ESCAMILLA A QUIÉN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONVENIO SE DENOMINARÁ “LA EMPRESA”, Y POR LA OTRA CUEVAS HERNANDEZ EDWIN RODOLFO Y A QUIÉN EN LO SUCESIVO Y PARA EFECTOS DEL PRESENTE CONVENIO SE DENOMINARÁ “EL CONFIDENTE”, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS.</p>
 
         <h4 class="titulo-centrado">D E C L A R A C I O N E S</h4>
         <h4 class="titulo-centrado">I . LA EMPRESA, a través de su representante legal declara que:</h4>
@@ -534,7 +534,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
                         <p>LA EMPRESA</p>
                         <p>________________________</p>
                         <strong>
-                            <p class="company-name">CONSTRUCTORA ATZCO SA DE CV</p>
+                            <p class="company-name">GRUPO ATZCO SA DE CV</p>
                         </strong>
                         <strong>
                             <p>ING. ISRAEL RODRÍGUEZ ESCAMILLA</p>
@@ -576,7 +576,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
         <div class="content">
             <h3 class="titulo-centrado">ANEXO A</h3>
 
-            <p>ESTE ANEXO FORMA PARTE INTEGRANTE DEL CONVENIO DE CONFIDENCIALIDAD CELEBRADO ENTRE CONSTRUCTORA ATZCO SA DE CV, REPRESENTADA EN ESTE ACTO POR ISRAEL RODRÍGUEZ ESCAMILLA, EN LO SUCESIVO DENOMINADA LA EMPRESA, Y <?php echo $nombreCompleto ?> DE FECHA <?php echo $diaIngreso ?> <?php echo $mesIngreso ?> <?php echo $anioIngreso; ?> </p>
+            <p>ESTE ANEXO FORMA PARTE INTEGRANTE DEL CONVENIO DE CONFIDENCIALIDAD CELEBRADO ENTRE <?php echo $nombreEmpresa; ?>, REPRESENTADA EN ESTE ACTO POR ISRAEL RODRÍGUEZ ESCAMILLA, EN LO SUCESIVO DENOMINADA LA EMPRESA, Y <?php echo $nombreCompleto ?> DE FECHA <?php echo $diaIngreso ?> <?php echo $mesIngreso ?> <?php echo $anioIngreso; ?> </p>
 
             <p>A continuación se detalla de manera enunciativa y no limitativa, parte de la Información Confidencial a la que por virtud del Convenio celebrado, se obliga a guardar pleno secreto y discreción:</p>
 
@@ -605,7 +605,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
                         <div class="signature-block">
                             <p>LA EMPRESA</p>
                             <p>________________________</p>
-                            <strong><span>CONSTRUCTORA ATZCO SA DE CV</span></strong>
+                            <strong><span>GRUPO ATZCO SA DE CV</span></strong>
                             <p><strong>ING. ISRAEL RODRÍGUEZ ESCAMILLA</strong></p>
 
                         </div>
@@ -642,18 +642,18 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
         <div class="red-box">AVISO DE PRIVACIDAD Y/O COLABORADORES</div>
         <p class="centrado"><?php echo $ciudad; ?> a <?php echo $diaIngreso; ?> <?php echo $mesIngreso; ?> <?php echo $anioIngreso; ?>.</p>
         <p class="terminos"><?php echo $nombreCompleto;?>, <small>(el "Titular") con domicilio en</small> <?php echo $domicilio; ?></p>
-<p class="content-terms3">AVISO DE PRIVACIDAD relacionado con los datos personales de los Prospectos y/o Colaboradores, (en adelante el “Titular”), recabados por CONSTRUCTORA ATZCO, S.A. DE C.V., sus filiales y subsidiarias (en adelante denominada como “ATZCO”).</p>
+<p class="content-terms3">AVISO DE PRIVACIDAD relacionado con los datos personales de los Prospectos y/o Colaboradores, (en adelante el “Titular”), recabados por <?php echo $nombreEmpresa; ?>, sus filiales y subsidiarias (en adelante denominada como “GRUPO ATZCO”).</p>
 <div class="content-terms">
     <p><strong>1.-Generales</strong></p>
-    <p>1.1.- ATZCO es una persona moral comprometida y respetuosa de los derechos sobre los datos personales de las personas físicas, reconocidos en el artículo 16, párrafo II de la Constitución Política de los Estados Unidos Mexicanos, así como de las disposiciones de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y la demás normativa aplicable. Por lo anterior, pone a su disposición el presente Aviso de Privacidad, en aras de que el titular de los datos personales, se encuentre facultado a ejercitar su derecho a la autodeterminación informativa.</p>
-    <p>1.2.- Que derivado de los procesos de selección de y administración de personal que lleva a cabo ATZCO, requiere inminentemente obtener y almacenar los datos personales sensibles y no sensibles de EL TITULAR, por lo que es su deseo tratar los datos personales de éste, de conformidad con lo estipulado en el presente Aviso de Privacidad. Si EL TITULAR no acepta en forma absoluta y completa los términos y condiciones de este Aviso, deberá abstenerse de compartir cualquier tipo de información a ATZCO por cualquier medio.</p>
-    <p>1.3.- EL TITULAR, es una persona física, mayor de edad, con capacidad jurídica, que reconoce que derivado del proceso de selección de personal, al que es su deseo someterse, ATZCO directamente o a través del Encargado, requiere realizar el tratamiento de sus datos personales, sensibles y no sensibles y, por lo tanto, otorga su consentimiento expreso a ATZCO, para que éste los trate, en términos de lo estipulado en el presente Aviso de Privacidad.</p>
+    <p>1.1.- GRUPO ATZCO es una persona moral comprometida y respetuosa de los derechos sobre los datos personales de las personas físicas, reconocidos en el artículo 16, párrafo II de la Constitución Política de los Estados Unidos Mexicanos, así como de las disposiciones de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y la demás normativa aplicable. Por lo anterior, pone a su disposición el presente Aviso de Privacidad, en aras de que el titular de los datos personales, se encuentre facultado a ejercitar su derecho a la autodeterminación informativa.</p>
+    <p>1.2.- Que derivado de los procesos de selección de y administración de personal que lleva a cabo GRUPO ATZCO, requiere inminentemente obtener y almacenar los datos personales sensibles y no sensibles de EL TITULAR, por lo que es su deseo tratar los datos personales de éste, de conformidad con lo estipulado en el presente Aviso de Privacidad. Si EL TITULAR no acepta en forma absoluta y completa los términos y condiciones de este Aviso, deberá abstenerse de compartir cualquier tipo de información a GRUPO ATZCO por cualquier medio.</p>
+    <p>1.3.- EL TITULAR, es una persona física, mayor de edad, con capacidad jurídica, que reconoce que derivado del proceso de selección de personal, al que es su deseo someterse, GRUPO ATZCO directamente o a través del Encargado, requiere realizar el tratamiento de sus datos personales, sensibles y no sensibles y, por lo tanto, otorga su consentimiento expreso a GRUPO ATZCO, para que éste los trate, en términos de lo estipulado en el presente Aviso de Privacidad.</p>
     <p>Las partes declaran que, al no existir error, dolo, mala fe o cualquier otro vicio de la voluntad que pudiera nulificar la validez del presente instrumento, ambas acuerdan en sujetarse al tenor de lo estipulado en el presente documento:</p>
     <p><strong>2.- Definiciones</strong></p>
     <p><strong>2.1.- Datos personales.-</strong> Cualquier información concerniente a una persona física identificada o identificable.</p>
     <p><strong>2.2.- Datos personales sensibles.-</strong> Aquellos datos personales que afecten a la esfera más íntima de su TITULAR, o cuya utilización indebida pueda dar origen a discriminación o conlleve un riesgo grave para éste. En particular, se consideran sensibles aquellos que puedan revelar aspectos como origen racial o étnico, estado de salud presente y futuro, información genética, creencias religiosas, filosóficas y morales, afiliación sindical, opiniones políticas, preferencia sexual.</p>
     <p><strong>2.3.- Titular.-</strong> La persona física (EL TITULAR) a quien identifican o corresponden los datos personales.</p>
-    <p><strong>2.4.- Responsable.-</strong> Persona física o moral (ATZCO) de carácter privado que decide sobre el tratamiento de los datos personales.</p>
+    <p><strong>2.4.- Responsable.-</strong> Persona física o moral (GRUPO ATZCO) de carácter privado que decide sobre el tratamiento de los datos personales.</p>
     <p><strong>2.5.- Encargado.-</strong> La persona física o moral que sola o conjuntamente con otras trate datos personales por cuenta del responsable.</p>
     <p><strong>2.6.- Tratamiento.-</strong> La obtención, uso (que incluye el acceso, manejo, aprovechamiento, transferencia o disposición de datos personales), divulgación o almacenamiento de datos personales por cualquier medio.</p>
     <p><strong>2.6.1.- Transferencia.-</strong> Toda comunicación de datos realizada a persona distinta del responsable o encargado del tratamiento.</p>
@@ -661,13 +661,13 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
     <p><strong>2.7.- Tercero.-</strong> La persona física o moral, nacional o extranjera, distinta del titular o del responsable de los datos.</p>
     <p><strong>2.8.- Derechos ARCO.-</strong> Derechos de Acceso, Rectificación, Cancelación y Oposición.</p>
     <p><strong>2.9.- Consentimiento Tácito.-</strong> Se entenderá que EL TITULAR ha consentido en el tratamiento de los datos, cuando habiéndose puesto a su disposición el Aviso de Privacidad, no manifieste su oposición.</p>
-    <p><strong>2.10.- Finalidades Primarias.-</strong> Son aquellas finalidades para las cuales se solicitan principalmente los datos personales y por lo que se da origen a la relación entre ATZCO y EL TITULAR.</p>
-    <p><strong>2.11.- Finalidades Secundarias.-</strong> Son aquellas finalidades que no son imprescindibles para la relación entre ATZCO y EL TITULAR, pero que con su tratamiento contribuyen al cumplimiento del objeto social.</p>
+    <p><strong>2.10.- Finalidades Primarias.-</strong> Son aquellas finalidades para las cuales se solicitan principalmente los datos personales y por lo que se da origen a la relación entre GRUPO ATZCO y EL TITULAR.</p>
+    <p><strong>2.11.- Finalidades Secundarias.-</strong> Son aquellas finalidades que no son imprescindibles para la relación entre GRUPO ATZCO y EL TITULAR, pero que con su tratamiento contribuyen al cumplimiento del objeto social.</p>
     <p><strong>3.- Identidad y domicilio del responsable que trata los datos personales</strong></p>
-    <p>3.1.- La responsable del tratamiento de los datos personales es CONSTRUCTORA ATZCO, S.A. DE C.V., persona moral constituida de conformidad con las leyes de la República Mexicana, (en adelante denominada como ATZCO), quien se compromete a respetar lo establecido en el presente Aviso de Privacidad (en lo sucesivo el “Aviso” o el “Aviso de Privacidad” indistintamente), mismo que está puesto a su disposición en cumplimiento de lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (en lo sucesivo la “Ley” o “LFPDPPP” indistintamente) y es aplicable respecto de los datos personales de EL TITULAR.</p>
-    <p>3.2.- El domicilio que para los efectos del presente Aviso establece ATZCO es el ubicado en Boulevard Paseo de los Insurgentes No.902 Int. 7 Col. Jardines del Moral León Guanajuato. y/o su portal de internet es www.atzco.com.mx.</p>
+    <p>3.1.- La responsable del tratamiento de los datos personales es <strong><?php echo $nombreEmpresa; ?></strong>, persona moral constituida de conformidad con las leyes de la República Mexicana, (en adelante denominada como GRUPO ATZCO), quien se compromete a respetar lo establecido en el presente Aviso de Privacidad (en lo sucesivo el “Aviso” o el “Aviso de Privacidad” indistintamente), mismo que está puesto a su disposición en cumplimiento de lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (en lo sucesivo la “Ley” o “LFPDPPP” indistintamente) y es aplicable respecto de los datos personales de EL TITULAR.</p>
+    <p>3.2.- El domicilio que para los efectos del presente Aviso establece GRUPO ATZCO es el ubicado en Boulevard Paseo de los Insurgentes No.902 Int. 7 Col. Jardines del Moral León Guanajuato. y/o su portal de internet es www.atzco.com.mx.</p>
     <p><strong>4.- Datos que se recaban y su origen</strong></p>
-    <p>EL TITULAR acepta y reconoce que ATZCO obtendrá directamente, a través de recomendaciones de otros colaboradores, a través de Bolsas de Trabajo o publicaciones en redes sociales los datos personales sensibles y no sensibles de EL TITULAR, mismos que corresponden a los siguientes:</p>
+    <p>EL TITULAR acepta y reconoce que GRUPO ATZCO obtendrá directamente, a través de recomendaciones de otros colaboradores, a través de Bolsas de Trabajo o publicaciones en redes sociales los datos personales sensibles y no sensibles de EL TITULAR, mismos que corresponden a los siguientes:</p>
     <p><strong>Generales:</strong> Nombre, Dirección, Teléfono de casa y para recados, teléfono móvil, dirección de correo electrónico, estado civil, número de seguridad social, afore, Clave Única de Registro de Población, dirección y fotografías. </p>
     <p><strong>Académicos:</strong> nivel de estudios, escuela, período de estudios, manejo de idiomas y software, cursos de capacitación, pasatiempos, características de la personalidad, valores.</p>
     <p><strong>Referencias personales (de las cuales, EL TITULAR asegura contar con el consentimiento para compartir los datos personales de dichos terceros):</strong> nombre, domicilio, teléfono, ocupación, tiempo de conocerle y motivo de conocerle. </p>
@@ -676,29 +676,29 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
     <p><strong>Datos Médicos:</strong> Estado de salud actual, enfermedades, padecimientos, operaciones, accidentes, hábitos alimenticios, deportes y vicios.</p>
     <p><strong>Vida social:<strong> pasatiempos, grupos y asociaciones y religión. </p>
     <p><strong>Datos Económicos:</strong> Cuentas bancarias, gastos actuales, servicios adquiridos y créditos, nivel de ingresos y egresos, propiedades.</p>
-    <p>4.1.- EL TITULAR en este acto, otorga su consentimiento expreso en términos del artículo 9 de la ley de la materia, para que ATZCO, trate sus datos personales, incluidos los denominados sensibles, contenidos en ésta cláusula, para cumplir con las finalidades que establece el presente Aviso de Privacidad y en cumplimiento de la legislación vigente se recabará el consentimiento expreso, por escrito y con la firma autógrafa del TITULAR a través del presente.</p>
-    <p>4.2.- ATZCO manifiesta que única y exclusivamente accederá y, tratará los datos personales de EL TITULAR, a efecto de llevar a cabo la selección, contratación y administración de personal, debiendo realizar el tratamiento de los datos personales de conformidad con el presente aviso de privacidad.</p>
-    <p>4.3.- EL TITULAR en este acto, bajo protesta de decir verdad, acepta que los datos que ha proporcionado a ATZCO son veraces, actuales y correctos. Además, se compromete a sacar en paz y a salvo a ATZCO de cualquier demanda o reclamación, derivada de los errores en los datos que le haya entregado.</p>
-    <p>4.4.- ATZCO manifiesta que podrá obtener los datos personales de EL TITULAR mediante las denominadas fuentes de acceso público, a efecto de validar y actualizar los datos de EL TITULAR, respetando en todo momento la expectativa razonable de privacidad, a que se refiere el artículo 7 de la LFPDPPP.</p>
+    <p>4.1.- EL TITULAR en este acto, otorga su consentimiento expreso en términos del artículo 9 de la ley de la materia, para que GRUPO ATZCO, trate sus datos personales, incluidos los denominados sensibles, contenidos en ésta cláusula, para cumplir con las finalidades que establece el presente Aviso de Privacidad y en cumplimiento de la legislación vigente se recabará el consentimiento expreso, por escrito y con la firma autógrafa del TITULAR a través del presente.</p>
+    <p>4.2.- GRUPO ATZCO manifiesta que única y exclusivamente accederá y, tratará los datos personales de EL TITULAR, a efecto de llevar a cabo la selección, contratación y administración de personal, debiendo realizar el tratamiento de los datos personales de conformidad con el presente aviso de privacidad.</p>
+    <p>4.3.- EL TITULAR en este acto, bajo protesta de decir verdad, acepta que los datos que ha proporcionado a GRUPO ATZCO son veraces, actuales y correctos. Además, se compromete a sacar en paz y a salvo a GRUPO ATZCO de cualquier demanda o reclamación, derivada de los errores en los datos que le haya entregado.</p>
+    <p>4.4.- GRUPO ATZCO manifiesta que podrá obtener los datos personales de EL TITULAR mediante las denominadas fuentes de acceso público, a efecto de validar y actualizar los datos de EL TITULAR, respetando en todo momento la expectativa razonable de privacidad, a que se refiere el artículo 7 de la LFPDPPP.</p>
     <p><strong>5.- Finalidades del tratamiento de los datos personales</strong></p>
-    <p>5.1.- ATZCO acepta y reconoce que podrá tratar los datos personales de EL TITULAR, directamente y/o a través de encargados, de conformidad al tipo de relación que tiene con EL TITULAR, para las siguientes finalidades primarias:</p>
+    <p>5.1.- GRUPO ATZCO acepta y reconoce que podrá tratar los datos personales de EL TITULAR, directamente y/o a través de encargados, de conformidad al tipo de relación que tiene con EL TITULAR, para las siguientes finalidades primarias:</p>
     <ul>
         <li>Contactarlo para efectuar los trámites que en su momento se estén llevando a cabo.</li>
         <li>Validar la información personal presentada por el titular de los datos.</li>
         <li>Contactar a sus familiares para el caso de emergencia.</li>
         <li>Hacer intercambios de bolsas de trabajo con terceros y hacer recomendaciones personales de EL TITULAR o dar referencias al respecto del mismo. </li>
         <li>Conocer las competencias lingüísticas, experiencia laboral y el estado de salud de EL TITULAR a efecto de identificar algún antecedente patológico, hereditario y traumatológico que pueda influir en su desempeño y desarrollo en la empresa y, conocer la viabilidad de que realice otras funciones. </li>
-        <li>Realizar un expediente de EL TITULAR que será resguardado en las oficinas de Recursos Humanos ya sea en medios físicos, magnéticos o electrónicos. Para el caso de los prospectos/candidatos que no hayan sido seleccionados por ATZCO para una determinada posición, sus datos serán conservados por el plazo de 1-un año desde el momento de su recolección. Para aquellos prospectos/candidatos que hayan sido seleccionados para desempeñar una determinada posición, sus datos serán conservados por toda la vigencia de la relación laboral que los une con ATZCO y hasta 5 años luego de finalizada dicha relación laboral.</li>
+        <li>Realizar un expediente de EL TITULAR que será resguardado en las oficinas de Recursos Humanos ya sea en medios físicos, magnéticos o electrónicos. Para el caso de los prospectos/candidatos que no hayan sido seleccionados por GRUPO ATZCO para una determinada posición, sus datos serán conservados por el plazo de 1-un año desde el momento de su recolección. Para aquellos prospectos/candidatos que hayan sido seleccionados para desempeñar una determinada posición, sus datos serán conservados por toda la vigencia de la relación laboral que los une con GRUPO ATZCO y hasta 5 años luego de finalizada dicha relación laboral.</li>
         <li>En su caso, para realizar los trámites de selección y administración de personal, tales como alta ante el Instituto Mexicano del Seguro Social y demás instituciones que se requiera. </li>
         <li>Dar cumplimiento a lo establecido en las reformas fiscales vigentes y/o que estén por entrar en vigor.</li>
     </ul>
-    <p>5.2.- Las partes acuerdan que ATZCO se obliga a observar respecto de los datos personales que recaba de EL TITULAR, los principios de licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad.</p>
+    <p>5.2.- Las partes acuerdan que GRUPO ATZCO se obliga a observar respecto de los datos personales que recaba de EL TITULAR, los principios de licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad.</p>
     <p><strong>6.- Limitaciones para el acceso y divulgación de los datos personales</strong></p>
-    <p>6.1.- ATZCO, se compromete a realizar su mejor esfuerzo para proteger la seguridad de los datos personales que EL TITULAR le está entregando, adoptando, estableciendo y manteniendo, en la medida de sus capacidades, medidas de seguridad administrativas, legales, técnicas y físicas que permitan proteger los datos personales contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado. (i) utiliza redes privadas, (ii) mantenimientos programados al site donde se guarda la información (iii) se utilizan equipos firewall, (iv) equipos no-breaks, (v) restricciones de Internet en equipos de cómputo (vi) bloqueos a través de antivirus, de salidas USB y de quemadores de discos compactos, en todos los equipos de su personal y colaboradores (vii) mantiene actualizados los equipos de respaldo, (viii) cuentas de acceso personalizado al sistema a través de usuarios y contraseñas; (ix) garantiza la confidencialidad de la información y de los datos personales que trata, a través de la celebración de contratos de confidencialidad con todos los proveedores, prestadores de servicios y colaboradores.</p>
-    <p>6.2.- En este tenor, ATZCO se obliga a tomar las medidas necesarias para garantizar que los encargados que utilice cumplan con lo establecido en el presente Aviso de Privacidad, con las obligaciones a su cargo.</p>
-    <p>6.3.- No obstante lo anterior y, en caso de que se presenten vulneraciones de seguridad ocurridas en cualquier fase del tratamiento, que afecten de forma significativa los derechos patrimoniales o morales de LOS TITULARES, esto será informado por correo electrónico, de forma inmediata, por ATZCO, a fin de que estos últimos puedan tomar las medidas correspondientes a la defensa de sus derechos, deslindando de cualquier responsabilidad a ATZCO si la vulneración no es imputable a él.</p>
+    <p>6.1.- GRUPO ATZCO, se compromete a realizar su mejor esfuerzo para proteger la seguridad de los datos personales que EL TITULAR le está entregando, adoptando, estableciendo y manteniendo, en la medida de sus capacidades, medidas de seguridad administrativas, legales, técnicas y físicas que permitan proteger los datos personales contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado. (i) utiliza redes privadas, (ii) mantenimientos programados al site donde se guarda la información (iii) se utilizan equipos firewall, (iv) equipos no-breaks, (v) restricciones de Internet en equipos de cómputo (vi) bloqueos a través de antivirus, de salidas USB y de quemadores de discos compactos, en todos los equipos de su personal y colaboradores (vii) mantiene actualizados los equipos de respaldo, (viii) cuentas de acceso personalizado al sistema a través de usuarios y contraseñas; (ix) garantiza la confidencialidad de la información y de los datos personales que trata, a través de la celebración de contratos de confidencialidad con todos los proveedores, prestadores de servicios y colaboradores.</p>
+    <p>6.2.- En este tenor, GRUPO ATZCO se obliga a tomar las medidas necesarias para garantizar que los encargados que utilice cumplan con lo establecido en el presente Aviso de Privacidad, con las obligaciones a su cargo.</p>
+    <p>6.3.- No obstante lo anterior y, en caso de que se presenten vulneraciones de seguridad ocurridas en cualquier fase del tratamiento, que afecten de forma significativa los derechos patrimoniales o morales de LOS TITULARES, esto será informado por correo electrónico, de forma inmediata, por GRUPO ATZCO, a fin de que estos últimos puedan tomar las medidas correspondientes a la defensa de sus derechos, deslindando de cualquier responsabilidad a GRUPO ATZCO si la vulneración no es imputable a él.</p>
     <p><strong>7.- Designado para tramitar las solicitudes</strong></p>
-    <p>7.1.- En caso de que EL TITULAR necesite revocar su consentimiento, así como acceder, rectificar, cancelar u oponerse al tratamiento de los datos personales que ha proporcionado, lo deberá hacer a través de la persona designada por ATZCO cuyos datos se describen a continuación:<br> Correo electrónico: datos.legal@atzco.com.mx. </p>
+    <p>7.1.- En caso de que EL TITULAR necesite revocar su consentimiento, así como acceder, rectificar, cancelar u oponerse al tratamiento de los datos personales que ha proporcionado, lo deberá hacer a través de la persona designada por GRUPO ATZCO cuyos datos se describen a continuación:<br> Correo electrónico: datos.legal@grupoatzco.com.mx. </p>
     <p><strong>8.- Medios para revocar el consentimiento</strong></p>
     <p>EL TITULAR de los datos personales podrá revocar el consentimiento que se otorga con la aceptación del presente. Dicha revocación del consentimiento se deberá de hacer observando el siguiente procedimiento que ATZCO pone a su disposición:</p>
     <p>8.1.- Enviar un correo electrónico en atención al Designado en el punto 7-siete del presente Aviso, mediante el cual serán atendidas dichas solicitudes.</p>
@@ -710,9 +710,9 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
         <li>8.2.4.- Documento oficial que acredite su identidad y que demuestre que es quien dice ser; </li>
         <li>8.2.5.- Fecha a partir de la cual, se hace efectiva la revocación de su consentimiento.</li>
     </ul>
-    <p>8.3.- ATZCO notificará a EL TITULAR, en un plazo máximo de 20-veinte días, contados desde la fecha en que se recibió la solicitud sobre la revocación del consentimiento, la resolución adoptada, a efecto de que, si resulta procedente, se haga efectiva la misma dentro de los 15-quince días siguientes a la fecha en que se comunica la respuesta, mediante un mensaje que contenga que ha ejecutado de todos los actos tendientes a no tratar los datos personales de EL TITULAR.</p>
+    <p>8.3.- GRUPO ATZCO notificará a EL TITULAR, en un plazo máximo de 20-veinte días, contados desde la fecha en que se recibió la solicitud sobre la revocación del consentimiento, la resolución adoptada, a efecto de que, si resulta procedente, se haga efectiva la misma dentro de los 15-quince días siguientes a la fecha en que se comunica la respuesta, mediante un mensaje que contenga que ha ejecutado de todos los actos tendientes a no tratar los datos personales de EL TITULAR.</p>
     <p><strong>9.- Medios para ejercer los derechos ARCO</strong></p>
-    <p>9.1.- En caso de que EL TITULAR necesite Acceder, Rectificar, Cancelar u Oponerse a los datos personales que ha proporcionado a ATZCO, EL TITULAR deberá seguir el siguiente procedimiento que ATZCO pone a su disposición:</p>
+    <p>9.1.- En caso de que EL TITULAR necesite Acceder, Rectificar, Cancelar u Oponerse a los datos personales que ha proporcionado a GRUPO ATZCO, EL TITULAR deberá seguir el siguiente procedimiento que GRUPO ATZCO pone a su disposición:</p>
     <p>9.2.- Enviar un correo electrónico en atención al Designado del punto 7-siete del presente Aviso, mediante el cual serán atendidas dichas solicitudes, señalando lo siguiente:</p>
     <ul>
         <li>9.2.1.- El nombre completo de EL TITULAR, domicilio y correo electrónico para recibir la respuesta que se genere con motivo de su solicitud;</li>
@@ -722,18 +722,18 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
         <li>9.2.5.- Descripción clara y precisa de los datos personales respecto de los que se busca ejercer alguno de los derechos ARCO, y cualquier otro elemento o documento que facilite la localización de los datos personales.</li>
         <li>9.2.6.- Tratándose de solicitudes de rectificación de datos personales, EL TITULAR deberá indicar, además de lo señalado, las modificaciones a realizarse y aportar la documentación que sustente su petición.</li>
     </ul>
-    <p>9.3.- ATZCO notificará a EL TITULAR, en un plazo máximo de 20-veinte días contados desde la fecha en que se recibió la solicitud de acceso, rectificación, cancelación u oposición, la resolución adoptada, a efecto de que, si resulta procedente, se haga efectiva la misma dentro de los 15-quince días siguientes a la fecha en que se comunica la respuesta. Tratándose de solicitudes de acceso a datos personales, procederá la entrega previa acreditación de la identidad del solicitante o representante legal, según corresponda.</p>
+    <p>9.3.- GRUPO ATZCO notificará a EL TITULAR, en un plazo máximo de 20-veinte días contados desde la fecha en que se recibió la solicitud de acceso, rectificación, cancelación u oposición, la resolución adoptada, a efecto de que, si resulta procedente, se haga efectiva la misma dentro de los 15-quince días siguientes a la fecha en que se comunica la respuesta. Tratándose de solicitudes de acceso a datos personales, procederá la entrega previa acreditación de la identidad del solicitante o representante legal, según corresponda.</p>
     <p><strong>10.- Transferencia de datos personales</strong></p>
-    <p>10.1.- ATZCO se obliga a no transferir o compartir los datos a que se refiere el presente Aviso, a favor de terceros, salvo en los casos en que resulte necesario para cumplir con las finalidades del presente Aviso, o bien, sean necesarios en cumplimiento de un requerimiento de autoridad.</p>
-    <p>10.2.- Asimismo, en cumplimiento de sus obligaciones legales, y con efectos informativos a EL TITULAR, se le indica que ATZCO podrá realizar las siguientes transferencias:</p>
+    <p>10.1.- GRUPO ATZCO se obliga a no transferir o compartir los datos a que se refiere el presente Aviso, a favor de terceros, salvo en los casos en que resulte necesario para cumplir con las finalidades del presente Aviso, o bien, sean necesarios en cumplimiento de un requerimiento de autoridad.</p>
+    <p>10.2.- Asimismo, en cumplimiento de sus obligaciones legales, y con efectos informativos a EL TITULAR, se le indica que GRUPO ATZCO podrá realizar las siguientes transferencias:</p>
     <ul>
         <li>10.2.1.- IMSS, INFONAVIT y SAT, a efecto de dar cumplimiento a la legislación laboral, de seguridad social, así como el pago de impuestos.</li>
-        <li>10.2.2.- Instituciones bancarias, a efecto de realizar el cobro de los productos y/o servicios comercializados por ATZCO así como el pago de los productos y/o servicios adquiridos por ATZCO.</li>
+        <li>10.2.2.- Instituciones bancarias, a efecto de realizar el cobro de los productos y/o servicios comercializados por GRUPO ATZCO así como el pago de los productos y/o servicios adquiridos por GRUPO ATZCO.</li>
     </ul>
     <p><strong>11.- Modificaciones</strong></p>
-    <p>11.1.- Las partes acuerdan que el Aviso de Privacidad, puede ser modificado en el tiempo y forma que ATZCO lo determine, atendiendo al estudio y las regulaciones que en materia de protección de datos personales surjan, por lo que se obliga a mantener actualizado el presente aviso a efecto de que, en su caso, EL TITULAR se encuentre en posibilidad de ejercer sus derechos ARCO.</p>
+    <p>11.1.- Las partes acuerdan que el Aviso de Privacidad, puede ser modificado en el tiempo y forma que GRUPO ATZCO lo determine, atendiendo al estudio y las regulaciones que en materia de protección de datos personales surjan, por lo que se obliga a mantener actualizado el presente aviso a efecto de que, en su caso, EL TITULAR se encuentre en posibilidad de ejercer sus derechos ARCO.</p>
     <p><strong>12.- Autoridad garante</strong></p>
-    <p>12.1.- Si EL TITULAR considera que su derecho a la protección de sus datos personales ha sido lesionado por alguna conducta u omisión por parte de ATZCO o presume alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás ordenamientos aplicables, podrá interponer su inconformidad o denuncia ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI). Para mayor información, le sugerimos visitar su página oficial de Internet www.inai.org.mx.</p>
+    <p>12.1.- Si EL TITULAR considera que su derecho a la protección de sus datos personales ha sido lesionado por alguna conducta u omisión por parte de GRUPO ATZCO o presume alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás ordenamientos aplicables, podrá interponer su inconformidad o denuncia ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI). Para mayor información, le sugerimos visitar su página oficial de Internet www.inai.org.mx.</p>
     <p><strong>13.- Ley aplicable y jurisdicción</strong></p>
     <p>13.1.- Las partes expresan que el presente aviso, se regirá por las disposiciones legales aplicables en la República Mexicana, en especial, por lo dispuesto en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y la demás normativa vinculada aplicable.</p>
     <p>13.2.- Para el caso de que exista una disputa o controversia, derivada de la interpretación, ejecución o cumplimiento del aviso o de cualquiera de los documentos que del mismo se deriven, o que guarden relación con éste, las partes amigablemente, buscarán llegar a un acuerdo dentro de un plazo de 30-treinta días naturales, contados a partir de la fecha en que surja cualquier diferencia y se notifique por escrito sobre dicho evento a la contraparte, deduciendo el proceso de mediación ante el Instituto Nacional de Transparencia, Acceso a la información y Protección de Datos Personales (INAI). </p>
@@ -744,7 +744,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             <p>___________________________________________</p>
             <strong><p><?php echo $nombreCompleto; ?></p></strong>
             <br>
-            <p>Consiento y autorizo que mis datos personales sensibles sean tratados por CONSTRUCTORA ATZCO SA. DE C.V., conforme el presente aviso de privacidad.</p>
+            <p>Consiento y autorizo que mis datos personales sensibles sean tratados por <?php echo $nombreEmpresa; ?>, conforme el presente aviso de privacidad.</p>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <p>Yo <?php echo $nombreCompleto ?> por este conducto autorizo para que en mi nombre y representación y solo para el caso de enfermedad, se cobre mi sueldo mediante carta de poder que entregaré, y con firma de dos testigos.</p>
@@ -753,7 +753,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div class="red-box">CARTA DE CONSENTIMIENTO</div>
         <p>Por medio de la presente el que suscribe C. <?php echo $nombreCompleto; ?> le externo mi consentimiento y aceptación de manera libre y espontánea, para que se me entreviste y se realice el llenado de mi declaración de estado de salud para cuestiones informativas.</p>
-        <p>Por lo expuesto, no tengo inconveniente alguno en que la Empresa <strong>Constructora Atzco S.A de C.V</strong> me pida que realice el llenado de mi declaratoria de estado de salud, agradeciendo de antemano la atención y facilidades que le puedan brindar para agilizar los trámites que le interesen.</p>
+        <p>Por lo expuesto, no tengo inconveniente alguno en que la Empresa <strong><?php echo $nombreEmpresa; ?></strong> me pida que realice el llenado de mi declaratoria de estado de salud, agradeciendo de antemano la atención y facilidades que le puedan brindar para agilizar los trámites que le interesen.</p>
         <p class="centrado">Finalmente</p>
         <p class="centrado">EN <?php echo $ciudad; ?>, a <?php echo $diaIngreso; ?> de <?php echo $mesIngreso; ?> de <?php echo $anioIngreso; ?>.</p>
         <div class="signature-block">
@@ -1068,7 +1068,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
     <br><br><br>
     <div class="red-box">DECLARACIÓN INFONAVIT</div>
     <p class="centrado">FECHA: <?php echo $fechaActual; ?></p>
-    <p>POR ÉSTE MEDIO, YO <strong><?php echo $nombreCompleto; ?></strong> COMUNICO A CONSTRUCTORA ATZCO SA DE CV QUE <?php echo $creditoInfonavit ?> TENGO CRÉDITO DE INFONAVIT:</p>
+    <p>POR ÉSTE MEDIO, YO <strong><?php echo $nombreCompleto; ?></strong> COMUNICO A <?php echo $nombreEmpresa; ?> QUE <?php echo $creditoInfonavit ?> TENGO CRÉDITO DE INFONAVIT:</p>
     <p><strong>NÚMERO DE SEGURIDAD SOCIAL:</strong> <?php echo $nss; ?></p>
     <p><strong>NÚMERO DE CRÉDITO:</strong> <strong></strong></p>
     <p><strong>FECHA DEL OTORGAMIENTO:</strong> <strong></strong></p>
@@ -1084,7 +1084,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
     <p>-------------------------------------------------------------------------------------------------------------------------------</p>
 
     <div class="red-box">ACUSE DE RECIBO</div>
-    <p>Recibí el <strong>reglamento interior de trabajo</strong> de la empresa <strong>Constructora Atzco S.A de C.V</strong></p>
+    <p>Recibí el <strong>reglamento interior de trabajo</strong> de la empresa <strong><?php echo $nombreEmpresa; ?></strong></p>
     <p>Responsabilizándome a conservarlo durante mi permanencia laboral y dar seguimiento puntual a este.</p>
     <p>Nombre completo del colaborador: <strong><?php echo $nombreCompleto; ?></strong></p>
     <div>
@@ -1161,25 +1161,25 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
     <h3>Antecedentes</h3>
     <p>a) El apego a principios éticos habla de un sentido de respeto, honestidad e integridad, valores imprescindibles para el desempeño armonioso del trabajo.</p>
     <p>b) Estos valores constituyen una parte esencial de nuestra cultura corporativa y son una pieza fundamental en la vida de nuestra empresa.</p>
-    <p>c) Estos valores son parte de nuestra cultura organizacional y de nuestro quehacer diario, por lo que es necesario formalizarlos y establecer un marco de referencia común que unifique los criterios y oriente las acciones de todas las personas que integramos ATZCO.</p>
-    <p>d) ATZCO opera bajo la premisa fundamental de que se rige por leyes y ordenamientos, cuya observancia y cumplimiento es indispensable para existir y funcionar óptimamente en su entorno social.</p>
+    <p>c) Estos valores son parte de nuestra cultura organizacional y de nuestro quehacer diario, por lo que es necesario formalizarlos y establecer un marco de referencia común que unifique los criterios y oriente las acciones de todas las personas que integramos GRUPO ATZCO</p>
+    <p>d) GRUPO ATZCO opera bajo la premisa fundamental de que se rige por leyes y ordenamientos, cuya observancia y cumplimiento es indispensable para existir y funcionar óptimamente en su entorno social.</p>
     <p>e) Este código parte del hecho que la mayoría de las veces la acción correcta es clara, independientemente de que esté incorporada a un código.</p>
 
     <h3><span class="prefijo">I.</span>Objetivos</h3>
     <p>El presente Código de Ética tiene los siguientes objetivos:</p>
-    <p>a) Dar a conocer a los Directivos, Gerentes y colaboradores de ATZCO sus obligaciones de carácter ético hacia la empresa, clientes, proveedores, competidores, autoridades, medio ambiente y comunidad.</p>
-    <p>b) Establecer criterios básicos para normar el comportamiento ético de todos los colaboradores de ATZCO.</p>
-    <p>c) Compartir nuestros valores éticos con las personas interesadas en conocer ATZCO.</p>
+    <p>a) Dar a conocer a los Directivos, Gerentes y colaboradores de GRUPO ATZCO sus obligaciones de carácter ético hacia la empresa, clientes, proveedores, competidores, autoridades, medio ambiente y comunidad.</p>
+    <p>b) Establecer criterios básicos para normar el comportamiento ético de todos los colaboradores de GRUPO ATZCO.</p>
+    <p>c) Compartir nuestros valores éticos con las personas interesadas en conocer GRUPO ATZCO.</p>
     <p>d) Señalar el procedimiento para sancionar a quienes cometen faltas en contra de nuestro código de ética.</p>
 
     <h3><span class="prefijo">II.</span>Alcance</h3>
-    <p>a) El presente código de ética fue elaborado para su observancia de todos los colaboradores de ATZCO.</p>
+    <p>a) El presente código de ética fue elaborado para su observancia de todos los colaboradores de GRUPO ATZCO.</p>
     <p>b) Los nuevos temas que surjan de la dinámica de las situaciones de negocio y del entorno en general, se incorporan a este código conforme sea necesario.</p>
     <p>c) Este documento no es ni pretende ser exhaustivo, ni incluir todas las situaciones donde pudiera presentarse un conflicto de índole de ética. Por lo tanto, las situaciones no previstas en este código de ética se resolverán de acuerdo a un criterio sano de administración. En caso de duda, se consultara con las áreas de recursos humanos o Dirección General.</p>
 
     <h3><span class="prefijo">III.</span>Valores</h3>
-    <p>En ATZCO, vivimos el compromiso con un sentido de pertenencia y responsabilidad en nuestras acciones a través de los valores que forman parte integral de la organización y proporcionan el fundamento para el desarrollo de una normatividad sobre la cual se toman decisiones y se ejecutan acciones con valor.</p>
-    <p>Los Valores de ATZCO son los siguientes:</p>
+    <p>En GRUPO ATZCO, vivimos el compromiso con un sentido de pertenencia y responsabilidad en nuestras acciones a través de los valores que forman parte integral de la organización y proporcionan el fundamento para el desarrollo de una normatividad sobre la cual se toman decisiones y se ejecutan acciones con valor.</p>
+    <p>Los Valores de GRUPO ATZCO son los siguientes:</p>
     <ul>
         <li>Lealtad: Ganar la confianza que se deposita en ti, generando un compromiso de colaboración total y recíproco, mientras trabajemos juntos.</li>
         <li>Responsabilidad: Cumplimiento de los deberes laborales establecidos.</li>
@@ -1192,21 +1192,21 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
 
     <h3><span class="prefijo">IV.</span>Normas de ética generales</h3>
     <h4>a) En relación con clientes y proveedores.</h4>
-    <p>Atendemos a clientes ofreciéndoles un trato equitativo y honesto en cada transacción, proporcionando los productos y servicios que les competen con la mayor calidad y oportunidad a su alcance, apegándonos en todo momento a la regulación oficial y a la normatividad interna de ATZCO.</p>
+    <p>Atendemos a clientes ofreciéndoles un trato equitativo y honesto en cada transacción, proporcionando los productos y servicios que les competen con la mayor calidad y oportunidad a su alcance, apegándonos en todo momento a la regulación oficial y a la normatividad interna de GRUPO ATZCO.</p>
     <p>No hacemos comparaciones falsas o engañosas con productos o servicios equivalentes a los que ofrecen los competidores.</p>
     <p>Relacionarse con los proveedores de bienes y servicios de forma ética y lícita.</p>
     <p>Buscar y seleccionar únicamente proveedores cuyas prácticas empresariales respeten la dignidad humana, no incumplan la ley y no pongan en peligro la reputación de ATZCO.</p>
     <p>Seleccionar a los proveedores con base a la idoneidad de sus productos o servicios, así como de su precio, condiciones de entrega y calidad, no aceptando ni ofreciendo regalos o comisiones, en dinero o en especie, que puedan alterar las reglas de la libre competencia en la producción y distribución de bienes y servicios.</p>
     <p>En caso de que no se pueda rechazar el regalo o comisión, deberá comunicarlo inmediatamente a Dirección General y/o Recursos Humanos.</p>
-    <p>Buscar la excelencia de los bienes y servicios de ATZCO de modo que los clientes obtengan la satisfacción esperada.</p>
-    <p>Garantizar los productos y servicios de ATZCO y atender de forma rápida y eficaz las reclamaciones de clientes buscando su satisfacción más allá del mero cumplimento.</p>
+    <p>Buscar la excelencia de los bienes y servicios de GRUPO ATZCO de modo que los clientes obtengan la satisfacción esperada.</p>
+    <p>Garantizar los productos y servicios de GRUPO ATZCO y atender de forma rápida y eficaz las reclamaciones de clientes buscando su satisfacción más allá del mero cumplimento.</p>
 
     <h4>b) Competencia</h4>
-    <p>En ATZCO competimos vigorosamente cumpliendo con las leyes y reglamentos sobre competencia justa existentes en los estados que tenemos presencia.</p>
-    <p>ATZCO no participa en ningún acuerdo que pretenda limitar el libre juego de las fuerzas de los mercados en los que operamos y no utilizamos medios impropios para mejorar nuestra posición competitiva en dichos mercados.</p>
-    <p>Los colaboradores que tengan contacto con representantes de competidores, deberán mostrar una actitud profesional, apegada a los valores de la empresa y cuidamos la imagen personal y la de ATZCO.</p>
-    <p>En la interacción con competidores, ya sea individual o en foros y asociaciones empresariales o profesionales, se evitaran temas que pudieran generar riesgos o posibles contingencias para ATZCO en materia de cumplimiento de leyes y reglamento sobre competencia.</p>
-    <p>Los colaboradores de ATZCO deberán evitar en lo posible hacer comentarios o declaraciones sobre la competencia, pero cuando resulta necesario la hacemos con justicia y objetividad.</p>
+    <p>En GRUPO ATZCO competimos vigorosamente cumpliendo con las leyes y reglamentos sobre competencia justa existentes en los estados que tenemos presencia.</p>
+    <p>GRUPO ATZCO no participa en ningún acuerdo que pretenda limitar el libre juego de las fuerzas de los mercados en los que operamos y no utilizamos medios impropios para mejorar nuestra posición competitiva en dichos mercados.</p>
+    <p>Los colaboradores que tengan contacto con representantes de competidores, deberán mostrar una actitud profesional, apegada a los valores de la empresa y cuidamos la imagen personal y la de GRUPO ATZCO.</p>
+    <p>En la interacción con competidores, ya sea individual o en foros y asociaciones empresariales o profesionales, se evitaran temas que pudieran generar riesgos o posibles contingencias para GRUPO ATZCO en materia de cumplimiento de leyes y reglamento sobre competencia.</p>
+    <p>Los colaboradores de GRUPO ATZCO deberán evitar en lo posible hacer comentarios o declaraciones sobre la competencia, pero cuando resulta necesario la hacemos con justicia y objetividad.</p>
     <p>En ningún caso, se intentara obtener secretos comerciales o cualquier otra información confidencial de un competidor.</p>
 
     <h4>c) En relación con los colaboradores</h4>
@@ -1215,50 +1215,50 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
     <p>No permitir ninguna forma de violencia, acoso, o abuso en el trabajo.</p>
     <p>Fomentar el desarrollo, formación y promoción profesional de los colaboradores.</p>
     <p>Vincular la retribución y promoción de los colaboradores a sus condiciones de mérito y capacidad.</p>
-    <p>Establecer y comunicar criterios y reglas claras que mantengan equilibrados los derechos de ATZCO y los colaboradores en los procesos de contratación y en los de separación de estos incluso en caso de cambio voluntario del empleador.</p>
+    <p>Establecer y comunicar criterios y reglas claras que mantengan equilibrados los derechos de GRUPO ATZCO y los colaboradores en los procesos de contratación y en los de separación de estos incluso en caso de cambio voluntario del empleador.</p>
     <p>Garantizar la seguridad e higiene en el trabajo adoptando cuantas medidas sean razonables para maximizar la prevención de los riesgos laborales.</p>
-    <p>Procurar la conciliación del trabajo en ATZCO con la vida personal y familiar de los colaboradores.</p>
+    <p>Procurar la conciliación del trabajo en GRUPO ATZCO con la vida personal y familiar de los colaboradores.</p>
     <p>Procurar la integración laboral con los colaboradores con discapacidad o minusvalía, eliminando todo tipo de barreras de la empresa para su inserción.</p>
-    <p>Facilitar la participación de los colaboradores en los programas de integración y acción social de ATZCO.</p>
+    <p>Facilitar la participación de los colaboradores en los programas de integración y acción social de GRUPO ATZCO.</p>
 
     <h4>d) En relación con la Sociedad</h4>
     <p>Respetar el derecho humano y las instituciones democráticas y promoverlos donde sea posible.</p>
-    <p>Mantener el principio de neutralidad política, no interfiriendo políticamente en las comunidades donde desarrolla sus actividades, como muestra además de respeto a las diferentes opiniones y sensibilidades de las personas vinculadas con ATZCO.</p>
+    <p>Mantener el principio de neutralidad política, no interfiriendo políticamente en las comunidades donde desarrolla sus actividades, como muestra además de respeto a las diferentes opiniones y sensibilidades de las personas vinculadas con GRUPO ATZCO.</p>
     <p>Relacionarse con las autoridades e instituciones públicas de manera lícita y respetuosa no aceptando ni ofreciendo regalos o comisiones, en dinero o especie.</p>
     <p>Estamos comprometidos con los crecimientos económicos y sociales creando y manteniendo fuentes de empleo digno y productivo.</p>
     <p>Estamos comprometidos a buscar permanentemente los medios para disminuir el impacto en el medio ambiente mediante, la mejora continua en el control de emisiones, manejo de residuos, tratamiento de aguas, ahorro de energía y todo elemento que potencialmente le pueda afectar.</p>
 
     <h4>e) Protección de activos</h4>
     <p>Nuestro compromiso es proteger y optimizar el valor de la inversión, principalmente a través de la utilización prudente y rentable de los recursos, vigilando que cumplan las normas de seguridad pertinentes.</p>
-    <p>La custodia y preservación de los activos de ATZCO es responsabilidad de todos y cada uno de los que integramos la empresa.</p>
+    <p>La custodia y preservación de los activos de GRUPO ATZCO es responsabilidad de todos y cada uno de los que integramos la empresa.</p>
     <p>Entendemos por activos de la empresa no solo la maquinaria, edificios, vehículos o mobiliario sino también los planos, diseños, formulas, procesos, sistemas, dibujos, tecnología, estrategias de negocio, y desde luego nuestra marca.</p>
     <p>Los colaboradores tenemos el compromiso de salvaguardar los activos de la empresa. En especial, estamos comprometidos con la protección de la propiedad intelectual, representada esencialmente por sus procesos de fabricación, sistemas de información y esquemas de comercialización, incluyendo también información financiera, de producto y del personal.</p>
-    <p>El uso de los activos se destinara al objeto del negocio y está estrictamente prohibido hacer otro uso de los mismos. Todos los colaboradores de ATZCO tenemos la obligación de denunciar cualquier desviación que sea de nuestro conocimiento.</p>
+    <p>El uso de los activos se destinara al objeto del negocio y está estrictamente prohibido hacer otro uso de los mismos. Todos los colaboradores de GRUPO ATZCO tenemos la obligación de denunciar cualquier desviación que sea de nuestro conocimiento.</p>
 
     <h4>f) Privacidad</h4>
-    <p>ATZCO respeta la privacidad de todos sus colaboradores, proveedores y clientes. Tratamos los datos personales con responsabilidad y en cumplimiento de todas las leyes de privacidad aplicables.</p>
+    <p>GRUPO ATZCO respeta la privacidad de todos sus colaboradores, proveedores y clientes. Tratamos los datos personales con responsabilidad y en cumplimiento de todas las leyes de privacidad aplicables.</p>
 
     <h4>g) Conflicto de interés</h4>
-    <p>Esperamos que todos los colaboradores trabajen dedicadamente en beneficio de ATZCO y de todos los que la integramos, sin que nuestra toma de decisiones se vea afectada por cualquier factor que favorezca intereses ajenos a la productividad, eficiencia, eficacia el cumplimiento de nuestras metas.</p>
-    <p>Con el propósito de evitar que se presenten conflictos entre los intereses personales y los de ATZCO, y para propiciar una solucione en caso de requerirse todos los colaboradores tenemos la responsabilidad de declarar cualquier interés financiero o de otra índole que pueda entrar en conflicto con la empresa.</p>
+    <p>Esperamos que todos los colaboradores trabajen dedicadamente en beneficio de GRUPO ATZCO y de todos los que la integramos, sin que nuestra toma de decisiones se vea afectada por cualquier factor que favorezca intereses ajenos a la productividad, eficiencia, eficacia el cumplimiento de nuestras metas.</p>
+    <p>Con el propósito de evitar que se presenten conflictos entre los intereses personales y los de GRUPO ATZCO, y para propiciar una solucione en caso de requerirse todos los colaboradores tenemos la responsabilidad de declarar cualquier interés financiero o de otra índole que pueda entrar en conflicto con la empresa.</p>
     <p>Si algún colaborador considera que existen interese personales que pueden influir en su desempeño en el trabajo o en su toma de decisiones habrá de comunicárselo por escrito a su jefe inmediato y/o Recursos Humanos.</p>
 
     <h4>h) Integridad y corrupción</h4>
-    <p>En ATZCO no sobornamos, no recibimos favores ni dinero para otorgar beneficios a quien sea.</p>
+    <p>En GRUPO ATZCO no sobornamos, no recibimos favores ni dinero para otorgar beneficios a quien sea.</p>
     <p>Entendemos con toda claridad que para evitar estos actos, debemos remover cualquier anomalía para que no haya motivo alguno de caer en corrupción.</p>
-    <p>Sobornar para obtener algún beneficio no ayuda en la nada a ATZCO y la pone en una situación muy grave e impide su avance.</p>
+    <p>Sobornar para obtener algún beneficio no ayuda en la nada a GRUPO ATZCO y la pone en una situación muy grave e impide su avance.</p>
     <p>Recibir dinero, obsequios o favores afecta profundamente los resultados y pone en entredicho la reputación de la empresa y todos sus colaboradores.</p>
     <p>Estas acciones son ilegales y puedes constituir un delito.</p>
 
     <h4>i) Relaciones personales y familiares</h4>
-    <p>Es importante comunicar al superior correspondiente las relaciones personales que surjan entre colaboradores o entre profesionales de ATZCO y colaboradores de un cliente, con el fin de prevenir eventuales riesgos de independencia y/o conflicto de interés.</p>
+    <p>Es importante comunicar al superior correspondiente las relaciones personales que surjan entre colaboradores o entre profesionales de GRUPO ATZCO y colaboradores de un cliente, con el fin de prevenir eventuales riesgos de independencia y/o conflicto de interés.</p>
 
     <h4>j) Faltas al código de ética</h4>
     <p>La observancia de este código es estrictamente obligatoria.</p>
-    <p>Los Jefes de ATZCO, en cualquier nivel, serán ejemplo intachable de su cumplimiento, de difundirlo constantemente y tomara las medidas disciplinarias que correspondan cuando alguno de sus colaboradores lo incumpla.</p>
+    <p>Los Jefes de GRUPO ATZCO, en cualquier nivel, serán ejemplo intachable de su cumplimiento, de difundirlo constantemente y tomara las medidas disciplinarias que correspondan cuando alguno de sus colaboradores lo incumpla.</p>
     <p>Cualquier colaborador que realice prácticas de negocios, en términos diferentes a las establecidas en este código, será sujeto a medidas disciplinarias que pueden llegar hasta la terminación de la relación laboral y/o acción legal.</p>
-    <p>En ATZCO es inevitable que ocurran situaciones que no estén previstas en este código. En esos casos deben guiarnos el apego a la ley, nuestros valores y la buena voluntad.</p>
-    <p>Los colaboradores de ATZCO siempre tendremos la libertad de consultar a nuestros jefes acerca de las situaciones donde se generen dudas.</p>
+    <p>En GRUPO ATZCO es inevitable que ocurran situaciones que no estén previstas en este código. En esos casos deben guiarnos el apego a la ley, nuestros valores y la buena voluntad.</p>
+    <p>Los colaboradores de GRUPO ATZCO siempre tendremos la libertad de consultar a nuestros jefes acerca de las situaciones donde se generen dudas.</p>
     <p>La Dirección General y Recursos Humanos incluirá en sus revisiones el cumplimiento de este código.</p>
     <p>La Dirección General Elaborará planes para la difusión de este código.</p>
     <p>Este Código entra en vigor a partir de Septiembre 2016.</p>

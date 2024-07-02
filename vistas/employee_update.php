@@ -46,15 +46,15 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_sexo_Update">Sexo:</label>
                         <select class="form-control" id="Empleado_sexo_Update" name="empleado_sexo" data-toggle="tooltip" title="Selecciona el sexo" required>
-                            <option value="Masculino" <?php if ($datos['empleado_sexo'] == "Masculino") echo 'selected'; ?>>Masculino</option>
-                            <option value="Femenino" <?php if ($datos['empleado_sexo'] == "Femenino") echo 'selected'; ?>>Femenino</option>
+                            <option value="MASCULINO" <?php if ($datos['empleado_sexo'] == "MASCULINO") echo 'selected'; ?>>MASCULINO</option>
+                            <option value="FEMENINO" <?php if ($datos['empleado_sexo'] == "FEMENINO") echo 'selected'; ?>>FEMENINO</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="Empleado_fechaNacimiento_Update">Fecha de Nacimiento:</label>
                         <input type="text" class="form-control" id="Empleado_fechaNacimiento_Update" name="empleado_fecha_de_nacimiento" 
-                        pattern="^(0[1-9]|[12][0-9]|3[01]) de (Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre) de (19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="30" data-toggle="tooltip" title="ejemplo: 01 de Enero de 1980" required value="<?php echo $datos['empleado_fecha_de_nacimiento']; ?>">
+                        pattern="^(0[1-9]|[12][0-9]|3[01]) de (Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre) de (19[5-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$" maxlength="30" data-toggle="tooltip" title="ejemplo: 01 de Enero de 1950" required value="<?php echo $datos['empleado_fecha_de_nacimiento']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -65,10 +65,13 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_estado_civil_Update">Estado Civil:</label>
                         <select class="form-control" id="Empleado_estado_civil_Update" name="empleado_estado_civil" data-toggle="tooltip" title="Selecciona el estado civil" required>
-                            <option value="Casado" <?php if ($datos['empleado_estado_civil'] == "Casado") echo 'selected'; ?>>Casado</option>
-                            <option value="Soltero" <?php if ($datos['empleado_estado_civil'] == "Soltero") echo 'selected'; ?>>Soltero</option>
-                            <option value="Viudo" <?php if ($datos['empleado_estado_civil'] == "Viudo") echo 'selected'; ?>>Viudo</option>
-                            <option value="Union libre" <?php if ($datos['empleado_estado_civil'] == "Union libre") echo 'selected'; ?>>Unión Libre</option>
+                            <option value="SOLTERO" <?php if ($datos['empleado_estado_civil'] == "SOLTERO") echo 'selected'; ?>>SOLTERO</option>
+                            <option value="CASADO" <?php if ($datos['empleado_estado_civil'] == "CASADO") echo 'selected'; ?>>CASADO</option>
+                            <option value="VIUDO" <?php if ($datos['empleado_estado_civil'] == "VIUDO") echo 'selected'; ?>>VIUDO</option>
+                            <option value="SOLTERA" <?php if ($datos['empleado_estado_civil'] == "SOLTERA") echo 'selected'; ?>>SOLTERA</option>
+                            <option value="CASADA" <?php if ($datos['empleado_estado_civil'] == "CASADA") echo 'selected'; ?>>CASADA</option>
+                            <option value="VIUDA" <?php if ($datos['empleado_estado_civil'] == "VIUDA") echo 'selected'; ?>>VIUDA</option>
+                            <option value="UNION LIBRE" <?php if ($datos['empleado_estado_civil'] == "UNION LIBRE") echo 'selected'; ?>>UNION LIBRE</option>
                         </select>
                     </div>
 
@@ -162,7 +165,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
 
                     <div class="form-group">
                         <label for="Empleado_Fecha_de_Termino_de_Contrato">Fecha de Término de Contrato:</label>
-                        <input type="text" class="form-control" id="Empleado_Fecha_de_Termino_de_Contrato_Update" name="empleado_fecha_de_termino_de_contrato" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha DD/MM/AAAA, maximo 50 caracteres" value="<?php echo $datos['empleado_fecha_de_termino_de_contrato']; ?>">
+                        <input type="text" class="form-control" id="Empleado_Fecha_de_Termino_de_Contrato_Update" name="empleado_fecha_de_termino_de_contrato" maxlength="50" data-toggle="tooltip" title="Numeros o la fecha ejemplo: 01 de Enero de 1980, maximo 50 caracteres" value="<?php echo $datos['empleado_fecha_de_termino_de_contrato']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -173,7 +176,7 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_Numero_de_Contrato">Número de Contrato:</label>
                         <input type="text" class="form-control" id="Empleado_Numero_de_Contrato_Update" name="empleado_numero_de_contrato" 
-                        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+" maxlength="100" data-toggle="tooltip" title="Letras, números, espacios y acentos permitidos, máximo 100 caracteres" required value="<?php echo $datos['empleado_numero_de_contrato']; ?>">
+                        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s-]+" maxlength="100" data-toggle="tooltip" title="Letras, números, espacios y acentos permitidos, máximo 100 caracteres" required value="<?php echo $datos['empleado_numero_de_contrato']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -201,8 +204,8 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_Credito_Infonavit">Crédito Infonavit:</label>
                         <select class="form-control" id="Empleado_Credito_Infonavit_Update" name="empleado_credito_infonavit" data-toggle="tooltip" title="Selecciona entre sí o no">
-                            <option value="No" <?php if ($datos['empleado_credito_infonavit'] == "No") echo 'selected'; ?>>No</option>
-                            <option value="Si" <?php if ($datos['empleado_credito_infonavit'] == "Si") echo 'selected'; ?>>Si</option>
+                            <option value="NO" <?php if ($datos['empleado_credito_infonavit'] == "NO") echo 'selected'; ?>>NO</option>
+                            <option value="SI" <?php if ($datos['empleado_credito_infonavit'] == "SI") echo 'selected'; ?>>SI</option>
                         </select>
                     </div>
 
@@ -254,8 +257,8 @@ $id = isset($_GET['employee_id_up']) ? limpiar_cadena($_GET['employee_id_up']) :
                     <div class="form-group">
                         <label for="Empleado_Estado">Estado:</label>
                         <select class="form-control" id="Empleado_Estado_Update" name="empleado_estado" data-toggle="tooltip" title="Selecciona el estado">
-                            <option value="Activo" <?php if ($datos['empleado_estado'] == "Activo") echo 'selected'; ?>>Activo</option>
-                            <option value="Inactivo" <?php if ($datos['empleado_estado'] == "Inactivo") echo 'selected'; ?>>Inactivo</option>
+                            <option value="ACTIVO" <?php if ($datos['empleado_estado'] == "ACTIVO") echo 'selected'; ?>>ACTIVO</option>
+                            <option value="INACTIVO" <?php if ($datos['empleado_estado'] == "INACTIVO") echo 'selected'; ?>>INACTIVO</option>
                         </select>
                     </div>
 

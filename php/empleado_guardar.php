@@ -209,7 +209,7 @@ if (verificar_datos("^(19[8-9][0-9]|20[0-9]{2}|2[1-9][0-9]{2})$", $anioDeIngreso
     exit();
 }
 
-if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+", $numeroDeContrato)) {
+if (verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s-]+", $numeroDeContrato)) {
     echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>

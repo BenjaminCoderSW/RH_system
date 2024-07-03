@@ -24,8 +24,8 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
     <title>Convenio de Confidencialidad</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif; /* Lista de fuentes alternativas */
-            font-size: 14px;
+            font-family: Verdana, Arial; /* Lista de fuentes alternativas */
+            font-size: 15px;
             margin: 45px;
         }
         .sub-titulo1 {
@@ -61,6 +61,10 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             text-justify: inter-word;
             font-weight: bold;
         }
+        .Hoja5 pre {
+            font-family: Verdana, sans-serif;
+            font-size: 13px;
+        }
         .Hoja7{
             text-align: justify;
             text-justify: inter-word;
@@ -75,6 +79,7 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
         .seccionDeArticulo {
             margin-left: 40px;
             margin-right: 40px;
+            font-style: italic;
         }
         .pieDePagina {
             text-align: center;
@@ -94,7 +99,8 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
         .header { 
             text-align: justify;
             text-justify: inter-word;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
+            font-size: 13px;
         }
         .content { 
             margin: 20px; 
@@ -102,6 +108,36 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
         .footer { 
             text-align: center; 
             margin-top: 20px;
+        }
+
+        /* Tabla */
+        .contract-signatures {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px;
+        }
+
+        .signature-section {
+            text-align: center;
+            width: 45%;
+        }
+
+        .title {
+            margin-bottom: 20px;
+        }
+
+        .line {
+            border-bottom: 1px solid black;
+            margin: 10px 0;
+        }
+
+        .name {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .position {
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -180,18 +216,19 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             <p>Leído que fue este Convenio por las Partes y enteradas plenamente de su contenido y efectos legales y no existiendo ninguna clase de vicio, dolo o mala fe, ambas lo firman en original en 2 (dos) tantos de conformidad, en la ciudad de León, Guanajuato, el día <?php echo $diaDeIngreso; ?> de <?php echo $mesDeIngreso; ?> de <?php echo $anioDeIngreso; ?></p>
 
         </div>
+        <br>
         <div class="Hoja5">
-            <b><br></b><pre>          LA EMPRESA                     EL CONFIDENTE            </pre>
+            <pre>                          LA EMPRESA                                                  EL CONFIDENTE            </pre>
             <br><br><br>
-            <pre>_____________________________    _______________________________</pre>
-            <pre>CONSTRUCTORA ATZCO SA DE CV      <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
-            <pre>ING.ISRAEL RODRIGUEZ ESCAMILLA</pre>
+            <pre>___________________________________        ___________________________________</pre>
+            <pre>   CONSTRUCTORA ATZCO SA DE CV                         <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
+            <pre>  ING.RODRIGUEZ ESCAMILLA ISRAEL</pre>
 
-            <b><br></b><pre>           TESTIGO                          TESTIGO            </pre>
+            <br><pre>                            TESTIGO                                                            TESTIGO            </pre>
             <br><br><br>
-            <pre>_____________________________    _______________________________</pre>
-            <pre>LIC.ELIZABETH BARRIENTOS RUIZ        ING.CARLOS ROMERO GUERRERO</pre>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <pre>___________________________________        ___________________________________</pre>
+            <pre>   LIC.BARRIENTOS RUIZ ELIZABETH                 ING.ROMERO GUERRERO CARLOS</pre>
+                <br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
         <div class="Hoja7">
         <div class="sub-titulo3" ><strong><u>A N E X O  A</u></strong></div>
@@ -231,17 +268,19 @@ $estadoCivil = $datosEmpleado['empleado_estado_civil'];
             <div class="pieDePagina">
                 <p>Atitalaquia Hidalgo. a <?php echo $diaDeIngreso . " de " . $mesDeIngreso . " de " . $anioDeIngreso; ?></p>
             </div>
-            <div class="negritas" >
-                <b><br></b><pre>          LA EMPRESA                     EL CONFIDENTE            </pre>
+            <br>
+            <div class="Hoja5">
+                <pre>                          LA EMPRESA                                                  EL CONFIDENTE            </pre>
                 <br><br><br>
-                <pre>_____________________________    _______________________________</pre>
-                <pre>CONSTRUCTORA ATZCO SA DE CV      <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
-                <pre>ING.ISRAEL RODRIGUEZ ESCAMILLA</pre>
+                <pre>___________________________________        ___________________________________</pre>
+                <pre>   CONSTRUCTORA ATZCO SA DE CV                         <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
+                <pre>  ING.RODRIGUEZ ESCAMILLA ISRAEL</pre>
 
-                <b><br></b><pre>           TESTIGO                          TESTIGO            </pre>
+                <br><pre>                            TESTIGO                                                            TESTIGO            </pre>
                 <br><br><br>
-                <pre>_____________________________    _______________________________</pre>
-                <pre>LIC.ELIZABETH BARRIENTOS RUIZ        ING.CARLOS ROMERO GUERRERO</pre>
+                <pre>___________________________________        ___________________________________</pre>
+                <pre>   LIC.BARRIENTOS RUIZ ELIZABETH                 ING.ROMERO GUERRERO CARLOS</pre>
+                <br>
             </div>
         </div>
     </div>

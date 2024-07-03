@@ -119,6 +119,14 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             margin-left: 40px;
             margin-right: 40px;
         }
+        .seccionDeArticulo {
+            margin-left: 40px;
+            margin-right: 40px;
+            font-style: italic;
+        }
+        .cursiva {
+            font-style: italic;
+        }
         .rojo-blanco{
             background-color: red;
             color: white;
@@ -175,6 +183,26 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             margin-top: 30px;
             margin-bottom: 30px;
             line-height: 1.2;
+        }
+        .Hoja5{
+            text-align: justify;
+            text-justify: inter-word;
+            font-weight: bold;
+        }
+        .Hoja5 pre {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .Hoja6{
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        .Hoja6 pre {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+        .alinieadaDerecha {
+            margin-left: 140px;
         }
     </style>
 </head>
@@ -244,18 +272,18 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             <p><strong>VIGÉSIMA.- </strong>Las partes acuerdan sujetarse, en los casos no previstos en este contrato, a las disposiciones establecidas en la Ley Federal del Trabajo vigente y en el REGLAMENTO INTERIOR DE TRABAJO de "LA EMPRESA" y, en caso de conflicto, a los criterios y jurisdicción de la Junta de Conciliación y Arbitraje de la ciudad de León Guanajuato.</p>
             <br><br><br><br><p class="pieDePagina">5</p><br><br>
             <p>Las partes, conscientes del contenido, obligaciones, alcance y fuerza legal del presente contrato por tiempo determinado, lo firman y ratifican por duplicado ante testigos, en <?php echo $lugarDeServicio ?>, a los dias <?php echo $diaDeIngreso . " del mes de " . $mesDeIngreso . " de " . $anioDeIngreso; ?> </p>
-            <div class="negritas">
-                <br><pre>             "LA EMPRESA"                         "EL TRABAJADOR ( A )"            </pre>
+            <div class="Hoja5">
+                <br><pre>                     "LA EMPRESA"                                           "EL TRABAJADOR ( A )"            </pre>
                 <br><br><br>
-                <pre>___________________________________       ______________________________________</pre>
-                <pre>ING.JOSÉ DOLORES CU GUERRERO.            <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
-                <pre>APODERADO LEGAL DE</pre>
-                <pre>CONSTRUCTURA ATZCO,S.A DE C.V.</pre>
+                <pre>___________________________________       ___________________________________</pre>
+                <pre>   ING.CU GUERRERO JOSÉ DOLORES.                    <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
+                <pre>             APODERADO LEGAL DE</pre>
+                <pre>   CONSTRUCTURA ATZCO,S.A DE C.V.</pre>
 
-                <b><br></b><pre>               TESTIGO                                 TESTIGO            </pre>
+                <b><br></b><pre>                           TESTIGO                                                          TESTIGO            </pre>
                 <br><br><br>
-                <pre>___________________________________       ______________________________________</pre>
-                <pre>LIC.FABIOLA ESQUIVEL MEZA                 ING.SANCHEZ SERRANO ANA DANIELA</pre>
+                <pre>___________________________________       ___________________________________</pre>
+                <pre>        LIC.ESQUIVEL MEZA FABIOLA                  LIC.SANCHEZ SERRANO ANA DANIELA</pre>
                     <br><br>
             </div>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><p class="pieDePagina" >6</p><br><br><br><br>
@@ -270,25 +298,25 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             <p><strong><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></strong></p>
             <br><br><br><br>
             <div class="sub-tituloCentrado" ><strong><U>RECIBO DE FINIQUITO:</U></strong></div>
-            <p>RECIBÍ DEL LIC. GILBERTO GARCIA VELA, EN SU CARÁCTER DE REPRESENTANTE LEGAL DE <strong>“CONSTRUCTORA ATZCO”, S.A. DE C.V.</strong>, QUIEN ES MI ÚNICO PATRON, LA CANTIDAD DE $ <br><br><strong>PARA LOS SIGUIENTES CONCEPTOS:</strong></p>
-            <div class="negritas" >
-                <pre>1.	Salarios Devengados:                                 $</pre>
-                <pre>2.	Aguinaldo:                                           $</pre>
-                <pre>3.	Vacaciones:                                          $</pre>
-                <pre>4.	Prima Vacacional:                                    $</pre>
-                <pre>5.	Horas Extras:                                        $</pre>
-                <pre>6.	Séptimos Días:                                       $</pre>
-                <pre>7.	Días de Descanso Obligatorios:                       $</pre>
-                <pre>8.	Prima de Antigüedad:                                 $</pre>
-                <pre>9.	Gratificación:                                       $</pre>
-                <pre>TOTAL QUE SE PAGA:                                      $</pre>
-                <pre>DEDUCCIONES</pre>
-                <pre>1.	I.S.P.T. :                                           $</pre>
-                <pre>2.	I.M.S.S. :                                           $</pre>
-                <pre>3.	PRÉSTAMOS:                                           $</pre>
-                <pre>4.	ADEUDOS:                                             $</pre>
-                <pre>TOTAL DEDUCCIONES:                                      $</pre>
-                <pre>TOTAL A RECIBIR:                                        $</pre>
+            <p>RECIBÍ DEL LIC. GILBERTO GARCIA VELA, EN SU CARÁCTER DE REPRESENTANTE LEGAL DE <strong>“CONSTRUCTORA ATZCO”, S.A. DE C.V.</strong>, QUIEN ES MI ÚNICO PATRON, LA CANTIDAD DE $ <br><br><strong>POR LOS SIGUIENTES CONCEPTOS:</strong></p>
+            <div class="Hoja6" >
+                <pre><strong>1.</strong>	   Salarios Devengados:                                              $</pre>
+                <pre><strong>2.</strong>	   Aguinaldo:                                                                $</pre>
+                <pre><strong>3.</strong>	   Vacaciones:                                                             $</pre>
+                <pre><strong>4.</strong>	   Prima Vacacional:                                                    $</pre>
+                <pre><strong>5.</strong>	   Horas Extras:                                                           $</pre>
+                <pre><strong>6.</strong>	   Séptimos Días:                                                         $</pre>
+                <pre><strong>7.</strong>	   Días de Descanso Obligatorios:                               $</pre>
+                <pre><strong>8.</strong>	   Prima de Antigüedad:                                               $</pre>
+                <pre><strong>9.</strong>	   Gratificación:                                                            $</pre>
+                <pre><strong>TOTAL QUE SE PAGA:</strong>                                                <strong>$</strong></pre>
+                <pre><strong>DEDUCCIONES</strong></pre>
+                <pre><strong>1.</strong>	   I.S.P.T. :                                                                   $</pre>
+                <pre><strong>2.</strong>	   I.M.S.S. :                                                                  $</pre>
+                <pre><strong>3.</strong>	   PRÉSTAMOS:                                                          $</pre>
+                <pre><strong>4.</strong>	   ADEUDOS:                                                               $</pre>
+                <pre><strong>TOTAL DEDUCCIONES:</strong>                                                <strong>$</strong></pre>
+                <pre><strong>TOTAL A RECIBIR:</strong>                                                        <strong>$</strong></pre>
             </div>
             <p>Asimismo, quiero manifestar expresamente que durante todo el tiempo que labore para  la sociedad mercantil denominada <strong>“CONSTRUCTORA ATZCO”, S.A. DE C.V.</strong>, quien reconozco como mi único patrón, me fueron cubiertos a mi entera y total satisfacción todos y cada uno de los conceptos mencionados anteriormente, por lo que a través del presente finiquito extiendo el más amplio recibo que en derecho proceda, manifestando además que no me reservo acción legal o derecho algunos que hacer valer en contra de cualquier persona ya sea física o moral, así como de cualquier persona que legalmente le represente o trabaje para dicha empresa.</p>
             <p>Por último, manifiesto expresamente y de manera voluntaria mi conformidad con el contenido del presente documento, mismo que firmo al calce, para todos los efectos legales a que haya lugar, en la ciudad de <?php echo $lugarDeServicio; ?> </p>
@@ -325,7 +353,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             <p><strong>TERCERA.- </strong>EL CONFIDENTE se obliga a no mantener en su poder copia alguna o reproducción, total o parcial de la documentación o Información Confidencial señalada, bajo cualquier forma o medio de constancia, archivo o almacenamiento, salvo que sea para cumplir las obligaciones de carácter laboral o jurídicas que hayan pactado.</p>
             <p><strong>CUARTA.- </strong>Toda la Información o documentación comercial relevante, delicada o secreta de LA EMPRESA y/o de sus clientes, tiene el carácter de confidencial, y por tanto de secreto industrial, en los términos del artículo 82 de la Ley de la Propiedad Industrial, por tratarse de aplicaciones de carácter industrial y/o comerciales que significan obtener o mantener una ventaja competitiva o económica frente a terceros en la realización de las actividades económicas que le son propias a LA EMPRESA y/o a los clientes de la misma, y respecto de las cuales se han adoptado los medios o sistemas suficientes para preservar su confidencialidad y acceso restringido. </p>
             <p>De acuerdo con lo anterior, EL CONFIDENTE manifiesta para todos los efectos a que haya lugar, que conoce y entiende cabalmente el artículo 223 de la Ley de la Propiedad Industrial, conforme al cual, las siguientes conductas inadecuadas respecto del manejo de los secretos industriales se tipifican como delictivas:</p>
-            <div class="apartadoArticulo">
+            <div class="apartadoArticulo seccionDeArticulo">
                 <p>“<strong>Artículo 223</strong>: Son delitos:</p>
                 <p>...IV. Revelar a un tercero un secreto industrial, que se conozca con motivo de su trabajo, puesto, cargo, desempeño de su profesión, relación de negocios o en virtud del otorgamiento de una licencia para su uso, sin consentimiento de la persona que guarde el secreto industrial, habiendo sido prevenido de su confidencialidad, con el propósito de obtener un beneficio económico para sí o para el tercero o con el fin de causar un perjuicio a la persona que guarde el secreto;</p>
                 <p>V. Apoderarse de un secreto industrial sin derecho y sin consentimiento de la persona que lo guarde o de su usuario autorizado, para usarlo o revelarlo a un tercero, con el propósito de obtener un beneficio económico para sí o para el tercero o con el fin de causar un perjuicio a la persona que guarde el secreto industrial o a su usuario autorizado, y</p>
@@ -357,18 +385,18 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             <p><strong>DÉCIMA QUINTA.- </strong>El presente Convenio y sus Anexos son la compilación completa y exclusiva de todos los términos y condiciones que rigen el acuerdo de las Partes en relación con el objeto del mismo.  Ninguna declaración de ningún agente, empleado o representante de LA EMPRESA realizada con anterioridad a la celebración del presente Convenio admitida en la interpretación de los términos del mismo.  En caso de que existiera conflicto entre el texto del presente Convenio y su Anexo, el texto del presente Convenio prevalecerá sobre el Anexo.</p>
             <br><br><br><br><br><br><br><br><br><br>
             <p>Leído que fue este Convenio por las Partes y enteradas plenamente de su contenido y efectos legales y no existiendo ninguna clase de vicio, dolo o mala fe, ambas lo firman en original en 2 (dos) tantos de conformidad, en la ciudad de SALAMANCA,GTO, GUANAJUATO, el día <?php echo $diaDeIngreso . " del mes de " . $mesDeIngreso . " de " . $anioDeIngreso; ?></p>
-            <div class="negritas">
-                <br><pre>             "LA EMPRESA"                           "EL CONFIDENTE"            </pre>
+            <div class="Hoja5">
+                <br><pre>                     "LA EMPRESA"                                           "EL TRABAJADOR ( A )"            </pre>
                 <br><br><br>
-                <pre>___________________________________       ______________________________________</pre>
-                <pre>LIC.ELIZABETH BARRIENTOS RUIZ.            <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
-                <pre>APODERADO LEGAL DE</pre>
-                <pre>CONSTRUCTURA ATZCO,S.A DE C.V.</pre>
+                <pre>___________________________________       ___________________________________</pre>
+                <pre>   ING.RODRIGUEZ ESCAMILLA ISRAEL.                    <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
+                <pre>             APODERADO LEGAL DE</pre>
+                <pre>   CONSTRUCTURA ATZCO,S.A DE C.V.</pre>
 
-                <b><br></b><pre>               TESTIGO                                 TESTIGO            </pre>
+                <b><br></b><pre>                           TESTIGO                                                          TESTIGO            </pre>
                 <br><br><br>
-                <pre>___________________________________       ______________________________________</pre>
-                <pre>LIC.FABIOLA ESQUIVEL MEZA                 ING.SANCHEZ SERRANO ANA DANIELA</pre>
+                <pre>___________________________________       ___________________________________</pre>
+                <pre>        LIC.ESQUIVEL MEZA FABIOLA                  LIC.SANCHEZ SERRANO ANA DANIELA</pre>
                     <br><br>
             </div>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -393,17 +421,17 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             <p>Se considera Información Confidencial, relevante y delicada para LA EMPRESA y/o para los clientes de la misma (según se define en el cuerpo principal del Convenio), todo lo relacionado directa o indirectamente con los rubros antes mencionados, entre otros las claves de acceso (passwords), saldos, disponibilidades, características, manejos históricos o de cualquier clase, etc.</p>
             <br><br><br>
             <p class="centrado"><?php echo $lugarDeServicio; ?> A <?php echo $diaDeIngreso . " de " . $mesDeIngreso . " de " . $anioDeIngreso; ?></p>
-            <div class="negritas">
-                <br><pre>             "LA EMPRESA"                           "EL CONFIDENTE"            </pre>
+            <div class="Hoja5">
+                <br><pre>                    "LA EMPRESA"                                                "EL CONFIDENTE"            </pre>
                 <br><br><br>
                 <pre>___________________________________       ______________________________________</pre>
-                <pre>CONSTRUCTURA ATZCO,S.A DE C.V.            <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
-                <pre>ING.ISRAEL RODRÍGUEZ ESCAMILLA</pre>
+                <pre>   CONSTRUCTURA ATZCO,S.A DE C.V.                        <?php echo $apellidoPaterno . " " .$apellidoMaterno . " " . $nombres; ?></pre>
+                <pre>   ING.RODRÍGUEZ ESCAMILLA ISRAEL</pre>
 
-                <b><br></b><pre>               TESTIGO                                 TESTIGO            </pre>
+                <b><br></b><pre>                          TESTIGO                                                             TESTIGO            </pre>
                 <br><br><br>
                 <pre>___________________________________       ______________________________________</pre>
-                <pre>LIC.ELIZABETH BARRIENTOS RUIZ             ING.SANCHEZ SERRANO ANA DANIELA</pre>
+                <pre>   LIC.BARRIENTOS RUIZ ELIZABETH                LIC.SANCHEZ SERRANO ANA DANIELA</pre>
                     <br><br>
             </div>
             <br><br><br><br><br><br><br><br><br><br>
@@ -412,8 +440,8 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
                 <p>Por medio de la presente el que suscribe C. <strong><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></strong> le externo mi consentimiento y aceptación de manera libre y espontánea, para que se me entreviste y se realice el llenado de mi declaración de estado de salud para cuestiones informativas.</p>
                 <p>Por lo expuesto, no tengo inconveniente alguno en que la <strong>Empresa Constructora Atzco S.A de C.V</strong> me pida que realice el llenado de mi declaratoria de estado de salud, agradeciendo de antemano la atención y facilidades que le puedan brindar para agilizar los trámites que le interesen.</p>
                 <br><br><br><br><br><br><br>
-                <p>Finalmente</p>
-                <p>En <?php echo $lugarDeServicio; ?>, a <?php echo $diaDeIngreso . " de " . $mesDeIngreso . " de " . $anioDeIngreso; ?>.</p>
+                <p class="alinieadaDerecha">Finalmente</p>
+                <p class="alinieadaDerecha">En <?php echo $lugarDeServicio; ?>, a <?php echo $diaDeIngreso . " de " . $mesDeIngreso . " de " . $anioDeIngreso; ?>.</p>
                 <br><br>
                 <div class="sub-tituloCentrado negritas">
                     <p>ATENTAMENTE</p><br><br><br>
@@ -730,18 +758,20 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br>
             <P class="sub-tituloCentrado rojo-blanco negritas">AVISO DE PRIVACIDAD</P>
-            <p class="pieDePagina"><?php echo $lugarDeServicio; ?> a <?php echo $diaDeIngreso . " del mes " . $mesDeIngreso . " del " . $anioDeIngreso; ?>.</p>
-            <div class="margen-solo-izquierdo justificado">
-                <p class="justificado"><strong><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></strong> (el responsable) con domicilio en  <strong><?php echo $domicilio; ?></strong> reconoce que nos estás proporcionando tus datos personales, laborales y académicos que aparecen en tu CV y/ o Solicitud de empleo, así como en la documentación de contratación solicitada. Nuestro compromiso es tratar los datos únicamente para los fines de Reclutamiento, Selección, Contratación y Administración de personal y las Relaciones laborales propios del  “Responsable”.</p>
+            <div class="cursiva">
+                <p class="pieDePagina"><?php echo $lugarDeServicio; ?> a <?php echo $diaDeIngreso . " del mes " . $mesDeIngreso . " del " . $anioDeIngreso; ?>.</p>
+                <div class="margen-solo-izquierdo justificado">
+                    <p class="justificado"><strong><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></strong> (el responsable) con domicilio en  <strong><?php echo $domicilio; ?></strong> reconoce que nos estás proporcionando tus datos personales, laborales y académicos que aparecen en tu CV y/ o Solicitud de empleo, así como en la documentación de contratación solicitada. Nuestro compromiso es tratar los datos únicamente para los fines de Reclutamiento, Selección, Contratación y Administración de personal y las Relaciones laborales propios del  “Responsable”.</p>
+                </div>
+                <p>Salvo para cumplir con las anteriores finalidades, no transferiremos tus datos a ningún tercero.</p>
+                <p>Este aviso de privacidad se pone a disposición de Usted (el “Titular”) previo a la obtención y tratamiento de sus datos personales (los “Datos”)</p>
+                <p>I.	<strong>Datos recabados y su finalidad:</strong> los datos que usted nos proporciona incluyen: (a) nombre, (b) domicilio completo; (c) correo electrónico; (d) teléfono celular o particular; (e) fotografía; (f) datos académicos y laborales (empleos anteriores); (g) datos personales y datos relativos a interés en puestos de trabajo, incluyendo aptitudes y capacidades, nivel socioeconómico y</p>
+                <p>II.	 pretensiones laborales (incluyendo sueldo), los cuales serán tratados con la única finalidad de Reclutamiento, Selección, Contratación y Administración del personal y las relaciones laborales. <br>Hacemos de su conocimiento que en todo momento los “datos personales” serán tratados con apego a los principios y requisitos contenidos en la Ley.</p>
+                <p>III.	<strong>Datos sensibles:</strong> El Titular declara que no ha proporcionado y en ningún caso proporcionará al Responsable “datos personales sensibles”, es decir, aquellos datos personales íntimos o cuya utilización debida o indebida pueda dar origen a discriminación o conlleve un riesgo grave para éste. En particular, el Titular se obliga a no proporcionar al Responsable ningún Dato relativo a origen racial o étnico, información genética, creencias religiosas, filosóficas y morales, opiniones políticas o preferencia sexual.</p>
+                <p>IV.	<strong>Almacenamiento y divulgación:</strong> Para poder cumplir con las finalidades de este aviso, así como para poder almacenar y tratar sus datos, es posible que el Responsable entregue todo o parte de los Datos a terceros, incluyendo proveedores de bienes o servicios, nacionales o extranjeros, que requieren conocer esta información, como por ejemplo servidores de almacenamiento de información, quienes quedarán obligados, por contrato, a mantener la confidencialidad de los Datos y conforme a este Aviso de Privacidad. El Responsable se compromete a contar con las medidas legales y de seguridad suficiente y necesaria para garantizar que sus Datos permanezcan confidenciales y seguros.</p>
+                <p>V.	<strong>Acceso, rectificación:</strong> El Titular tendrá derecho para solicitar al Responsable en cualquier momento el acceso, rectificación, cancelación u oposición respecto de sus Datos, para lo cual deberá enviar una solicitud a los datos que aparecen a continuación:<br>La solicitud de acceso, rectificación, cancelación u oposición deberá contener y acompañar lo siguiente: (1) El nombre del Titular y domicilio u otro medio para comunicarle la respuesta a su solicitud; (2) Los documentos que acrediten la identidad o, en su caso, la representación legal del Titular; (3) La descripción clara y precisa de los Datos respecto de los que se busca ejercer alguno de los derechos antes mencionados, y (4) Cualquier otro elemento o documento que facilite la localización de los Datos del Titular.</p>
+                <p>VI.	El Titular está de acuerdo y conforme en que cualquier cambio a este “Aviso de Privacidad” o a las políticas de privacidad se notifique avisos internos, por lo que es obligación del Titular solicitar al Departamento de Capital Humano la versión más actual del Aviso de Privacidad.</p>
             </div>
-            <p>Salvo para cumplir con las anteriores finalidades, no transferiremos tus datos a ningún tercero.</p>
-            <p>Este aviso de privacidad se pone a disposición de Usted (el “Titular”) previo a la obtención y tratamiento de sus datos personales (los “Datos”)</p>
-            <p>I.	<strong>Datos recabados y su finalidad:</strong> los datos que usted nos proporciona incluyen: (a) nombre, (b) domicilio completo; (c) correo electrónico; (d) teléfono celular o particular; (e) fotografía; (f) datos académicos y laborales (empleos anteriores); (g) datos personales y datos relativos a interés en puestos de trabajo, incluyendo aptitudes y capacidades, nivel socioeconómico y</p>
-            <p>II.	 pretensiones laborales (incluyendo sueldo), los cuales serán tratados con la única finalidad de Reclutamiento, Selección, Contratación y Administración del personal y las relaciones laborales. <br>Hacemos de su conocimiento que en todo momento los “datos personales” serán tratados con apego a los principios y requisitos contenidos en la Ley.</p>
-            <p>III.	<strong>Datos sensibles:</strong> El Titular declara que no ha proporcionado y en ningún caso proporcionará al Responsable “datos personales sensibles”, es decir, aquellos datos personales íntimos o cuya utilización debida o indebida pueda dar origen a discriminación o conlleve un riesgo grave para éste. En particular, el Titular se obliga a no proporcionar al Responsable ningún Dato relativo a origen racial o étnico, información genética, creencias religiosas, filosóficas y morales, opiniones políticas o preferencia sexual.</p>
-            <p>IV.	<strong>Almacenamiento y divulgación:</strong> Para poder cumplir con las finalidades de este aviso, así como para poder almacenar y tratar sus datos, es posible que el Responsable entregue todo o parte de los Datos a terceros, incluyendo proveedores de bienes o servicios, nacionales o extranjeros, que requieren conocer esta información, como por ejemplo servidores de almacenamiento de información, quienes quedarán obligados, por contrato, a mantener la confidencialidad de los Datos y conforme a este Aviso de Privacidad. El Responsable se compromete a contar con las medidas legales y de seguridad suficiente y necesaria para garantizar que sus Datos permanezcan confidenciales y seguros.</p>
-            <p>V.	<strong>Acceso, rectificación:</strong> El Titular tendrá derecho para solicitar al Responsable en cualquier momento el acceso, rectificación, cancelación u oposición respecto de sus Datos, para lo cual deberá enviar una solicitud a los datos que aparecen a continuación:<br>La solicitud de acceso, rectificación, cancelación u oposición deberá contener y acompañar lo siguiente: (1) El nombre del Titular y domicilio u otro medio para comunicarle la respuesta a su solicitud; (2) Los documentos que acrediten la identidad o, en su caso, la representación legal del Titular; (3) La descripción clara y precisa de los Datos respecto de los que se busca ejercer alguno de los derechos antes mencionados, y (4) Cualquier otro elemento o documento que facilite la localización de los Datos del Titular.</p>
-            <p>VI.	El Titular está de acuerdo y conforme en que cualquier cambio a este “Aviso de Privacidad” o a las políticas de privacidad se notifique avisos internos, por lo que es obligación del Titular solicitar al Departamento de Capital Humano la versión más actual del Aviso de Privacidad.</p>
             <div class="centrado negritas"><br><br><br><br>
                 <p>____________________________________________</p>
                 <p><?php echo $apellidoPaterno . " " . $apellidoMaterno . " " . $nombres; ?></p>
@@ -807,7 +837,6 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
                 <p>c)	Estos valores son parte de nuestra cultura organizacional y de nuestro quehacer diario, por lo que es necesario formalizarlos y establecer un marco de referencia común que unifique los criterios y oriente las acciones de todas las personas que integramos ATZCO</p>
                 <p>d)	ATZCO opera bajo la premisa fundamental de que se rige por leyes y ordenamientos, cuya observancia y cumplimiento es indispensable para existir y funcionar óptimamente en su entorno social.</p>
                 <p>e)	Este código parte del hecho que la mayoría de las veces la acción correcta es clara, independientemente de que esté incorporada a un código</p>
-                <br><br><br><br><br>
                 <p><strong>II.	Objetivos</strong></p>
                 <p>El presente Código de Ética tiene los siguientes objetivos: </p>
                 <p>a)	Dar a conocer a los Directivos, Gerentes y colaboradores de ATZCO sus  obligaciones de carácter ético hacia la empresa, clientes, proveedores, competidores, autoridades, medio ambiente y comunidad.</p>
@@ -838,7 +867,7 @@ if (isset($datosEmpleado['empleado_fecha_de_nacimiento']) && !empty($datosEmplea
                     Seleccionar a los proveedores con base a la idoneidad de sus productos o servicios , así como de su precio, condiciones de entrega y calidad, no aceptando ni ofreciendo regalos o comisiones, en dinero o en especie, que puedan alterar las reglas de la libre competencia en la producción y distribución de bienes y servicios.
                 </p>
                 <p>En caso de que no se pueda rechazar el regalo o comisión, deberá comunicarlo inmediatamente a Dirección General y/o Recursos Humanos.<br>
-                    Buscar la excelencia de los bienes y servicios de ATZCO de modo que los clientes obtengan la satisfacción esperada.<br>
+                    <br>Buscar la excelencia de los bienes y servicios de ATZCO de modo que los clientes obtengan la satisfacción esperada.<br>
                     Garantizar los productos y servicios de ATZCO y atender de forma rápida y eficaz las reclamaciones de clientes buscando su satisfacción más allá del mero cumplimento.
                 </p>
                 <p><strong>b)	Competencia</strong></p>

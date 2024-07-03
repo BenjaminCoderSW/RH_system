@@ -21,16 +21,45 @@ if ($check_empleado->rowCount() == 1) {
     try {
         // Abrimos conexion a la base de datos
         $eliminar_empleado = conexion();
-        // Preparamos una consulta delete a la base de datos para eliminar todo ese registro de ese empleado mediante su id
-        $eliminar_empleado = $eliminar_empleado->prepare("DELETE FROM empleado WHERE empleado_id=:id");
-        // Ejecuto la consulta enviandole el valor real al marcador que hice del id
-        $eliminar_empleado->execute([":id" => $employee_id_del]);
+        // Iniciamos la transacción
+        $eliminar_empleado->beginTransaction();
 
-        // Si se eliminó un dato (un empleado) entonces:
-        if ($eliminar_empleado->rowCount() == 1) {
+        // Obtener los archivos de expediente y vacaciones asociados
+        $expediente_query = $eliminar_empleado->prepare("SELECT expediente_nombre_de_archivo_comprimido FROM expediente WHERE empleado_id=:id");
+        $expediente_query->execute([":id" => $employee_id_del]);
+        $expediente_archivos = $expediente_query->fetchAll(PDO::FETCH_ASSOC);
+
+        $vacaciones_query = $eliminar_empleado->prepare("SELECT archivo_pdf FROM vacaciones WHERE empleado_id=:id");
+        $vacaciones_query->execute([":id" => $employee_id_del]);
+        $vacaciones_archivos = $vacaciones_query->fetchAll(PDO::FETCH_ASSOC);
+
+        // Eliminar el empleado de la base de datos
+        $eliminar_empleado_stmt = $eliminar_empleado->prepare("DELETE FROM empleado WHERE empleado_id=:id");
+        $eliminar_empleado_stmt->execute([":id" => $employee_id_del]);
+
+        // Confirmar la transacción si se eliminó el empleado
+        if ($eliminar_empleado_stmt->rowCount() == 1) {
+            $eliminar_empleado->commit();
+
             // Eliminar la foto del empleado del sistema de archivos
             if (file_exists($fotoRuta)) {
                 unlink($fotoRuta);
+            }
+
+            // Eliminar los archivos de expediente del sistema de archivos
+            foreach ($expediente_archivos as $archivo) {
+                $archivoRuta = "./img/expedientes/" . $archivo['expediente_nombre_de_archivo_comprimido'];
+                if (file_exists($archivoRuta)) {
+                    unlink($archivoRuta);
+                }
+            }
+
+            // Eliminar los archivos PDF de vacaciones del sistema de archivos
+            foreach ($vacaciones_archivos as $archivo) {
+                $archivoRuta = "./img/pdfs/" . $archivo['archivo_pdf'];
+                if (file_exists($archivoRuta)) {
+                    unlink($archivoRuta);
+                }
             }
 
             // Obtener el correo de notificaciones
@@ -54,6 +83,7 @@ if ($check_empleado->rowCount() == 1) {
                     }, 3000);
                   </script>';
         } else {
+            $eliminar_empleado->rollBack();
             echo '<div class="notification is-danger is-light">
                     <strong>¡Ocurrió un error inesperado!</strong><br>
                     No se pudo eliminar el empleado, por favor intente nuevamente.
@@ -66,16 +96,13 @@ if ($check_empleado->rowCount() == 1) {
         }
         $eliminar_empleado = null;
     } catch (PDOException $e) {
+        $eliminar_empleado->rollBack();
         if ($e->getCode() == '23000') { // Código de error SQL para restricción de clave foránea
             echo '<div class="notification is-danger is-light">
                     <strong>¡No se puede eliminar!</strong><br>
-                    El empleado tiene un expediente cargado y no puede ser eliminado.
+                    El empleado tiene un EXPEDIENTE o VACACIONES cargados y no puede ser eliminado
+                    elimine primero el expediente o las vacaciones de este empleado.
                   </div>';
-            echo '<script>
-                    setTimeout(function() {
-                        window.location.href = "index.php?vista=employee_list";
-                    }, 3000);
-                  </script>';
         } else {
             echo '<div class="notification is-danger is-light">
                     <strong>¡Ocurrió un error inesperado!</strong><br>

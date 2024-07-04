@@ -15,7 +15,6 @@ $plantillasPermitidas = [
     "CONTRATO_2021_OBRA_DETERMINADA_GRUPO_ATZCO_CAMPO_MODF.php",
     "CONTRATO_2021_OBRA_DETERMINADA_ATZCO_CAMPO_MODF.php",
     "CONTRATO_TIEMPO_DETERMINADO.php",
-    "GRUPO_ATZCO_CAMPO.php",
     "Generar_credencial.php",
     "Generar_Credencial_Grupo.php"
 ];

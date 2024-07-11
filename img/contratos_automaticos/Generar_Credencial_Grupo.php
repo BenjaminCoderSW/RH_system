@@ -28,8 +28,8 @@ $rutaLogoGrupoAtzco = "C:/laragon/www/HR_System/img/Grupo_Atzco_Credencial_Logo.
 
 // Ruta absoluta desde la perspectiva del servidor para el hosting
 // $rutaFotoEmpleado = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;
-// $rutaLogo = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/Grupo_Atzco_Credencial_Logo.jpeg";
 // $imagenISO = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/imagen_credencial.png";
+// $rutaLogoGrupoAtzco = "/home/u954703204/domains/cinetickett.com/public_html/HR_System/img/Grupo_Atzco_Credencial_Logo.jpeg";
 
 // HOSTING DE LA EMPRESA
 //$rutaFotoEmpleado = "/home/u496700722/domains/atzcorh.net/public_html/HR_System/img/fotos_empleados/" . $fotoEmpleado;

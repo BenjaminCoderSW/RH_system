@@ -29,7 +29,7 @@ $dato_nombre = $nombre->fetch();
                         <div class="card-body">
                             <div class="form-rest mb-6 mt-6"></div>
                             
-                            <form id="formEmpleadoGenerarContrato" action="./php/generar_contrato.php" method="POST" class="FormularioAjax" target="_blank" autocomplete="off">
+                        <form id="formEmpleadoGenerarContrato" action="./php/generar_contrato.php" method="POST" class="FormularioAjax" target="_blank" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="empleado_id" value="<?php echo $datos['empleado_id']; ?>" required>

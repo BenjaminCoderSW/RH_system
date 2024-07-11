@@ -8,6 +8,9 @@ $clave_1 = limpiar_cadena($_POST['usuario_clave_1']);
 $clave_2 = limpiar_cadena($_POST['usuario_clave_2']);
 $rol = limpiar_cadena($_POST['usuario_rol']);
 
+//Convertir a mayusculas
+$nombre = mb_strtoupper($nombre, 'UTF-8');
+
 if ($nombre == "") {
     echo json_encode(['status' => false, 'message' => 'Debes de ingresar el nombre.']);
     exit();

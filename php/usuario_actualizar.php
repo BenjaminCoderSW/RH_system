@@ -46,6 +46,9 @@
     $clave_1=limpiar_cadena($_POST['usuario_clave_1']);
     $clave_2=limpiar_cadena($_POST['usuario_clave_2']);
 
+    //Convertir a mayusculas
+    $nombre = mb_strtoupper($nombre, 'UTF-8');
+
 
     /*== Verificando campos obligatorios del usuario ==*/
     if($nombre=="" || $usuario=="" || $rol==""){

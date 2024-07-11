@@ -49,6 +49,26 @@ $estado = limpiar_cadena($_POST['empleado_estado']);
 $quienLoContrato = limpiar_cadena($_SESSION['nombre']);
 $domicilioEmpresa = limpiar_cadena($_POST['empleado_domicilio_empresa']);
 
+// Convertir nombres y apellidos a mayúsculas
+$nombres = mb_strtoupper($nombres, 'UTF-8');
+$apellidoPaterno = mb_strtoupper($apellidoPaterno, 'UTF-8');
+$apellidoMaterno = mb_strtoupper($apellidoMaterno, 'UTF-8');
+$lugarDeNacimiento = mb_strtoupper($lugarDeNacimiento, 'UTF-8');
+$domicilio = mb_strtoupper($domicilio, 'UTF-8');
+$puestoDeTrabajo = mb_strtoupper($puestoDeTrabajo, 'UTF-8');
+$nombreContactoEmergencia = mb_strtoupper($nombreContactoEmergencia, 'UTF-8');
+$parentezco = mb_strtoupper($parentezco, 'UTF-8');
+$lugarDeServicio = mb_strtoupper($lugarDeServicio, 'UTF-8');
+$salarioDiarioIntegradoEscrito = mb_strtoupper($salarioDiarioIntegradoEscrito, 'UTF-8');
+$curp = mb_strtoupper($curp, 'UTF-8');
+$rfc = mb_strtoupper($rfc, 'UTF-8');
+$tipoSangre = mb_strtoupper($tipoSangre, 'UTF-8');
+$alergias = mb_strtoupper($alergias, 'UTF-8');
+$enfermedades = mb_strtoupper($enfermedades, 'UTF-8');
+$nombreMadre = mb_strtoupper($nombreMadre, 'UTF-8');
+$nombrePadre = mb_strtoupper($nombrePadre, 'UTF-8');
+$quienLoContrato = mb_strtoupper($quienLoContrato, 'UTF-8');
+
 // Validar el archivo de la foto
 if (isset($_FILES['empleado_foto']) && $_FILES['empleado_foto']['error'] == 0) {
     $foto = $_FILES['empleado_foto'];

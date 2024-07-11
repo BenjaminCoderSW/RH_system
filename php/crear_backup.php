@@ -1,10 +1,17 @@
 <?php
 include 'main.php';
 
+// Credenciales de Hosting BD de la empresa
 $servidor = 'srv1288.hstgr.io';
 $usuario = 'u496700722_benja';
 $contrasena = 'hGtH5T!>0X';
 $baseDeDatos = 'u496700722_hr_basededatos';
+
+// Credenciales de Hosting BD de mi hosting y mi base de datos
+// $servidor = 'srv867.hstgr.io';
+// $usuario = 'u954703204_brian';
+// $contrasena = 'wRO9KdAc5|';
+// $baseDeDatos = 'u954703204_hr_basededatos';
 
 $backupDir = '../Backups/';
 $nombreBackup = 'backup_' . date('Ymd_His') . '.sql';
